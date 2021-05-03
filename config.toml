@@ -1,6 +1,6 @@
 baseURL = "http://brettkk.github.io/"
-#languageCode = "zh-cn"
-#title = "brettkk"
+languageCode = "zh-cn"
+title = "brettkk"
 
 theme = "mini"
 
