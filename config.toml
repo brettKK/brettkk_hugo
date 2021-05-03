@@ -4,6 +4,11 @@ title = "brettkk"
 
 theme = "mini"
 
+[taxonomies]
+  tag = "tags"
+  series = "series"
+  category = "categories"
+
 [params.gitment]          # Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment
     owner = "brettKK"              # Your GitHub ID
     repo = "brettkk.github.io"               # The repo to store comments
