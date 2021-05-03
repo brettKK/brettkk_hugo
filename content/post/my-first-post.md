@@ -7,14 +7,15 @@ series: [""]
 categories: ["技术"]
 ---
 // <!-- Your front matter up here -->
-:toc:
-// Set toclevels to be at least your hugo [markup.tableOfContents.endLevel] config key
-:toclevels: 4
 
 == 1
 
 xx
+
 == 2
+
 xx
+
 === 3
+
 todo write
