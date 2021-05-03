@@ -9,7 +9,8 @@ theme = "mini"
   series = "series"
   category = "categories"
 
-[params]
-	enableGitment = true
-    gitmentClientId = "694cecb7641cd102150b" # Needed for Gitment comments
-    gitmentClientSecret = "f06f28880ee792966d06bed3d40291c77a89015c" # Needed for Gitment comments
+[params.utterances]         # utteranc is a comment system based on GitHub issues. see https://utteranc.es
+    owner = "brettkk"
+    repo = "brettkk.github.io"    # 仓库地址The repo to store comments
+    issueTerm = "pathname"    #gitmentClientId = "694cecb7641cd102150b" 
+	theme = "github-light"     #gitmentClientSecret = "f06f28880ee792966d06bed3d40291c77a89015c"
