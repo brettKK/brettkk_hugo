@@ -11,3 +11,5 @@ theme = "mini"
 
 [params]
 	enableGitment = true
+    gitmentClientId = "694cecb7641cd102150b" # Needed for Gitment comments
+    gitmentClientSecret = "f06f28880ee792966d06bed3d40291c77a89015c" # Needed for Gitment comments
