@@ -9,6 +9,9 @@ theme = "mini"
   series = "series"
   category = "categories"
 
+[params]
+    toc = true
+
 [params.utterances]         # utteranc is a comment system based on GitHub issues. see https://utteranc.es
     owner = "brettkk"
     repo = "brettkk.github.io"    # 仓库地址The repo to store comments
