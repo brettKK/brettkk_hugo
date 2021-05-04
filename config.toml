@@ -6,12 +6,21 @@ theme = "mini"
 
 summaryLength = 30  # 限制摘要字数
 
+
+PygmentsCodeFences = true                      # Enable syntax highlighting with GitHub flavoured code fences
+PygmentsUseClasses = true                      # Use CSS classes to format highlighted code
+PygmentsCodefencesGuessSyntax = true           #
+PygmentsOptions = "linenos=table"              # 开启显示行号
+
+showReadMore = true 
+
 [taxonomies]
   tag = "tags"
   series = "series"
   category = "categories"
 
 [params]
+    archive-paginate = 30                         # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
     toc = true
 
 [params.utterances]         # utteranc is a comment system based on GitHub issues. see https://utteranc.es
