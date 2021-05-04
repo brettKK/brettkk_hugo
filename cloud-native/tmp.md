@@ -76,5 +76,3 @@ public int findKthLargest(int[] nums, int k) {
             + 单调读一致性
             + 单调写一致性
     + 事务一致性（ACID）
-
-+ 文法
