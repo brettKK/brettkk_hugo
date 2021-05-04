@@ -4,6 +4,7 @@ title = "brettkk"
 
 theme = "mini"
 
+paginate = 4 # Set the number of posts to show before overflowing to the next page.
 summaryLength = 30  # 限制摘要字数
 
 
@@ -12,7 +13,6 @@ PygmentsUseClasses = true                      # Use CSS classes to format highl
 PygmentsCodefencesGuessSyntax = true           #
 PygmentsOptions = "linenos=table"              # 开启显示行号
 
-showReadMore = true 
 
 [taxonomies]
   tag = "tags"
@@ -21,6 +21,7 @@ showReadMore = true
 
 [params]
     archive-paginate = 30                         # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
+    showReadMore = true 
     toc = true
 
 [params.utterances]         # utteranc is a comment system based on GitHub issues. see https://utteranc.es
