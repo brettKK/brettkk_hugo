@@ -31,7 +31,7 @@ PygmentsOptions = "linenos=table"              # 开启显示行号
 	theme = "github-light"     #gitmentClientSecret = "f06f28880ee792966d06bed3d40291c77a89015c"
 
 
-[markup]
+[params.markup]
   [markup.highlight]
     codeFences = true
     hl_Lines = ""
@@ -41,3 +41,6 @@ PygmentsOptions = "linenos=table"              # 开启显示行号
     noClasses = true
     style = "monokai"
     tabWidth = 4
+
+[params.math]
+    enable = true
