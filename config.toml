@@ -42,5 +42,13 @@ PygmentsOptions = "linenos=table"              # 开启显示行号
     style = "monokai"
     tabWidth = 4
 
+[markup]
+    [markup.tableOfContents]
+        endLevel = 6                                  # TOC的标题结束层数（H6）
+        startLevel = 2                                # TOC的标题开始层数（H1）
+    [markup.goldmark.renderer]
+        unsafe = false
+
+
 [params.math]
     enable = true
