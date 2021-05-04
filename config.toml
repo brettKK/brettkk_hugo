@@ -31,23 +31,36 @@ PygmentsOptions = "linenos=table"              # 开启显示行号
 	theme = "github-light"     #gitmentClientSecret = "f06f28880ee792966d06bed3d40291c77a89015c"
 
 
-[params.markup]
-  [markup.highlight]
-    codeFences = true
-    hl_Lines = ""
-    lineNoStart = 1
-    lineNos = false
-    lineNumbersInTable = true
-    noClasses = true
-    style = "monokai"
-    tabWidth = 4
-
+# Markdown 渲染器
 [markup]
+    defaultMarkdownHandler = "goldmark"
+    [markup.goldmark]
+        [markup.goldmark.extensions]
+            definitionList = true
+            footnote = true
+            linkify = true
+            strikethrough = true
+            table = true
+            taskList = true
+            typographer = false
+        [markup.goldmark.parser]
+            attribute = true
+            autoHeadingID = true
+            autoHeadingIDType = "github"
+        [markup.goldmark.renderer]
+            hardWraps = false
+            unsafe = true
+            xHTML = false
+    [markup.highlight]
+        codeFences = true
+        guessSyntax = false
+        lineNos = true
+        lineNumbersInTable = true
+        noClasses = false
     [markup.tableOfContents]
-        endLevel = 6                                  # TOC的标题结束层数（H6）
-        startLevel = 2                                # TOC的标题开始层数（H1）
-    [markup.goldmark.renderer]
-        unsafe = false
+        startLevel = 2
+        endLevel = 6
+        ordered = true
 
 
 [params.math]
