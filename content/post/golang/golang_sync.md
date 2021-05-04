@@ -14,7 +14,7 @@ golang提供了比较便捷的并发编程方式。golang的并发单元是gorou
 
 标准库sync里的Waitgroup，用来阻塞主协程去等待所有协程执行完。WaitGroup主要三个方法：Add方法添加等待的协程数量，Done方法等于Add(-1)减少等待的协程数量，Wait方法阻塞主协程。原理示意图如下：
 
-![image](../../../static/golang/golang_sync.png)
+![image](../../../data/golang/golang_sync.png)
 
 
 #### WaitGroup使用说明
