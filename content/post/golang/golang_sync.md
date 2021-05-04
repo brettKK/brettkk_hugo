@@ -19,7 +19,7 @@ golang提供了比较便捷的并发编程方式。golang的并发单元是gorou
 
 #### WaitGroup使用说明
 WaitGroup在工作中经常会使用到。例如：需要并行处理一些子任务，需要起多个协程对一些复杂结构体的各个字段进行初始化等。简单的使用说明如下：
-```
+```golang
 func fun() {
     var wg sync.WaitGroup
     wg.Add(1)
@@ -42,7 +42,7 @@ func fun() {
 
 通过无缓冲的通道，阻塞一个协程，等待另一个协程唤醒。例如：main协程在通道的接受队列中等待， 等worker协程写入数据后，main协程才会唤醒并继续执行。通信的数据是直接写一个协程的stack。这样可以省去去操作通道的buf，减少内存拷贝。简单的使用说明如下：
 
-```
+```golang
 func worker(done chan bool) {
     //process
     done <- true
@@ -56,7 +56,7 @@ func main(){
 
 channel读写超时的处理。Go 语言的 channel 本身是不支持 timeout 的，一般实现 channel 的读写超时采用 select + time的方式。实例说明如下：
 
-```
+```golang
 func main() {
     var ch chan int
     go func(){
@@ -78,7 +78,7 @@ context是在context包里定义的一种接口。在context包中可以通过Wi
 
 下面以WithCancel为入口，以源码（go1.12.7）为内容作介绍。当 parent 的 Done() 关闭的时候，孩子 ctx 的 Done() 也会关闭， 这种情况是如何实现的？具体过程分两种情况： 1 当传入的context是库里支持的cancelCtx、timeCtx时，child加入parent的衍生map中； 2 当传入的context为自定义实现类时，标准库是新起goroutine监听信号并执行cancel子context的过程。
 
-```
+```golang
 // 在 parent 和 child 之间同步取消的信号，保证在 parent 被取消时，child 也会收到对应的信号，不会发生状态不一致的问题。
 func propagateCancel(parent Context, child canceler) {
     if parent.Done() == nil { //parent不会触发cancel信号，则返回
@@ -110,7 +110,7 @@ func propagateCancel(parent Context, child canceler) {
 
 cancel方法的逻辑是关闭cancelCtx的Done通道，并递归地关闭context的所有子context。
 
-```
+```golang
 func (c *cancelCtx) cancel(removeFromParent bool, err error) {
     if err == nil { // 外层传errors.New("context canceled") 这里不会进入
         panic("context: internal error: missing cancel error")
