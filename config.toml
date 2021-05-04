@@ -29,3 +29,15 @@ PygmentsOptions = "linenos=table"              # 开启显示行号
     repo = "brettkk.github.io"    # 仓库地址The repo to store comments
     issueTerm = "pathname"    #gitmentClientId = "694cecb7641cd102150b" 
 	theme = "github-light"     #gitmentClientSecret = "f06f28880ee792966d06bed3d40291c77a89015c"
+
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "monokai"
+    tabWidth = 4
