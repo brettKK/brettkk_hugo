@@ -4,7 +4,7 @@ title = "brettkk"
 
 theme = "mini"
 
-summaryLength = 100  # 限制摘要字数
+summaryLength = 30  # 限制摘要字数
 
 [taxonomies]
   tag = "tags"
