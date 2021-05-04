@@ -14,7 +14,7 @@ golang提供了比较便捷的并发编程方式。golang的并发单元是gorou
 
 标准库sync里的Waitgroup，用来阻塞主协程去等待所有协程执行完。WaitGroup主要三个方法：Add方法添加等待的协程数量，Done方法等于Add(-1)减少等待的协程数量，Wait方法阻塞主协程。原理示意图如下：
 
-![image](../../../data/golang/golang_sync.png)
+![image](/golang/golang_sync.png))
 
 
 #### WaitGroup使用说明
@@ -36,7 +36,7 @@ func fun() {
 
 通道是golang中协程通信的一种方式，可以灵活、高效支持协程之间的通信。通道与协程之间的交互流程图因是否存在缓冲区、缓冲区是否填满、是否存在发送等待队列等，会在过程上会存在不同。下面给出的示意图是针对利用无缓冲通道进行通信的其中一种情况，主要是为了简化流程和突出主要功能点。图中hchan是通道的底层数据结构，其中主要包含： buf为数据存储区， recvq和sendq为在此通道上等待接受和发送的协程队列，lock为保护通道数据的锁等。P为运行时的协程调度器。原理示意图如下：
 
-![image](../../../static/golang/hchan.png)
+![image](/golang/hchan.png)
 
 #### channel 使用说明
 
