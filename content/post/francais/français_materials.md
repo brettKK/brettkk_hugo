@@ -19,13 +19,7 @@ If you want some thing that you have never had, you must be willing to do some t
 
 一首歌单曲循环，把孤单变成勇敢
 
-放弃游戏 闲聊以及无效的社交 开始专注于学习和工作
 
-开始规律作息和锻炼身体
-
-有责任感
-
-站起来全靠自己
 
 Zidane
 J'adore
@@ -34,7 +28,7 @@ J'adore
 + 法国电影
     + 刺猬的优雅
     + 两小无猜
-    + 无法触碰
+    + 无法触碰 钢琴配乐很不错
     + 岳父岳母真难当
     + 三星大厨
     + 天使爱美丽  Amélie

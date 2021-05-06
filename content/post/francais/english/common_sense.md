@@ -1,6 +1,15 @@
+---
+title: "java 小结"
+date: 2021-05-05T11:33:56+08:00
+draft: false
+isCJKLanguage: true
+markup: mmark
+tags: ["language", "english"]
+series: [""]
+categories: ["life"]
+---
 
-+ SITCOM = situation comedy (FRIENDS, how i meet your mother)
-+ scent of a woman (my love)
++ 《scent of a woman》
 
 > Slade this is such a crock of shit
 Slade you are in the Barrett school not a barracks
@@ -57,3 +66,17 @@ it'a path made a principle that leads to character. Let him continue on his jour
 you hold this boy's future in your hands committee.
 It's a valuable future. Believe me, don't destory it, protect it, embrace it.
 it's going to make you proud one day, I promise you!
+
+
+### learning
+
++ www.sparknotes.com
++ www.theatlantic.com/world/
++ the new york times and the economist
++ www.solveforx.com
++ www.elllo.org
++ www.feedly.com
++ www.bbc.co.uk/learningenglish/
+
++ 中文在“他”和“她”的发音上比其他语言要高级一点 在于 说话或者唱歌时有一语双关的作用... hah
++ SITCOM = situation comedy (FRIENDS, how i meet your mother)
