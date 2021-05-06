@@ -1,5 +1,5 @@
 ---
-title: "http, curl, DNS"
+title: "http, curl, dns"
 date: 2021-05-05T11:33:56+08:00
 draft: false
 isCJKLanguage: true
