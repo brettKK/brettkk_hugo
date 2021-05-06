@@ -4,7 +4,7 @@ date: 2021-05-05T11:33:56+08:00
 draft: false
 isCJKLanguage: true
 markup: mmark
-tags: ["linux", "http", "protocol"]
+tags: ["linux", "protocol"]
 series: [""]
 categories: ["技术"]
 ---
