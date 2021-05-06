@@ -1,4 +1,14 @@
-asm javassist 2个字节码操作工具
+---
+title: "java 小结"
+date: 2021-05-05T11:33:56+08:00
+draft: false
+isCJKLanguage: true
+markup: mmark
+tags: ["java"]
+series: [""]
+categories: ["技术"]
+---
+
 
 class文件的结构
 
@@ -40,7 +50,6 @@ class文件的结构
           +  info
              +  ConstantValue属性
              +  Code属性 重要的部分 包含了方法的字节码
-                +  
 
 2 字节码指令
 + switch-case的两种字节码指令的实现
