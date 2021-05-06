@@ -8,6 +8,8 @@ series: [""]
 categories: ["life"]
 ---
 
+### 字母发音
+
 + a [a] 阿
 + b [be] b诶
 + c [se] s诶
@@ -36,6 +38,7 @@ categories: ["life"]
 + z [zεd]
 
 ---
+
 萧尧
 
 + 辅音字母在词尾不发音，除了cfqlr 长发俏丽人

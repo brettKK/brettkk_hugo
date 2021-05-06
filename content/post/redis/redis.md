@@ -1,3 +1,14 @@
+---
+title: "redis"
+date: 2021-05-05T11:33:56+08:00
+draft: false
+isCJKLanguage: true
+markup: mmark
+tags: ["encrypt"]
+series: [""]
+categories: ["技术"]
+---
+
 #### 数据结构与对象
 + 简单动态数组 simple dynamic string SDS (面向对象的code的思想，空间换时间)
     + sds.h sds.c

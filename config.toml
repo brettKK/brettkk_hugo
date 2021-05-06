@@ -54,14 +54,13 @@ PygmentsOptions = "linenos=table"              # 开启显示行号
     [markup.highlight]
         codeFences = true
         guessSyntax = false
-        lineNos = true
+        hl_Lines = ""
+        lineNoStart = 1
+        lineNos = false
         lineNumbersInTable = true
-        noClasses = false
-    [markup.tableOfContents]
-        startLevel = 2
-        endLevel = 6
-        ordered = true
-
+        noClasses = true
+        style = "emacs"
+        tabWidth = 4
 
 [params.math]
     enable = true
