@@ -105,6 +105,10 @@ x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}\\
 $$
 
 
++ 同样的明文，同样的公钥，每次加密的结果不会一样。11字节都为随机数 填充使用
+  + 填充协议PKCS #1 v1.5: "填充后数据" = "00" + "数据块类型" + "填充字符串" + "00" + "原始数据"
+    + BT (数据块类型) 00: 填充字符串全为00；01：全为FF； 02:针对公钥时设置BT=02，伪随机字符串，这能解释上面公钥加密的结果会不一样；
+
 #### X.509标准
 
 公钥证书的标准，定义证书的格式，包含CA机构，公钥等。
@@ -113,16 +117,18 @@ $$
 
 https的原理， 握手阶段
 + 客户端给server发送支持的对称加密算法
-+ server选择支持的对称加密算法和版本
++ server选择支持的对称加密算法和版本 （确定hash算法，对称加密算法）
 + server发送证书（包含公钥）
 + client验证证书后， 用rsa的公钥发送对称加密的密钥给server
 + server返回ack，握手完成
 
 后续的传输阶段时使用对称加密进行通信
 
-网络超时的类型
+### 密钥的管理
 
-+ zero copy
-  + tradeoff between performance and security technologies.
-  + implementation:  1 memory remapping, 2 shared buffers, 3 different system calls, and hardware support.
-  + https://pdfs.semanticscholar.org/6a35/60046cb8d3258669c86072a7cab05e1d2300.pd
++ 加解密运算 与 存储分离
++ 访问鉴权
++ 数据监控
++ root key
+
+![image](/os/xinfeng_encryp.png)
