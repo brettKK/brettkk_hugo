@@ -8,10 +8,11 @@ tags: ["linux", "protocol"]
 series: [""]
 categories: ["技术"]
 ---
+### http 
 
-+ http报文头部常用字段
++ http header 常用字段
   + content-type (如何解析body)
-    + application/x-www-form-urlencoded, (默认类型)原生form表单， key1=val1&key2=val2 的方式进行编码
+    + application/x-www-form-urlencoded
     + multipart/from-data, 上传文件
     + application/json, text/plain
     + text/xml, XML格式 （post请求的4种格式）
@@ -19,8 +20,6 @@ categories: ["技术"]
   + keep-alive-time: 300, 指连接维持的时间
   + content-length: 120, 指明响应的内容有120字节 (出现等于-1，但是body有数据的情况？)
   + transfer-encoding: chunked， 响应内容采用分块传输，最后一个分块为0表示传输结束
-
-
 + http keep-alive 与 tcp keep alive 区别与联系
   + http 用于连接复用
   + tcp 用于保证连接存活，发送探测包确认连接是否存活
@@ -28,19 +27,12 @@ categories: ["技术"]
 + 有时ping url结果为unkown host，但是curl url可以通
   + 有可能对方防火墙屏蔽ping的ICMP协议
 
+---
 ### curl命令
 
 + 不带参数 curl  xx.com 发get请求
 + curl -X POST xx.com 发post请求
-+ 下载单个文件，print到stdout
-	+ curl baidu.com
-+ -o/O 保存下载文件到本地
-	+ -o
-		+ curl -o mytext.html baidu.com
-	+ -O 将文本保存到本地，以web名称存在
-		+ curl -O www.gnu.org/aa.html
-+ -L curl 调整到新地址
-+ -i 显示response header and html
+  
 + -I only response header
   +  curl -I www.google.com
   + (curl -I 获取http响应的头部)
@@ -85,6 +77,8 @@ categories: ["技术"]
     	+  防火墙不允许tcp连接-协议不可达
     	+  端口没有进程监听-端口不可达
 
+
+---
 ### dig 
 
 + dig查询DNS相关信息的工具
@@ -99,6 +93,11 @@ categories: ["技术"]
   + NS记录      域名服务器记录  将域名解析交给其他DNS服务器
 
 
+
+---
+
 + 访问github.com时与DNS解析有关的一个问题
-  + 问题：fatal: unable to access 'https://github.com/brettKK/shell.git/': Failed to connect to github.com port 443: Operation timed out
-  + 方法：vim /etc/hosts ==> find github.com to delete
+
+问题：fatal: unable to access 'https://github.com/brettKK/shell.git/': Failed to connect to github.com port 443: Operation timed out
+
+方法：vim /etc/hosts ==> find github.com to delete

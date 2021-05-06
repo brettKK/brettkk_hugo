@@ -75,6 +75,7 @@ $$
 (x^e - kn)^d \equiv x (mod\ n) \tag{3}\\
 $$
 
+左边多项式展开：
 $$
 x^ed-m_{1}x^{e(d-1)}kn+m_{2}x^{e(d-2)}(kn)^2...m_{n}(kn)^{d} \tag{4}\\
 $$
@@ -84,18 +85,20 @@ $$
 x^{ed} \equiv x (mod\ n) \tag{5}\\
 $$
 
+而ed 等于：
 $$
-ed \equiv 1 (mod\ {\Phi \left(n\right)}) \tag{6}\\
+ed \equiv 1 (mod\ {\Phi (n)}) \tag{6}\\
 $$
 
 $$
-ed=h{\Phi \left(n\right)})+1 \tag{7}\\
+ed=h{\Phi(n)})+1 \tag{7}\\
 $$
 
 $$
 x^{h{\Phi \left(n\right)}}*x\equiv x (mod\ n) \tag{8}\\
 $$
 
+若x与n互质，根据欧拉定理 得证
 $$
 x^{h{\Phi \left(n\right)}}\equiv 1 (mod\ n)  \tag{9}\\
 $$
@@ -103,6 +106,8 @@ $$
 $$
 x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}\\
 $$
+
+若x与n不互质时， 稍微复杂 todo
 
 
 + 同样的明文，同样的公钥，每次加密的结果不会一样。11字节都为随机数 填充使用
@@ -130,5 +135,3 @@ https的原理， 握手阶段
 + 访问鉴权
 + 数据监控
 + root key
-
-![image](/os/xinfeng_encryp.png)
