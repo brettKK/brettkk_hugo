@@ -6,6 +6,7 @@ isCJKLanguage: true
 ---
 
 一些bug
++ init() 函数滥用
 + 函数功能是查询类的，能不用指针传参数就不用，避免函数内部对对象做修改
 + 代码里不要吞掉任何一个错误
 + first path segment in URL cannot contain colon 原因：字符串http前面多了空格，post请求在本地就会失败

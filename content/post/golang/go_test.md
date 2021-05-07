@@ -49,3 +49,13 @@ categories: ["技术"]
     + channel（mutex锁保证并发安全） ==》 ringbuffer (CAS 保证并发安全)
     + 避免堆分配可以成为优化的主要方向. 若频繁使用堆，可以sync.Pool 复用对象
     + cpu cache line(64字节) False Sharing。为了保证cache的一致性，对内存的一个小小的写入都会让cache line被淘汰。对相邻地址的读操作就无法命中对应的cache line。 RingBuffer struct padding。  type RingBuffer struct {_padding0  [8]uint64, queue          uint64, 	_padding1      [8]uint64, 	dequeue     uint64}
+
+
++ golang fuzz testing
++ gdb单步调试go程序的执行过程    Delve 更好
++ Guru 导航go 代码的编辑器集成工具
+    + 变量，函数的声明地点
+    + 变量，函数的所有引用地点
+    + 实现此接口的所有具体类型
++ golang.org/x/tools/cmd/guru
+    + http://golang.org/s/using-guru

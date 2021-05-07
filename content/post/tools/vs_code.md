@@ -30,3 +30,8 @@ command+P 搜索文件
  + @, 查找属性或者函数
  + #， 根据名字查找symbol
  + cmd + "." 修复语法错误
+
++ vscode 常见功能键 good tools
+    + Mac下 vs code设置文件：$HOME/Library/Application Support/Code/User/settings.json
+        + 最开始使用run test时无输出， 在settings.json里添加"go.testFlags":["-V"],
+    +   预览md格式（⇧⌘V）
