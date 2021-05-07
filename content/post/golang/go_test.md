@@ -1,5 +1,5 @@
 ---
-title: "go test todo"
+title: "go test"
 date: 2021-05-03T18:34:48+08:00
 draft: false
 isCJKLanguage: true
@@ -8,13 +8,23 @@ series: [""]
 categories: ["技术"]
 ---
 
+### 单测
 
-+ goland need money, so vs code 
-+ Configure Visual Studio Code for Go
-    + extensions: go
-    + view -> command palette... -> goinstall
++ golang 测试框架 stub/mock
+  + GoConvey  https://github.com/smartystreets/goconvey
+    + cd <your project> and $GOPATH/bin/goconvey, in browser http://localhost:8080
+    + Convey, so, 不是很习惯，找不到定义的地方
+  + testify  https://github.com/stretchr/testify
+  + GoStub 
+  + GoMock  只能mock interface里的函数
+  + Monkey
+
+### 调试
+
++ delve 调试工具 
 
 
+### 性能分析
 
 + pprof (CPU profiles, Heap profiles, block profile, traces)
     + kite, ginex 框架开启了prof功能， 定时任务，消费者等worker需要 import _ net/http/pprof手动开启
@@ -33,17 +43,9 @@ categories: ["技术"]
     + net/http/pprof
 + wrk 压力测试 github.com/juju/ratelimit 
 
-+ golang 测试框架 stub/mock
-  + GoConvey  https://github.com/smartystreets/goconvey
-    + cd <your project> and $GOPATH/bin/goconvey, in browser http://localhost:8080
-    + Convey, so, 不是很习惯，找不到定义的地方
-  + testify  https://github.com/stretchr/testify
-  + GoStub 
-  + GoMock  只能mock interface里的函数
-  + Monkey
 
 
-+ delve 调试工具 
+
 
 + 优化go程序 运行速度的方向 只对关键的路径进行优化 (优化运行速度，开会速度会慢 hah)
     + channel（mutex锁保证并发安全） ==》 ringbuffer (CAS 保证并发安全)

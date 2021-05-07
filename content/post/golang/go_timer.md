@@ -1,5 +1,5 @@
 ---
-title: "go lock"
+title: "go timer"
 date: 2021-05-05T18:34:48+08:00
 draft: false
 isCJKLanguage: true

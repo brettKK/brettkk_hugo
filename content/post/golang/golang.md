@@ -1,15 +1,18 @@
 ---
-title: "Golang"
+title: "golang"
 date: 2021-05-04T18:54:41+08:00
 draft: false
 isCJKLanguage: true
+tags: ["golang"]
+series: [""]
+categories: ["技术"]
 ---
 
 ### 资料
 + https://github.com/gocn/knowledge
 + awesome-go
 
-
+### 模糊点
 + 数组的初始化 （元素类型， 数组大小）
     + cmd/compile/internal/types.NewArray
     + cmd/compile/internal/types.NewSlice
@@ -63,7 +66,7 @@ isCJKLanguage: true
 + avo
     + github.com/mmcloughlin/avo
 
-### 
+### go 汇编
 + 汇编风格分为2类
   + intel风格
   + AT&T风格(左 --> 右) go是plan9， 属于此类
@@ -72,7 +75,7 @@ isCJKLanguage: true
 + register  ax, sb, pc
 + 立即数 $1 , $0x100
 + 内存寻址 （R1）
-+ 
+
 + plan 9
     + https://lrita.github.io/2017/12/12/golang-asm/#go%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8
     + https://lrita.github.io/images/posts/go/GoFunctionsInAssembly.pdf

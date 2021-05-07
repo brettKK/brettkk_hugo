@@ -1,8 +1,11 @@
 ---
-title: "Bug_fix"
+title: "bug_fix"
 date: 2021-05-04T19:10:43+08:00
 draft: false
 isCJKLanguage: true
+tags: ["golang"]
+series: [""]
+categories: ["技术"]
 ---
 
 一些bug

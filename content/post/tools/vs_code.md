@@ -35,3 +35,6 @@ command+P 搜索文件
     + Mac下 vs code设置文件：$HOME/Library/Application Support/Code/User/settings.json
         + 最开始使用run test时无输出， 在settings.json里添加"go.testFlags":["-V"],
     +   预览md格式（⇧⌘V）
++ Configure Visual Studio Code for Go
+    + extensions: go
+    + view -> command palette... -> goinstall

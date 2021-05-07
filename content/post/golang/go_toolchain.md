@@ -3,6 +3,9 @@ title: "go_toolchain"
 date: 2021-05-01T18:54:41+08:00
 draft: false
 isCJKLanguage: true
+tags: ["golang"]
+series: [""]
+categories: ["技术"]
 ---
 
 ### an overview of go's tooling
