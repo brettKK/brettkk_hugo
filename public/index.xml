@@ -6,36 +6,18 @@
     <description>Recent content on brettkk</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 05 May 2021 11:33:56 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 06 May 2021 18:34:48 +0800</lastBuildDate>
     
 	<atom:link href="http://brettkk.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>etcd</title>
-      <link>http://brettkk.github.io/post/cloud_native/etcd/</link>
-      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      <title>go同步编码方式</title>
+      <link>http://brettkk.github.io/post/golang/golang_sync/</link>
+      <pubDate>Thu, 06 May 2021 18:34:48 +0800</pubDate>
       
-      <guid>http://brettkk.github.io/post/cloud_native/etcd/</guid>
-      <description>etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et</description>
-    </item>
-    
-    <item>
-      <title>etcd_raft</title>
-      <link>http://brettkk.github.io/post/cloud_native/etcd_raft/</link>
-      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/post/cloud_native/etcd_raft/</guid>
-      <description>raft基本思想：少数服从多数。 leader 选举 + 发起投票 + 每个节点为</description>
-    </item>
-    
-    <item>
-      <title>europe</title>
-      <link>http://brettkk.github.io/post/francais/euro/</link>
-      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/post/francais/euro/</guid>
-      <description>欧洲历史 欧洲历史 古希腊，罗马文明 古希腊文明 苏格拉底 柏拉图 亚里</description>
+      <guid>http://brettkk.github.io/post/golang/golang_sync/</guid>
+      <description>golang提供了比较便捷的并发编程方式。golang的并发</description>
     </item>
     
     <item>
@@ -45,15 +27,6 @@
       
       <guid>http://brettkk.github.io/post/os/http/</guid>
       <description>http http header 常用字段 content-type (如何解析body) application/x-www-form-urlencoded multipart/from-data, 上传文件 application/json, text/plain text/xml, XML</description>
-    </item>
-    
-    <item>
-      <title>java 小结</title>
-      <link>http://brettkk.github.io/post/java/java/</link>
-      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/post/java/java/</guid>
-      <description>Class文件格式图 1 class文件由十个部分组成 javap</description>
     </item>
     
     <item>
@@ -237,18 +210,45 @@
     </item>
     
     <item>
-      <title>go同步编码方式</title>
-      <link>http://brettkk.github.io/post/golang/golang_sync/</link>
-      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      <title>etcd</title>
+      <link>http://brettkk.github.io/post/cloud_native/etcd/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
       
-      <guid>http://brettkk.github.io/post/golang/golang_sync/</guid>
-      <description>golang提供了比较便捷的并发编程方式。golang的并发</description>
+      <guid>http://brettkk.github.io/post/cloud_native/etcd/</guid>
+      <description>etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et</description>
+    </item>
+    
+    <item>
+      <title>europe</title>
+      <link>http://brettkk.github.io/post/francais/euro/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/francais/euro/</guid>
+      <description>欧洲历史 欧洲历史 古希腊，罗马文明 古希腊文明 苏格拉底 柏拉图 亚里</description>
+    </item>
+    
+    <item>
+      <title>etcd_raft</title>
+      <link>http://brettkk.github.io/post/cloud_native/etcd_raft/</link>
+      <pubDate>Fri, 05 Mar 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/cloud_native/etcd_raft/</guid>
+      <description>raft基本思想：少数服从多数。 leader 选举 + 发起投票 + 每个节点为</description>
+    </item>
+    
+    <item>
+      <title>java 小结</title>
+      <link>http://brettkk.github.io/post/java/java/</link>
+      <pubDate>Fri, 05 Mar 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/java/java/</guid>
+      <description>Class文件格式图 1 class文件由十个部分组成 javap</description>
     </item>
     
     <item>
       <title>kubernetes</title>
       <link>http://brettkk.github.io/post/cloud_native/my-first-post/</link>
-      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      <pubDate>Wed, 03 Mar 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/post/cloud_native/my-first-post/</guid>
       <description>pod 管理关系紧密的容器进程，共享ipc network 容器不只contain</description>

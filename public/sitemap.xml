@@ -4,36 +4,41 @@
   
   <url>
     <loc>http://brettkk.github.io/</loc>
-    <lastmod>2021-05-05T11:33:56+08:00</lastmod>
+    <lastmod>2021-05-06T18:34:48+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://brettkk.github.io/categories/</loc>
-    <lastmod>2021-05-05T11:33:56+08:00</lastmod>
+    <lastmod>2021-05-06T18:34:48+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://brettkk.github.io/tags/cloud-native/</loc>
-    <lastmod>2021-05-05T11:33:56+08:00</lastmod>
+    <loc>http://brettkk.github.io/tags/golang/</loc>
+    <lastmod>2021-05-06T18:34:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://brettkk.github.io/post/golang/golang_sync/</loc>
+    <lastmod>2021-05-06T18:34:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://brettkk.github.io/post/</loc>
+    <lastmod>2021-05-06T18:34:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://brettkk.github.io/tags/</loc>
+    <lastmod>2021-05-06T18:34:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://brettkk.github.io/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2021-05-06T18:34:48+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://brettkk.github.io/tags/encrypt/</loc>
-    <lastmod>2021-05-05T11:33:56+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://brettkk.github.io/post/cloud_native/etcd/</loc>
-    <lastmod>2021-05-05T11:33:56+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://brettkk.github.io/post/cloud_native/etcd_raft/</loc>
-    <lastmod>2021-05-05T11:33:56+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://brettkk.github.io/post/francais/euro/</loc>
     <lastmod>2021-05-05T11:33:56+08:00</lastmod>
   </url>
   
@@ -44,11 +49,6 @@
   
   <url>
     <loc>http://brettkk.github.io/tags/java/</loc>
-    <lastmod>2021-05-05T11:33:56+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://brettkk.github.io/post/java/java/</loc>
     <lastmod>2021-05-05T11:33:56+08:00</lastmod>
   </url>
   
@@ -98,11 +98,6 @@
   </url>
   
   <url>
-    <loc>http://brettkk.github.io/post/</loc>
-    <lastmod>2021-05-05T11:33:56+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://brettkk.github.io/tags/protocol/</loc>
     <lastmod>2021-05-05T11:33:56+08:00</lastmod>
   </url>
@@ -123,22 +118,12 @@
   </url>
   
   <url>
-    <loc>http://brettkk.github.io/tags/</loc>
-    <lastmod>2021-05-05T11:33:56+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://brettkk.github.io/post/tools/vs_code/</loc>
     <lastmod>2021-05-05T11:33:56+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://brettkk.github.io/post/os/encrypt/</loc>
-    <lastmod>2021-05-05T11:33:56+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://brettkk.github.io/categories/%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2021-05-05T11:33:56+08:00</lastmod>
   </url>
   
@@ -193,23 +178,38 @@
   </url>
   
   <url>
-    <loc>http://brettkk.github.io/tags/golang/</loc>
-    <lastmod>2021-05-03T18:34:48+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://brettkk.github.io/post/golang/gomemorymodel/</loc>
     <lastmod>2021-05-03T18:34:48+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://brettkk.github.io/post/golang/golang_sync/</loc>
-    <lastmod>2021-05-03T18:34:48+08:00</lastmod>
+    <loc>http://brettkk.github.io/tags/cloud-native/</loc>
+    <lastmod>2021-04-05T11:33:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://brettkk.github.io/post/cloud_native/etcd/</loc>
+    <lastmod>2021-04-05T11:33:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://brettkk.github.io/post/francais/euro/</loc>
+    <lastmod>2021-04-05T11:33:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://brettkk.github.io/post/cloud_native/etcd_raft/</loc>
+    <lastmod>2021-03-05T11:33:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://brettkk.github.io/post/java/java/</loc>
+    <lastmod>2021-03-05T11:33:56+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://brettkk.github.io/post/cloud_native/my-first-post/</loc>
-    <lastmod>2021-05-03T18:34:48+08:00</lastmod>
+    <lastmod>2021-03-03T18:34:48+08:00</lastmod>
   </url>
   
   <url>

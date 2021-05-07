@@ -6,10 +6,19 @@
     <description>Recent content in golang on brettkk</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 03 May 2021 18:34:48 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 06 May 2021 18:34:48 +0800</lastBuildDate>
     
 	<atom:link href="http://brettkk.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>go同步编码方式</title>
+      <link>http://brettkk.github.io/post/golang/golang_sync/</link>
+      <pubDate>Thu, 06 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/golang_sync/</guid>
+      <description>golang提供了比较便捷的并发编程方式。golang的并发</description>
+    </item>
     
     <item>
       <title>go lock</title>
@@ -54,15 +63,6 @@
       
       <guid>http://brettkk.github.io/post/golang/gomemorymodel/</guid>
       <description>go的内存模型规定： 在哪些情况下，一个golang中读取的变</description>
-    </item>
-    
-    <item>
-      <title>go同步编码方式</title>
-      <link>http://brettkk.github.io/post/golang/golang_sync/</link>
-      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/post/golang/golang_sync/</guid>
-      <description>golang提供了比较便捷的并发编程方式。golang的并发</description>
     </item>
     
   </channel>
