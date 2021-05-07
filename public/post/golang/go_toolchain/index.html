@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="description" content="pod 管理关系紧密的容器进程，共享ipc network 容器不只contain">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -57,27 +57,115 @@
         </span>
         <span>
           
-              0 word
+            233 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          0 minute read
+          2 minute read
         </span>
     </div>
 
     <div class="content" >
       <article class="content">
-        
+        <h3 id="an-overview-of-gos-tooling">an overview of go's tooling <a href="#an-overview-of-gos-tooling" class="anchor">🔗</a></h3><ul>
+<li>table of content</li>
+<li>installing tooling
+<ul>
+<li>$ GO111MODULE=on go get golang.org/x/tools/cmd/stresss</li>
+<li>go get -u, 强制使用网络去更新包和它的依赖包, 自动完成编译和安装 (git clone + go install)</li>
+</ul>
+</li>
+<li>viewing environment information
+<ul>
+<li>go env</li>
+<li>go env GOPATH GOOS GOARCH</li>
+<li>go help environment (go help get)</li>
+</ul>
+</li>
+<li>development
+<ul>
+<li>GOOS=windows go build
+<ul>
+<li>go build -gcflags=&quot;-m -l&quot; // 看变量分配在stack or heap</li>
+</ul>
+</li>
+<li>go run ./cmd/foo</li>
+<li>go run, go test, go build 可以静默添加外面依赖</li>
+<li>go get <a href="mailto:github.com/foo/bar@v1.2.3">github.com/foo/bar@v1.2.3</a> 也可以指定特别的版本号
+<ul>
+<li>go get -v 显示操作流程的日志及信息，方便检查错误</li>
+<li>go get -u 重新下载依赖包</li>
+<li>go get -d 只下载，不安装</li>
+<li>go get -insecure  允许使用不安全的 HTTP 方式进行下载操作</li>
+</ul>
+</li>
+<li>go list -m all</li>
+<li>go mod why -m golang.org/x/sys</li>
+<li>go mod graph</li>
+<li>go clean -modcache (cache: GOPATH/pkg/mod)</li>
+<li>gofmt -d -w -r 'Add -&gt; ADD' .</li>
+<li>go doc -src strings.Replace (view go documentation) , go doc fmt Printf</li>
+</ul>
+</li>
+<li>testing
+<ul>
+<li>go test ./foo/bar</li>
+<li>go clean -testcache</li>
+<li>go test -v -run=^TestFooBar$ .</li>
+<li>go test -cover ./...</li>
+<li>go test -run=^TestFooBar$ -count=500 . (stress testing)</li>
+<li>go test -covermode=count -coverprofile=/tmp/profile.out ./...</li>
+<li>go tool cover -html=/tmp/profile.out</li>
+</ul>
+</li>
+<li>pre_commit checks
+<ul>
+<li>gofmt -w -s -d .</li>
+<li>go vet foo.go</li>
+<li>golint foo.go</li>
+<li>go mod tidy, go mod verify</li>
+</ul>
+</li>
+<li>build and deployment
+<ul>
+<li>go clean -cache</li>
+<li>go install -&gt; $GOPATH/bin/demo</li>
+<li>go list -f '{{ .Name}}'</li>
+<li>go tool dist list (os/architecture)</li>
+<li>GOOS=linux GOARCH=amd64 go build -o=/tmp/linux_amd64/foo .</li>
+<li><a href="https://github.com/golang/go/wiki/WebAssembly">https://github.com/golang/go/wiki/WebAssembly</a></li>
+</ul>
+</li>
+<li>diagnosing problems and making optimizations
+<ul>
+<li>go tool pprof --nodefraction=0.1  -http=:9999 /tmp/cpuprofile.out</li>
+<li>go tool trace
+<ul>
+<li>goroutine的时间阶段： Execution Time， Network Wait Time， Sync Block Time， Blocking Syscall Time， Scheduler Wait Time， GC Sweeping， GC Pause。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
       </article>
     </div>
 
     <div class="article-nav" id="article-nav-id">
         <nav class="hide-on-mobile section-nav">
           <h3 class="ml-1">Table of contents</h3>
-            <nav id="TableOfContents"></nav>
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#an-overview-of-gos-tooling">an overview of go's tooling</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
         </nav>
     </div>
 

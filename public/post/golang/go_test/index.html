@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="description" content="pod 管理关系紧密的容器进程，共享ipc network 容器不只contain">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -57,14 +57,14 @@
         </span>
         <span>
           
-            443 words
+            516 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          1 minute read
+          2 minute read
         </span>
     </div>
 
@@ -136,6 +136,26 @@
 <li>channel（mutex锁保证并发安全） ==》 ringbuffer (CAS 保证并发安全)</li>
 <li>避免堆分配可以成为优化的主要方向. 若频繁使用堆，可以sync.Pool 复用对象</li>
 <li>cpu cache line(64字节) False Sharing。为了保证cache的一致性，对内存的一个小小的写入都会让cache line被淘汰。对相邻地址的读操作就无法命中对应的cache line。 RingBuffer struct padding。  type RingBuffer struct {_padding0  [8]uint64, queue          uint64, 	_padding1      [8]uint64, 	dequeue     uint64}</li>
+</ul>
+</li>
+<li>
+<p>golang fuzz testing</p>
+</li>
+<li>
+<p>gdb单步调试go程序的执行过程    Delve 更好</p>
+</li>
+<li>
+<p>Guru 导航go 代码的编辑器集成工具</p>
+<ul>
+<li>变量，函数的声明地点</li>
+<li>变量，函数的所有引用地点</li>
+<li>实现此接口的所有具体类型</li>
+</ul>
+</li>
+<li>
+<p>golang.org/x/tools/cmd/guru</p>
+<ul>
+<li><a href="http://golang.org/s/using-guru">http://golang.org/s/using-guru</a></li>
 </ul>
 </li>
 </ul>

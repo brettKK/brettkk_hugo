@@ -48,15 +48,6 @@
     </item>
     
     <item>
-      <title>go todo</title>
-      <link>http://brettkk.github.io/post/golang/godeeper/</link>
-      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/post/golang/godeeper/</guid>
-      <description>深入解析go 从词法语法解析、类型检查、中间代码生成以及机器码</description>
-    </item>
-    
-    <item>
       <title>go内存模型</title>
       <link>http://brettkk.github.io/post/golang/gomemorymodel/</link>
       <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>

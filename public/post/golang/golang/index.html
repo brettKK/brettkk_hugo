@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="description" content="pod 管理关系紧密的容器进程，共享ipc network 容器不只contain">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -57,14 +57,14 @@
         </span>
         <span>
           
-            66 words
+            745 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          1 minute read
+          2 minute read
         </span>
     </div>
 
@@ -92,6 +92,139 @@
 </ul>
 </li>
 <li>
+<p>函数接受者为指针类型</p>
+<ul>
+<li>函数可以修改接受者的内容</li>
+<li>避免方法调用时变量的拷贝，而是指针的拷贝</li>
+</ul>
+</li>
+<li>
+<p>go严格上只有复制拷贝传递</p>
+<ul>
+<li>总是创建副本按值传递，只不过这个副本可以是变量的副本，也可以是指针的副本</li>
+</ul>
+</li>
+<li>
+<p>unsafe</p>
+</li>
+<li>
+<p>unsafe.Pointer()</p>
+<ul>
+<li>T1指针与 T2指针类型之间的转换</li>
+<li>修改内存数据 uintptr 常用于与 unsafe.Pointer配合，用于做指针运算</li>
+</ul>
+</li>
+<li>
+<p>反射 Reflection (interface对象=（Type, Value）反射类型 reflect.Type, reflect.Value)  三点</p>
+<ul>
+<li>反射可以将interface类型的变量 转换为 反射对象（reflect.Type reflect.Value）</li>
+<li>反射可以将反射对象 还原为interface对象</li>
+<li>反射对象可以修改，提前是value值是变量的指针  var x float= 3.1 ; v:= reflect.ValueOf(&amp;x); v.Elem().SetFloat(3.4);</li>
+</ul>
+</li>
+<li>
+<p>动态调用方法， reflect.Value(interface) -&gt; reflect.Value-&gt;value.MethodByName-&gt;Call</p>
+</li>
+<li>
+<p>golang 内存管理</p>
+<ul>
+<li>内存分配原理
+<ul>
+<li>src/runtime/mheap.go:mspan</li>
+</ul>
+</li>
+<li>内存回收原理
+<ul>
+<li>三色标记法 （未使用，已使用，带处理）</li>
+</ul>
+</li>
+<li>逃逸分析（对象是否被函数外面引用 例如闭包； 对象过大也可能在堆中）
+<ul>
+<li>逃逸分析的目的是决定变量的内存分配地址是在栈还是堆</li>
+<li>逃逸分析在编译阶段完成的</li>
+<li>传递指针真的比传值高效吗？不一定 由于指针传递会产生逃逸，可能会使用堆，增加GC负担。</li>
+<li>go build -gcflags=-m // escapes to heap</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>nil</p>
+<ul>
+<li>what is nil
+<ul>
+<li>nil is a kind of zero</li>
+</ul>
+</li>
+<li>what is nil in go
+<ul>
+<li>各种类型的零值</li>
+<li>zero value of all type value
+<ul>
+<li>bool false, number 0, string &quot;&quot;</li>
+<li>pointer, slice, map, channel, function, interface{} ==&gt; nil</li>
+<li>structure{}</li>
+</ul>
+</li>
+<li>kind of nil
+<ul>
+<li>interface{} = (type, value) ==&gt; (nil, nil) == nil</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>what does nil mean</li>
+<li>is nil useful ? yes</li>
+</ul>
+</li>
+<li>
+<p>avo</p>
+<ul>
+<li>github.com/mmcloughlin/avo</li>
+</ul>
+</li>
+</ul>
+<h3 id="heading"> <a href="#heading" class="anchor">🔗</a></h3><ul>
+<li>
+<p>汇编风格分为2类</p>
+<ul>
+<li>intel风格</li>
+<li>AT&amp;T风格(左 --&gt; 右) go是plan9， 属于此类</li>
+</ul>
+</li>
+<li>
+<p>助记符    call, add</p>
+</li>
+<li>
+<p>register  ax, sb, pc</p>
+</li>
+<li>
+<p>立即数 $1 , $0x100</p>
+</li>
+<li>
+<p>内存寻址 （R1）</p>
+</li>
+<li></li>
+<li>
+<p>plan 9</p>
+<ul>
+<li><a href="https://lrita.github.io/2017/12/12/golang-asm/#go%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8">https://lrita.github.io/2017/12/12/golang-asm/#go%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8</a></li>
+<li><a href="https://lrita.github.io/images/posts/go/GoFunctionsInAssembly.pdf">https://lrita.github.io/images/posts/go/GoFunctionsInAssembly.pdf</a></li>
+<li><a href="https://github.com/buptbill220/gotls/tree/master/interesting">https://github.com/buptbill220/gotls/tree/master/interesting</a></li>
+<li>查看当前cpu架构的指令集合 cat /proc/cpuinfo | grep flags | head -1</li>
+<li>指令查询： <a href="http://68k.hax.com/">http://68k.hax.com/</a></li>
+<li>命令查询：https://9p.io/magic/man2html/1/8a</li>
+<li>plan9 文档： <a href="https://9p.io/sys/doc/">https://9p.io/sys/doc/</a></li>
+</ul>
+</li>
+<li>
+<p><a href="https://defuse.ca/online-x86-assembler.htm#disassembly2">https://defuse.ca/online-x86-assembler.htm#disassembly2</a></p>
+<ul>
+<li>x86 or x64 assembly instructions encoding&lt;==&gt; decoding binary code</li>
+<li>It uses GCC and objdump behind the scenes</li>
+</ul>
+</li>
+<li>
 <p>goroot/src/syscall --》 建议使用 golang.org/x/sys</p>
 </li>
 </ul>
@@ -102,7 +235,15 @@
     <div class="article-nav" id="article-nav-id">
         <nav class="hide-on-mobile section-nav">
           <h3 class="ml-1">Table of contents</h3>
-            <nav id="TableOfContents"></nav>
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#heading"></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
         </nav>
     </div>
 
