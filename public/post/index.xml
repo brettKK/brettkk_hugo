@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>go lock</title>
+      <link>http://brettkk.github.io/post/golang/go_timer/</link>
+      <pubDate>Wed, 05 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/go_timer/</guid>
+      <description>Go提供了两种定时器，分为一次性定时器、周期性定时器。 两种定</description>
+    </item>
+    
+    <item>
       <title>http, curl, dns</title>
       <link>http://brettkk.github.io/post/os/http/</link>
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
@@ -171,15 +180,6 @@
       
       <guid>http://brettkk.github.io/post/golang/go_lock/</guid>
       <description>locks 锁 源码包的结构 🔗 sync包 sync.Mutex sync.RWMutex sync.Cond sync.WaitGroup sync.Once sync.Pool 涉及的内容很多 cache line padding</description>
-    </item>
-    
-    <item>
-      <title>go lock</title>
-      <link>http://brettkk.github.io/post/golang/go_timer/</link>
-      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/post/golang/go_timer/</guid>
-      <description>Go提供了两种定时器，分为一次性定时器、周期性定时器。 两种定</description>
     </item>
     
     <item>
