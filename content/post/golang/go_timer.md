@@ -14,14 +14,14 @@ src/runtime/time.go:addtimerLocked()函数负责添加timer
 + 一次性定时器：定时器只计时一次，结束便停止  Timer只执行一次就结束
 + 周期性定时器：定时器周期性进行计时  周期性定时器Ticker
 
-```
+```golang
 type Timer struct { // Timer代表一次定时，时间到来后仅发生一个事件。
     C <-chan Time
     r runtimeTimer
 }
 ```
 
-```
+```golang
 //src/time/tick.go:Ticker
 type Ticker struct {
     C <-chan Time // The channel on which the ticks are delivered.
@@ -33,7 +33,7 @@ type Ticker struct {
 系统协程把runtimeTimer存放在数组中，并按照when字段对所有的runtimeTimer进行堆排序，定时器触发时执行runtimeTimer中的预定义函数f
 即完成了一次定时任务
 
-```
+```golang
 //src/time/sleep.go:runtimeTimer定义了其数据结构
 type runtimeTimer struct {
     tb uintptr                          // 存储当前定时器的数组地址
@@ -47,7 +47,7 @@ type runtimeTimer struct {
 }
 ```
 
-```
+```golang
 func NewTimer(d Duration) *Timer {
     c := make(chan Time, 1)  // 创建一个管道
     t := &Timer{ // 构造Timer数据结构
@@ -64,7 +64,7 @@ func NewTimer(d Duration) *Timer {
 ```
 
 
-```
+```golang
 // 设定超时时间
 func WaitChannel(conn <-chan string) bool {
 	timer := time.NewTimer(1 * time.Second)
@@ -80,7 +80,7 @@ func WaitChannel(conn <-chan string) bool {
 ```
 
 
-```
+```golang
 //After()
 func AfterDemo() {
 	log.Println(time.Now())
@@ -90,7 +90,7 @@ func AfterDemo() {
 
 ```
 
-```
+```golang
 //AfterFunc()
 func AfterFuncDemo() {
 	log.Println("AfterFuncDemo start: ", time.Now())
@@ -105,7 +105,7 @@ func AfterFuncDemo() {
 
 
 周期性ticker
-```
+```golang
 // TickerDemo 用于演示ticker基础用法
 func TickerDemo() {
 	ticker := time.NewTicker(1 * time.Second)
