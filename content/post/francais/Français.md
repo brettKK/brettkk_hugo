@@ -3,7 +3,7 @@ title: "Alphabet Français"
 date: 2021-05-03T18:34:48+08:00
 draft: false
 isCJKLanguage: true
-tags: ["language", "français"]
+tags: ["language"]
 series: [""]
 categories: ["life"]
 ---
