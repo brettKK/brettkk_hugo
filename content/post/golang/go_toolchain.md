@@ -1,3 +1,9 @@
+---
+title: "go_toolchain"
+date: 2021-05-01T18:54:41+08:00
+draft: false
+isCJKLanguage: true
+---
 
 ### an overview of go's tooling
 
