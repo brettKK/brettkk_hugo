@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title>http, curl, dns | brettkk</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="《scent of a woman》 Slade this is such a crock of shit Slade you are in the Barrett school not">
+<meta name="generator" content="Hugo 0.72.0" />
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/googlecode.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/highlight.js/10.0.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/tags">Tags</a>
+	<a href="/about">About</a>
+
+	
+
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title">http, curl, dns</h1>
+
+    <div class="tip">
+        <span>
+          May 5, 2021 11:33
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          
+            921 words
+          
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          2 minute read
+        </span>
+    </div>
+
+    <div class="content" >
+      <article class="content">
+        <h3 id="http">http</h3>
+
+<ul>
+<li>http header 常用字段
+
+<ul>
+<li>content-type (如何解析body)</li>
+<li>application/x-www-form-urlencoded</li>
+<li>multipart/from-data, 上传文件</li>
+<li>application/json, text/plain</li>
+<li>text/xml, XML格式 （post请求的4种格式）</li>
+<li>connection: keep-alive, 持久连接（相对于用完就关闭的短连接而言）</li>
+<li>keep-alive-time: 300, 指连接维持的时间</li>
+<li>content-length: 120, 指明响应的内容有120字节 (出现等于-1，但是body有数据的情况？)</li>
+<li>transfer-encoding: chunked， 响应内容采用分块传输，最后一个分块为0表示传输结束</li>
+</ul></li>
+
+<li><p>http keep-alive 与 tcp keep alive 区别与联系</p>
+
+<ul>
+<li>http 用于连接复用</li>
+<li>tcp 用于保证连接存活，发送探测包确认连接是否存活</li>
+</ul></li>
+
+<li><p>有时ping url结果为unkown host，但是curl url可以通</p>
+
+<ul>
+<li>有可能对方防火墙屏蔽ping的ICMP协议</li>
+</ul></li>
+</ul>
+
+<hr>
+
+<h3 id="curl命令">curl命令</h3>
+
+<ul>
+<li>不带参数 curl  xx.com 发get请求</li>
+
+<li><p>curl -X POST xx.com 发post请求</p></li>
+
+<li><p>-I only response header</p>
+
+<ul>
+<li>curl -I www.google.com</li>
+<li>(curl -I 获取http响应的头部)</li>
+</ul></li>
+
+<li><p>-v 显示http通信过程 --trace</p>
+
+<ul>
+<li>curl -v <a href="http://www.example.com/index.html">http://www.example.com/index.html</a></li>
+<li>&gt; 发送的请求， &lt;接收的响应</li>
+<li>RFC2616</li>
+</ul></li>
+
+<li><p>curl -u username :password URL</p></li>
+
+<li><p>curl 查询单词</p>
+
+<ul>
+<li>curl dict://dict.org/d:xxx 查询xxx的含义</li>
+<li>curl dict://dict.org/show:db 列出可用的词典</li>
+<li>curl dict://dict.org/d:xx:foldoc 利用foldoc查询xx的含义</li>
+</ul></li>
+
+<li><p>给curl 设置代理</p>
+
+<ul>
+<li>curl -x proxyserver.test.com:9090 google.com</li>
+</ul></li>
+
+<li><p>将cookie保存到本地</p>
+
+<ul>
+<li>curl -D localCookie google.com</li>
+<li>curl -b localCookie google.com 使用上次的cookie</li>
+<li>curl -c cookie url 保存cookie到文件</li>
+</ul></li>
+
+<li><p>默认curl使用get方式 发送表单</p>
+
+<ul>
+<li>curl -u username github.com</li>
+</ul></li>
+
+<li><p>可以通过--data/-d方式使用post</p>
+
+<ul>
+<li>curl -u username --data &quot;param1=value1&amp;param2=value2&quot; github.com</li>
+<li>curl --data @filename github.com 将文件中的数据传给服务器</li>
+</ul></li>
+
+<li><p>User Agent (-A , -H)</p>
+
+<ul>
+<li>curl --user-agent &quot;user-agent&quot; url</li>
+</ul></li>
+
+<li><p>cookie (-b)</p>
+
+<ul>
+<li>curl --cookie &quot;name=xx&quot; url</li>
+<li>cookie值可以从response header的·Set-Cookie·字段得到</li>
+</ul></li>
+
+<li><p>自行加request header信息</p>
+
+<ul>
+<li>curl --header &quot;&quot; url</li>
+</ul></li>
+
+<li><p>curl -d '{&quot;key1&quot;:&quot;value1&quot;, &quot;data&quot;:{&quot;data1&quot;:&quot;value1&quot;, &quot;data2&quot;:&quot;value2&quot;}}' '<a href="https://xxx.com/a/b'">https://xxx.com/a/b'</a></p></li>
+
+<li><p>curl -F 'business_type=one' -F 'data=@/Users/kk/a.csv'  x.x.x.x:xx/a/b curl发送文件</p></li>
+
+<li><p>curl -G -d 'q=xx' xx.com -d ''//xx.com?q=xx</p></li>
+
+<li><p>ping icmp协议 封装在IP包里</p>
+
+<ul>
+<li>类型0 8 请求与响应</li>
+<li>3是不可达 后面有代码号</li>
+<li>5种情况
+
+<ul>
+<li>ip中的网络号-网络不可达</li>
+<li>ip中的主机号-主机不可达</li>
+<li>防火墙不允许tcp连接-协议不可达</li>
+<li>端口没有进程监听-端口不可达</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<hr>
+
+<h3 id="dig">dig</h3>
+
+<ul>
+<li>dig查询DNS相关信息的工具
+
+<ul>
+<li>显示internet上13个根域服务器</li>
+<li>dig @dnsserver name querytype</li>
+<li>用google的dns查询baidu的A记录</li>
+<li>dig @8.8.8.8 www.baidu.com A</li>
+</ul></li>
+<li>DNS记录的类型
+
+<ul>
+<li>A记录       指定域名对应的IP地址</li>
+<li>AAAA记录    指定域名对应的IPV6地址</li>
+<li>CNAME记录   别名解析 域名1（CDN加速域名） -》域名2 -》IP</li>
+<li>NS记录      域名服务器记录  将域名解析交给其他DNS服务器</li>
+</ul></li>
+</ul>
+
+<hr>
+
+<ul>
+<li>访问github.com时与DNS解析有关的一个问题</li>
+</ul>
+
+<p>问题：fatal: unable to access '<a href="https://github.com/brettKK/shell.git/':">https://github.com/brettKK/shell.git/':</a> Failed to connect to github.com port 443: Operation timed out</p>
+
+<p>方法：vim /etc/hosts ==&gt; find github.com to delete</p>
+
+      </article>
+    </div>
+
+    <div class="article-nav" id="article-nav-id">
+        <nav class="hide-on-mobile section-nav">
+          <h3 class="ml-1">Table of contents</h3>
+            
+        </nav>
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="http://brettkk.github.io/tags/linux">linux</a>
+            
+                <a href="http://brettkk.github.io/tags/protocol">protocol</a>
+            
+        </div>
+    
+
+    <div class="post-comment">
+      
+             
+      
+      
+      
+
+
+<div class="post bg-white">
+    <script src="https://utteranc.es/client.js"
+          repo="brettkk/brettkk.github.io"
+          issue-term="pathname"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+</div>
+    </div>
+    
+
+</section>
+
+<script>
+	window.addEventListener('DOMContentLoaded', () => {
+		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
+			entries.forEach(entry => {
+				const id = entry.target.getAttribute('id');
+
+				if (entry.intersectionRatio > 0) {					
+					clearActiveStatesInTableOfContents();				
+					document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+				}
+			});
+		});		
+		document.querySelectorAll('h1[id],h2[id],h3[id],h4[id]').forEach((section) => {
+			observerForTableOfContentActiveState.observe(section);
+		});
+
+	});
+
+	function clearActiveStatesInTableOfContents() {
+		document.querySelectorAll('nav li').forEach((section) => {
+			section.classList.remove('active');
+		});
+	}
+</script>
+
+
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<footer id="footer">
+    
+
+    <p class="copyright">
+    
+       © Copyright 
+       2021 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       
+    
+    </p>
+    <p class="powerby">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+  </body>
+</html>

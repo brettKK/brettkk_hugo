@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>技术 on brettkk</title>
+    <link>http://brettkk.github.io/categories/%E6%8A%80%E6%9C%AF/</link>
+    <description>Recent content in 技术 on brettkk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 05 May 2021 11:33:56 +0800</lastBuildDate>
+    
+	<atom:link href="http://brettkk.github.io/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>http, curl, dns</title>
+      <link>http://brettkk.github.io/post/os/http/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/os/http/</guid>
+      <description>http http header 常用字段 content-type (如何解析body) application/x-www-form-urlencoded multipart/from-data, 上传文件 application/json, text/plain text/xml, XML</description>
+    </item>
+    
+    <item>
+      <title>java 小结</title>
+      <link>http://brettkk.github.io/post/java/java/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/java/java/</guid>
+      <description>Class文件格式图 1 class文件由十个部分组成 javap</description>
+    </item>
+    
+    <item>
+      <title>linux-base</title>
+      <link>http://brettkk.github.io/post/os/base_os/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/os/base_os/</guid>
+      <description>Linux 版本 uname -a 查看系统的版本 debian/ubuntu redhat/fedora/centos 各种源码协议 必须开源： LGPL Mozilla GPL</description>
+    </item>
+    
+    <item>
+      <title>linux-free</title>
+      <link>http://brettkk.github.io/post/os/free/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/os/free/</guid>
+      <description>free查看内存使用情况，包含已用内存，可用内存，交换内存的</description>
+    </item>
+    
+    <item>
+      <title>linux-shell</title>
+      <link>http://brettkk.github.io/post/os/shell-basic/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/os/shell-basic/</guid>
+      <description>单引号，双引号，反引号区别 单引号之间的内容原封不动的输出 双引</description>
+    </item>
+    
+    <item>
+      <title>linux-tcp</title>
+      <link>http://brettkk.github.io/post/os/tcp/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/os/tcp/</guid>
+      <description>tcp报文结构图 URG: 表示紧急指针（urgent pointer）</description>
+    </item>
+    
+    <item>
+      <title>linux-top</title>
+      <link>http://brettkk.github.io/post/os/top/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/os/top/</guid>
+      <description>linux top命令（mac top结果显示有一些区别） Linux下常</description>
+    </item>
+    
+    <item>
+      <title>mysql 小结</title>
+      <link>http://brettkk.github.io/post/os/use_mysql/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/os/use_mysql/</guid>
+      <description>存储引擎-是创建表时设置的，所以存储引擎是表级别的使用 innodb: 只有</description>
+    </item>
+    
+    <item>
+      <title>redis 小结</title>
+      <link>http://brettkk.github.io/post/redis/redis/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/redis/redis/</guid>
+      <description>简单动态数组 simple dynamic string SDS sds.h sds.c 数组本身长度， 空余长度 防止strca</description>
+    </item>
+    
+    <item>
+      <title>soot, wala</title>
+      <link>http://brettkk.github.io/post/java/soot_wala/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/java/soot_wala/</guid>
+      <description>4中IR Baf 在bytecode上进行的抽象，忽略字节码对于常量</description>
+    </item>
+    
+    <item>
+      <title>vs code 小结</title>
+      <link>http://brettkk.github.io/post/tools/vs_code/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/tools/vs_code/</guid>
+      <description>快捷键内置查询表 菜单栏-》帮助-》快捷键参考-》very good 自</description>
+    </item>
+    
+    <item>
+      <title>加密相关</title>
+      <link>http://brettkk.github.io/post/os/encrypt/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/os/encrypt/</guid>
+      <description>散列 对称加密 非对称加密 SSL / TLS 密钥的管理 散列 有md5, sha2</description>
+    </item>
+    
+    <item>
+      <title>go lock</title>
+      <link>http://brettkk.github.io/post/golang/go_lock/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/go_lock/</guid>
+      <description>locks 锁 源码包的结构 🔗 sync包 sync.Mutex sync.RWMutex sync.Cond sync.WaitGroup sync.Once sync.Pool 涉及的内容很多 cache line padding</description>
+    </item>
+    
+    <item>
+      <title>go lock</title>
+      <link>http://brettkk.github.io/post/golang/go_timer/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/go_timer/</guid>
+      <description>Go提供了两种定时器，分为一次性定时器、周期性定时器。 两种定</description>
+    </item>
+    
+    <item>
+      <title>go test todo</title>
+      <link>http://brettkk.github.io/post/golang/go_test/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/go_test/</guid>
+      <description>goland need money, so vs code Configure Visual Studio Code for Go extensions: go view -&amp;gt; command palette... -&amp;gt; goinstall pprof (CPU profiles, Heap profiles, block profile, traces) kite, ginex</description>
+    </item>
+    
+    <item>
+      <title>go todo</title>
+      <link>http://brettkk.github.io/post/golang/godeeper/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/godeeper/</guid>
+      <description>深入解析go 从词法语法解析、类型检查、中间代码生成以及机器码</description>
+    </item>
+    
+    <item>
+      <title>go内存模型</title>
+      <link>http://brettkk.github.io/post/golang/gomemorymodel/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/gomemorymodel/</guid>
+      <description>go的内存模型规定： 在哪些情况下，一个golang中读取的变</description>
+    </item>
+    
+    <item>
+      <title>go同步编码方式</title>
+      <link>http://brettkk.github.io/post/golang/golang_sync/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/golang_sync/</guid>
+      <description>golang提供了比较便捷的并发编程方式。golang的并发</description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>http://brettkk.github.io/post/cloud_native/my-first-post/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/cloud_native/my-first-post/</guid>
+      <description>pod 管理关系紧密的容器进程，共享ipc network 容器不只contain</description>
+    </item>
+    
+  </channel>
+</rss>

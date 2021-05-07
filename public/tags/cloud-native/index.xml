@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloud native on brettkk</title>
+    <link>http://brettkk.github.io/tags/cloud-native/</link>
+    <description>Recent content in cloud native on brettkk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 05 May 2021 11:33:56 +0800</lastBuildDate>
+    
+	<atom:link href="http://brettkk.github.io/tags/cloud-native/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>etcd</title>
+      <link>http://brettkk.github.io/post/cloud_native/etcd/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/cloud_native/etcd/</guid>
+      <description>etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et</description>
+    </item>
+    
+    <item>
+      <title>etcd_raft</title>
+      <link>http://brettkk.github.io/post/cloud_native/etcd_raft/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/cloud_native/etcd_raft/</guid>
+      <description>raft基本思想：少数服从多数。 leader 选举 + 发起投票 + 每个节点为</description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>http://brettkk.github.io/post/cloud_native/my-first-post/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/cloud_native/my-first-post/</guid>
+      <description>pod 管理关系紧密的容器进程，共享ipc network 容器不只contain</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>soft_tools on brettkk</title>
+    <link>http://brettkk.github.io/tags/soft_tools/</link>
+    <description>Recent content in soft_tools on brettkk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 05 May 2021 11:33:56 +0800</lastBuildDate>
+    
+	<atom:link href="http://brettkk.github.io/tags/soft_tools/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>vs code 小结</title>
+      <link>http://brettkk.github.io/post/tools/vs_code/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/tools/vs_code/</guid>
+      <description>快捷键内置查询表 菜单栏-》帮助-》快捷键参考-》very good 自</description>
+    </item>
+    
+  </channel>
+</rss>

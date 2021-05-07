@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on brettkk</title>
+    <link>http://brettkk.github.io/tags/golang/</link>
+    <description>Recent content in golang on brettkk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 03 May 2021 18:34:48 +0800</lastBuildDate>
+    
+	<atom:link href="http://brettkk.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>go lock</title>
+      <link>http://brettkk.github.io/post/golang/go_lock/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/go_lock/</guid>
+      <description>locks 锁 源码包的结构 🔗 sync包 sync.Mutex sync.RWMutex sync.Cond sync.WaitGroup sync.Once sync.Pool 涉及的内容很多 cache line padding</description>
+    </item>
+    
+    <item>
+      <title>go lock</title>
+      <link>http://brettkk.github.io/post/golang/go_timer/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/go_timer/</guid>
+      <description>Go提供了两种定时器，分为一次性定时器、周期性定时器。 两种定</description>
+    </item>
+    
+    <item>
+      <title>go test todo</title>
+      <link>http://brettkk.github.io/post/golang/go_test/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/go_test/</guid>
+      <description>goland need money, so vs code Configure Visual Studio Code for Go extensions: go view -&amp;gt; command palette... -&amp;gt; goinstall pprof (CPU profiles, Heap profiles, block profile, traces) kite, ginex</description>
+    </item>
+    
+    <item>
+      <title>go todo</title>
+      <link>http://brettkk.github.io/post/golang/godeeper/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/godeeper/</guid>
+      <description>深入解析go 从词法语法解析、类型检查、中间代码生成以及机器码</description>
+    </item>
+    
+    <item>
+      <title>go内存模型</title>
+      <link>http://brettkk.github.io/post/golang/gomemorymodel/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/gomemorymodel/</guid>
+      <description>go的内存模型规定： 在哪些情况下，一个golang中读取的变</description>
+    </item>
+    
+    <item>
+      <title>go同步编码方式</title>
+      <link>http://brettkk.github.io/post/golang/golang_sync/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/golang_sync/</guid>
+      <description>golang提供了比较便捷的并发编程方式。golang的并发</description>
+    </item>
+    
+  </channel>
+</rss>
