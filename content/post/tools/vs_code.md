@@ -1,3 +1,14 @@
+---
+title: "vs code 小结"
+date: 2021-05-05T11:33:56+08:00
+draft: false
+isCJKLanguage: true
+markup: mmark
+tags: ["soft_tools"]
+series: [""]
+categories: ["技术"]
+---
+
 + 快捷键内置查询表 菜单栏-》帮助-》快捷键参考-》very good
 + 自定义快捷键： 文件—》首选项-》键盘快捷方式
 

@@ -1,3 +1,14 @@
+---
+title: "soot, wala"
+date: 2021-05-05T11:33:56+08:00
+draft: false
+isCJKLanguage: true
+markup: mmark
+tags: ["java"]
+series: [""]
+categories: ["技术"]
+---
+
 4中IR
 + Baf
   + 在bytecode上进行的抽象，忽略字节码对于常量池和type的依赖
@@ -41,3 +52,22 @@ units: body中包含的实际代码, 语句
 Value接口（代表数据）： Locals, Constants, Expressions, ParameterRefs
 
 Boxes(代表指针)： ValueBox, UnitBox
+
+---
+
+AnalysisScope
++ 用于指定用户静态代码分析的程序或库
++ format: Classloader, Language,  Type, Location
+
+CallGraphBuilder
+  + makeCallGraph() = CallGraph
+  + getPointerAnalysis() = PointerAnalysis
+
+Representation of Code Structure
++ AnalysisScope
++ IClassHierarchy
+
+---
+IR -> 代码生成器 -> 目标代码
+
+代码生成器： 指令选择，寄存器分配和指派，指令排序

@@ -1,12 +1,12 @@
-![image](etcd_arch.jpg)
+---
+title: "etcd"
+date: 2021-05-05T11:33:56+08:00
+draft: false
+isCJKLanguage: true
 
-+ etcd使用场景  
-  + API：Etcd提供HTTP+JSON, gRPC接口，跨平台跨语言; 支持https
-  + 共享配置(公司统一配置中心)
-  + 服务发现
-  + 选主
-  + 分布式队列
-  + 分布式锁
+tags: ["cloud native"]
+
+---
 
 + etcd架构分为4部分
   + http server
@@ -14,7 +14,17 @@
   + raft
   + wal
 
-+ proxy模式，http代理服务器，把客户端的请求转发到别的peer节点
+![image](etcd_arch.jpg)
+
++ etcd使用场景  
+  + API：Etcd提供HTTP+JSON, gRPC接口，跨平台跨语言; 支持https
+  + 共享配置
+  + 服务发现
+  + 选主
+  + 分布式队列
+  + 分布式锁
+
++ play.etcd.io, dash.etcd.io
 
 + 数据存储
   + 内存存储，顺序记录数据的变更记录，也会有索引和建堆等方便查询
@@ -33,15 +43,3 @@
     + 选举，理解raft的时钟周期和超时机制
     + 日志复制，理解日志的同步机制
     + 主节点处理所有的写操作，通过raft协议可靠的同步到其他节点
-+ play.etcd.io, dash.etcd.io
-+ 两种url
-  + peer-urls, port=2380
-  + client-urls, port=2379
-
-+ etcd v3 store 与 watch 分开实现
-+ etcd v3 store 分2部分
-	+ kvindex (google开源的btree实现)
-	+ boltdb 单机支持事物的kv存储 reversion-{main rev, sub rev}, key=key1, value="v1"
-	+ 查询数据流程：get(key) -> kvindex(存储key-reversion的映射关系) -> reversion -> boltdb -> value
-+ etcd v3 watch
-+ cores/etcd-operator fire drills

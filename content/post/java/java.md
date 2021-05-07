@@ -9,8 +9,8 @@ series: [""]
 categories: ["技术"]
 ---
 
-
-class文件的结构
+Class文件格式图
+![image](/os/java-class-file-internal-structure.png)
 
 1  class文件由十个部分组成 javap查看字节码文件
     + my very cute animal turns savage in full moon areas
@@ -103,3 +103,53 @@ class文件的结构
 + synchronized 关键字的字节码原理
    + 插入monitorenter (获取栈顶对象的锁)， 插入monitorexit(释放锁，一定插入至少2个，原因是正常退出和异常退出均会插入）
    + 一定会在code属性里生成异常处理的描述表，即在所有退出的地方插入monitorexit 保证锁在任何退出的节点均被释放（try-catch-finaly monitorexit）
+
+
+类加载主要做三件事：
++ 通过类名从class文件中获取字节流
++ 将字节流存储在方法区上的运行时数据结构
++ 在堆上生成Class对象，作为这个类在方法区上的访问入口
+
+
++ 生成字节码的框架
+  + javassit，cglib，asm
++ 读和写字节码
+  + 一个CtClass对象 - 对应Class对象
+  + ClassPool是由CtClass对象组成的hashtable
+    + obtain from ClassPool
+---
+
+一个对象在内存中的结构
+
+![image](/os/object-memory-structure.png)
+
+对象头由2部分组成 - mark word（32位或者64位）： 25bit 哈希码，2bit 锁标志位 ； 二  类型指针（指向Class对象）
+
+在对象上加锁的过程
++ 复制对象头到执行栈中的锁记录中
++ 修改对象头中的mark word， 2点修改：修改mark word的前30bit为存放锁记录的地址，修改锁标志位
+
+
++ 如何自实现一个Immutable类
+  + class定义为final，避免继承
+  + 所有成员熟悉定义为final
+  + 构造函数不要引用外部对象，构造时深度拷贝
+  + 其实在类加载是可以做任何字节码修改
++ 判断一个类是否是Immutable的
+
++ Concurrent Modification（并发修改集合对象）
+  + 遍历集合类的同时，修改集合类的结构，产生ConcurrentModificationException
++ java里有2种iterator的实现方式： fail-safe , fail-fast(快速失败)
+  + fail fast
+    + fail fast iterator throw ConcurrentModifacationException
+    + iterator use original collection to travel over
+  + fail safe
+    + iterator required extra memory to clone the original collections
+    + iterator use the copy collection to traverse over
+    + allow modification a collection while iterating over it
+
++ 扩容过程
+  + 经过rehash之后，元素的位置要么是在原位置，要么是在原位置再移动2次幂的位置
++ HashMap 扩容时，size增大一倍， newsize=oldsize*2
++ ArrayList（动态数组）扩容时，扩大0.5倍，newsize=oldsize*1.5
++ ArrayQueue， 当size小于64时，+2；size大于64时，newsize=oldsize*1.5
