@@ -1,6 +1,6 @@
 ---
 title: "etcd"
-date: 2021-05-05T11:33:56+08:00
+date: 2021-04-05T11:33:56+08:00
 draft: false
 isCJKLanguage: true
 
@@ -14,7 +14,8 @@ tags: ["cloud native"]
   + raft
   + wal
 
-![image](etcd_arch.jpg)
+<!-- ![image](/cloud_native/etcd_arch.jpg) -->
+<img src="/cloud_native/etcd_arch.jpg" width = "400" /><br>
 
 + etcd使用场景  
   + API：Etcd提供HTTP+JSON, gRPC接口，跨平台跨语言; 支持https

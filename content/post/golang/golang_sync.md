@@ -1,6 +1,6 @@
 ---
 title: "go同步编码方式"
-date: 2021-05-03T18:34:48+08:00
+date: 2021-05-06T18:34:48+08:00
 draft: false
 isCJKLanguage: true
 tags: ["golang"]
