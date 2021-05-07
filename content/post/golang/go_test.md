@@ -12,17 +12,24 @@ categories: ["技术"]
 
 + golang 测试框架 stub/mock
   + GoConvey  https://github.com/smartystreets/goconvey
-    + cd <your project> and $GOPATH/bin/goconvey, in browser http://localhost:8080
-    + Convey, so, 不是很习惯，找不到定义的地方
+    + Convey, so, 不是很习惯
   + testify  https://github.com/stretchr/testify
   + GoStub 
-  + GoMock  只能mock interface里的函数
-  + Monkey
+  + GoMock
+  + github.com/bouk.monkey
+  + https://bou.ke/
+    + copy 覆盖函数的前12个字节的汇编代码，植入mock函数的地址， 可以在运行时实现函数的mock和unmock
 
 ### 调试
 
 + delve 调试工具 
-
++ gdb单步调试go程序的执行过程    Delve 更好
++ Guru 导航go 代码的编辑器集成工具
+    + 变量，函数的声明地点
+    + 变量，函数的所有引用地点
+    + 实现此接口的所有具体类型
++ golang.org/x/tools/cmd/guru
+    + http://golang.org/s/using-guru
 
 ### 性能分析
 
@@ -37,27 +44,13 @@ categories: ["技术"]
             + list
             + disasm
         + svg go tool pprof -alloc_space -cum -svg http://127.0.0.1:8080/debug/pprof/heap > heap.svg
-        + go-torch -alloc_space http://127.0.0.1:8080/debug/pprof/heap --colors=mem
-        + go-torch http://localhost:8080/debug/pprof/profile
     + runtime/pprof
     + net/http/pprof
 + wrk 压力测试 github.com/juju/ratelimit 
 
-
-
-
-
 + 优化go程序 运行速度的方向 只对关键的路径进行优化 (优化运行速度，开会速度会慢 hah)
     + channel（mutex锁保证并发安全） ==》 ringbuffer (CAS 保证并发安全)
     + 避免堆分配可以成为优化的主要方向. 若频繁使用堆，可以sync.Pool 复用对象
-    + cpu cache line(64字节) False Sharing。为了保证cache的一致性，对内存的一个小小的写入都会让cache line被淘汰。对相邻地址的读操作就无法命中对应的cache line。 RingBuffer struct padding。  type RingBuffer struct {_padding0  [8]uint64, queue          uint64, 	_padding1      [8]uint64, 	dequeue     uint64}
-
-
-+ golang fuzz testing
-+ gdb单步调试go程序的执行过程    Delve 更好
-+ Guru 导航go 代码的编辑器集成工具
-    + 变量，函数的声明地点
-    + 变量，函数的所有引用地点
-    + 实现此接口的所有具体类型
-+ golang.org/x/tools/cmd/guru
-    + http://golang.org/s/using-guru
+    + cpu cache line(64字节) False Sharing。
+    + 为了保证cache的一致性，对内存的一个小小的写入都会让cache line被淘汰。
+    + 对相邻地址的读操作就无法命中对应的cache line。 

@@ -21,12 +21,30 @@
     </item>
     
     <item>
-      <title>go lock</title>
+      <title>go timer</title>
       <link>http://brettkk.github.io/post/golang/go_timer/</link>
       <pubDate>Wed, 05 May 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/post/golang/go_timer/</guid>
       <description>Go提供了两种定时器，分为一次性定时器、周期性定时器。 两种定</description>
+    </item>
+    
+    <item>
+      <title>bug_fix</title>
+      <link>http://brettkk.github.io/post/golang/bug_fix/</link>
+      <pubDate>Tue, 04 May 2021 19:10:43 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/bug_fix/</guid>
+      <description>一些bug init() 函数滥用 函数功能是查询类的，能不用指针传参数就不</description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>http://brettkk.github.io/post/golang/golang/</link>
+      <pubDate>Tue, 04 May 2021 18:54:41 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/golang/</guid>
+      <description>资料 🔗 https://github.com/gocn/knowledge awesome-go 模糊点 🔗 数组的初始化 （元素类型， 数组大小） cmd/compile/internal/types.NewArray cmd/compile/internal/types.NewSlice 2种</description>
     </item>
     
     <item>
@@ -39,12 +57,12 @@
     </item>
     
     <item>
-      <title>go test todo</title>
+      <title>go test</title>
       <link>http://brettkk.github.io/post/golang/go_test/</link>
       <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/post/golang/go_test/</guid>
-      <description>goland need money, so vs code Configure Visual Studio Code for Go extensions: go view -&amp;gt; command palette... -&amp;gt; goinstall pprof (CPU profiles, Heap profiles, block profile, traces) kite, ginex</description>
+      <description>单测 🔗 golang 测试框架 stub/mock GoConvey https://github.com/smartystreets/goconvey cd and $GOPATH/bin/goconvey, in browser http://localhost:8080 Convey, so, 不是很习惯，找不到定义</description>
     </item>
     
     <item>
@@ -54,6 +72,15 @@
       
       <guid>http://brettkk.github.io/post/golang/gomemorymodel/</guid>
       <description>go的内存模型规定： 在哪些情况下，一个golang中读取的变</description>
+    </item>
+    
+    <item>
+      <title>go_toolchain</title>
+      <link>http://brettkk.github.io/post/golang/go_toolchain/</link>
+      <pubDate>Sat, 01 May 2021 18:54:41 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/post/golang/go_toolchain/</guid>
+      <description>an overview of go&#39;s tooling 🔗 table of content installing tooling $ GO111MODULE=on go get golang.org/x/tools/cmd/stresss go get -u, 强制使用网络去更新包和</description>
     </item>
     
   </channel>

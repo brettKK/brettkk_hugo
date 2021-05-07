@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
   <head>
-    <title>go test todo | brettkk</title>
+    <title>go test | brettkk</title>
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="description" content="《scent of a woman》 Slade this is such a crock of shit Slade you are in the Barrett school not">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -46,7 +46,7 @@
       
 
 <section id="single">
-    <h1 class="title">go test todo</h1>
+    <h1 class="title">go test</h1>
 
     <div class="tip">
         <span>
@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            516 words
+            507 words
           
         </span>
         <span class="split">
@@ -70,17 +70,26 @@
 
     <div class="content" >
       <article class="content">
-        <ul>
-<li>
-<p>goland need money, so vs code</p>
-</li>
-<li>
-<p>Configure Visual Studio Code for Go</p>
+        <h3 id="单测">单测 <a href="#%e5%8d%95%e6%b5%8b" class="anchor">🔗</a></h3><ul>
+<li>golang 测试框架 stub/mock
 <ul>
-<li>extensions: go</li>
-<li>view -&gt; command palette... -&gt; goinstall</li>
+<li>GoConvey  <a href="https://github.com/smartystreets/goconvey">https://github.com/smartystreets/goconvey</a>
+<ul>
+<li>cd <your project> and $GOPATH/bin/goconvey, in browser http://localhost:8080</li>
+<li>Convey, so, 不是很习惯，找不到定义的地方</li>
 </ul>
 </li>
+<li>testify  <a href="https://github.com/stretchr/testify">https://github.com/stretchr/testify</a></li>
+<li>GoStub</li>
+<li>GoMock  只能mock interface里的函数</li>
+<li>Monkey</li>
+</ul>
+</li>
+</ul>
+<h3 id="调试">调试 <a href="#%e8%b0%83%e8%af%95" class="anchor">🔗</a></h3><ul>
+<li>delve 调试工具</li>
+</ul>
+<h3 id="性能分析">性能分析 <a href="#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90" class="anchor">🔗</a></h3><ul>
 <li>
 <p>pprof (CPU profiles, Heap profiles, block profile, traces)</p>
 <ul>
@@ -111,24 +120,6 @@
 </li>
 <li>
 <p>wrk 压力测试 github.com/juju/ratelimit</p>
-</li>
-<li>
-<p>golang 测试框架 stub/mock</p>
-<ul>
-<li>GoConvey  <a href="https://github.com/smartystreets/goconvey">https://github.com/smartystreets/goconvey</a>
-<ul>
-<li>cd <your project> and $GOPATH/bin/goconvey, in browser http://localhost:8080</li>
-<li>Convey, so, 不是很习惯，找不到定义的地方</li>
-</ul>
-</li>
-<li>testify  <a href="https://github.com/stretchr/testify">https://github.com/stretchr/testify</a></li>
-<li>GoStub</li>
-<li>GoMock  只能mock interface里的函数</li>
-<li>Monkey</li>
-</ul>
-</li>
-<li>
-<p>delve 调试工具</p>
 </li>
 <li>
 <p>优化go程序 运行速度的方向 只对关键的路径进行优化 (优化运行速度，开会速度会慢 hah)</p>
@@ -166,7 +157,17 @@
     <div class="article-nav" id="article-nav-id">
         <nav class="hide-on-mobile section-nav">
           <h3 class="ml-1">Table of contents</h3>
-            <nav id="TableOfContents"></nav>
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#单测">单测</a></li>
+        <li><a href="#调试">调试</a></li>
+        <li><a href="#性能分析">性能分析</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
         </nav>
     </div>
 
