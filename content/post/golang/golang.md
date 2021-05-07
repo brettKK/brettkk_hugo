@@ -88,6 +88,4 @@ categories: ["技术"]
   +  x86 or x64 assembly instructions encoding<==> decoding binary code
   +  It uses GCC and objdump behind the scenes
 
-+ goroot/src/syscall --》 建议使用 golang.org/x/sys 
-
-
++ goroot/src/syscall --》 建议使用 golang.org/x/sys s
