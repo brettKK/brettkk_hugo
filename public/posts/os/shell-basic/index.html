@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title>linux-shell | brettkk</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="generator" content="Hugo 0.72.0" />
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/googlecode.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/highlight.js/10.0.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/tags">Tags</a>
+	<a href="/about">About</a>
+
+	
+
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title">linux-shell</h1>
+
+    <div class="tip">
+        <span>
+          May 5, 2021 11:33
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          
+            840 words
+          
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          2 minute read
+        </span>
+    </div>
+
+    <div class="content" >
+      <article class="content">
+        <ul>
+<li>单引号，双引号，反引号区别
+
+<ul>
+<li>单引号之间的内容原封不动的输出</li>
+<li>双引号取消空格的作用， 特殊符号含义会保留</li>
+<li>反引号，用来包装命令的结果，多用$()
+<code>将一个命令的执行结果赋给变量
+	A=`date` 将date的执行结果赋值给变量A
+	B=$(ls -l) 将ls -l这个命令给变量B</code></li>
+</ul></li>
+
+<li><p>shell 数组</p>
+
+<ul>
+<li>定义数组  array_name=(v0 v1 v2 v3)</li>
+<li>读取数组 value1=${array_name[1]}</li>
+<li>获取所有元素    @，*</li>
+<li>获取数组长度 echo ${#array_name[ * ]}</li>
+</ul></li>
+
+<li><p>shell 传递参数</p>
+
+<ul>
+<li>$n 位置变量
+
+<ul>
+<li>n为一个数字，0为执行的文件，1位第一个参数，类推</li>
+</ul></li>
+<li>特殊字符
+
+<ul>
+<li>$# 传递到脚本的参数个数</li>
+<li>$* 以字符串的显示参数 “$1..$n”</li>
+<li>$@ 与$* 类似 加引号</li>
+<li>$$ 这个程序的pid</li>
+<li>$! 执行上一个后台程序的pid</li>
+<li>$? 执行上一个指令的返回值</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h3 id="awk">awk</h3>
+
+<p>awk 脚本基本结构 awk 'BEGIN{ print &quot;start&quot; } pattern{ commands } END{ print &quot;end&quot; }' file</p>
+
+<p>使用AWK做文本处理， 语句由模式和动作组成</p>
+
+<ul>
+<li>模式，决定动作的触发条件和时间</li>
+<li>动作
+
+<ul>
+<li>BEGIN， 设置计数和头部信息， 在任何动作之前进行</li>
+<li>END， 输出统计结果， 在完成动作之后执行</li>
+</ul></li>
+</ul>
+
+<p>默认分隔符为空格， 也可以-F改变为其他符号，例如冒号，-F：</p>
+
+<p>例自定义日期显示
+date|awk '{print &quot;year:&quot;$1 &quot;month:&quot;$2}'</p>
+
+<p>自定义输出一些列
+awk 'BEGIN {print &quot;begin&quot;} {print $1, $2, $3} END{print &quot;end&quot;}' file</p>
+
+<p>满足某个模式的行
+awk '$2&gt;9 {print $0}' file</p>
+
+<p>awk '{if($1==&quot;kk&quot; &amp;&amp; $2&gt;5) print $0}' file</p>
+
+<hr>
+
+<h3 id="sed">sed</h3>
+
+<p>替换s命令
+sed 's/old/new/' file</p>
+
+<p>-n -p 一起使用只打印发生替换的行
+sed -n 's/old/new/p' file
+显示第三行
+sed -n '3p' file</p>
+
+<p>全部替换g命令
+sed 's/old/new/g' file</p>
+
+<p>删除d命令
+sed '2d' file</p>
+
+<p>插入i命令
+追加a命令</p>
+
+<hr>
+
+<ul>
+<li>/etc/profile
+
+<ul>
+<li>为系统中每个用户设置环境信息，只在用户第一次登陆时，被执行</li>
+<li>并从/etc/profile.d目录中搜索shell的配置</li>
+</ul></li>
+<li>/etc/bashrc
+
+<ul>
+<li>bash shell被打开，就被执行</li>
+</ul></li>
+<li>～/.bashrc
+
+<ul>
+<li>每次打开shell时，被执行</li>
+</ul></li>
+
+<li><p>~/.bash_profile</p>
+
+<ul>
+<li>用户登陆时仅执行一次，执行用户的bashrc</li>
+</ul></li>
+
+<li><p>重定向</p>
+
+<ul>
+<li>runApp &lt; data.in &gt; results.out</li>
+<li>&gt; /dev/null 丢弃输出信息</li>
+<li>2&gt;&amp;1 错误输出重定向到标准输出中</li>
+<li>&gt;&gt; a.log  追加写文件</li>
+<li>&amp;&gt;a.log  将标准输出和错误输出的组合重定向到a.log里</li>
+<li>单独的 &amp; 将任务发送到shell后台执行
+
+<ul>
+<li>jobs 列出在后台执行的所有任务</li>
+<li>fg 任务编号 将任务带回前台</li>
+<li>ctrl+z 暂停进程， bg 将任务继续带回后台执行</li>
+</ul></li>
+</ul></li>
+
+<li><p>查找某个字符串</p>
+
+<ul>
+<li>命令模式:／strings ，光标位置向下查找</li>
+<li>:?strings, 光标位置向上查找</li>
+</ul></li>
+
+<li><p>在整个文件中替换特定字符串</p>
+
+<ul>
+<li>:%s/old_word/new_word/g // %s/old_word/new_word/gc  每次替换会确认一下</li>
+<li>g/old_word/s//new_word/g</li>
+</ul></li>
+
+<li><p>zero copy</p>
+
+<ul>
+<li>tradeoff between performance and security technologies.</li>
+<li>implementation:  1 memory remapping, 2 shared buffers, 3 different system calls, and hardware support.</li>
+<li><a href="https://pdfs.semanticscholar.org/6a35/60046cb8d3258669c86072a7cab05e1d2300.pd">https://pdfs.semanticscholar.org/6a35/60046cb8d3258669c86072a7cab05e1d2300.pd</a></li>
+</ul></li>
+</ul>
+
+      </article>
+    </div>
+
+    <div class="article-nav" id="article-nav-id">
+        <nav class="hide-on-mobile section-nav">
+          <h3 class="ml-1">Table of contents</h3>
+            
+        </nav>
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="http://brettkk.github.io/tags/linux">linux</a>
+            
+        </div>
+    
+
+    <div class="post-comment">
+      
+             
+      
+      
+      
+
+
+<div class="post bg-white">
+    <script src="https://utteranc.es/client.js"
+          repo="brettkk/brettkk.github.io"
+          issue-term="pathname"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+</div>
+    </div>
+    
+
+</section>
+
+<script>
+	window.addEventListener('DOMContentLoaded', () => {
+		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
+			entries.forEach(entry => {
+				const id = entry.target.getAttribute('id');
+
+				if (entry.intersectionRatio > 0) {					
+					clearActiveStatesInTableOfContents();				
+					document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+				}
+			});
+		});		
+		document.querySelectorAll('h1[id],h2[id],h3[id],h4[id]').forEach((section) => {
+			observerForTableOfContentActiveState.observe(section);
+		});
+
+	});
+
+	function clearActiveStatesInTableOfContents() {
+		document.querySelectorAll('nav li').forEach((section) => {
+			section.classList.remove('active');
+		});
+	}
+</script>
+
+
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<footer id="footer">
+    
+
+    <p class="copyright">
+    
+       © Copyright 
+       2021 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       
+    
+    </p>
+    <p class="powerby">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+  </body>
+</html>

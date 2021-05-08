@@ -13,19 +13,19 @@
     
     <item>
       <title>soot, wala</title>
-      <link>http://brettkk.github.io/post/java/soot_wala/</link>
+      <link>http://brettkk.github.io/posts/java/soot_wala/</link>
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
       
-      <guid>http://brettkk.github.io/post/java/soot_wala/</guid>
+      <guid>http://brettkk.github.io/posts/java/soot_wala/</guid>
       <description>4中IR Baf 在bytecode上进行的抽象，忽略字节码对于常量</description>
     </item>
     
     <item>
       <title>java 小结</title>
-      <link>http://brettkk.github.io/post/java/java/</link>
+      <link>http://brettkk.github.io/posts/java/java/</link>
       <pubDate>Fri, 05 Mar 2021 11:33:56 +0800</pubDate>
       
-      <guid>http://brettkk.github.io/post/java/java/</guid>
+      <guid>http://brettkk.github.io/posts/java/java/</guid>
       <description>Class文件格式图 1 class文件由十个部分组成 javap</description>
     </item>
     

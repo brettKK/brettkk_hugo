@@ -13,19 +13,19 @@
     
     <item>
       <title>http, curl, dns</title>
-      <link>http://brettkk.github.io/post/os/http/</link>
+      <link>http://brettkk.github.io/posts/os/http/</link>
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
       
-      <guid>http://brettkk.github.io/post/os/http/</guid>
+      <guid>http://brettkk.github.io/posts/os/http/</guid>
       <description>http http header 常用字段 content-type (如何解析body) application/x-www-form-urlencoded multipart/from-data, 上传文件 application/json, text/plain text/xml, XML</description>
     </item>
     
     <item>
       <title>linux-tcp</title>
-      <link>http://brettkk.github.io/post/os/tcp/</link>
+      <link>http://brettkk.github.io/posts/os/tcp/</link>
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
       
-      <guid>http://brettkk.github.io/post/os/tcp/</guid>
+      <guid>http://brettkk.github.io/posts/os/tcp/</guid>
       <description>tcp报文结构图 URG: 表示紧急指针（urgent pointer）</description>
     </item>
     

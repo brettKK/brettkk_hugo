@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title>linux-tcp | brettkk</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="generator" content="Hugo 0.72.0" />
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/googlecode.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/highlight.js/10.0.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/tags">Tags</a>
+	<a href="/about">About</a>
+
+	
+
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title">linux-tcp</h1>
+
+    <div class="tip">
+        <span>
+          May 5, 2021 11:33
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          
+            1888 words
+          
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          4 minute read
+        </span>
+    </div>
+
+    <div class="content" >
+      <article class="content">
+        <p>tcp报文结构图
+<img src="/os/tcp-header.png" width = "600" /><br></p>
+
+<ul>
+<li>URG: 表示紧急指针（urgent pointer）是否有效</li>
+<li>PSH: 提示接收端应该立即从TCP接收缓冲区中读走数据，为接收后续数据腾出空间</li>
+<li>RST：复位报文段，用来关闭异常的TCP连接 （重要） （4种情况会出现： 端口未打开，请求超时，提前关闭，已经的socket上收到数据）
+
+<ul>
+<li>A想B发起tcp连接，但是B上未监听相应的端口，此时B的os的网络模块会发送RST包给A端</li>
+<li>syn攻击时防火墙设置，向服务器发送RST包，清除未连接队列的数据包，保证避免server出现拒绝服务的情况</li>
+<li>RST攻击场景，攻击则伪装为客户端向server发送RST包，导致连接被强制关闭</li>
+</ul></li>
+<li>window：是TCP流量控制的一个手段， 告诉对方本端的TCP接收缓冲区还能容纳多少字节的数据，这样对方就可以控制发送数据的速度(sender在未收到ack时最大发送的字节数)</li>
+<li>checkSum: 校验数据包是否损坏</li>
+</ul>
+
+<p>两个线程如何同时监听一个端口,SO_REUSEPORT 参数</p>
+
+<ul>
+<li>4次挥手： A 和 B 打电话，通话即将结束后，A 说“我没啥要说的了”，B回答“我知道了”，但是 B 可能还会有要说的话，A 不能要求 B 跟着自己的节奏结束通话，于是 B 可能又巴拉巴拉说了一通，最后 B 说“我说完了”，A 回答“知道了”，这样通话才算结束</li>
+</ul>
+
+<p>tcp握手与挥手过程图（基本图，实际中可以不是这样，例如关闭时双方同时发起关闭，双方都会到达time_wait状态）</p>
+
+<p><img src="/os/tcp-connect.png" width = "600" /><br>
+<img src="/os/tcp-close.png" width = "600" /><br></p>
+
+<p>⚠️
+wireshake上的seq和ack number是relative number，0和1是为了方便查看，实际情况是其他数值</p>
+
+<p>TIME-WAIT状态的理解：</p>
+
+<ul>
+<li>持续时间未2MSL，一个数据包在网络中的最长生存时间为MSL(30S)</li>
+<li>客户端回复的ACK丢失，服务器端会在超时时间到来时，重传最后一个FIN包</li>
+<li>ACK和FIN在网络中的最长生存时间就为2MSL，这样就可以可靠的断开TCP的双向连接</li>
+</ul>
+
+<p>服务器解决TIME——WAIT（占用端口过多，导致无可用的端口）的方式3种：</p>
+
+<ul>
+<li>保证客户端主动关闭</li>
+<li>关闭时使用RST方式</li>
+<li>对于处于TIME-WAIT状态的tcp允许重用，修改内核参数(java服务器访问mysql集群，主动关闭，time-wait状态在服务器，他是发起方，可以复用tcp连接)</li>
+<li>当利用http发送请求时，keep-alive减少tcp连接数，进而减少time-wait状态的出现</li>
+</ul>
+
+<hr>
+
+<p>TCP如何实现可靠传输（数据应答机制+数据超时重传）</p>
+
+<ul>
+<li>数据包都序列号，保证接收方能恢复数据包的顺序，去重等</li>
+<li>超时重传（确认和重传）， 也有快速重传，不用等待超时时间
+
+<ul>
+<li>超时时间大于RTT（一次往返时间）</li>
+<li>每个被发送的数据包均有计时器，只有超过计时器的重传时间后，才会重发数据包</li>
+<li>1988 最早的超时重传RTO = min(ubound, max(lbound, beta * SRTT)); SRTT= (alph * SRTT) + (1- alpha) * RTT ; alpha=0.8, 0.9 beta=1.2, 1.3</li>
+<li>RTO 比 RTT 大很多时，若出现网络丢包，重传速度很慢； RTO假设比RTT小时，会出现大量的重传； 所以RTO的时间比较考量</li>
+</ul></li>
+</ul>
+
+<p>TCP如何实现流量控制</p>
+
+<ul>
+<li>当接受方处理不过来时，接受方缩小窗口，告知发送方</li>
+<li>以字节为单位的滑动窗口技术
+
+<ul>
+<li>recv的窗口大小决定sender的窗口大小（窗口以字节为单位）</li>
+<li>sender缓存中的数据包必须收到recv的确认数据包后才能删除</li>
+</ul></li>
+<li>当接收方来不及处理发送方的数据，能提示发送方降低发送的速率，防止包丢失</li>
+</ul>
+
+<p>TCP如何实现拥塞控制</p>
+
+<ul>
+<li>当网络拥塞时，动态改变发送窗口大小，减少数据的发送</li>
+</ul>
+
+<hr>
+
+<p>基于TCP的攻击</p>
+
+<ul>
+<li>SYN泛洪攻击
+
+<ul>
+<li>发送大量的SYN包，导致server上未连接队列满，导致拒绝正常的连接服务</li>
+<li>解决方法：</li>
+<li>SYN网关， 防火墙收到SYN包转给server，防火墙收到server的ack/syn后，转给client；同时防火墙以client的名义直接给server发送ack，完成3次握手。 server上连接数远大于未连接数。</li>
+<li>被动式SYN网关，防火墙设置小的超时时间，超时时向server发送RST包，导致关闭半连接</li>
+<li>SYN中继， 完全有防火墙做代理，防火墙与client握手完成表明正常后，在于server完成3次握手</li>
+</ul></li>
+<li>RST攻击 （ip头+tcp头 40字节）
+
+<ul>
+<li>场景： A--》B， C（伪装A）--》B， 发送RST包，或者正在连接时发送SYN包，B会清空A请求过来的数据包，强制关闭连接</li>
+<li>C如何伪装A （tcp四要素：源ip（容易知道），源port，目的ip（容易知道），目的port（容易知道））</li>
+<li>关键是知道源port（发现os分配时的规律）和序列号（需要在B的滑动窗口内，不然会被丢弃）</li>
+<li>大量发送数据包（带宽不是问题，RST包很小）保证一个落在B的滑动窗口内 ，sequence number为32位，滑动窗口为65535，相除为65537个数据包就有一个落在区间内</li>
+</ul></li>
+</ul>
+
+<hr>
+
+      </article>
+    </div>
+
+    <div class="article-nav" id="article-nav-id">
+        <nav class="hide-on-mobile section-nav">
+          <h3 class="ml-1">Table of contents</h3>
+            
+        </nav>
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="http://brettkk.github.io/tags/linux">linux</a>
+            
+                <a href="http://brettkk.github.io/tags/protocol">protocol</a>
+            
+        </div>
+    
+
+    <div class="post-comment">
+      
+             
+      
+      
+      
+
+
+<div class="post bg-white">
+    <script src="https://utteranc.es/client.js"
+          repo="brettkk/brettkk.github.io"
+          issue-term="pathname"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+</div>
+    </div>
+    
+
+</section>
+
+<script>
+	window.addEventListener('DOMContentLoaded', () => {
+		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
+			entries.forEach(entry => {
+				const id = entry.target.getAttribute('id');
+
+				if (entry.intersectionRatio > 0) {					
+					clearActiveStatesInTableOfContents();				
+					document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+				}
+			});
+		});		
+		document.querySelectorAll('h1[id],h2[id],h3[id],h4[id]').forEach((section) => {
+			observerForTableOfContentActiveState.observe(section);
+		});
+
+	});
+
+	function clearActiveStatesInTableOfContents() {
+		document.querySelectorAll('nav li').forEach((section) => {
+			section.classList.remove('active');
+		});
+	}
+</script>
+
+
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<footer id="footer">
+    
+
+    <p class="copyright">
+    
+       © Copyright 
+       2021 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       
+    
+    </p>
+    <p class="powerby">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+  </body>
+</html>

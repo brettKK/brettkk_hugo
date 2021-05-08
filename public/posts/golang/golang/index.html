@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title>golang | brettkk</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="generator" content="Hugo 0.72.0" />
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/googlecode.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/highlight.js/10.0.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/tags">Tags</a>
+	<a href="/about">About</a>
+
+	
+
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title">golang</h1>
+
+    <div class="tip">
+        <span>
+          May 4, 2021 18:54
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          
+            754 words
+          
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          2 minute read
+        </span>
+    </div>
+
+    <div class="content" >
+      <article class="content">
+        <h3 id="资料">资料 <a href="#%e8%b5%84%e6%96%99" class="anchor">🔗</a></h3><ul>
+<li><a href="https://github.com/gocn/knowledge">https://github.com/gocn/knowledge</a></li>
+<li>awesome-go</li>
+</ul>
+<h3 id="模糊点">模糊点 <a href="#%e6%a8%a1%e7%b3%8a%e7%82%b9" class="anchor">🔗</a></h3><ul>
+<li>
+<p>数组的初始化 （元素类型， 数组大小）</p>
+<ul>
+<li>cmd/compile/internal/types.NewArray</li>
+<li>cmd/compile/internal/types.NewSlice</li>
+<li>2种初始化方式
+<ul>
+<li>显式的指定数组的大小 // arr := [3]int{1, 2, 3}</li>
+<li>[...]T 声明数组 // arr := [...]int{1, 2, 3}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>函数接受者为指针类型</p>
+<ul>
+<li>函数可以修改接受者的内容</li>
+<li>避免方法调用时变量的拷贝，而是指针的拷贝</li>
+</ul>
+</li>
+<li>
+<p>go严格上只有复制拷贝传递</p>
+<ul>
+<li>总是创建副本按值传递，只不过这个副本可以是变量的副本，也可以是指针的副本</li>
+</ul>
+</li>
+<li>
+<p>unsafe</p>
+</li>
+<li>
+<p>unsafe.Pointer()</p>
+<ul>
+<li>T1指针与 T2指针类型之间的转换</li>
+<li>修改内存数据 uintptr 常用于与 unsafe.Pointer配合，用于做指针运算</li>
+</ul>
+</li>
+<li>
+<p>反射 Reflection (interface对象=（Type, Value）反射类型 reflect.Type, reflect.Value)  三点</p>
+<ul>
+<li>反射可以将interface类型的变量 转换为 反射对象（reflect.Type reflect.Value）</li>
+<li>反射可以将反射对象 还原为interface对象</li>
+<li>反射对象可以修改，提前是value值是变量的指针  var x float= 3.1 ; v:= reflect.ValueOf(&amp;x); v.Elem().SetFloat(3.4);</li>
+</ul>
+</li>
+<li>
+<p>动态调用方法， reflect.Value(interface) -&gt; reflect.Value-&gt;value.MethodByName-&gt;Call</p>
+</li>
+<li>
+<p>golang 内存管理</p>
+<ul>
+<li>内存分配原理
+<ul>
+<li>src/runtime/mheap.go:mspan</li>
+</ul>
+</li>
+<li>内存回收原理
+<ul>
+<li>三色标记法 （未使用，已使用，带处理）</li>
+</ul>
+</li>
+<li>逃逸分析（对象是否被函数外面引用 例如闭包； 对象过大也可能在堆中）
+<ul>
+<li>逃逸分析的目的是决定变量的内存分配地址是在栈还是堆</li>
+<li>逃逸分析在编译阶段完成的</li>
+<li>传递指针真的比传值高效吗？不一定 由于指针传递会产生逃逸，可能会使用堆，增加GC负担。</li>
+<li>go build -gcflags=-m // escapes to heap</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>nil</p>
+<ul>
+<li>what is nil
+<ul>
+<li>nil is a kind of zero</li>
+</ul>
+</li>
+<li>what is nil in go
+<ul>
+<li>各种类型的零值</li>
+<li>zero value of all type value
+<ul>
+<li>bool false, number 0, string &quot;&quot;</li>
+<li>pointer, slice, map, channel, function, interface{} ==&gt; nil</li>
+<li>structure{}</li>
+</ul>
+</li>
+<li>kind of nil
+<ul>
+<li>interface{} = (type, value) ==&gt; (nil, nil) == nil</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>what does nil mean</li>
+<li>is nil useful ? yes</li>
+</ul>
+</li>
+<li>
+<p>avo</p>
+<ul>
+<li>github.com/mmcloughlin/avo</li>
+</ul>
+</li>
+</ul>
+<h3 id="go-汇编">go 汇编 <a href="#go-%e6%b1%87%e7%bc%96" class="anchor">🔗</a></h3><ul>
+<li>
+<p>汇编风格分为2类</p>
+<ul>
+<li>intel风格</li>
+<li>AT&amp;T风格(左 --&gt; 右) go是plan9， 属于此类</li>
+</ul>
+</li>
+<li>
+<p>助记符    call, add</p>
+</li>
+<li>
+<p>register  ax, sb, pc</p>
+</li>
+<li>
+<p>立即数 $1 , $0x100</p>
+</li>
+<li>
+<p>内存寻址 （R1）</p>
+</li>
+<li>
+<p>plan 9</p>
+<ul>
+<li><a href="https://lrita.github.io/2017/12/12/golang-asm/#go%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8">https://lrita.github.io/2017/12/12/golang-asm/#go%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8</a></li>
+<li><a href="https://lrita.github.io/images/posts/go/GoFunctionsInAssembly.pdf">https://lrita.github.io/images/posts/go/GoFunctionsInAssembly.pdf</a></li>
+<li><a href="https://github.com/buptbill220/gotls/tree/master/interesting">https://github.com/buptbill220/gotls/tree/master/interesting</a></li>
+<li>查看当前cpu架构的指令集合 cat /proc/cpuinfo | grep flags | head -1</li>
+<li>指令查询： <a href="http://68k.hax.com/">http://68k.hax.com/</a></li>
+<li>命令查询：https://9p.io/magic/man2html/1/8a</li>
+<li>plan9 文档： <a href="https://9p.io/sys/doc/">https://9p.io/sys/doc/</a></li>
+</ul>
+</li>
+<li>
+<p><a href="https://defuse.ca/online-x86-assembler.htm#disassembly2">https://defuse.ca/online-x86-assembler.htm#disassembly2</a></p>
+<ul>
+<li>x86 or x64 assembly instructions encoding&lt;==&gt; decoding binary code</li>
+<li>It uses GCC and objdump behind the scenes</li>
+</ul>
+</li>
+<li>
+<p>goroot/src/syscall --》 建议使用 golang.org/x/sys s</p>
+</li>
+</ul>
+
+      </article>
+    </div>
+
+    <div class="article-nav" id="article-nav-id">
+        <nav class="hide-on-mobile section-nav">
+          <h3 class="ml-1">Table of contents</h3>
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#资料">资料</a></li>
+        <li><a href="#模糊点">模糊点</a></li>
+        <li><a href="#go-汇编">go 汇编</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </nav>
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="http://brettkk.github.io/tags/golang">golang</a>
+            
+        </div>
+    
+
+    <div class="post-comment">
+      
+             
+      
+      
+      
+
+
+<div class="post bg-white">
+    <script src="https://utteranc.es/client.js"
+          repo="brettkk/brettkk.github.io"
+          issue-term="pathname"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+</div>
+    </div>
+    
+
+</section>
+
+<script>
+	window.addEventListener('DOMContentLoaded', () => {
+		const observerForTableOfContentActiveState = new IntersectionObserver(entries => {
+			entries.forEach(entry => {
+				const id = entry.target.getAttribute('id');
+
+				if (entry.intersectionRatio > 0) {					
+					clearActiveStatesInTableOfContents();				
+					document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+				}
+			});
+		});		
+		document.querySelectorAll('h1[id],h2[id],h3[id],h4[id]').forEach((section) => {
+			observerForTableOfContentActiveState.observe(section);
+		});
+
+	});
+
+	function clearActiveStatesInTableOfContents() {
+		document.querySelectorAll('nav li').forEach((section) => {
+			section.classList.remove('active');
+		});
+	}
+</script>
+
+
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<footer id="footer">
+    
+
+    <p class="copyright">
+    
+       © Copyright 
+       2021 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       
+    
+    </p>
+    <p class="powerby">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+  </body>
+</html>
