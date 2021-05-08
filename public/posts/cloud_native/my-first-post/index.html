@@ -57,20 +57,28 @@
         </span>
         <span>
           
-            277 words
+            526 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          1 minute read
+          2 minute read
         </span>
     </div>
 
     <div class="content" >
       <article class="content">
-        <h3 id="容器技术历史">容器技术历史 <a href="#%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af%e5%8e%86%e5%8f%b2" class="anchor">🔗</a></h3><p>1979年 chroot 设置进程访问的根目录</p>
+        <h3 id="service-mesh">service mesh <a href="#service-mesh" class="anchor">🔗</a></h3><p>微服务内部有分布式环境下的通用功能：熔断策略、负载均衡、服务发现、认证和授权、quota限制、trace和监控等等</p>
+<p>这种微服务存在的问题：</p>
+<ul>
+<li>虽然有现成的框架做了这些事情，但在也需要业务去配置和管理框架</li>
+<li>这些框架lib或者sdk缺业务语言时，很难融入或者需要开发对应语言的包来融入微服务内部</li>
+<li>框架升级，对业务不透明，需要业务自行升级</li>
+</ul>
+<p>sidecar 单边模式代理模式。 同一个微服务的代理进程service mesh互通，与其他微服务的service mesh也通信，所以单看代理进程像网一样，所以叫service mesh。</p>
+<h3 id="容器技术历史">容器技术历史 <a href="#%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af%e5%8e%86%e5%8f%b2" class="anchor">🔗</a></h3><p>1979年 chroot 设置进程访问的根目录</p>
 <p>2006年 google 给kernel提供Control Groups</p>
 <p>2008年 LXC 第一个容器管理方案</p>
 <p>2015年 google 提供libcontainer</p>
@@ -104,6 +112,7 @@
   <ul>
     <li>
       <ul>
+        <li><a href="#service-mesh">service mesh</a></li>
         <li><a href="#容器技术历史">容器技术历史</a></li>
       </ul>
     </li>

@@ -197,7 +197,7 @@
       <pubDate>Wed, 03 Mar 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/cloud_native/my-first-post/</guid>
-      <description>容器技术历史 🔗1979年 chroot 设置进程访问的根目录 2006年 google 给</description>
+      <description>service mesh 🔗微服务内部有分布式环境下的通用功能：熔断策略、负载均衡</description>
     </item>
     
     <item>
