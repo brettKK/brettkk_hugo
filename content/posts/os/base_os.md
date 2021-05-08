@@ -93,14 +93,14 @@ uname -a 查看系统的版本
 ---
 
 ### 网络常用工具命令（文件夹network）
-+ host
-+ ss
++ ss = socket statistics
+  + 用来显示处于活动状态的套接字信息
+  + 快，利用到了TCP协议栈中tcp_diag
+  + ss -t 显示tcp连接
 + nc 网络发包工具
-	+ telnet
 + netstat
 	+ netstat -an
 + tcpdump
-	+ ..
 
 ---
 

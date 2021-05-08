@@ -20,6 +20,13 @@ categories: ["技术"]
 
 sidecar 单边模式代理模式。 同一个微服务的代理进程service mesh互通，与其他微服务的service mesh也通信，所以单看代理进程像网一样，所以叫service mesh。
 
+
+### serviceless
+
+主要包含两个领域的技术，BaaS（Backend as a Service）和FaaS（Function as a Service）
+
+简化后端开发流程...
+
 ### 容器技术历史
 
 1979年 chroot 设置进程访问的根目录
