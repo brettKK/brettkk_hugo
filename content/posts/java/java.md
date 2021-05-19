@@ -153,3 +153,4 @@ Class文件格式图
 + HashMap 扩容时，size增大一倍， newsize=oldsize*2
 + ArrayList（动态数组）扩容时，扩大0.5倍，newsize=oldsize*1.5
 + ArrayQueue， 当size小于64时，+2；size大于64时，newsize=oldsize*1.5
+

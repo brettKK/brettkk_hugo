@@ -32,7 +32,7 @@ categories: ["技术"]
     + go mod why -m golang.org/x/sys
     + go mod graph
     + go clean -modcache (cache: GOPATH/pkg/mod)
-    + gofmt -d -w -r 'Add -> ADD' .
+    + gofmt -d -w -r 'Add -> ADD' . 手动格式化代码
     + go doc -src strings.Replace (view go documentation) , go doc fmt Printf
 + testing
     + go test ./foo/bar

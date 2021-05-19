@@ -8,6 +8,7 @@ import (
   "go/token"
   "log"
   "os"
+  "golang.org/x/tools/go/packages"
 )
 
 func main() {
@@ -17,6 +18,7 @@ func main() {
   fmt.Println("Hello, world!")
 }
 `)
+  packages.Load
 
   fset := token.NewFileSet()
 
