@@ -193,6 +193,16 @@
   </url>
   
   <url>
+    <loc>http://brettkk.github.io/tags/math/</loc>
+    <lastmod>2021-04-05T11:33:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://brettkk.github.io/posts/math/matrix/</loc>
+    <lastmod>2021-04-05T11:33:56+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://brettkk.github.io/posts/cloud_native/etcd_raft/</loc>
     <lastmod>2021-03-05T11:33:56+08:00</lastmod>
   </url>

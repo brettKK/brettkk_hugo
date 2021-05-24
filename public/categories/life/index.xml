@@ -38,5 +38,14 @@
       <description>欧洲历史 欧洲历史 古希腊，罗马文明 古希腊文明 苏格拉底 柏拉图 亚里</description>
     </item>
     
+    <item>
+      <title>matrix</title>
+      <link>http://brettkk.github.io/posts/math/matrix/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/math/matrix/</guid>
+      <description>线性代数 矩阵的几何意义 矩阵是对空间的一次变化 行列式的意义： 经</description>
+    </item>
+    
   </channel>
 </rss>

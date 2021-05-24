@@ -219,6 +219,15 @@
     </item>
     
     <item>
+      <title>matrix</title>
+      <link>http://brettkk.github.io/posts/math/matrix/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/math/matrix/</guid>
+      <description>线性代数 矩阵的几何意义 矩阵是对空间的一次变化 行列式的意义： 经</description>
+    </item>
+    
+    <item>
       <title>etcd_raft</title>
       <link>http://brettkk.github.io/posts/cloud_native/etcd_raft/</link>
       <pubDate>Fri, 05 Mar 2021 11:33:56 +0800</pubDate>

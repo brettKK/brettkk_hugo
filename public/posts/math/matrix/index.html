@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
   <head>
-    <title>kubernetes | brettkk</title>
+    <title>matrix | brettkk</title>
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
@@ -46,63 +46,37 @@
       
 
 <section id="single">
-    <h1 class="title">kubernetes</h1>
+    <h1 class="title">matrix</h1>
 
     <div class="tip">
         <span>
-          Mar 3, 2021 18:34
+          Apr 5, 2021 11:33
         </span>
         <span class="split">
           ·
         </span>
         <span>
           
-            597 words
+            47 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          2 minute read
+          1 minute read
         </span>
     </div>
 
     <div class="content" >
       <article class="content">
-        <h3 id="service-mesh">service mesh <a href="#service-mesh" class="anchor">🔗</a></h3><p>微服务内部有分布式环境下的通用功能：熔断策略、负载均衡、服务发现、认证和授权、quota限制、trace和监控等等</p>
-<p>这种微服务存在的问题：</p>
-<ul>
-<li>虽然有现成的框架做了这些事情，但在也需要业务去配置和管理框架</li>
-<li>这些框架lib或者sdk缺业务语言时，很难融入或者需要开发对应语言的包来融入微服务内部</li>
-<li>框架升级，对业务不透明，需要业务自行升级</li>
-</ul>
-<p>sidecar 单边模式代理模式。 同一个微服务的代理进程service mesh互通，与其他微服务的service mesh也通信，所以单看代理进程像网一样，所以叫service mesh。</p>
-<h3 id="serviceless">serviceless <a href="#serviceless" class="anchor">🔗</a></h3><p>主要包含两个领域的技术，BaaS（Backend as a Service）和FaaS（Function as a Service）</p>
-<p>简化后端开发流程...</p>
-<h3 id="容器技术历史">容器技术历史 <a href="#%e5%ae%b9%e5%99%a8%e6%8a%80%e6%9c%af%e5%8e%86%e5%8f%b2" class="anchor">🔗</a></h3><p>1979年 chroot 设置进程访问的根目录</p>
-<p>2006年 google 给kernel提供Control Groups</p>
-<p>2008年 LXC 第一个容器管理方案</p>
-<p>2015年 google 提供libcontainer</p>
-<p>2013年 容器管理产品docker</p>
-<hr>
-<p>cgroup： 程序运行时对资源的调度触发相应的钩子以达到资源追踪和限制的目的</p>
-<p>Open Container Initiative（OCI）成立后， libcontainer 封装在runC包里。</p>
-<hr>
-<ul>
-<li>pod
-<ul>
-<li>管理关系紧密的容器进程，共享ipc network</li>
-<li>容器不只containerd，k8s需要基于container做一步抽象container runtime interfz</li>
-</ul>
-</li>
-<li>service
-<ul>
-<li>一个svc是一个微服务，也是一组prod，通过label robin实现IP负载均衡</li>
-</ul>
-</li>
-<li>volume</li>
-</ul>
+        <p>线性代数</p>
+
+<p>矩阵的几何意义</p>
+
+<p>矩阵是对空间的一次变化</p>
+
+<p>行列式的意义： 经矩阵变化后， 平面单位面积的缩放倍数</p>
 
       </article>
     </div>
@@ -110,24 +84,14 @@
     <div class="article-nav" id="article-nav-id">
         <nav class="hide-on-mobile section-nav">
           <h3 class="ml-1">Table of contents</h3>
-            <nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#service-mesh">service mesh</a></li>
-        <li><a href="#serviceless">serviceless</a></li>
-        <li><a href="#容器技术历史">容器技术历史</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+            
         </nav>
     </div>
 
     
         <div class="tags">
             
-                <a href="http://brettkk.github.io/tags/cloud-native">cloud native</a>
+                <a href="http://brettkk.github.io/tags/math">math</a>
             
         </div>
     
