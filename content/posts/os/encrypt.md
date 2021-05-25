@@ -135,3 +135,7 @@ https的原理， 握手阶段
 + 访问鉴权
 + 数据监控
 + root key
+
+
+### 同态加密（Homomorphic Encryption）
+
