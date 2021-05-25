@@ -7,7 +7,7 @@ tags: ["golang"]
 series: [""]
 categories: ["技术"]
 ---
-golang提供了比较便捷的并发编程方式。golang的并发单元是goroutine。在写代码时，有时goroutine在执行时自身独立且不需要与其他goroutine同步，时常也会遇到利用goroutine并发处理任务的情况。这时就需要多个goroutine之间进行同步。目前实现多个goroutine同步的主要方式有： sync包， channel，context包。
+golang提供了比较便捷的并发编程方式。golang的并发单元是goroutine。目前实现多个goroutine同步的主要方式有： sync包， runtime包下的channel，context包。
 
 ### sync.WaitGroup
 
@@ -69,6 +69,76 @@ func main() {
         //process
     }
 }
+```
+
+
+#### channel 错误使用示例
+
+```
+
+// 死锁
+func main() {
+    ch := make(chan int)
+    <- ch //block
+    go func() {
+        ch <- 1
+    }
+}
+
+// 死锁
+func main() {
+    ch := make(chan int)
+    ch <- 1 // block
+    go func() {
+        <-ch
+    }
+}
+
+// 死锁
+func main() {
+        var ch chan int  //nil channel
+
+        go func(c chan int) {
+                for v := range c { // <-ch  channel read
+                        fmt.Println(v)
+                }
+        }(ch)
+
+        ch <- 1  // channel write
+}
+
+```
+
+```
+// goroutine泄漏
+func main() {
+    ch := make(chan int)
+    go func() {
+        // process more than 100ms
+        ch <- 1
+    }
+    select {
+    case <-ch:
+        // process done
+        return    
+    case <- time.After(100*time.Millisecond) 
+        // process timeout
+        return
+    }
+}
+
+```
+
+错误操作引起Panic 
+
+```
+// send on close channel 往已关闭的 channel 写数据会 panic
+// closing on close channel  写入端无法知道 channel 是否已经关闭
+// send or read on nil channel channel初始化使用错误
+
+1. 不要尝试在读取端关闭 channel 
+2. 一个写入端，在这个写入端可以放心关闭 channel
+3. 多个写入端时，不要在写入端关闭 channel 
 ```
 
 ### context

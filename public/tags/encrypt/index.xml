@@ -20,5 +20,14 @@
       <description>散列 对称加密 非对称加密 SSL / TLS 密钥的管理 散列 有md5, sha2</description>
     </item>
     
+    <item>
+      <title>安全与风控</title>
+      <link>http://brettkk.github.io/posts/os/secure_risk/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/os/secure_risk/</guid>
+      <description>漏洞 起因是信任了用户的任意输入。 sql注入 危害： 执行任意sq</description>
+    </item>
+    
   </channel>
 </rss>

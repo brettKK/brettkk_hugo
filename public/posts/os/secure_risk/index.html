@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
   <head>
-    <title>etcd_raft | brettkk</title>
+    <title>安全与风控 | brettkk</title>
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
@@ -46,18 +46,18 @@
       
 
 <section id="single">
-    <h1 class="title">etcd_raft</h1>
+    <h1 class="title">安全与风控</h1>
 
     <div class="tip">
         <span>
-          Mar 5, 2021 11:33
+          May 5, 2021 11:33
         </span>
         <span class="split">
           ·
         </span>
         <span>
           
-            125 words
+            245 words
           
         </span>
         <span class="split">
@@ -70,15 +70,27 @@
 
     <div class="content" >
       <article class="content">
-        <p>raft基本思想：少数服从多数。</p>
-<p>leader 选举
-+ 发起投票
-+ 每个节点为follower， 每个节点均有election timeout到期时间，随机几百毫秒， 到期后身份变为candidate
-+ candidate 发起投票
-+ 投票过程
-+ term 大
-+ 日志最新
-+ 当选后 发心跳包维护leader身份</p>
+        <hr>
+
+<h3 id="漏洞">漏洞</h3>
+
+<p>起因是信任了用户的任意输入。</p>
+
+<h4 id="sql注入">sql注入</h4>
+
+<p>危害： 执行任意sql，可能出现数据泄漏风险； 避免：使用ORM框架推荐的sql预编译的方法执行sql。
+即使使用了ORM框架的sql预编译的方法，框架本身有支持执行raw sql的方法。但还在一些order by, group by的参数由用户控制时会出现sql注入漏洞。
+进一步，增加白名单机制，对于排序和分组场景下，可以对传入参数预设白名单。</p>
+
+<p>避免： 禁止拼接sql并执行，用官方推荐用法，不信任用户的输入。</p>
+
+<h4 id="ssrf漏洞">SSRF漏洞</h4>
+
+<p>RCE 任意代码执行</p>
+
+<p>XSS漏洞 前端漏洞执行恶性js代码向后端</p>
+
+<hr>
 
       </article>
     </div>
@@ -86,14 +98,14 @@
     <div class="article-nav" id="article-nav-id">
         <nav class="hide-on-mobile section-nav">
           <h3 class="ml-1">Table of contents</h3>
-            <nav id="TableOfContents"></nav>
+            
         </nav>
     </div>
 
     
         <div class="tags">
             
-                <a href="http://brettkk.github.io/tags/cloud-native">cloud native</a>
+                <a href="http://brettkk.github.io/tags/encrypt">encrypt</a>
             
         </div>
     
