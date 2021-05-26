@@ -10,7 +10,8 @@ categories: ["技术"]
 ---
 
 free查看内存使用情况，包含已用内存，可用内存，交换内存的情况，默认以字节为单位( 简单版的top命令 )
-![image](/os/free.png)
+<img src="/os/free.png" width = "600" /><br>
+
 ---
 free -t (total, 有汇总行)
 + total = used + free

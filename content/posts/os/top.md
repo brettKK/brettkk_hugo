@@ -15,7 +15,8 @@ linux top命令（mac top结果显示有一些区别）
 + 能够实时显示系统中各个进程的资源占用状况,类似windows下的任务管理器
 ---
 以ubuntu top命令结果为2类信息(中间由一个空行分开)
-![image](/os/top.png)
+<img src="/os/top.png" width = "600" /><br>
+
 
 + 5行统计信息
   + 任务队列信息，uptime命令的结果类似

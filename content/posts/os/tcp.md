@@ -13,7 +13,7 @@ categories: ["技术"]
 
 
 tcp报文结构图
-<img src="/os/tcp-header.png" width = "600" /><br>
+<img src="/os/tcp-header.png" width = "400" /><br>
 
 + URG: 表示紧急指针（urgent pointer）是否有效
 + PSH: 提示接收端应该立即从TCP接收缓冲区中读走数据，为接收后续数据腾出空间

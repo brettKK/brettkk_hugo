@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 &#43; 发起投票 &#43; 每个节点为">
+<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -57,20 +57,20 @@
         </span>
         <span>
           
-            1895 words
+            2118 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          4 minute read
+          5 minute read
         </span>
     </div>
 
     <div class="content" >
       <article class="content">
-        <p>golang提供了比较便捷的并发编程方式。golang的并发单元是goroutine。在写代码时，有时goroutine在执行时自身独立且不需要与其他goroutine同步，时常也会遇到利用goroutine并发处理任务的情况。这时就需要多个goroutine之间进行同步。目前实现多个goroutine同步的主要方式有： sync包， channel，context包。</p>
+        <p>golang提供了比较便捷的并发编程方式。golang的并发单元是goroutine。目前实现多个goroutine同步的主要方式有： sync包， runtime包下的channel，context包。</p>
 <h3 id="syncwaitgroup">sync.WaitGroup <a href="#syncwaitgroup" class="anchor">🔗</a></h3><p>标准库sync里的Waitgroup，用来阻塞主协程去等待所有协程执行完。WaitGroup主要三个方法：Add方法添加等待的协程数量，Done方法等于Add(-1)减少等待的协程数量，Wait方法阻塞主协程。原理示意图如下：</p>
 <p><p class="markdown-image">
   <img src="/golang/golang_sync.png" alt="image"  />
@@ -162,6 +162,137 @@
         <span class="c1">//process
 </span><span class="c1"></span>    <span class="p">}</span>
 <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="channel-错误使用示例">channel 错误使用示例 <a href="#channel-%e9%94%99%e8%af%af%e4%bd%bf%e7%94%a8%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+// 死锁
+func main() {
+    ch := make(chan int)
+    &lt;- ch //block
+    go func() {
+        ch &lt;- 1
+    }
+}
+
+// 死锁
+func main() {
+    ch := make(chan int)
+    ch &lt;- 1 // block
+    go func() {
+        &lt;-ch
+    }
+}
+
+// 死锁
+func main() {
+        var ch chan int  //nil channel
+
+        go func(c chan int) {
+                for v := range c { // &lt;-ch  channel read
+                        fmt.Println(v)
+                }
+        }(ch)
+
+        ch &lt;- 1  // channel write
+}
+
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// goroutine泄漏
+func main() {
+    ch := make(chan int)
+    go func() {
+        // process more than 100ms
+        ch &lt;- 1
+    }
+    select {
+    case &lt;-ch:
+        // process done
+        return    
+    case &lt;- time.After(100*time.Millisecond) 
+        // process timeout
+        return
+    }
+}
+
+</code></pre></td></tr></table>
+</div>
+</div><p>错误操作引起Panic</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// send on close channel 往已关闭的 channel 写数据会 panic
+// closing on close channel  写入端无法知道 channel 是否已经关闭
+// send or read on nil channel channel初始化使用错误
+
+1. 不要尝试在读取端关闭 channel 
+2. 一个写入端，在这个写入端可以放心关闭 channel
+3. 多个写入端时，不要在写入端关闭 channel 
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="context">context <a href="#context" class="anchor">🔗</a></h3><p>context是在context包里定义的一种接口。在context包中可以通过WithCancel、WithDeadline、WithTimeout、WithValue这四个方法生成新 Context。WithValue方法生成的context可以做到了跨API的传值功能。WithTimeout方法是对WithDeadline的封装。WithDeadline方法生成的context实现了定时cancel的功能。</p>
