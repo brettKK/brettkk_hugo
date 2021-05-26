@@ -10,41 +10,8 @@ categories: ["技术"]
 ---
 
 存储引擎-是创建表时设置的，所以存储引擎是表级别的使用
-+ innodb: 只有数据文件即时索引文件，一个表对应一个文件
-	+ 各类索引
-	+ 聚集索引
-	+ 辅助索引
-	+ 联合索引
-	+ 覆盖索引
-	+ 全文索引
++ innodb: 只有数据文件即时索引文件，聚集索引，一个表对应一个文件
 + mysiam: 既有数据文件，又有索引文件
-	+ 全文索引
-
-
----
-+ SQL
-	+ DML
-		+ select  join ，左连接，右连接值做联合查询时结果以哪边为准； inner join ，left join，right join
-		+ insert
-			+ insert into tb_name(a,b,c) values(1,2,3)
-			+ insert into tb_name(a,b,c) values(1,2,3),(4,5,6),(7,8,9);
-			+ insert into tb_name(a,b,c) select a,b,c from tb_name1;
-			+ unique constraint
-		+ update
-			+ update tb_name set b = b+1 where name='aaa'
-		+ delete
-	+ DDL (implicit commit and cannot be roll back)
-		+ create
-		+ drop, 删除表
-		+ truncate，清空表
-		+ rename, only table name
-		+ alter
-			+ alter table tt add column city varchar(50)
-			+ add, modify/change, drop
-
-delete, drop, truncate区别
-+ drop,truncate属于DDL， 不能回滚
-+ drop删除表结构，delete用于删除某些行，truncate用于清空所有行
 
 ---
 +  字段类型
@@ -104,8 +71,9 @@ delete, drop, truncate区别
 			+ 存在幻读（innodb的间隙锁解决）
 		+ seriablizable
 	+ mvcc
-		+ 增加2列，一列保存行的创建时间，一列保存行的删除时间
-		+ undo log 实现了读写不冲突，可重复读，提高了性能  
+    	+ Read View生成时机的不同，从而造成RC,RR级别下快照读的结果的不同
+    	+ 对某条记录的第一次快照读会创建一个快照及Read View，之后的快照读获取的都是同一个Read View， RR
+    	+ 每次快照读都会新生成一个快照和Read View, 在RC级别下的事务中可以看到别的事务提交的更新
 + innodb重要的日志，undo logs, redo logs
 	+ undo logs: 记录某数据被修改前的值，可以用来在事务失败时进行rollback，保证一致性
 		+ 逻辑日志，随机写，每行记录修改， 采用段的方式
