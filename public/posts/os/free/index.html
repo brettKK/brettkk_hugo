@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 &#43; 发起投票 &#43; 每个节点为">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -70,9 +70,10 @@
 
     <div class="content" >
       <article class="content">
-        <p>free查看内存使用情况，包含已用内存，可用内存，交换内存的情况，默认以字节为单位( 简单版的top命令 )</p>
+        <p>free查看内存使用情况，包含已用内存，可用内存，交换内存的情况，默认以字节为单位( 简单版的top命令 )
+<img src="/os/free.png" width = "600" /><br></p>
 
-<h2 id="imageosfreepng"><figure><img src="/os/free.png" alt="image"></figure></h2>
+<hr>
 
 <p>free -t (total, 有汇总行)</p>
 

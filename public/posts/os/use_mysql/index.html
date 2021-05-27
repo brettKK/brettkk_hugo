@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 &#43; 发起投票 &#43; 每个节点为">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            2167 words
+            2040 words
           
         </span>
         <span class="split">
@@ -73,70 +73,8 @@
         <p>存储引擎-是创建表时设置的，所以存储引擎是表级别的使用</p>
 
 <ul>
-<li>innodb: 只有数据文件即时索引文件，一个表对应一个文件
-
-<ul>
-<li>各类索引</li>
-<li>聚集索引</li>
-<li>辅助索引</li>
-<li>联合索引</li>
-<li>覆盖索引</li>
-<li>全文索引</li>
-</ul></li>
-<li>mysiam: 既有数据文件，又有索引文件
-
-<ul>
-<li>全文索引</li>
-</ul></li>
-</ul>
-
-<hr>
-
-<ul>
-<li>SQL
-
-<ul>
-<li>DML
-
-<ul>
-<li>select  join ，左连接，右连接值做联合查询时结果以哪边为准； inner join ，left join，right join</li>
-<li>insert
-
-<ul>
-<li>insert into tb_name(a,b,c) values(1,2,3)</li>
-<li>insert into tb_name(a,b,c) values(1,2,3),(4,5,6),(7,8,9);</li>
-<li>insert into tb_name(a,b,c) select a,b,c from tb_name1;</li>
-<li>unique constraint</li>
-</ul></li>
-<li>update
-
-<ul>
-<li>update tb_name set b = b+1 where name='aaa'</li>
-</ul></li>
-<li>delete</li>
-</ul></li>
-<li>DDL (implicit commit and cannot be roll back)
-
-<ul>
-<li>create</li>
-<li>drop, 删除表</li>
-<li>truncate，清空表</li>
-<li>rename, only table name</li>
-<li>alter
-
-<ul>
-<li>alter table tt add column city varchar(50)</li>
-<li>add, modify/change, drop</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-
-<p>delete, drop, truncate区别</p>
-
-<ul>
-<li>drop,truncate属于DDL， 不能回滚</li>
-<li>drop删除表结构，delete用于删除某些行，truncate用于清空所有行</li>
+<li>innodb: 只有数据文件即时索引文件，聚集索引，一个表对应一个文件</li>
+<li>mysiam: 既有数据文件，又有索引文件</li>
 </ul>
 
 <hr>
@@ -260,8 +198,9 @@
 <li>mvcc
 
 <ul>
-<li>增加2列，一列保存行的创建时间，一列保存行的删除时间</li>
-<li>undo log 实现了读写不冲突，可重复读，提高了性能<br></li>
+<li>Read View生成时机的不同，从而造成RC,RR级别下快照读的结果的不同</li>
+<li>对某条记录的第一次快照读会创建一个快照及Read View，之后的快照读获取的都是同一个Read View， RR</li>
+<li>每次快照读都会新生成一个快照和Read View, 在RC级别下的事务中可以看到别的事务提交的更新</li>
 </ul></li>
 </ul></li>
 <li>innodb重要的日志，undo logs, redo logs
