@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 &#43; 发起投票 &#43; 每个节点为">
+<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -50,21 +50,21 @@
 
     <div class="tip">
         <span>
-          May 5, 2021 11:33
+          May 20, 2021 11:33
         </span>
         <span class="split">
           ·
         </span>
         <span>
           
-            964 words
+            1099 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          2 minute read
+          3 minute read
         </span>
     </div>
 
@@ -184,6 +184,8 @@ x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}\\
 
 <p>若x与n不互质时， 稍微复杂 todo</p>
 
+<hr>
+
 <ul>
 <li>同样的明文，同样的公钥，每次加密的结果不会一样。11字节都为随机数 填充使用
 
@@ -220,7 +222,27 @@ x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}\\
 <li>root key</li>
 </ul>
 
+<hr>
+
 <h3 id="同态加密homomorphic-encryption">同态加密（Homomorphic Encryption）</h3>
+
+<p>全同态 支持密文上任意次，任意类型的计算</p>
+
+<p>层次同态 支持有限次数的加法和乘法</p>
+
+<p>部分同态 只支持加法或者乘法</p>
+
+<p>可算不可见</p>
+
+<p>在密文空间进行运算后与明文空间上仍然一对一，能解密。</p>
+
+<p>只有不对原文进行填充的原始RSA才满足乘法同态性质。</p>
+
+<p>rsa encrypt <span  class="math">\( c= Enc(m) = m^e mod n \)</span></p>
+
+<p>rsa decryp <span  class="math">\( Dec(c) = c^d mod n \)</span></p>
+
+<p><span  class="math">\[Enc(m_1) * Enc(m_2) = (m_1 * m_2)^e = Enc(m_1 * m_2)\]</span></p>
 
       </article>
     </div>

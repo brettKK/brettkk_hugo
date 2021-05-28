@@ -1,6 +1,6 @@
 ---
 title: "加密相关"
-date: 2021-05-05T11:33:56+08:00
+date: 2021-05-20T11:33:56+08:00
 draft: false
 isCJKLanguage: true
 markup: mmark
@@ -28,11 +28,14 @@ categories: ["技术"]
 1977年由MIT三位学者发明。
 
 相关概念
+
 + 互质 两个数的最大公约数是1。
+  
 $$gcd(a,b)=1$$
 两数互质与两数是不是质数没有关系。
 
 + p与q互质，剩余定理得出
+  
 $$\Phi \left( pq\right) =\Phi(p)*\Phi(q)$$
 
 + 欧拉函数 $$\Phi\left( n\right)$$ 在小于等于n的正整数之中，与n构成互质关系的数的个数$$\Phi(n)$$
@@ -49,6 +52,7 @@ n不是质数时，n分解为质数相乘 $$n = a*b*c..$$， $$\Phi \left( n\rig
 $$a^{\Phi \left(n\right)}\equiv 1\left( mod\ n\right)$$
 
 + 费马小定理
+  
 当n为质数时，则：$$a^{n-1}\equiv 1\left( mod\ n\right)$$
 
 + rsa 生成过程
@@ -133,6 +137,8 @@ https的原理， 握手阶段
 
 ### 密钥的管理
 
+kms系统： 信封加密
+
 + 加解密运算 与 存储分离
 + 访问鉴权
 + 数据监控
@@ -142,8 +148,6 @@ https的原理， 握手阶段
 ---
 
 ### 同态加密（Homomorphic Encryption）
-
-
 
 全同态 支持密文上任意次，任意类型的计算
 
