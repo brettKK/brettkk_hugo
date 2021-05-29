@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 &#43; 发起投票 &#43; 每个节点为">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            1099 words
+            1109 words
           
         </span>
         <span class="split">
@@ -95,14 +95,22 @@
 <p>相关概念</p>
 
 <ul>
-<li><p>互质 两个数的最大公约数是1。
-<span  class="math">\(gcd(a,b)=1\)</span>
-两数互质与两数是不是质数没有关系。</p></li>
+<li>互质 两个数的最大公约数是1。
+<br></li>
+</ul>
 
-<li><p>p与q互质，剩余定理得出
-<span  class="math">\(\Phi \left( pq\right) =\Phi(p)*\Phi(q)\)</span></p></li>
+<p><span  class="math">\(gcd(a,b)=1\)</span>
+两数互质与两数是不是质数没有关系。</p>
 
-<li><p>欧拉函数 <span  class="math">\(\Phi\left( n\right)\)</span> 在小于等于n的正整数之中，与n构成互质关系的数的个数<span  class="math">\(\Phi(n)\)</span></p></li>
+<ul>
+<li>p与q互质，剩余定理得出
+<br></li>
+</ul>
+
+<p><span  class="math">\[\Phi \left( pq\right) =\Phi(p)*\Phi(q)\]</span></p>
+
+<ul>
+<li>欧拉函数 <span  class="math">\[\Phi\left( n\right)\]</span> 在小于等于n的正整数之中，与n构成互质关系的数的个数<span  class="math">\[\Phi(n)\]</span></li>
 </ul>
 
 <p>n是质数时， <span  class="math">\(\Phi(n) = n - 1\)</span></p>
@@ -118,9 +126,13 @@
 <p><span  class="math">\[a^{\Phi \left(n\right)}\equiv 1\left( mod\ n\right)\]</span></p>
 
 <ul>
-<li><p>费马小定理
-当n为质数时，则：<span  class="math">\(a^{n-1}\equiv 1\left( mod\ n\right)\)</span></p></li>
+<li>费马小定理
+<br></li>
+</ul>
 
+<p>当n为质数时，则：<span  class="math">\(a^{n-1}\equiv 1\left( mod\ n\right)\)</span></p>
+
+<ul>
 <li><p>rsa 生成过程</p>
 
 <ul>
@@ -214,6 +226,8 @@ x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}\\
 <p>后续的传输阶段时使用对称加密进行通信</p>
 
 <h3 id="密钥的管理">密钥的管理</h3>
+
+<p>kms系统： 信封加密</p>
 
 <ul>
 <li>加解密运算 与 存储分离</li>
