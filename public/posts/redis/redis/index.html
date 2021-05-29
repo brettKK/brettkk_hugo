@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            1330 words
+            1245 words
           
         </span>
         <span class="split">
@@ -105,7 +105,7 @@
 <li>定时删除
 
 <ul>
-<li>创建定时器添加到时间事件的链表中，cpu不友好</li>
+<li>创建定时器添加到时间事件的链表中</li>
 </ul></li>
 <li>懒性删除策略(db.c/expireIfNeeded) get key -&gt; expireIfNeeded -&gt; 删除key 并返回nil</li>
 <li>定期删除策略 (redis.c/activeExpireCycle)</li>
@@ -122,16 +122,16 @@
 <li><p>AOF持久化</p>
 
 <ul>
-<li>AOF 重写（减少AOF文件的大小）， bgrewriteaof创建子进程去执行</li>
-<li>重写： 创建新AOF文件，通过读当前db的键的value， 然后用一条命令去记录key value 信息</li>
-<li>子进程在AOF重写过程中， 发生的write操作，主服务进程会写到AOF重写缓冲区，等子进程结束后，父进程收到信号，将AOF重写缓冲区的内容append到AOF文件中，完成AOF文件的后台重写。</li>
 <li>配置appendfsync
 
 <ul>
-<li>always 每次写都aof</li>
-<li>everysec 每次aof</li>
-<li>no</li>
+<li>always 每次写都fsync</li>
+<li>everysec 每秒fsync</li>
+<li>no  由os定</li>
 </ul></li>
+<li>AOF 重写（减少AOF文件的大小）， bgrewriteaof创建子进程去执行</li>
+<li>重写： 创建新AOF文件，通过读当前db的键的value， 然后用一条命令去记录key value 信息</li>
+<li>子进程在AOF重写过程中， 发生的write操作，主服务进程会写到AOF重写缓冲区，等子进程结束后，父进程收到信号，将AOF重写缓冲区的内容append到AOF文件中，完成AOF文件的后台重写。</li>
 </ul></li>
 
 <li><p>事件</p>
@@ -149,11 +149,12 @@
 </ul></li>
 </ul></li>
 
-<li><p>cluster 模式</p>
+<li><p>redis cluster 模式</p>
 
 <ul>
-<li>16384个槽的分配</li>
-<li>moved错误（请求a到机器上，但机器存放该key对应的槽，所以返回集群中正确的机器地址）</li>
+<li>数据分布 节点取余  一致性哈希</li>
+<li>虚拟槽分区 16384个槽的分配</li>
+<li>moved错误（请求a到机器上，但机器存放该key对应的槽，所以返回集群中正确的地址）</li>
 </ul></li>
 
 <li><p>事务</p>
@@ -173,23 +174,10 @@
 
 <ul>
 <li>缓存空值，一次</li>
-<li>布隆过滤器</li>
-</ul>
 
-<p>缓存失效</p>
+<li><p>布隆过滤器</p></li>
 
-<ul>
-<li>使用缓存集群，保证高可用</li>
-<li>Hystrix工具， 熔断、降级、限流</li>
-<li>互斥锁，让其他请求等待缓存数据更新</li>
-</ul>
-
-<p>传送保证</p>
-
-<ul>
-<li>at most once 最多一次， 消息会丢失，不会重复传输</li>
-<li>at least once 最少一次， 消息不丢失，会重复传输 （kafka默认）</li>
-<li>exactly once 有且仅有一次，（与外部存储系统协作）
+<li><p>exactly once 有且仅有一次，（与外部存储系统协作）</p>
 
 <ul>
 <li>生产者发消息时附带pid+messageid， broker检查messageid是否比我的messageid大于1， 是则接受；不是拒接</li>
