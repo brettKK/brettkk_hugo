@@ -28,7 +28,7 @@ categories: ["技术"]
 
 + 过期键删除
     + 定时删除
-        + 创建定时器添加到时间事件的链表中，cpu不友好
+        + 创建定时器添加到时间事件的链表中
     + 懒性删除策略(db.c/expireIfNeeded) get key -> expireIfNeeded -> 删除key 并返回nil
     + 定期删除策略 (redis.c/activeExpireCycle)
     + save 生成rdb文件， 不会保存过期键
@@ -36,14 +36,16 @@ categories: ["技术"]
 + RDB持久化
     + save (阻塞redis服务进程，直到RDB文件生成完毕) 
     + bgsave 创建子进程来创建全局快照RDB文件
+
+
 + AOF持久化
+    + 配置appendfsync
+        + always 每次写都fsync
+        + everysec 每秒fsync
+        + no  由os定
     + AOF 重写（减少AOF文件的大小）， bgrewriteaof创建子进程去执行
     + 重写： 创建新AOF文件，通过读当前db的键的value， 然后用一条命令去记录key value 信息
     + 子进程在AOF重写过程中， 发生的write操作，主服务进程会写到AOF重写缓冲区，等子进程结束后，父进程收到信号，将AOF重写缓冲区的内容append到AOF文件中，完成AOF文件的后台重写。
-    + 配置appendfsync
-        + always 每次写都aof
-        + everysec 每次aof
-        + no
 
 + 事件
     + 文件事件 ae_select.c , ae_epoll.c, ae_kqueue.c reactor模式
@@ -54,9 +56,10 @@ categories: ["技术"]
         + 尝试AOF RDB
         + 主从同步
 
-+ cluster 模式
-    + 16384个槽的分配
-    + moved错误（请求a到机器上，但机器存放该key对应的槽，所以返回集群中正确的机器地址）
++ redis cluster 模式
+    + 数据分布 节点取余  一致性哈希
+    + 虚拟槽分区 16384个槽的分配
+    + moved错误（请求a到机器上，但机器存放该key对应的槽，所以返回集群中正确的地址）
 
 + 事务
     + multi, exec, watch
@@ -71,14 +74,6 @@ categories: ["技术"]
 + 缓存空值，一次
 + 布隆过滤器
 
-缓存失效
-+ 使用缓存集群，保证高可用
-+ Hystrix工具， 熔断、降级、限流
-+ 互斥锁，让其他请求等待缓存数据更新
-
-传送保证
-+ at most once 最多一次， 消息会丢失，不会重复传输
-+ at least once 最少一次， 消息不丢失，会重复传输 （kafka默认）
 + exactly once 有且仅有一次，（与外部存储系统协作）
   + 生产者发消息时附带pid+messageid， broker检查messageid是否比我的messageid大于1， 是则接受；不是拒接
   + 消费者更新数据和更新offet需要事务支持，一起成功或者一起失败，保证正好消费一次

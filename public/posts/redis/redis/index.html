@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 &#43; 发起投票 &#43; 每个节点为">
+<meta name="description" content="service mesh 🔗微服务内部有分布式环境下的通用功能：熔断策略、负载均衡">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            1306 words
+            1330 words
           
         </span>
         <span class="split">
@@ -71,24 +71,7 @@
     <div class="content" >
       <article class="content">
         <ul>
-<li><p>简单动态数组 simple dynamic string SDS</p>
-
-<ul>
-<li>sds.h sds.c</li>
-<li>数组本身长度， 空余长度</li>
-<li>防止strcat 这种缓冲区溢出， o1时间获取字符串长度，减少内存分配</li>
-<li>兼容c字符串库函数的原因: SDS返回char*指针与C 操作字符串时是一致
-<br></li>
-</ul></li>
-
-<li><p>压缩列表 ziplist</p>
-
-<ul>
-<li>组成<zlbytes, zltail, zllen, entry1,entry2,...entryN, zlend></li>
-<li>整体长度-字节 == 指向tail的偏移量 == entry的个数 == entry... == 标记结尾0xff 一字节</li>
-<li>entry的结构<previous_entry_length, encoding(content的类型), content>, previous_entry_length 支持从尾到头</li>
-<li>previous_entry_length带来的连锁更新问题</li>
-</ul></li>
+<li>支持的value类型： 字符串，hash，列表，集合，有序集合</li>
 
 <li><p>redis未直接使用上述数据结构， 而是redisObject结构进行封装。</p>
 
@@ -96,6 +79,24 @@
 <li>键对象， 均为字符串对象</li>
 <li>值对象， 为1字符串对象，2列表对象(ziplist, linkedlist)，3哈希对象(ziplist, hashtable)，4集合对象（intset, hashtable），5有序集合对象(ziplist, skiplist)</li>
 <li>redisObject结构体： type, encoding, prt, refcount, lru...</li>
+</ul></li>
+
+<li><p>简单动态数组</p>
+
+<ul>
+<li>sds.h sds.c</li>
+<li>数组本身长度， 空余长度，防止strcat 这种缓冲区溢出</li>
+<li>兼容c字符串库函数的原因: SDS返回char*指针与C 操作字符串时是一致
+<br></li>
+</ul></li>
+
+<li><p>压缩列表 ziplist</p>
+
+<ul>
+<li>组成 <zlbytes, zltail, zllen, entry1,entry2,...entryN, zlend></li>
+<li>整体长度-字节 == 指向tail的偏移量 == entry的个数 == entry... == 标记结尾0xff 一字节</li>
+<li>entry的结构<previous_entry_length, encoding(content的类型), content>, previous_entry_length 支持从尾到头</li>
+<li>previous_entry_length带来的连锁更新问题</li>
 </ul></li>
 
 <li><p>过期键删除</p>
@@ -115,7 +116,7 @@
 
 <ul>
 <li>save (阻塞redis服务进程，直到RDB文件生成完毕)</li>
-<li>bgsave 创建子进程来创建RDB文件</li>
+<li>bgsave 创建子进程来创建全局快照RDB文件</li>
 </ul></li>
 
 <li><p>AOF持久化</p>
@@ -127,8 +128,8 @@
 <li>配置appendfsync
 
 <ul>
-<li>always</li>
-<li>everysec</li>
+<li>always 每次写都aof</li>
+<li>everysec 每次aof</li>
 <li>no</li>
 </ul></li>
 </ul></li>

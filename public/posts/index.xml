@@ -107,7 +107,7 @@
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/redis/redis/</guid>
-      <description>简单动态数组 simple dynamic string SDS sds.h sds.c 数组本身长度， 空余长度 防止strca</description>
+      <description>支持的value类型： 字符串，hash，列表，集合，有序集合</description>
     </item>
     
     <item>
@@ -270,6 +270,17 @@
       
       <guid>http://brettkk.github.io/posts/cloud_native/log_structure_tree/</guid>
       <description>lsm树的应用 levelDB, Hbase, Cassandra, RocksDB 使用场景 写多读少，例如存调用链的服务 为</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/os/file_system/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/os/file_system/</guid>
+      <description>linux: 一切皆文件。
+文件系统为文件分配2个数据结构： 索引节点inode， 目录项directory entry。
+分布式存储</description>
     </item>
     
   </channel>

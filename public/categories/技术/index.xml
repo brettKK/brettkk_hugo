@@ -107,7 +107,7 @@
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/redis/redis/</guid>
-      <description>简单动态数组 simple dynamic string SDS sds.h sds.c 数组本身长度， 空余长度 防止strca</description>
+      <description>支持的value类型： 字符串，hash，列表，集合，有序集合</description>
     </item>
     
     <item>
