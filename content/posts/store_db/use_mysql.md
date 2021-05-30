@@ -4,7 +4,7 @@ date: 2021-05-05T11:33:56+08:00
 draft: false
 isCJKLanguage: true
 markup: mmark
-tags: ["linux"]
+tags: ["存储"]
 series: [""]
 categories: ["技术"]
 ---
@@ -102,9 +102,6 @@ categories: ["技术"]
 	+ 不剥夺
 	+ 循环等待
 
-+ InnoDB 检测死锁 2种情况
-	+ 2行记录交叉申请互斥锁
-	+ 同一张表存在主键索引锁冲突
 
 + 死锁的注意事项：
 	+ InnoDB的行锁是加在索引上的

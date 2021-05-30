@@ -3,13 +3,14 @@ title: "log_structured merge tree"
 date: 2021-03-03T18:34:48+08:00
 draft: false
 isCJKLanguage: true
-tags: ["cloud native"]
+tags: ["存储"]
 series: [""]
 categories: ["技术"]
 ---
 
 + lsm树的应用
-  + levelDB, Hbase, Cassandra, RocksDB 
+  + levelDB, HBase, Cassandra, RocksDB 
+
 + 使用场景
   + 写多读少，例如存调用链的服务
 + 为什么lsm
@@ -21,7 +22,7 @@ categories: ["技术"]
 
 #### 写入
 
-写数据时， 写入内存有序树结构 memtable, 并更新布隆过滤器，稀疏索引。 
+写数据时， 写入内存有序树结构memtable, 并更新布隆过滤器。
 
 当memtable累积到阈值，一次性写入segment内部有序文件到磁盘。
 
@@ -30,10 +31,9 @@ categories: ["技术"]
 
 #### 读取
 
-查询布隆过滤器，若不存在则返不存在； 若存在，按照从新到老的顺序依次查询每个segment。
+查询布隆过滤器，若不存在则一定是不存在； 若存在，按照从新到老的顺序依次查询每个segment。
 
 #### 更新
-
 
 
 #### 删除
