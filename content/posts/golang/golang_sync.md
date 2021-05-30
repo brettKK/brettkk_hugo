@@ -207,7 +207,7 @@ func (c *cancelCtx) cancel(removeFromParent bool, err error) {
 }
 ```
 
-### context使用说明
+#### context使用说明
 
 etcd中有一些select , context, channel 的例子
 

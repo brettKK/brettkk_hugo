@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
   <head>
-    <title>linux-shell | brettkk</title>
+    <title>redis 小结 | brettkk</title>
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
@@ -46,7 +46,7 @@
       
 
 <section id="single">
-    <h1 class="title">linux-shell</h1>
+    <h1 class="title">redis 小结</h1>
 
     <div class="tip">
         <span>
@@ -57,174 +57,131 @@
         </span>
         <span>
           
-            840 words
+            1245 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          2 minute read
+          3 minute read
         </span>
     </div>
 
     <div class="content" >
       <article class="content">
         <ul>
-<li>单引号，双引号，反引号区别
+<li>支持的value类型： 字符串，hash，列表，集合，有序集合</li>
+
+<li><p>redis未直接使用上述数据结构， 而是redisObject结构进行封装。</p>
 
 <ul>
-<li>单引号之间的内容原封不动的输出</li>
-<li>双引号取消空格的作用， 特殊符号含义会保留</li>
-<li>反引号，用来包装命令的结果，多用$()
-<code>将一个命令的执行结果赋给变量
-	A=`date` 将date的执行结果赋值给变量A
-	B=$(ls -l) 将ls -l这个命令给变量B</code></li>
+<li>键对象， 均为字符串对象</li>
+<li>值对象， 为1字符串对象，2列表对象(ziplist, linkedlist)，3哈希对象(ziplist, hashtable)，4集合对象（intset, hashtable），5有序集合对象(ziplist, skiplist)</li>
+<li>redisObject结构体： type, encoding, prt, refcount, lru...</li>
 </ul></li>
 
-<li><p>shell 数组</p>
+<li><p>简单动态数组</p>
 
 <ul>
-<li>定义数组  array_name=(v0 v1 v2 v3)</li>
-<li>读取数组 value1=${array_name[1]}</li>
-<li>获取所有元素    @，*</li>
-<li>获取数组长度 echo ${#array_name[ * ]}</li>
+<li>sds.h sds.c</li>
+<li>数组本身长度， 空余长度，防止strcat 这种缓冲区溢出</li>
+<li>兼容c字符串库函数的原因: SDS返回char*指针与C 操作字符串时是一致
+<br></li>
 </ul></li>
 
-<li><p>shell 传递参数</p>
-
-<ul>
-<li>$n 位置变量
+<li><p>压缩列表 ziplist</p>
 
 <ul>
-<li>n为一个数字，0为执行的文件，1位第一个参数，类推</li>
+<li>组成 <zlbytes, zltail, zllen, entry1,entry2,...entryN, zlend></li>
+<li>整体长度-字节 == 指向tail的偏移量 == entry的个数 == entry... == 标记结尾0xff 一字节</li>
+<li>entry的结构<previous_entry_length, encoding(content的类型), content>, previous_entry_length 支持从尾到头</li>
+<li>previous_entry_length带来的连锁更新问题</li>
 </ul></li>
-<li>特殊字符
+
+<li><p>过期键删除</p>
 
 <ul>
-<li>$# 传递到脚本的参数个数</li>
-<li>$* 以字符串的显示参数 “$1..$n”</li>
-<li>$@ 与$* 类似 加引号</li>
-<li>$$ 这个程序的pid</li>
-<li>$! 执行上一个后台程序的pid</li>
-<li>$? 执行上一个指令的返回值</li>
+<li>定时删除
+
+<ul>
+<li>创建定时器添加到时间事件的链表中</li>
+</ul></li>
+<li>懒性删除策略(db.c/expireIfNeeded) get key -&gt; expireIfNeeded -&gt; 删除key 并返回nil</li>
+<li>定期删除策略 (redis.c/activeExpireCycle)</li>
+<li>save 生成rdb文件， 不会保存过期键</li>
+</ul></li>
+
+<li><p>RDB持久化</p>
+
+<ul>
+<li>save (阻塞redis服务进程，直到RDB文件生成完毕)</li>
+<li>bgsave 创建子进程来创建全局快照RDB文件</li>
+</ul></li>
+
+<li><p>AOF持久化</p>
+
+<ul>
+<li>配置appendfsync
+
+<ul>
+<li>always 每次写都fsync</li>
+<li>everysec 每秒fsync</li>
+<li>no  由os定</li>
+</ul></li>
+<li>AOF 重写（减少AOF文件的大小）， bgrewriteaof创建子进程去执行</li>
+<li>重写： 创建新AOF文件，通过读当前db的键的value， 然后用一条命令去记录key value 信息</li>
+<li>子进程在AOF重写过程中， 发生的write操作，主服务进程会写到AOF重写缓冲区，等子进程结束后，父进程收到信号，将AOF重写缓冲区的内容append到AOF文件中，完成AOF文件的后台重写。</li>
+</ul></li>
+
+<li><p>事件</p>
+
+<ul>
+<li>文件事件 ae_select.c , ae_epoll.c, ae_kqueue.c reactor模式</li>
+<li>时间事件 (定时事件， 周期性事件)
+
+<ul>
+<li>更新db的统计信息</li>
+<li>清理过期key</li>
+<li>关闭和清理无效的客户端</li>
+<li>尝试AOF RDB</li>
+<li>主从同步</li>
 </ul></li>
 </ul></li>
+
+<li><p>redis cluster 模式</p>
+
+<ul>
+<li>数据分布 节点取余  一致性哈希</li>
+<li>虚拟槽分区 16384个槽的分配</li>
+<li>moved错误（请求a到机器上，但机器存放该key对应的槽，所以返回集群中正确的地址）</li>
+</ul></li>
+
+<li><p>事务</p>
+
+<ul>
+<li>multi, exec, watch</li>
+<li>multi之后 的命令入队列， exec执行队列命令。</li>
+<li>multi之后 redisclient的flags事务标示打开， 请求的命令入队列（入队失败，不会执行事务）， exec执行队列命令（执行失败，事务继续执行）。</li>
+<li>watch的key被修改后，redisClient的REDIS_DIRTY_CAS会打开， exec时会取消执行</li>
+<li>redis单线程处理事件，所以事务执行是串行的，所以满足隔离性。</li>
+</ul></li>
+
+<li><p>redis中SIGUSR1信号关闭子进程的aof,rdb任务</p></li>
 </ul>
 
-<h3 id="awk">awk</h3>
-
-<p>awk 脚本基本结构 awk 'BEGIN{ print &quot;start&quot; } pattern{ commands } END{ print &quot;end&quot; }' file</p>
-
-<p>使用AWK做文本处理， 语句由模式和动作组成</p>
+<p>缓存穿透解决方案</p>
 
 <ul>
-<li>模式，决定动作的触发条件和时间</li>
-<li>动作
+<li>缓存空值，一次</li>
+
+<li><p>布隆过滤器</p></li>
+
+<li><p>exactly once 有且仅有一次，（与外部存储系统协作）</p>
 
 <ul>
-<li>BEGIN， 设置计数和头部信息， 在任何动作之前进行</li>
-<li>END， 输出统计结果， 在完成动作之后执行</li>
-</ul></li>
-</ul>
-
-<p>默认分隔符为空格， 也可以-F改变为其他符号，例如冒号，-F：</p>
-
-<p>例自定义日期显示
-date|awk '{print &quot;year:&quot;$1 &quot;month:&quot;$2}'</p>
-
-<p>自定义输出一些列
-awk 'BEGIN {print &quot;begin&quot;} {print $1, $2, $3} END{print &quot;end&quot;}' file</p>
-
-<p>满足某个模式的行
-awk '$2&gt;9 {print $0}' file</p>
-
-<p>awk '{if($1==&quot;kk&quot; &amp;&amp; $2&gt;5) print $0}' file</p>
-
-<hr>
-
-<h3 id="sed">sed</h3>
-
-<p>替换s命令
-sed 's/old/new/' file</p>
-
-<p>-n -p 一起使用只打印发生替换的行
-sed -n 's/old/new/p' file
-显示第三行
-sed -n '3p' file</p>
-
-<p>全部替换g命令
-sed 's/old/new/g' file</p>
-
-<p>删除d命令
-sed '2d' file</p>
-
-<p>插入i命令
-追加a命令</p>
-
-<hr>
-
-<ul>
-<li>/etc/profile
-
-<ul>
-<li>为系统中每个用户设置环境信息，只在用户第一次登陆时，被执行</li>
-<li>并从/etc/profile.d目录中搜索shell的配置</li>
-</ul></li>
-<li>/etc/bashrc
-
-<ul>
-<li>bash shell被打开，就被执行</li>
-</ul></li>
-<li>～/.bashrc
-
-<ul>
-<li>每次打开shell时，被执行</li>
-</ul></li>
-
-<li><p>~/.bash_profile</p>
-
-<ul>
-<li>用户登陆时仅执行一次，执行用户的bashrc</li>
-</ul></li>
-
-<li><p>重定向</p>
-
-<ul>
-<li>runApp &lt; data.in &gt; results.out</li>
-<li>&gt; /dev/null 丢弃输出信息</li>
-<li>2&gt;&amp;1 错误输出重定向到标准输出中</li>
-<li>&gt;&gt; a.log  追加写文件</li>
-<li>&amp;&gt;a.log  将标准输出和错误输出的组合重定向到a.log里</li>
-<li>单独的 &amp; 将任务发送到shell后台执行
-
-<ul>
-<li>jobs 列出在后台执行的所有任务</li>
-<li>fg 任务编号 将任务带回前台</li>
-<li>ctrl+z 暂停进程， bg 将任务继续带回后台执行</li>
-</ul></li>
-</ul></li>
-
-<li><p>查找某个字符串</p>
-
-<ul>
-<li>命令模式:／strings ，光标位置向下查找</li>
-<li>:?strings, 光标位置向上查找</li>
-</ul></li>
-
-<li><p>在整个文件中替换特定字符串</p>
-
-<ul>
-<li>:%s/old_word/new_word/g // %s/old_word/new_word/gc  每次替换会确认一下</li>
-<li>g/old_word/s//new_word/g</li>
-</ul></li>
-
-<li><p>zero copy</p>
-
-<ul>
-<li>tradeoff between performance and security technologies.</li>
-<li>implementation:  1 memory remapping, 2 shared buffers, 3 different system calls, and hardware support.</li>
-<li><a href="https://pdfs.semanticscholar.org/6a35/60046cb8d3258669c86072a7cab05e1d2300.pd">https://pdfs.semanticscholar.org/6a35/60046cb8d3258669c86072a7cab05e1d2300.pd</a></li>
+<li>生产者发消息时附带pid+messageid， broker检查messageid是否比我的messageid大于1， 是则接受；不是拒接</li>
+<li>消费者更新数据和更新offet需要事务支持，一起成功或者一起失败，保证正好消费一次</li>
 </ul></li>
 </ul>
 
@@ -241,7 +198,7 @@ sed '2d' file</p>
     
         <div class="tags">
             
-                <a href="http://brettkk.github.io/tags/linux">linux</a>
+                <a href="http://brettkk.github.io/tags/%E5%AD%98%E5%82%A8">存储</a>
             
         </div>
     

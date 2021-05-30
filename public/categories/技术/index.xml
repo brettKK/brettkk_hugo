@@ -94,19 +94,19 @@
     
     <item>
       <title>mysql 小结</title>
-      <link>http://brettkk.github.io/posts/os/use_mysql/</link>
+      <link>http://brettkk.github.io/posts/store_db/use_mysql/</link>
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
       
-      <guid>http://brettkk.github.io/posts/os/use_mysql/</guid>
+      <guid>http://brettkk.github.io/posts/store_db/use_mysql/</guid>
       <description>存储引擎-是创建表时设置的，所以存储引擎是表级别的使用 innodb: 只有</description>
     </item>
     
     <item>
       <title>redis 小结</title>
-      <link>http://brettkk.github.io/posts/redis/redis/</link>
+      <link>http://brettkk.github.io/posts/store_db/redis/</link>
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
       
-      <guid>http://brettkk.github.io/posts/redis/redis/</guid>
+      <guid>http://brettkk.github.io/posts/store_db/redis/</guid>
       <description>支持的value类型： 字符串，hash，列表，集合，有序集合</description>
     </item>
     
@@ -211,11 +211,11 @@
     
     <item>
       <title>log_structured merge tree</title>
-      <link>http://brettkk.github.io/posts/cloud_native/log_structure_tree/</link>
+      <link>http://brettkk.github.io/posts/store_db/log_structure_tree/</link>
       <pubDate>Wed, 03 Mar 2021 18:34:48 +0800</pubDate>
       
-      <guid>http://brettkk.github.io/posts/cloud_native/log_structure_tree/</guid>
-      <description>lsm树的应用 levelDB, Hbase, Cassandra, RocksDB 使用场景 写多读少，例如存调用链的服务 为</description>
+      <guid>http://brettkk.github.io/posts/store_db/log_structure_tree/</guid>
+      <description>lsm树的应用 levelDB, HBase, Cassandra, RocksDB 使用场景 写多读少，例如存调用链的服务 为</description>
     </item>
     
   </channel>

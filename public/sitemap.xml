@@ -103,7 +103,7 @@
   </url>
   
   <url>
-    <loc>http://brettkk.github.io/posts/os/use_mysql/</loc>
+    <loc>http://brettkk.github.io/posts/store_db/use_mysql/</loc>
     <lastmod>2021-05-05T11:33:56+08:00</lastmod>
   </url>
   
@@ -113,7 +113,7 @@
   </url>
   
   <url>
-    <loc>http://brettkk.github.io/posts/redis/redis/</loc>
+    <loc>http://brettkk.github.io/posts/store_db/redis/</loc>
     <lastmod>2021-05-05T11:33:56+08:00</lastmod>
   </url>
   
@@ -129,6 +129,11 @@
   
   <url>
     <loc>http://brettkk.github.io/posts/tools/vs_code/</loc>
+    <lastmod>2021-05-05T11:33:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://brettkk.github.io/tags/%E5%AD%98%E5%82%A8/</loc>
     <lastmod>2021-05-05T11:33:56+08:00</lastmod>
   </url>
   
@@ -223,7 +228,7 @@
   </url>
   
   <url>
-    <loc>http://brettkk.github.io/posts/cloud_native/log_structure_tree/</loc>
+    <loc>http://brettkk.github.io/posts/store_db/log_structure_tree/</loc>
     <lastmod>2021-03-03T18:34:48+08:00</lastmod>
   </url>
   
