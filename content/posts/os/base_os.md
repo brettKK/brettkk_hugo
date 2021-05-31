@@ -158,6 +158,7 @@ uname -a 查看系统的版本
 
 
 task_struct结构体对应与进程相关的信息
+
 + 创建进程 fork 子进程从父进程上继承了哪些内容？子进程与父进程的区别与联系
 + fork() pthread_create() 最后在linux中都是调用do_fork， copy_process方法
 	+ linux中创建线程与进程均需要走到copy——process方法
@@ -165,6 +166,9 @@ task_struct结构体对应与进程相关的信息
  	+ do_fork
 		+ copy_process
 		+ 复制的内容与参数flag相关
+  
+
+
 ---
 
 + 软连接，与硬连接有什么区别
@@ -206,6 +210,8 @@ cpu 寻址方式
 + 指针的值表示内存起始地址， 指针的类型表示从该起始地址到终止地址的内存尺寸
 
 ---
+
+
 
 OS 提供了多用户多进程的良好稳定环境，但有一些技术想pass os...
 + kernel bypass 绕过内核  intel 开发的DPDK SPDK

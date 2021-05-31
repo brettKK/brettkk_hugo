@@ -103,7 +103,7 @@
   </url>
   
   <url>
-    <loc>http://brettkk.github.io/posts/store_db/use_mysql/</loc>
+    <loc>http://brettkk.github.io/posts/store_db/mysql/</loc>
     <lastmod>2021-05-05T11:33:56+08:00</lastmod>
   </url>
   
@@ -234,6 +234,10 @@
   
   <url>
     <loc>http://brettkk.github.io/posts/os/file_system/</loc>
+  </url>
+  
+  <url>
+    <loc>http://brettkk.github.io/posts/store_db/store/</loc>
   </url>
   
   <url>

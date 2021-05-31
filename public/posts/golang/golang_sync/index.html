@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 &#43; 发起投票 &#43; 每个节点为">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -414,7 +414,7 @@ func main() {
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="context使用说明">context使用说明 <a href="#context%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" class="anchor">🔗</a></h3><p>etcd中有一些select , context, channel 的例子</p>
+</div><h4 id="context使用说明">context使用说明 <a href="#context%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" class="anchor">🔗</a></h4><p>etcd中有一些select , context, channel 的例子</p>
 <p>参考： <a href="https://blog.golang.org/context">https://blog.golang.org/context</a></p>
 
       </article>
@@ -430,7 +430,6 @@ func main() {
         <li><a href="#syncwaitgroup">sync.WaitGroup</a></li>
         <li><a href="#channel">channel</a></li>
         <li><a href="#context">context</a></li>
-        <li><a href="#context使用说明">context使用说明</a></li>
       </ul>
     </li>
   </ul>
