@@ -47,9 +47,13 @@ Open Container Initiative（OCI）成立后， libcontainer 封装在runC包里�
 
 ---
 
-+ pod
-  + 管理关系紧密的容器进程，共享ipc network
++ pod （进程组）
+  + 打开容器之间的隔离性，两个方向 网络和存储来通信。
+    +  Infra container 小容器来共享整个 Pod 的  Network Namespace, 直接使用localhost进行通信。
+    +  宿主机上的目录mount到pod的容积里的文件目录下，实现读写文件通信。
+  + 一组管理关系紧密的容器（进程），与业务容器需要的side car辅助容积（日志收集，service mesh， 应用监控）
   + 容器不只containerd，k8s需要基于container做一步抽象container runtime interfz
+  + 设计模式本质：解耦 复用
 + service
   + 一个svc是一个微服务，也是一组prod，通过label robin实现IP负载均衡
 + volume

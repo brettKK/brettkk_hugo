@@ -9,10 +9,13 @@ categories: ["技术"]
 ---
 
 ### 资料
-+ https://github.com/gocn/knowledge
-+ awesome-go
+ https://github.com/gocn/knowledge
 
+ awesome-go
+
+ swtch.com/~rsc/      Russ Cox
 ### 模糊点
+
 + 数组的初始化 （元素类型， 数组大小）
     + cmd/compile/internal/types.NewArray
     + cmd/compile/internal/types.NewSlice
@@ -48,6 +51,18 @@ categories: ["技术"]
         + 传递指针真的比传值高效吗？不一定 由于指针传递会产生逃逸，可能会使用堆，增加GC负担。
         + go build -gcflags=-m // escapes to heap
 
+
+### cgo
+
+uintptr与unsafe.Pointer
+
+unsafe.Pointer 类似void*
+
+指针是对内存区域的地址， 与指针相配合的类型
+说明区域有哪些属性，如何去解析。
+
+
+---
 
 + nil
     + what is nil
