@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
   <head>
-    <title>log_structured merge tree | brettkk</title>
+    <title>lsm 小结 | brettkk</title>
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 &#43; 发起投票 &#43; 每个节点为">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -46,7 +46,7 @@
       
 
 <section id="single">
-    <h1 class="title">log_structured merge tree</h1>
+    <h1 class="title">lsm 小结</h1>
 
     <div class="tip">
         <span>
@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            267 words
+            275 words
           
         </span>
         <span class="split">
@@ -70,21 +70,10 @@
 
     <div class="content" >
       <article class="content">
-        <ul>
-<li>
-<p>lsm树的应用</p>
+        <h2 id="lsm-基本想法">lsm 基本想法 <a href="#lsm-%e5%9f%ba%e6%9c%ac%e6%83%b3%e6%b3%95" class="anchor">🔗</a></h2><p>使用场景， 写多读少，例如存调用链的服务。</p>
+<p>应用：levelDB, HBase, Cassandra, RocksDB</p>
 <ul>
-<li>levelDB, HBase, Cassandra, RocksDB</li>
-</ul>
-</li>
-<li>
-<p>使用场景</p>
-<ul>
-<li>写多读少，例如存调用链的服务</li>
-</ul>
-</li>
-<li>
-<p>为什么lsm</p>
+<li>为什么lsm
 <ul>
 <li>分层，有序，面向磁盘的数据结构</li>
 <li>批量写，顺序写对硬件驱动友好</li>
@@ -92,11 +81,11 @@
 </ul>
 </li>
 </ul>
-<h3 id="lsm-基本想法">lsm 基本想法 <a href="#lsm-%e5%9f%ba%e6%9c%ac%e6%83%b3%e6%b3%95" class="anchor">🔗</a></h3><h4 id="写入">写入 <a href="#%e5%86%99%e5%85%a5" class="anchor">🔗</a></h4><p>写数据时， 写入内存有序树结构memtable, 并更新布隆过滤器。</p>
+<h2 id="写入">写入 <a href="#%e5%86%99%e5%85%a5" class="anchor">🔗</a></h2><p>写数据时， 写入内存有序树结构memtable, 并更新布隆过滤器。</p>
 <p>当memtable累积到阈值，一次性写入segment内部有序文件到磁盘。</p>
 <p>后台有专门的定期执行compact操作的线程合并segment文件。</p>
-<h4 id="读取">读取 <a href="#%e8%af%bb%e5%8f%96" class="anchor">🔗</a></h4><p>查询布隆过滤器，若不存在则一定是不存在； 若存在，按照从新到老的顺序依次查询每个segment。</p>
-<h4 id="更新">更新 <a href="#%e6%9b%b4%e6%96%b0" class="anchor">🔗</a></h4><h4 id="删除">删除 <a href="#%e5%88%a0%e9%99%a4" class="anchor">🔗</a></h4><p>删除时是覆盖写value为特殊标识位，而不是真执行删除。</p>
+<h2 id="读取">读取 <a href="#%e8%af%bb%e5%8f%96" class="anchor">🔗</a></h2><p>查询布隆过滤器，若不存在则一定是不存在； 若存在，按照从新到老的顺序依次查询每个segment。</p>
+<h2 id="更新">更新 <a href="#%e6%9b%b4%e6%96%b0" class="anchor">🔗</a></h2><h2 id="删除">删除 <a href="#%e5%88%a0%e9%99%a4" class="anchor">🔗</a></h2><p>删除时是覆盖写value为特殊标识位，而不是真执行查找并删除。</p>
 
       </article>
     </div>
@@ -106,11 +95,11 @@
           <h3 class="ml-1">Table of contents</h3>
             <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#lsm-基本想法">lsm 基本想法</a></li>
-      </ul>
-    </li>
+    <li><a href="#lsm-基本想法">lsm 基本想法</a></li>
+    <li><a href="#写入">写入</a></li>
+    <li><a href="#读取">读取</a></li>
+    <li><a href="#更新">更新</a></li>
+    <li><a href="#删除">删除</a></li>
   </ul>
 </nav>
         </nav>

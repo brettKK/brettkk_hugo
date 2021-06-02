@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 &#43; 发起投票 &#43; 每个节点为">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            597 words
+            745 words
           
         </span>
         <span class="split">
@@ -90,10 +90,17 @@
 <p>Open Container Initiative（OCI）成立后， libcontainer 封装在runC包里。</p>
 <hr>
 <ul>
-<li>pod
+<li>pod （进程组）
 <ul>
-<li>管理关系紧密的容器进程，共享ipc network</li>
+<li>打开容器之间的隔离性，两个方向 网络和存储来通信。
+<ul>
+<li>Infra container 小容器来共享整个 Pod 的  Network Namespace, 直接使用localhost进行通信。</li>
+<li>宿主机上的目录mount到pod的容积里的文件目录下，实现读写文件通信。</li>
+</ul>
+</li>
+<li>一组管理关系紧密的容器（进程），与业务容器需要的side car辅助容积（日志收集，service mesh， 应用监控）</li>
 <li>容器不只containerd，k8s需要基于container做一步抽象container runtime interfz</li>
+<li>设计模式本质：解耦 复用</li>
 </ul>
 </li>
 <li>service

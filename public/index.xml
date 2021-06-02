@@ -98,7 +98,7 @@
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/store_db/mysql/</guid>
-      <description>存储 存储引擎-是创建表时设置，存储引擎是表级别的使用 innodb: 只有数</description>
+      <description>存储 🔗存储引擎-是创建表时设置，存储引擎是表级别的使用 innodb: 只有</description>
     </item>
     
     <item>
@@ -161,7 +161,7 @@
       <pubDate>Tue, 04 May 2021 18:54:41 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/golang/golang/</guid>
-      <description>资料 🔗 https://github.com/gocn/knowledge awesome-go 模糊点 🔗 数组的初始化 （元素类型， 数组大小） cmd/compile/internal/types.NewArray cmd/compile/internal/types.NewSlice 2种</description>
+      <description>资料 🔗https://github.com/gocn/kno</description>
     </item>
     
     <item>
@@ -237,12 +237,21 @@
     </item>
     
     <item>
+      <title>等额本息</title>
+      <link>http://brettkk.github.io/posts/math/loan/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/math/loan/</guid>
+      <description>等额本息方式： 本金M， 期数N， 利率R， 等额本息X 当N=1时，</description>
+    </item>
+    
+    <item>
       <title>etcd_raft</title>
       <link>http://brettkk.github.io/posts/cloud_native/etcd_raft/</link>
       <pubDate>Fri, 05 Mar 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/cloud_native/etcd_raft/</guid>
-      <description>raft基本思想：少数服从多数。 leader 选举 + 发起投票 + 每个节点为</description>
+      <description>raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo</description>
     </item>
     
     <item>
@@ -264,12 +273,12 @@
     </item>
     
     <item>
-      <title>log_structured merge tree</title>
+      <title>lsm 小结</title>
       <link>http://brettkk.github.io/posts/store_db/log_structure_tree/</link>
       <pubDate>Wed, 03 Mar 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/store_db/log_structure_tree/</guid>
-      <description>lsm树的应用 levelDB, HBase, Cassandra, RocksDB 使用场景 写多读少，例如存调用链的服务 为</description>
+      <description>lsm 基本想法 🔗使用场景， 写多读少，例如存调用链的服务。 应用：l</description>
     </item>
     
     <item>
@@ -280,8 +289,9 @@
       <guid>http://brettkk.github.io/posts/os/file_system/</guid>
       <description>块存储、文件存储、对象存储
  存储的两种方式  用电子存储数据 U盘，固态硬盘SSD 用磁性记录数据 机械硬盘HDD 垂直式 叠瓦式    linux: 一切皆文件。
-文件系统为文件分配2个数据结构： 索引节点inode， 目录项directory entry。
-分布式存储</description>
+分布式存储
+同步IO 异步IO： 指的是I/O 的执行者，是同步处理后返回，还是先返回给应用程序后异步通知。
+阻塞IO 非阻塞IO： 指的是IO的调用者，是阻塞等待结果，还是异步等通知。</description>
     </item>
     
     <item>

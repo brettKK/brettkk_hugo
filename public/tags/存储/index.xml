@@ -17,7 +17,7 @@
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/store_db/mysql/</guid>
-      <description>存储 存储引擎-是创建表时设置，存储引擎是表级别的使用 innodb: 只有数</description>
+      <description>存储 🔗存储引擎-是创建表时设置，存储引擎是表级别的使用 innodb: 只有</description>
     </item>
     
     <item>
@@ -30,12 +30,12 @@
     </item>
     
     <item>
-      <title>log_structured merge tree</title>
+      <title>lsm 小结</title>
       <link>http://brettkk.github.io/posts/store_db/log_structure_tree/</link>
       <pubDate>Wed, 03 Mar 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/store_db/log_structure_tree/</guid>
-      <description>lsm树的应用 levelDB, HBase, Cassandra, RocksDB 使用场景 写多读少，例如存调用链的服务 为</description>
+      <description>lsm 基本想法 🔗使用场景， 写多读少，例如存调用链的服务。 应用：l</description>
     </item>
     
   </channel>

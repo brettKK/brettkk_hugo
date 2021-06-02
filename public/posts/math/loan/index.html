@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
   <head>
-    <title>安全与风控 | brettkk</title>
+    <title>等额本息 | brettkk</title>
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
@@ -46,18 +46,18 @@
       
 
 <section id="single">
-    <h1 class="title">安全与风控</h1>
+    <h1 class="title">等额本息</h1>
 
     <div class="tip">
         <span>
-          May 5, 2021 11:33
+          Apr 5, 2021 11:33
         </span>
         <span class="split">
           ·
         </span>
         <span>
           
-            245 words
+            143 words
           
         </span>
         <span class="split">
@@ -70,27 +70,21 @@
 
     <div class="content" >
       <article class="content">
-        <hr>
+        <p>等额本息方式： 本金M， 期数N， 利率R， 等额本息X</p>
 
-<h3 id="漏洞">漏洞</h3>
+<p>当N=1时，  <span  class="math">\( M(1+R) = X \)</span> ,    <span  class="math">\( M_(本1) = \frac{X}{1 + R} \)</span></p>
 
-<p>起因是信任了用户的任意输入。</p>
+<p>当N=2时， <span  class="math">\( (M - \frac{X}{1 + R})*(1+R)^2 = X \)</span> <span  class="math">\( M = \frac{X}{1+R} + \frac{X}{(1+R)^2} \)</span></p>
 
-<h4 id="sql注入">sql注入</h4>
+<p>则： <span  class="math">\( M = M_(本1) + M_(本2) + ... ++ M_(本n) \)</span></p>
 
-<p>危害： 执行任意sql，可能出现数据泄漏风险； 避免：使用ORM框架推荐的sql预编译的方法执行sql。
-即使使用了ORM框架的sql预编译的方法，框架本身有支持执行raw sql的方法。但还在一些order by, group by的参数由用户控制时会出现sql注入漏洞。
-进一步，增加白名单机制，对于排序和分组场景下，可以对传入参数预设白名单。</p>
+<p><span  class="math">\[ M = \frac{X}{1+R} + \frac{X}{(1+R)^2}  + ... + \frac{X}{(1+R)^n}  \]</span></p>
 
-<p>避免： 禁止拼接sql并执行，用官方推荐用法，不信任用户的输入。</p>
+<p>构造： <span  class="math">\( M(1+R) = X + \frac{X}{1+R} + ... + \frac{X}{(1+R)^(n-1)} \)</span></p>
 
-<h4 id="ssrf漏洞">SSRF漏洞</h4>
+<p>错位相减： <span  class="math">\( M*R = X*(1 - \frac{1}{(1+R)^n}) \)</span></p>
 
-<p>RCE 任意代码执行</p>
-
-<p>XSS漏洞 前端漏洞执行恶性js代码向后端</p>
-
-<hr>
+<p>则： <span  class="math">\( X = \frac{MR(1+R)^n}{(1+R)^n - 1}\)</span></p>
 
       </article>
     </div>
@@ -105,7 +99,7 @@
     
         <div class="tags">
             
-                <a href="http://brettkk.github.io/tags/encrypt">encrypt</a>
+                <a href="http://brettkk.github.io/tags/math">math</a>
             
         </div>
     

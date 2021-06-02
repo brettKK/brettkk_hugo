@@ -26,7 +26,7 @@
       <pubDate>Fri, 05 Mar 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/cloud_native/etcd_raft/</guid>
-      <description>raft基本思想：少数服从多数。 leader 选举 + 发起投票 + 每个节点为</description>
+      <description>raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo</description>
     </item>
     
     <item>
