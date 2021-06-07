@@ -16,7 +16,7 @@ categories: ["技术"]
   + testify  https://github.com/stretchr/testify
   + GoStub 
   + GoMock
-  + github.com/bouk.monkey
+  + github.com/bouk/monkey
   + https://bou.ke/
     + copy 覆盖函数的前12个字节的汇编代码，植入mock函数的地址， 可以在运行时实现函数的mock和unmock
 
