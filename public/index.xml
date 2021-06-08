@@ -188,7 +188,7 @@
       <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/golang/go_test/</guid>
-      <description>单测 🔗 golang 测试框架 stub/mock GoConvey https://github.com/smartystreets/goconvey Convey, so, 不是很习惯 testify https://github.com/stretchr/testify GoStub GoMock github.com/bouk.monkey https://bou.ke/ copy 覆盖函数的</description>
+      <description>单测 🔗 golang 测试框架 stub/mock GoConvey https://github.com/smartystreets/goconvey Convey, so, 不是很习惯 testify https://github.com/stretchr/testify GoStub GoMock github.com/bouk/monkey https://bou.ke/ copy 覆盖函数的</description>
     </item>
     
     <item>
@@ -207,6 +207,15 @@
       
       <guid>http://brettkk.github.io/posts/golang/go_toolchain/</guid>
       <description>an overview of go&#39;s tooling 🔗 table of content installing tooling $ GO111MODULE=on go get golang.org/x/tools/cmd/stresss go get -u, 强制使用网络去更新包和</description>
+    </item>
+    
+    <item>
+      <title>code</title>
+      <link>http://brettkk.github.io/posts/leetcode/sumarize/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/sumarize/</guid>
+      <description>Array String LinkedList Binary Search Math, Matrix, random Tree Back Tracking Dynamic Programming DFS &amp;amp; BFS stack priority queue bit manipulation topological sort graph Trie</description>
     </item>
     
     <item>
@@ -237,12 +246,48 @@
     </item>
     
     <item>
+      <title>二分查找</title>
+      <link>http://brettkk.github.io/posts/leetcode/binary_search/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/binary_search/</guid>
+      <description>Donald Ervin Knuth（高德纳） Although the basic idea of binary search is comparatively straightforward, the details can be surprisingly tricky 1 2</description>
+    </item>
+    
+    <item>
+      <title>排序</title>
+      <link>http://brettkk.github.io/posts/leetcode/sort/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/sort/</guid>
+      <description>第k大的元素 [3, 2, 1, 5, 6, 4] k=2, output= 5 1 2 3 4 5 6 7 8 9 10 11 // k大小</description>
+    </item>
+    
+    <item>
+      <title>数组</title>
+      <link>http://brettkk.github.io/posts/leetcode/array/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/array/</guid>
+      <description>双指针解法 remove duplicates from sorted array 1 2 3 4 5 6 7 8 9 10 11 func Remove(arr []int) int { i, j := 0,</description>
+    </item>
+    
+    <item>
       <title>等额本息</title>
       <link>http://brettkk.github.io/posts/math/loan/</link>
       <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/math/loan/</guid>
       <description>等额本息方式： 本金M， 期数N， 利率R， 等额本息X 当N=1时，</description>
+    </item>
+    
+    <item>
+      <title>链表</title>
+      <link>http://brettkk.github.io/posts/leetcode/linkedlist/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/linkedlist/</guid>
+      <description>反转链表 递归 1 2 3 4 5 6 7 8 9 func reverse(head *ListNode) *ListNode { if head == nil || head.Next == nil { return</description>
     </item>
     
     <item>
@@ -279,6 +324,51 @@
       
       <guid>http://brettkk.github.io/posts/store_db/log_structure_tree/</guid>
       <description>lsm 基本想法 🔗使用场景， 写多读少，例如存调用链的服务。 应用：l</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/leetcode/backtracking/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/backtracking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/leetcode/queue/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/queue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/leetcode/stack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/stack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/leetcode/string/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/string/</guid>
+      <description>字符串格式的数字相加 🔗最长回文子串 🔗</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/leetcode/tree/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/tree/</guid>
+      <description>获取树的高度 🔗1 2 3 4 5 6 7 8 9 10 11 12  func getHeight(p *TreeNode) int { if p == nil { return 0 } left := getHeight(p.Left) right := getHeight(p.</description>
     </item>
     
     <item>

@@ -170,7 +170,7 @@
       <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/golang/go_test/</guid>
-      <description>单测 🔗 golang 测试框架 stub/mock GoConvey https://github.com/smartystreets/goconvey Convey, so, 不是很习惯 testify https://github.com/stretchr/testify GoStub GoMock github.com/bouk.monkey https://bou.ke/ copy 覆盖函数的</description>
+      <description>单测 🔗 golang 测试框架 stub/mock GoConvey https://github.com/smartystreets/goconvey Convey, so, 不是很习惯 testify https://github.com/stretchr/testify GoStub GoMock github.com/bouk/monkey https://bou.ke/ copy 覆盖函数的</description>
     </item>
     
     <item>
