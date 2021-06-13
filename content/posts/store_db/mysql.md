@@ -30,6 +30,17 @@ categories: ["技术"]
 	+ 表结构文件（user.frm， 表名 + .frm组成整个名称），与具体存储引擎无关
 	+ 日志文件（redo文件等）
 
+机械磁盘
+
++ RAID 0 
++ RAID 1 磁盘镜像，可靠性
++ RAID 5 
++ RAID 10  RAID 1 后 RAID 0  
+
+固态硬盘 Sata SSD， PCI-E SSD
+
+
+
 ---
 ## 索引
 

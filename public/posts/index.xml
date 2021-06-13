@@ -210,15 +210,6 @@
     </item>
     
     <item>
-      <title>code</title>
-      <link>http://brettkk.github.io/posts/leetcode/sumarize/</link>
-      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/posts/leetcode/sumarize/</guid>
-      <description>Array String LinkedList Binary Search Math, Matrix, random Tree Back Tracking Dynamic Programming DFS &amp;amp; BFS stack priority queue bit manipulation topological sort graph Trie</description>
-    </item>
-    
-    <item>
       <title>etcd</title>
       <link>http://brettkk.github.io/posts/cloud_native/etcd/</link>
       <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
@@ -246,48 +237,12 @@
     </item>
     
     <item>
-      <title>二分查找</title>
-      <link>http://brettkk.github.io/posts/leetcode/binary_search/</link>
-      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/posts/leetcode/binary_search/</guid>
-      <description>Donald Ervin Knuth（高德纳） Although the basic idea of binary search is comparatively straightforward, the details can be surprisingly tricky 1 2</description>
-    </item>
-    
-    <item>
-      <title>排序</title>
-      <link>http://brettkk.github.io/posts/leetcode/sort/</link>
-      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/posts/leetcode/sort/</guid>
-      <description>第k大的元素 [3, 2, 1, 5, 6, 4] k=2, output= 5 1 2 3 4 5 6 7 8 9 10 11 // k大小</description>
-    </item>
-    
-    <item>
-      <title>数组</title>
-      <link>http://brettkk.github.io/posts/leetcode/array/</link>
-      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/posts/leetcode/array/</guid>
-      <description>双指针解法 remove duplicates from sorted array 1 2 3 4 5 6 7 8 9 10 11 func Remove(arr []int) int { i, j := 0,</description>
-    </item>
-    
-    <item>
       <title>等额本息</title>
       <link>http://brettkk.github.io/posts/math/loan/</link>
       <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/math/loan/</guid>
       <description>等额本息方式： 本金M， 期数N， 利率R， 等额本息X 当N=1时，</description>
-    </item>
-    
-    <item>
-      <title>链表</title>
-      <link>http://brettkk.github.io/posts/leetcode/linkedlist/</link>
-      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/posts/leetcode/linkedlist/</guid>
-      <description>反转链表 递归 1 2 3 4 5 6 7 8 9 func reverse(head *ListNode) *ListNode { if head == nil || head.Next == nil { return</description>
     </item>
     
     <item>

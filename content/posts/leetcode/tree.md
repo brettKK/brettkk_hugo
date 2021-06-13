@@ -1,6 +1,81 @@
 
 
 
+
+
+```golang
+
+type TreeNode struct {
+    value int
+    left *TreeNode
+    right *TreeNode
+}
+
+// bin search tree
+type BinTree struct {
+    root *TreeNode
+}
+
+func (t *BinTree) Insert(value int) {
+    node := &TreeNode{value, nil, nil}
+    if t.root == nil {
+        t.root = node
+    } else {
+        insertNode(t.root, node)
+    }
+}
+func insertNode(root, tmp *TreeNode) {
+    if tmp.value < root.value {
+        if root.left == nil {
+            root.left = tmp
+            return
+        } else {
+            insertNode(root.left, tmp)
+        }
+    } else {
+        if root.right == nil {
+            root.right = tmp
+            return 
+        } else {
+            insertNode(root.right, tmp)
+        }
+    }
+}
+
+
+func (t *BinTree) Inorder(f func(int)) {
+    inorder(t.root, f)
+}
+func inorder(root *TreeNode, f func(int)) {
+    if root != nil {
+        inorder(root.left, f)
+        f(root.value)
+        inorder(root.right, f)
+    }
+}
+
+func (t *BinTree) getMin() int {
+    if t == nil {
+        return -1
+    }
+    for t.left != nil {
+        t = t.left
+    }
+    return t.value
+}
+
+func (t *BinTree) getMax() int {
+    if t== nil {
+        return -1
+    }
+    for t.right != nil {
+        t = t.right
+    }
+    return t.value
+}
+
+```
+
 ### 获取树的高度
 
 ```golang
