@@ -70,8 +70,8 @@
 
     <div class="content" >
       <article class="content">
-        <h2 id="散列">散列 <a href="#%e6%95%a3%e5%88%97" class="anchor">🔗</a></h2><p>有md5, sha256方式， 主要保证2点： 数据没被串改；用户密码散列存储，func后不可逆。</p>
-<h2 id="对称加密">对称加密 <a href="#%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="anchor">🔗</a></h2><p>有des, aes 方式， 计算性能好，但密钥的安全依赖于双方，密钥有配送安全问题。</p>
+        <h2 id="对称加密">对称加密 <a href="#%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="anchor">🔗</a></h2><p>有des, aes 方式， 计算性能好，但密钥的安全依赖于双方，密钥有配送安全问题。</p>
+<p>散列: func后不可逆， 不是加密方式。有md5, sha256。保证数据没被串改；用户密码散列存储。</p>
 <h2 id="rsa">RSA <a href="#rsa" class="anchor">🔗</a></h2><h3 id="rsa背景">RSA背景 <a href="#rsa%e8%83%8c%e6%99%af" class="anchor">🔗</a></h3><p>1977年由MIT三位学者发明。</p>
 <h3 id="相关概念">相关概念 <a href="#%e7%9b%b8%e5%85%b3%e6%a6%82%e5%bf%b5" class="anchor">🔗</a></h3><ul>
 <li>
@@ -269,7 +269,6 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
           <h3 class="ml-1">Table of contents</h3>
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#散列">散列</a></li>
     <li><a href="#对称加密">对称加密</a></li>
     <li><a href="#rsa">RSA</a>
       <ul>

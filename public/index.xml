@@ -17,7 +17,7 @@
       <pubDate>Thu, 20 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/os/encrypt/</guid>
-      <description>散列 🔗有md5, sha256方式， 主要保证2点： 数据没被串改</description>
+      <description>对称加密 🔗有des, aes 方式， 计算性能好，但密钥的安全依赖于双</description>
     </item>
     
     <item>
