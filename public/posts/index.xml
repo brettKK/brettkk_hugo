@@ -17,7 +17,7 @@
       <pubDate>Thu, 20 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/os/encrypt/</guid>
-      <description>散列 对称加密 非对称加密 SSL / TLS 密钥的管理 散列 有md5, sha2</description>
+      <description>散列 🔗有md5, sha256方式， 主要保证2点： 数据没被串改</description>
     </item>
     
     <item>
@@ -228,6 +228,15 @@
     </item>
     
     <item>
+      <title>k8s 编码模式学习</title>
+      <link>http://brettkk.github.io/posts/cloud_native/k8s_code_pattern/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/cloud_native/k8s_code_pattern/</guid>
+      <description>cobra命令行的使用 🔗cmd下的main函数为各个k8s组</description>
+    </item>
+    
+    <item>
       <title>matrix</title>
       <link>http://brettkk.github.io/posts/math/matrix/</link>
       <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
@@ -296,7 +305,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://brettkk.github.io/posts/leetcode/queue/</guid>
-      <description></description>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25  type Queue struct { items []int } func New() *Queue { return &amp;amp;Queue{ items: []int{} } } func (q *Queue) Enqueue(item int) { q.</description>
     </item>
     
     <item>
@@ -305,7 +314,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://brettkk.github.io/posts/leetcode/stack/</guid>
-      <description></description>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24  type Stack struct { items []int } func NewStack() *Stack{ return &amp;amp;Stack{ items: []int{} } } func (s *Stack) Push(value int) { s.</description>
     </item>
     
     <item>
@@ -323,7 +332,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://brettkk.github.io/posts/leetcode/tree/</guid>
-      <description>获取树的高度 🔗1 2 3 4 5 6 7 8 9 10 11 12  func getHeight(p *TreeNode) int { if p == nil { return 0 } left := getHeight(p.Left) right := getHeight(p.</description>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70  type TreeNode struct { value int left *TreeNode right *TreeNode } // bin search tree type BinTree struct { root *TreeNode } func (t *BinTree) Insert(value int) { node := &amp;amp;TreeNode{value, nil, nil} if t.</description>
     </item>
     
     <item>

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -57,206 +57,209 @@
         </span>
         <span>
           
-            1109 words
+            1787 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          3 minute read
+          4 minute read
         </span>
     </div>
 
     <div class="content" >
       <article class="content">
-        <ul>
-<li>散列</li>
-<li>对称加密</li>
-<li>非对称加密</li>
-<li>SSL / TLS</li>
-<li>密钥的管理</li>
+        <h2 id="散列">散列 <a href="#%e6%95%a3%e5%88%97" class="anchor">🔗</a></h2><p>有md5, sha256方式， 主要保证2点： 数据没被串改；用户密码散列存储，func后不可逆。</p>
+<h2 id="对称加密">对称加密 <a href="#%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="anchor">🔗</a></h2><p>有des, aes 方式， 计算性能好，但密钥的安全依赖于双方，密钥有配送安全问题。</p>
+<h2 id="rsa">RSA <a href="#rsa" class="anchor">🔗</a></h2><h3 id="rsa背景">RSA背景 <a href="#rsa%e8%83%8c%e6%99%af" class="anchor">🔗</a></h3><p>1977年由MIT三位学者发明。</p>
+<h3 id="相关概念">相关概念 <a href="#%e7%9b%b8%e5%85%b3%e6%a6%82%e5%bf%b5" class="anchor">🔗</a></h3><ul>
+<li>
+<p>互质 两个数的最大公约数是1。
+$$gcd(a,b)=1$$ 两数互质与两数是不是质数没有关系。</p>
+</li>
+<li>
+<p>p与q互质，剩余定理得出</p>
+</li>
 </ul>
-
-<hr>
-
-<h3 id="散列">散列</h3>
-
-<p>有md5, sha256方式， 主要保证2点： 数据没被串改；用户密码散列存储 不可逆。</p>
-
-<h3 id="对称加密">对称加密</h3>
-
-<p>有des, aes 方式， 计算性能好，但密钥的安全依赖于双方，不安全。</p>
-
-<h3 id="rsa">RSA</h3>
-
-<p>1977年由MIT三位学者发明。</p>
-
-<p>相关概念</p>
-
+<p>$$\Phi \left( pq\right) =\Phi(p)*\Phi(q)$$</p>
 <ul>
-<li>互质 两个数的最大公约数是1。
-<br></li>
+<li>欧拉函数 $$\Phi(n)$$</li>
 </ul>
-
-<p><span  class="math">\(gcd(a,b)=1\)</span>
-两数互质与两数是不是质数没有关系。</p>
-
-<ul>
-<li>p与q互质，剩余定理得出
-<br></li>
-</ul>
-
-<p><span  class="math">\[\Phi \left( pq\right) =\Phi(p)*\Phi(q)\]</span></p>
-
-<ul>
-<li>欧拉函数 <span  class="math">\[\Phi\left( n\right)\]</span> 在小于等于n的正整数之中，与n构成互质关系的数的个数<span  class="math">\[\Phi(n)\]</span></li>
-</ul>
-
-<p>n是质数时， <span  class="math">\(\Phi(n) = n - 1\)</span></p>
-
-<p>n不是质数时，n分解为质数相乘 <span  class="math">\(n = a*b*c..\)</span>， <span  class="math">\(\Phi \left( n\right)=\Phi \left( a\right) *\Phi \left( b\right)....\)</span></p>
-
+<p>在小于等于n的正整数之中，与n构成互质关系的数的个数</p>
+<p>n是质数时， $$\Phi(n) = n - 1$$</p>
+<p>n不是质数时，n分解为质数相乘</p>
+<p>$$ n = a<em>b</em>c... $$
+$$\Phi(n)=\Phi( a) *\Phi( b)...$$</p>
 <ul>
 <li>欧拉定理</li>
 </ul>
-
 <p>两个正整数a与n互质， 则：</p>
-
-<p><span  class="math">\[a^{\Phi \left(n\right)}\equiv 1\left( mod\ n\right)\]</span></p>
-
+<p>$$a^{\Phi \left(n\right)}\equiv 1\left( mod\ n\right)$$</p>
 <ul>
-<li>费马小定理
-<br></li>
+<li>费马小定理</li>
 </ul>
-
-<p>当n为质数时，则：<span  class="math">\(a^{n-1}\equiv 1\left( mod\ n\right)\)</span></p>
-
-<ul>
-<li><p>rsa 生成过程</p>
-
-<ul>
-<li>找两个大质数p, q</li>
-<li>求乘积 n=p * q， <span  class="math">\(\Phi(n) = \Phi (p*q)=(p-1)*(q-1)\)</span></li>
-<li>在0 ～ <span  class="math">\(\Phi(n)\)</span> 中，找一个e，与<span  class="math">\(\Phi(n)\)</span>互质</li>
-<li>找一个d， 使得 $$e*d \equiv 1(mod\ \Phi(n))</li>
-<li><span  class="math">\( (n, e)\)</span> 公钥， <span  class="math">\((n, d)\)</span> 私钥</li>
-</ul></li>
-
-<li><p>加密公式 <span  class="math">\(x^e mod n = y \)</span></p></li>
-
-<li><p>解密公式 <span  class="math">\(y^d mod n = x \)</span></p></li>
-
-<li><p>rsa 证明</p></li>
+<p>当n为质数时，则：$$a^{n-1}\equiv 1\left( mod\ n\right)$$</p>
+<h3 id="rsa-生成过程">rsa 生成过程 <a href="#rsa-%e7%94%9f%e6%88%90%e8%bf%87%e7%a8%8b" class="anchor">🔗</a></h3><ul>
+<li>
+<p>找两个大质数p, q</p>
+</li>
+<li>
+<p>求乘积 n=p * q， $$ \Phi(n) = \Phi (p<em>q)=(p-1)</em>(q-1) $$</p>
+</li>
+<li>
+<p>在0 ～ $$\Phi(n)$$ 中，找一个e，与$$\Phi(n)$$互质</p>
+</li>
+<li>
+<p>找一个d， 使得 $$e*d \equiv 1(mod\ \Phi(n))</p>
+</li>
+<li>
+<p>$$ (n, e)$$ 公钥， $$(n, d)$$ 私钥</p>
+</li>
+<li>
+<p>加密公式 $$x^e mod n = y $$</p>
+</li>
+<li>
+<p>解密公式 $$y^d mod n = x $$</p>
+</li>
 </ul>
-
-<p><span  class="math">\[
-y=x^e - kn \tag{1}\\
-\]</span></p>
-
-<p><span  class="math">\[
-y^d \equiv x (mod\ n) \tag{2}\\
-\]</span></p>
-
-<p><span  class="math">\[
-(x^e - kn)^d \equiv x (mod\ n) \tag{3}\\
-\]</span></p>
-
+<h3 id="rsa-证明">rsa 证明 <a href="#rsa-%e8%af%81%e6%98%8e" class="anchor">🔗</a></h3><p>$$
+y=x^e - kn \tag{1}\<br>
+$$</p>
+<p>$$
+y^d \equiv x (mod\ n) \tag{2}\<br>
+$$</p>
+<p>$$
+(x^e - kn)^d \equiv x (mod\ n) \tag{3}\<br>
+$$</p>
 <p>左边多项式展开：
-<span  class="math">\(
-x^ed-m_{1}x^{e(d-1)}kn+m_{2}x^{e(d-2)}(kn)^2...m_{n}(kn)^{d} \tag{4}\\
-\)</span></p>
-
-<p><span  class="math">\(x^{ed}\)</span> 不含n， 所以只需要证明：
-<span  class="math">\(
-x^{ed} \equiv x (mod\ n) \tag{5}\\
-\)</span></p>
-
+$$
+x^ed-m_{1}x^{e(d-1)}kn+m_{2}x^{e(d-2)}(kn)^2...m_{n}(kn)^{d} \tag{4}\<br>
+$$</p>
+<p>$$x^{ed}$$ 不含n， 所以只需要证明：
+$$
+x^{ed} \equiv x (mod\ n) \tag{5}\<br>
+$$</p>
 <p>而ed 等于：
-<span  class="math">\(
-ed \equiv 1 (mod\ {\Phi (n)}) \tag{6}\\
-\)</span></p>
-
-<p><span  class="math">\[
-ed=h{\Phi(n)})+1 \tag{7}\\
-\]</span></p>
-
-<p><span  class="math">\[
-x^{h{\Phi \left(n\right)}}*x\equiv x (mod\ n) \tag{8}\\
-\]</span></p>
-
+$$
+ed \equiv 1 (mod\ {\Phi (n)}) \tag{6}\<br>
+$$</p>
+<p>$$
+ed=h{\Phi(n)})+1 \tag{7}\<br>
+$$</p>
+<p>$$
+x^{h{\Phi \left(n\right)}}*x\equiv x (mod\ n) \tag{8}\<br>
+$$</p>
 <p>若x与n互质，根据欧拉定理 得证
-<span  class="math">\(
-x^{h{\Phi \left(n\right)}}\equiv 1 (mod\ n)  \tag{9}\\
-\)</span></p>
-
-<p><span  class="math">\[
-x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}\\
-\]</span></p>
-
+$$
+x^{h{\Phi \left(n\right)}}\equiv 1 (mod\ n)  \tag{9}\<br>
+$$</p>
+<p>$$
+x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}\<br>
+$$</p>
 <p>若x与n不互质时， 稍微复杂 todo</p>
-
 <hr>
-
 <ul>
 <li>同样的明文，同样的公钥，每次加密的结果不会一样。11字节都为随机数 填充使用
-
 <ul>
-<li>填充协议PKCS #1 v1.5: &quot;填充后数据&quot; = &quot;00&quot; + &quot;数据块类型&quot; + &quot;填充字符串&quot; + &quot;00&quot; + &quot;原始数据&quot;</li>
+<li>填充协议PKCS #1 v1.5: &quot;填充后数据&quot; = &quot;00&quot; + &quot;数据块类型&quot; + &quot;填充字符串&quot; + &quot;00&quot; + &quot;原始数据&quot;
+<ul>
 <li>BT (数据块类型) 00: 填充字符串全为00；01：全为FF； 02:针对公钥时设置BT=02，伪随机字符串，这能解释上面公钥加密的结果会不一样；</li>
-</ul></li>
 </ul>
-
-<h4 id="x509标准">X.509标准</h4>
-
-<p>公钥证书的标准，定义证书的格式，包含CA机构，公钥等。</p>
-
-<h3 id="ssl-tls">SSL /TLS</h3>
-
-<p>https的原理， 握手阶段</p>
-
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ssl-tls">SSL /TLS <a href="#ssl-tls" class="anchor">🔗</a></h3><p>https的原理， 握手阶段</p>
 <ul>
 <li>客户端给server发送支持的对称加密算法</li>
 <li>server选择支持的对称加密算法和版本 （确定hash算法，对称加密算法）</li>
-<li>server发送证书（包含公钥）</li>
+<li>server发送证书（包含公钥， X.509标准公钥证书的标准，定义证书的格式，包含CA机构，公钥等）</li>
 <li>client验证证书后， 用rsa的公钥发送对称加密的密钥给server</li>
 <li>server返回ack，握手完成</li>
 </ul>
-
 <p>后续的传输阶段时使用对称加密进行通信</p>
+<h3 id="tls12-and-tls13">TLS1.2 and TLS1.3 <a href="#tls12-and-tls13" class="anchor">🔗</a></h3><p>TLS1.2  -- performance and security --&gt; TLS 1.3</p>
+<p>TLS 1.3 shorter handshake</p>
+<p>O-RTT for repeat clients
+1-RTT for native clients</p>
+<h3 id="dh---ecdh">DH &amp;&amp;  ECDH <a href="#dh---ecdh" class="anchor">🔗</a></h3><p>DH (Diffie-Hellman() : 能在非安全的信道中安全的交换密钥，用于加密后续的通信消息。</p>
+<h3 id="dh-交互流程">DH 交互流程 <a href="#dh-%e4%ba%a4%e4%ba%92%e6%b5%81%e7%a8%8b" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">A: 构建密钥对：private key1 和 public key1
+A-&gt;&gt; B: 公布自己的公钥: public key1
+B: 使用public key1构建自己的密钥对 private key2 和 public key2；
+B--&gt;&gt; A: 返回自己的public key2；
+A: 使用private key1 和 public key2 构建本地密钥；
+B : 使用private key2 和 public key1构建本地密钥；
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="dh-形式话描述">DH 形式话描述 <a href="#dh-%e5%bd%a2%e5%bc%8f%e8%af%9d%e6%8f%8f%e8%bf%b0" class="anchor">🔗</a></h4><p>算法形式化描述： 已知变量对(p, q),</p>
+<p>alice 本地生成随机数a， 计算$$ G_a= (p^a) mod q$$</p>
+<p>bob 本地生成随机数b， 计算$$ G_b = (p^b) mod q $$</p>
+<p>进而 alice 计算出通信密钥为： $$ S_a = G_b^a mod q $$</p>
+<p>bob 也计算出通信密钥为：   $$ S_b =G_a^b mod q $$</p>
+<p>需证明 $$S_a == S_b$$</p>
+<h4 id="ecdh">ECDH <a href="#ecdh" class="anchor">🔗</a></h4><p>给定椭圆曲线上的一个点P，一个整数k，求解Q=kP很容易；给定一个点P、Q，知道Q=kP，求整数k确是一个难题。ECDH即建立在此数学难题之上。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Alice生成随机整数a，计算A=a*G。 #生成Alice公钥
 
-<h3 id="密钥的管理">密钥的管理</h3>
+Bob生成随机整数b，计算B=b*G。 #生产Bob公钥
+ 
+Alice将A传递给Bob。 Bob将B传递给Alice
 
-<p>kms系统： 信封加密</p>
+进而：
+Alice计算  Q = a * B  , Bob就算 Q = b * A
 
+证明： Q=b * A = b * (a * G) = a * b * G = a * (b * G) = a * B 
+则： b * A = a * B , 双方密钥相同。
+</code></pre></td></tr></table>
+</div>
+</div><p>tls 1.3 中使用 x25519椭圆曲线 $$ B<em>y^2 = x^3 + A</em>x^2 + x $$</p>
+<h3 id="密钥的管理">密钥的管理 <a href="#%e5%af%86%e9%92%a5%e7%9a%84%e7%ae%a1%e7%90%86" class="anchor">🔗</a></h3><p>kms系统： 信封加密</p>
 <ul>
 <li>加解密运算 与 存储分离</li>
 <li>访问鉴权</li>
 <li>数据监控</li>
 <li>root key</li>
 </ul>
-
 <hr>
-
-<h3 id="同态加密homomorphic-encryption">同态加密（Homomorphic Encryption）</h3>
-
-<p>全同态 支持密文上任意次，任意类型的计算</p>
-
+<h3 id="同态加密homomorphic-encryption">同态加密（Homomorphic Encryption） <a href="#%e5%90%8c%e6%80%81%e5%8a%a0%e5%af%86homomorphic-encryption" class="anchor">🔗</a></h3><p>全同态 支持密文上任意次，任意类型的计算</p>
 <p>层次同态 支持有限次数的加法和乘法</p>
-
 <p>部分同态 只支持加法或者乘法</p>
-
 <p>可算不可见</p>
-
 <p>在密文空间进行运算后与明文空间上仍然一对一，能解密。</p>
-
 <p>只有不对原文进行填充的原始RSA才满足乘法同态性质。</p>
-
-<p>rsa encrypt <span  class="math">\( c= Enc(m) = m^e mod n \)</span></p>
-
-<p>rsa decryp <span  class="math">\( Dec(c) = c^d mod n \)</span></p>
-
-<p><span  class="math">\[Enc(m_1) * Enc(m_2) = (m_1 * m_2)^e = Enc(m_1 * m_2)\]</span></p>
+<p>rsa encrypt $$ c= Enc(m) = m^e mod n $$</p>
+<p>rsa decryp $$ Dec(c) = c^d mod n $$</p>
+<p>$$Enc(m_1) * Enc(m_2) = (m_1 * m_2)^e = Enc(m_1 * m_2)$$</p>
+<h3 id="abe">ABE <a href="#abe" class="anchor">🔗</a></h3><p>一对多的加解密方式。</p>
+<p>Key-Policy ABE： 策略嵌入用户密钥中，属性集合嵌入于密文中。</p>
+<p>CP-ABE： 策略嵌入密文，通过设定策略去决定拥有哪些属性的人能够访问这份密文</p>
+<p>公有云上的数据加密存储与细粒度共享。</p>
+<h3 id="联邦学习">联邦学习 <a href="#%e8%81%94%e9%82%a6%e5%ad%a6%e4%b9%a0" class="anchor">🔗</a></h3><p>为解决AI技术落地的数据安全隐私问题。</p>
 
       </article>
     </div>
@@ -264,7 +267,28 @@ x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}\\
     <div class="article-nav" id="article-nav-id">
         <nav class="hide-on-mobile section-nav">
           <h3 class="ml-1">Table of contents</h3>
-            
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#散列">散列</a></li>
+    <li><a href="#对称加密">对称加密</a></li>
+    <li><a href="#rsa">RSA</a>
+      <ul>
+        <li><a href="#rsa背景">RSA背景</a></li>
+        <li><a href="#相关概念">相关概念</a></li>
+        <li><a href="#rsa-生成过程">rsa 生成过程</a></li>
+        <li><a href="#rsa-证明">rsa 证明</a></li>
+        <li><a href="#ssl-tls">SSL /TLS</a></li>
+        <li><a href="#tls12-and-tls13">TLS1.2 and TLS1.3</a></li>
+        <li><a href="#dh---ecdh">DH &amp;&amp;  ECDH</a></li>
+        <li><a href="#dh-交互流程">DH 交互流程</a></li>
+        <li><a href="#密钥的管理">密钥的管理</a></li>
+        <li><a href="#同态加密homomorphic-encryption">同态加密（Homomorphic Encryption）</a></li>
+        <li><a href="#abe">ABE</a></li>
+        <li><a href="#联邦学习">联邦学习</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
         </nav>
     </div>
 

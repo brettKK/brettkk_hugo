@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
   <head>
-    <title>安全与风控 | brettkk</title>
+    <title>k8s 编码模式学习 | brettkk</title>
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
@@ -46,18 +46,18 @@
       
 
 <section id="single">
-    <h1 class="title">安全与风控</h1>
+    <h1 class="title">k8s 编码模式学习</h1>
 
     <div class="tip">
         <span>
-          May 5, 2021 11:33
+          Apr 5, 2021 11:33
         </span>
         <span class="split">
           ·
         </span>
         <span>
           
-            245 words
+            134 words
           
         </span>
         <span class="split">
@@ -70,42 +70,67 @@
 
     <div class="content" >
       <article class="content">
-        <hr>
-
-<h3 id="漏洞">漏洞</h3>
-
-<p>起因是信任了用户的任意输入。</p>
-
-<h4 id="sql注入">sql注入</h4>
-
-<p>危害： 执行任意sql，可能出现数据泄漏风险； 避免：使用ORM框架推荐的sql预编译的方法执行sql。
-即使使用了ORM框架的sql预编译的方法，框架本身有支持执行raw sql的方法。但还在一些order by, group by的参数由用户控制时会出现sql注入漏洞。
-进一步，增加白名单机制，对于排序和分组场景下，可以对传入参数预设白名单。</p>
-
-<p>避免： 禁止拼接sql并执行，用官方推荐用法，不信任用户的输入。</p>
-
-<h4 id="ssrf漏洞">SSRF漏洞</h4>
-
-<p>RCE 任意代码执行</p>
-
-<p>XSS漏洞 前端漏洞执行恶性js代码向后端</p>
-
-<hr>
-
+        <h3 id="cobra命令行的使用">cobra命令行的使用 <a href="#cobra%e5%91%bd%e4%bb%a4%e8%a1%8c%e7%9a%84%e4%bd%bf%e7%94%a8" class="anchor">🔗</a></h3><p>cmd下的main函数为各个k8s组建的入口。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-golang" data-lang="golang">
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="函数选项模式">函数选项模式 <a href="#%e5%87%bd%e6%95%b0%e9%80%89%e9%a1%b9%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-golang" data-lang="golang">
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="channel的使用方式">channel的使用方式 <a href="#channel%e7%9a%84%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f" class="anchor">🔗</a></h3><h4 id="内部具体channel的使用示例">内部具体channel的使用示例 <a href="#%e5%86%85%e9%83%a8%e5%85%b7%e4%bd%93channel%e7%9a%84%e4%bd%bf%e7%94%a8%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h4><p>stopCh &lt;-chan struct{}，  channel的使用方式</p>
+<h4 id="抽象channel的使用模式">抽象channel的使用模式 <a href="#%e6%8a%bd%e8%b1%a1channel%e7%9a%84%e4%bd%bf%e7%94%a8%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h4><h3 id="工厂模式">工厂模式 <a href="#%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><h4 id="调度器算法的插件">调度器算法的插件 <a href="#%e8%b0%83%e5%ba%a6%e5%99%a8%e7%ae%97%e6%b3%95%e7%9a%84%e6%8f%92%e4%bb%b6" class="anchor">🔗</a></h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-golang" data-lang="golang">
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="heading"> <a href="#heading" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-golang" data-lang="golang">
+</code></pre></td></tr></table>
+</div>
+</div>
       </article>
     </div>
 
     <div class="article-nav" id="article-nav-id">
         <nav class="hide-on-mobile section-nav">
           <h3 class="ml-1">Table of contents</h3>
-            
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#cobra命令行的使用">cobra命令行的使用</a></li>
+        <li><a href="#函数选项模式">函数选项模式</a></li>
+        <li><a href="#channel的使用方式">channel的使用方式</a></li>
+        <li><a href="#工厂模式">工厂模式</a></li>
+        <li><a href="#heading"></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
         </nav>
     </div>
 
     
         <div class="tags">
             
-                <a href="http://brettkk.github.io/tags/encrypt">encrypt</a>
+                <a href="http://brettkk.github.io/tags/cloud-native">cloud native</a>
             
         </div>
     
