@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            1789 words
+            1788 words
           
         </span>
         <span class="split">
@@ -72,6 +72,7 @@
       <article class="content">
         <h2 id="对称加密">对称加密 <a href="#%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="anchor">🔗</a></h2><p>有des, aes 方式， 计算性能好，但密钥的安全依赖于双方，密钥有配送安全问题。</p>
 <p>散列: func后不可逆， 不是加密方式。有md5, sha256。保证数据没被串改；用户密码散列存储。</p>
+<hr>
 <h2 id="rsa">RSA <a href="#rsa" class="anchor">🔗</a></h2><h3 id="rsa背景">RSA背景 <a href="#rsa%e8%83%8c%e6%99%af" class="anchor">🔗</a></h3><p>1977年由MIT三位学者发明。</p>
 <h3 id="相关数论概念">相关数论概念 <a href="#%e7%9b%b8%e5%85%b3%e6%95%b0%e8%ae%ba%e6%a6%82%e5%bf%b5" class="anchor">🔗</a></h3><ul>
 <li>
@@ -170,7 +171,8 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h3 id="ssl-tls">SSL /TLS <a href="#ssl-tls" class="anchor">🔗</a></h3><p>https的原理， 握手阶段</p>
+<hr>
+<h2 id="tls">TLS <a href="#tls" class="anchor">🔗</a></h2><p>https的原理， 握手阶段</p>
 <ul>
 <li>客户端给server发送支持的对称加密算法</li>
 <li>server选择支持的对称加密算法和版本 （确定hash算法，对称加密算法）</li>
@@ -238,7 +240,7 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
 </code></pre></td></tr></table>
 </div>
 </div><p>tls 1.3 中使用 x25519椭圆曲线 $$ B<em>y^2 = x^3 + A</em>x^2 + x $$</p>
-<h3 id="密钥的管理">密钥的管理 <a href="#%e5%af%86%e9%92%a5%e7%9a%84%e7%ae%a1%e7%90%86" class="anchor">🔗</a></h3><p>kms系统： 信封加密</p>
+<h2 id="密钥的管理">密钥的管理 <a href="#%e5%af%86%e9%92%a5%e7%9a%84%e7%ae%a1%e7%90%86" class="anchor">🔗</a></h2><p>kms系统： 信封加密</p>
 <ul>
 <li>加解密运算 与 存储分离</li>
 <li>访问鉴权</li>
@@ -246,7 +248,7 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
 <li>root key</li>
 </ul>
 <hr>
-<h3 id="同态加密homomorphic-encryption">同态加密（Homomorphic Encryption） <a href="#%e5%90%8c%e6%80%81%e5%8a%a0%e5%af%86homomorphic-encryption" class="anchor">🔗</a></h3><p>全同态 支持密文上任意次，任意类型的计算</p>
+<h2 id="同态加密homomorphic-encryption">同态加密（Homomorphic Encryption） <a href="#%e5%90%8c%e6%80%81%e5%8a%a0%e5%af%86homomorphic-encryption" class="anchor">🔗</a></h2><p>全同态 支持密文上任意次，任意类型的计算</p>
 <p>层次同态 支持有限次数的加法和乘法</p>
 <p>部分同态 只支持加法或者乘法</p>
 <p>可算不可见</p>
@@ -255,11 +257,11 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
 <p>rsa encrypt $$ c= Enc(m) = m^e mod n $$</p>
 <p>rsa decryp $$ Dec(c) = c^d mod n $$</p>
 <p>$$Enc(m_1) * Enc(m_2) = (m_1 * m_2)^e = Enc(m_1 * m_2)$$</p>
-<h3 id="abe">ABE <a href="#abe" class="anchor">🔗</a></h3><p>一对多的加解密方式。</p>
+<h2 id="abe">ABE <a href="#abe" class="anchor">🔗</a></h2><p>一对多的加解密方式。</p>
 <p>Key-Policy ABE： 策略嵌入用户密钥中，属性集合嵌入于密文中。</p>
 <p>CP-ABE： 策略嵌入密文，通过设定策略去决定拥有哪些属性的人能够访问这份密文</p>
 <p>公有云上的数据加密存储与细粒度共享。</p>
-<h3 id="联邦学习">联邦学习 <a href="#%e8%81%94%e9%82%a6%e5%ad%a6%e4%b9%a0" class="anchor">🔗</a></h3><p>为解决AI技术落地的数据安全隐私问题。</p>
+<h2 id="联邦学习">联邦学习 <a href="#%e8%81%94%e9%82%a6%e5%ad%a6%e4%b9%a0" class="anchor">🔗</a></h2><p>为解决AI技术落地的数据安全隐私问题。</p>
 
       </article>
     </div>
@@ -276,16 +278,19 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
         <li><a href="#相关数论概念">相关数论概念</a></li>
         <li><a href="#rsa-生成过程">rsa 生成过程</a></li>
         <li><a href="#rsa-证明">rsa 证明</a></li>
-        <li><a href="#ssl-tls">SSL /TLS</a></li>
+      </ul>
+    </li>
+    <li><a href="#tls">TLS</a>
+      <ul>
         <li><a href="#tls12-and-tls13">TLS1.2 and TLS1.3</a></li>
         <li><a href="#dh---ecdh">DH &amp;&amp;  ECDH</a></li>
         <li><a href="#dh-交互流程">DH 交互流程</a></li>
-        <li><a href="#密钥的管理">密钥的管理</a></li>
-        <li><a href="#同态加密homomorphic-encryption">同态加密（Homomorphic Encryption）</a></li>
-        <li><a href="#abe">ABE</a></li>
-        <li><a href="#联邦学习">联邦学习</a></li>
       </ul>
     </li>
+    <li><a href="#密钥的管理">密钥的管理</a></li>
+    <li><a href="#同态加密homomorphic-encryption">同态加密（Homomorphic Encryption）</a></li>
+    <li><a href="#abe">ABE</a></li>
+    <li><a href="#联邦学习">联邦学习</a></li>
   </ul>
 </nav>
         </nav>
