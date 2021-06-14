@@ -17,7 +17,7 @@ go的内存模型规定： 在哪些情况下，一个golang中读取的变量�
 + goroutine创建
   + 创建一个golang happens before 新golang的执行
 
-```
+```golang
 var a string
 func f() {
   print(a)
@@ -29,7 +29,7 @@ func hello() {
 ```
 
 + goroutine销毁 没有happen before任何程序里的代码
-```
+```golang
 var a string
 func hello() {
   go func() {a = "mike"}
