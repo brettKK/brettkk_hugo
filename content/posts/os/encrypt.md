@@ -4,6 +4,7 @@ date: 2021-05-20T11:33:56+08:00
 draft: false
 isCJKLanguage: true
 tags: ["encrypt"]
+math: true
 series: [""]
 categories: ["技术"]
 ---
@@ -21,12 +22,9 @@ categories: ["技术"]
 
 ### 相关数论概念
 
-+ 互质 两个数的最大公约数是1。 
-$$gcd(a,b)=1$$ 两数互质与两数是不是质数没有关系。
++ 互质 两个数的最大公约数是1。 $$gcd(a,b)=1$$ 两数互质与两数是不是质数没有关系。
 
-+ p与q互质，剩余定理得出
-  
-$$\Phi \left( pq\right) =\Phi(p)*\Phi(q)$$
++ p与q互质，剩余定理得出 $$\Phi \left( pq\right) =\Phi(p)*\Phi(q)$$
 
 + 欧拉函数 $$\Phi(n)$$
 
@@ -136,17 +134,44 @@ https的原理， 握手阶段
 
 ### TLS1.2 and TLS1.3
 
+Transport Layer Security 1.3 参考链接 https://www.rfc-editor.org/rfc/pdfrfc/rfc8446.txt.pdf 
+
+#### TLS 背景
+
+提供端到端之间提供安全通信通道。 
+
+依赖： 依赖下层协议的可靠性和顺序数据流。
+
+#### TLS 特性
+
+认证Authentication方式： RSA, the Elliptic Curve Digital Signature Algorithm (ECDSA), symmetric pre-shared key (PSK)。
+
+机密
+
+完整性
+
+### TLS two primary components
+
++ 握手协议
+
+协商密码模式和参数，并建立共享密钥材料
+
++ 记录协议
+
+### TLS1.2 与 TLS1.3 的区别
+
 TLS1.2  -- performance and security --> TLS 1.3
 
-TLS 1.3 shorter handshake
++ 增加O-RTT
 
-O-RTT for repeat clients
-1-RTT for native clients
+O-RTT for repeat clients，1-RTT for native clients，TLS 1.3 shorter handshake。
+
++ static rsa, dh被移除， 增加的密钥交互机制均保证前向数据安全。
 
 
 ### DH &&  ECDH
 
-DH (Diffie-Hellman() : 能在非安全的信道中安全的交换密钥，用于加密后续的通信消息。
+DH (Diffie-Hellman) : 能在非安全的信道中安全的交换密钥，用于加密后续的通信消息。
 
 ### DH 交互流程
 
@@ -193,7 +218,9 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
 则： b * A = a * B , 双方密钥相同。
 ```
 
-tls 1.3 中使用 x25519椭圆曲线 $$ B*y^2 = x^3 + A*x^2 + x $$
+tls 1.3 中使用 x25519椭圆曲线 $$ B * y^2 = x^3 + A * x^2 + x $$
+
+
 
 ## 密钥的管理
 

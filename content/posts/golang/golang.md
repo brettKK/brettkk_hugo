@@ -1,6 +1,6 @@
 ---
 title: "golang"
-date: 2021-05-04T18:54:41+08:00
+date: 2021-05-07T18:54:41+08:00
 draft: false
 isCJKLanguage: true
 tags: ["golang"]
@@ -8,84 +8,249 @@ series: [""]
 categories: ["技术"]
 ---
 
-### 资料
- https://github.com/gocn/knowledge
+## 资料
+ 
+ 1. 目前golang的主要maintainer: Russ Cox
+ 2. 个人主页：swtch.com/~rsc/
 
- awesome-go
+ 3. awesome-go系列，https://github.com/gocn/knowledge
 
- swtch.com/~rsc/      Russ Cox
-### 模糊点
+---
+## 多态，继承， 范型
 
-+ 数组的初始化 （元素类型， 数组大小）
-    + cmd/compile/internal/types.NewArray
-    + cmd/compile/internal/types.NewSlice
-    + 2种初始化方式
-        + 显式的指定数组的大小 // arr := [3]int{1, 2, 3}
-        + [...]T 声明数组 // arr := [...]int{1, 2, 3}
+golang中面向对象的实现方式
+### 继承
 
-+ 函数接受者为指针类型
-  + 函数可以修改接受者的内容
-  + 避免方法调用时变量的拷贝，而是指针的拷贝
-+ go严格上只有复制拷贝传递
-  + 总是创建副本按值传递，只不过这个副本可以是变量的副本，也可以是指针的副本
+组合结构体，一个结构体嵌入另一个结构体，能够实现对嵌入结构体的字段以及其实现的方法的继承， 。
 
-+ unsafe
-+ unsafe.Pointer()
-  + T1指针与 T2指针类型之间的转换
-  + 修改内存数据 uintptr 常用于与 unsafe.Pointer配合，用于做指针运算
+```golang
+type person struct {
+    name string
+    age  int
+}
 
-+ 反射 Reflection (interface对象=（Type, Value）反射类型 reflect.Type, reflect.Value)  三点
-    + 反射可以将interface类型的变量 转换为 反射对象（reflect.Type reflect.Value）
-    + 反射可以将反射对象 还原为interface对象
-    + 反射对象可以修改，提前是value值是变量的指针  var x float= 3.1 ; v:= reflect.ValueOf(&x); v.Elem().SetFloat(3.4);
-+ 动态调用方法， reflect.Value(interface) -> reflect.Value->value.MethodByName->Call
+type student struct {
+    person //   匿名字段，通过组合的方式
+    school string 
+}
 
-+ golang 内存管理
-    + 内存分配原理
-        + src/runtime/mheap.go:mspan
-    + 内存回收原理 gc
-        + 三色标记法 （未使用，已使用，带处理）
-        + root对象开始，BFS遍历标记，
-    + 逃逸分析（对象是否被函数外面引用 例如闭包； 对象过大也可能在堆中）
-        + 逃逸分析的目的是决定变量的内存分配地址是在栈还是堆
-        + 逃逸分析在编译阶段完成的
-        + 传递指针真的比传值高效吗？不一定 由于指针传递会产生逃逸，可能会使用堆，增加GC负担。
-        + go build -gcflags=-m // escapes to heap
+func (p * person) talk() {
+    fmt.Println(p.name, p.age)
+}
+
+func (s *student) getSchool() {
+    return s.school
+}
+
+func main() {
+    s := student{person{"brettkk", 18}, "yidu"}
+    fmt.Println(s.name) // 继承person的name字段
+    s.talk() // 继承person实现的方法
+}
+
+```
+
+### 多态
+
+go没有 implements, extends 关键字， golang是去鸭子类型：看起来像鸭子， 那么它就是鸭子。
+
+多态： 父类指针或引用去调用方法，在执行的时候，能够根据子类的类型去执行子类当中的方法。
+
+为什么是在执行的时候才能根据子类的类型执行子类的方法？
+
+```golang
+
+type Person interface {
+    func gender() string
+}
+
+type Men struct{
+    Gender string
+    Age int
+    Name string
+}
+
+type Woman struct {
+    Gender string
+    Age int
+    Name strings
+}
+
+func (m Men) gender() {
+    return m.Gender
+}
+
+func (w Woman) gender() {
+    return w.Gender
+}
+
+func JudgeFunc() bool {
+    // may has many code
+    // can't not get boolean result until running this JudgeFunc
+}
+
+func main() {
+    var a Person
+    // so compiler can't not known clearly about the type info of a
+    a = JudgeFunc() ? Men{} : Woman{}
+
+    var b Person
+    // compiler can judge the type info of a 
+    b = Men{} // or b = Woman{}
+}
+
+```
+
+### 范型
+
+空interface{} 类型，没有方法集的接口，只需要存类型和类型对应的值即可。
+
+空interface{} = (type, value) ==> (nil, nil) == nil 
 
 
-### cgo
+```golang
+type eface struct {
+	_type *_type
+	data  unsafe.Pointer
+}
 
-uintptr与unsafe.Pointer
+```
 
-unsafe.Pointer 类似void*
+
+### 接口的使用实践
+
+golang源码里的较好实现方式是： 使用小的接口，尤其是只包含一个方法的接口；通过小接口的组合来定义大接口。
+
+好处是：使用者可以只依赖于必要功能的最小接口。
+
+```golang
+type Reader interface {
+    Read(p []byte) (n int, err error)
+}
+
+type Writer interface {
+    Write(p []byte) (n int, err error)
+}
+
+type ReadWriter interface {
+    Reader
+    Writer
+}
+
+func store(reader Reader) error {
+    // 入参可以只依赖于必要功能的最小接口， 让函数的返回更广
+}
+func store(readWriter ReadWriter) error {
+    // 入参依赖了不必要功能的接口，让限制了函数的使用范围为更小
+}
+
+```
+
+## 模糊点
+### 数组与切片
+
+数组的初始化 （元素类型， 数组大小）
+
+2种初始化方式，显式的指定数组的大小 
+1. arr := [3]int{1, 2, 3}
+2. [...]T 声明数组 // arr := [...]int{1, 2, 3}
+
+
+<br/>
+
+### 函数的接受者
+
+函数接受者为指针类型:
+1. 函数可以修改接受者的内容
+2. 避免方法调用时变量的拷贝，而是指针的拷贝
+
+<br/>
+
+### golang值拷贝
+
+go严格上只有复制拷贝传递
+  
+总是创建副本按值传递，只不过这个副本可以是变量的副本，也可以是指针的副本
+
+<br/>
+
+### unsafe包
+
+uintptr与unsafe.Pointer（类似void*）
+
+1. T1指针与 T2指针类型之间的转换
+2. 修改内存数据， uintptr 常用于与 unsafe.Pointer配合，用于做指针运算
 
 指针是对内存区域的地址， 与指针相配合的类型
 说明区域有哪些属性，如何去解析。
 
+<br/>
 
----
+### nil
 
-+ nil
-    + what is nil
-        + nil is a kind of zero
-    + what is nil in go
-        + 各种类型的零值
-        + zero value of all type value
-            + bool false, number 0, string ""
-            + pointer, slice, map, channel, function, interface{} ==> nil
-            + structure{}
-        + kind of nil 
-            + interface{} = (type, value) ==> (nil, nil) == nil 
-    + what does nil mean
-    + is nil useful ? yes
++ what is nil
+    + nil is a kind of zero
++ what is nil in go
+    + 各种类型的零值
+    + 基本类型的零值不为nil
+        + bool为false
+        + number为0
+        + string为""
+    + 非基本类型的零值为nil
+        + pointer, slice, map, channel, function, interface{} ==> nil
+        + interface{}类型 需要type和value均为nil时，才会为nil
+        + structure{}，因为有结构type存在，type不为nil，所以结构体变量不会是nil
 
-+ avo
-    + github.com/mmcloughlin/avo
+<br/>
 
-### go 汇编
+### 反射
+
+反射 Reflection ，interface对象=（Type, Value）
+
+反射类型 reflect.Type, reflect.Value) 
+
+三种反射的基本操作：
+1. 反射可以将interface类型的变量 转换为 反射对象（reflect.Type reflect.Value）
+2. 反射可以将反射对象 还原为interface对象
+3. 反射对象可以修改，提前是value值是变量的指针  
+
+```golang
+var x float= 3.1 
+v:= reflect.ValueOf(&x) //需要传入x的指针
+v.Elem().SetFloat(3.4);
+```
+
+作用：
+1. 运行时动态调用方法
+2. 运行时构造函数进行mock插桩
+
+<br/>
+
+### 内存管理
+
+1. 基本想法：局部P上（per cpu）和全局队列想结合的均衡思想。局部分配无需加锁，局部分配无法满足时加锁全局分配
+
++ src/runtime/mheap.go:mspan
++ 内存回收原理
+  + 三色标记法 （未使用，已使用，带处理）
+  + root对象开始，BFS遍历标记，
++ 逃逸分析（对象是否被函数外面引用 例如闭包； 对象过大也可能在堆中）
+  + 逃逸分析的目的是决定变量的内存分配地址是在栈还是堆
+  + 逃逸分析在编译阶段完成的
+  + 传递指针真的比传值高效吗？不一定 由于指针传递会产生逃逸，可能会使用堆，增加GC负担。
+  + go build -gcflags=-m // escapes to heap
+
+<br/>
+
+## go 汇编
+
+Generate x86 Assembly with Go
+
+https://github.com/mmcloughlin/avo
+
 + 汇编风格分为2类
-  + intel风格
-  + AT&T风格(左 --> 右) go是plan9， 属于此类
+1. intel风格
+2.  AT&T风格(左 --> 右) go是plan9， 属于此类
 
 + 助记符    call, add
 + register  ax, sb, pc
@@ -104,4 +269,4 @@ unsafe.Pointer 类似void*
   +  x86 or x64 assembly instructions encoding<==> decoding binary code
   +  It uses GCC and objdump behind the scenes
 
-+ goroot/src/syscall --》 建议使用 golang.org/x/sys s
++ goroot/src/syscall --》 建议使用 golang.org/x/sys

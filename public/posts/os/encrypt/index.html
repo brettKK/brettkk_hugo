@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            1788 words
+            1860 words
           
         </span>
         <span class="split">
@@ -89,9 +89,8 @@ $$gcd(a,b)=1$$ 两数互质与两数是不是质数没有关系。</p>
 </ul>
 <p>在小于等于n的正整数之中，与n构成互质关系的数的个数</p>
 <p>n是质数时， $$\Phi(n) = n - 1$$</p>
-<p>n不是质数时，n分解为质数相乘</p>
-<p>$$ n = a<em>b</em>c... $$
-$$\Phi(n)=\Phi( a) *\Phi( b)...$$</p>
+<p>n不是质数时，n分解为质数a,b,c...相乘 $$n = a * b * c\cdots$$</p>
+<p>$$\Phi(n)=\Phi( a) *\Phi( b)...$$</p>
 <ul>
 <li>欧拉定理</li>
 </ul>
@@ -101,28 +100,14 @@ $$\Phi(n)=\Phi( a) *\Phi( b)...$$</p>
 <li>费马小定理</li>
 </ul>
 <p>当n为质数时，则：$$a^{n-1}\equiv 1\left( mod\ n\right)$$</p>
-<h3 id="rsa-生成过程">rsa 生成过程 <a href="#rsa-%e7%94%9f%e6%88%90%e8%bf%87%e7%a8%8b" class="anchor">🔗</a></h3><ul>
-<li>
-<p>找两个大质数p, q</p>
-</li>
-<li>
-<p>求乘积 n=p * q， $$ \Phi(n) = \Phi (p<em>q)=(p-1)</em>(q-1) $$</p>
-</li>
-<li>
-<p>在0 ～ $$\Phi(n)$$ 中，找一个e，与$$\Phi(n)$$互质</p>
-</li>
-<li>
-<p>找一个d， 使得 $$e*d \equiv 1(mod\ \Phi(n))</p>
-</li>
-<li>
-<p>$$ (n, e)$$ 公钥， $$(n, d)$$ 私钥</p>
-</li>
-<li>
-<p>加密公式 $$x^e mod n = y $$</p>
-</li>
-<li>
-<p>解密公式 $$y^d mod n = x $$</p>
-</li>
+<h3 id="rsa-生成过程">rsa 生成过程 <a href="#rsa-%e7%94%9f%e6%88%90%e8%bf%87%e7%a8%8b" class="anchor">🔗</a></h3><p>找两个大质数p, q</p>
+<p>求乘积 n=p * q， $$ \Phi(n) = \Phi (p * q)=(p-1)*(q-1) $$</p>
+<p>在0 ～ n的欧拉函数之间找一个e，使得e与欧拉函数互质</p>
+<p>找一个d， 使得 $$e * d \equiv 1 mod\Phi(n) $$</p>
+<p>则(n, e)公钥， (n, d)私钥</p>
+<ul>
+<li>加密公式 $$x^e mod n = y $$</li>
+<li>解密公式 $$y^d mod n = x $$</li>
 </ul>
 <h3 id="rsa-证明">rsa 证明 <a href="#rsa-%e8%af%81%e6%98%8e" class="anchor">🔗</a></h3><p>$$
 y=x^e - kn \tag{1}\<br>
@@ -159,15 +144,12 @@ $$</p>
 x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}\<br>
 $$</p>
 <p>若x与n不互质时， 稍微复杂 todo</p>
-<hr>
+<h3 id="工程实现">工程实现 <a href="#%e5%b7%a5%e7%a8%8b%e5%ae%9e%e7%8e%b0" class="anchor">🔗</a></h3><ul>
+<li>明文需要分段加密，原因是明文大小不能超过n的限制。</li>
+<li>同样的明文，同样的公钥，每次加密的结果不会一样。因为随机数填充。
 <ul>
-<li>同样的明文，同样的公钥，每次加密的结果不会一样。11字节都为随机数 填充使用
-<ul>
-<li>填充协议PKCS #1 v1.5: &quot;填充后数据&quot; = &quot;00&quot; + &quot;数据块类型&quot; + &quot;填充字符串&quot; + &quot;00&quot; + &quot;原始数据&quot;
-<ul>
+<li>填充协议PKCS #1 v1.5: &quot;填充后数据&quot; = &quot;00&quot; + &quot;数据块类型&quot; + &quot;填充字符串&quot; + &quot;00&quot; + &quot;原始数据&quot;</li>
 <li>BT (数据块类型) 00: 填充字符串全为00；01：全为FF； 02:针对公钥时设置BT=02，伪随机字符串，这能解释上面公钥加密的结果会不一样；</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -240,10 +222,10 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
 </code></pre></td></tr></table>
 </div>
 </div><p>tls 1.3 中使用 x25519椭圆曲线 $$ B<em>y^2 = x^3 + A</em>x^2 + x $$</p>
-<h2 id="密钥的管理">密钥的管理 <a href="#%e5%af%86%e9%92%a5%e7%9a%84%e7%ae%a1%e7%90%86" class="anchor">🔗</a></h2><p>kms系统： 信封加密</p>
+<h2 id="密钥的管理">密钥的管理 <a href="#%e5%af%86%e9%92%a5%e7%9a%84%e7%ae%a1%e7%90%86" class="anchor">🔗</a></h2><p>kms系统： 信封加密， 密钥轮替</p>
 <ul>
 <li>加解密运算 与 存储分离</li>
-<li>访问鉴权</li>
+<li>访问认证</li>
 <li>数据监控</li>
 <li>root key</li>
 </ul>
@@ -257,11 +239,15 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
 <p>rsa encrypt $$ c= Enc(m) = m^e mod n $$</p>
 <p>rsa decryp $$ Dec(c) = c^d mod n $$</p>
 <p>$$Enc(m_1) * Enc(m_2) = (m_1 * m_2)^e = Enc(m_1 * m_2)$$</p>
-<h2 id="abe">ABE <a href="#abe" class="anchor">🔗</a></h2><p>一对多的加解密方式。</p>
+<h2 id="abe">ABE <a href="#abe" class="anchor">🔗</a></h2><p>下一代公钥密钥的先进机制</p>
+<ul>
+<li>一对多的加解密方式</li>
+<li>访问和数据加密融为一体</li>
+</ul>
 <p>Key-Policy ABE： 策略嵌入用户密钥中，属性集合嵌入于密文中。</p>
 <p>CP-ABE： 策略嵌入密文，通过设定策略去决定拥有哪些属性的人能够访问这份密文</p>
 <p>公有云上的数据加密存储与细粒度共享。</p>
-<h2 id="联邦学习">联邦学习 <a href="#%e8%81%94%e9%82%a6%e5%ad%a6%e4%b9%a0" class="anchor">🔗</a></h2><p>为解决AI技术落地的数据安全隐私问题。</p>
+<p>联邦学习：为解决AI技术落地的数据安全隐私问题。</p>
 
       </article>
     </div>
@@ -278,6 +264,7 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
         <li><a href="#相关数论概念">相关数论概念</a></li>
         <li><a href="#rsa-生成过程">rsa 生成过程</a></li>
         <li><a href="#rsa-证明">rsa 证明</a></li>
+        <li><a href="#工程实现">工程实现</a></li>
       </ul>
     </li>
     <li><a href="#tls">TLS</a>
@@ -290,7 +277,6 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
     <li><a href="#密钥的管理">密钥的管理</a></li>
     <li><a href="#同态加密homomorphic-encryption">同态加密（Homomorphic Encryption）</a></li>
     <li><a href="#abe">ABE</a></li>
-    <li><a href="#联邦学习">联邦学习</a></li>
   </ul>
 </nav>
         </nav>

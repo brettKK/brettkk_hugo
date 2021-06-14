@@ -47,6 +47,15 @@ Open Container Initiative（OCI）成立后， libcontainer 封装在runC包里�
 
 ---
 
++ api server
++ scheduler
++ controler
++ kubelet
+  + pod管理
+  + 容器健康检查 LivenessProbe 与ReadinessProbe
+  + 容器监控  通过cAdvisor获取节点和容器的数据
++ proxy
+
 + pod （进程组）
   + 打开容器之间的隔离性，两个方向 网络和存储来通信。
     +  Infra container 小容器来共享整个 Pod 的  Network Namespace, 直接使用localhost进行通信。

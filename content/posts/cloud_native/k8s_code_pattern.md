@@ -24,6 +24,32 @@ cmd下的main函数为各个k8s组建的入口。
 
 ```
 
+### 访问者模式
+
+kubectl里有使用。
+
+```golang
+
+type Visitor interface {
+	Visit(VisitorFunc) error
+}
+
+type VisitorFunc func(*Info, error) error
+
+type VisitorList []Visitor
+
+// Visit implements Visitor
+func (l VisitorList) Visit(fn VisitorFunc) error {
+	for i := range l {
+		if err := l[i].Visit(fn); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+```
+
 ### channel的使用方式
 
 #### 内部具体channel的使用示例
