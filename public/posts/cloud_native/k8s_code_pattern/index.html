@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            134 words
+            218 words
           
         </span>
         <span class="split">
@@ -85,6 +85,51 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-golang" data-lang="golang">
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="访问者模式">访问者模式 <a href="#%e8%ae%bf%e9%97%ae%e8%80%85%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><p>kubectl里有使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-golang" data-lang="golang">
+<span class="kd">type</span> <span class="nx">Visitor</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="nf">Visit</span><span class="p">(</span><span class="nx">VisitorFunc</span><span class="p">)</span> <span class="kt">error</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">VisitorFunc</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Info</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="kt">error</span>
+
+<span class="kd">type</span> <span class="nx">VisitorList</span> <span class="p">[]</span><span class="nx">Visitor</span>
+
+<span class="c1">// Visit implements Visitor
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="nx">VisitorList</span><span class="p">)</span> <span class="nf">Visit</span><span class="p">(</span><span class="nx">fn</span> <span class="nx">VisitorFunc</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">l</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nf">Visit</span><span class="p">(</span><span class="nx">fn</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">err</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="channel的使用方式">channel的使用方式 <a href="#channel%e7%9a%84%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f" class="anchor">🔗</a></h3><h4 id="内部具体channel的使用示例">内部具体channel的使用示例 <a href="#%e5%86%85%e9%83%a8%e5%85%b7%e4%bd%93channel%e7%9a%84%e4%bd%bf%e7%94%a8%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h4><p>stopCh &lt;-chan struct{}，  channel的使用方式</p>
@@ -117,6 +162,7 @@
       <ul>
         <li><a href="#cobra命令行的使用">cobra命令行的使用</a></li>
         <li><a href="#函数选项模式">函数选项模式</a></li>
+        <li><a href="#访问者模式">访问者模式</a></li>
         <li><a href="#channel的使用方式">channel的使用方式</a></li>
         <li><a href="#工厂模式">工厂模式</a></li>
         <li><a href="#heading"></a></li>

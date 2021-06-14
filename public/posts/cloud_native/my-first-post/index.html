@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            745 words
+            802 words
           
         </span>
         <span class="split">
@@ -90,7 +90,28 @@
 <p>Open Container Initiative（OCI）成立后， libcontainer 封装在runC包里。</p>
 <hr>
 <ul>
-<li>pod （进程组）
+<li>
+<p>api server</p>
+</li>
+<li>
+<p>scheduler</p>
+</li>
+<li>
+<p>controler</p>
+</li>
+<li>
+<p>kubelet</p>
+<ul>
+<li>pod管理</li>
+<li>容器健康检查 LivenessProbe 与ReadinessProbe</li>
+<li>容器监控  通过cAdvisor获取节点和容器的数据</li>
+</ul>
+</li>
+<li>
+<p>proxy</p>
+</li>
+<li>
+<p>pod （进程组）</p>
 <ul>
 <li>打开容器之间的隔离性，两个方向 网络和存储来通信。
 <ul>
@@ -103,12 +124,15 @@
 <li>设计模式本质：解耦 复用</li>
 </ul>
 </li>
-<li>service
+<li>
+<p>service</p>
 <ul>
 <li>一个svc是一个微服务，也是一组prod，通过label robin实现IP负载均衡</li>
 </ul>
 </li>
-<li>volume</li>
+<li>
+<p>volume</p>
+</li>
 </ul>
 
       </article>

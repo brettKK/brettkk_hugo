@@ -57,14 +57,14 @@
         </span>
         <span>
           
-            1860 words
+            2068 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          4 minute read
+          5 minute read
         </span>
     </div>
 
@@ -76,16 +76,14 @@
 <h2 id="rsa">RSA <a href="#rsa" class="anchor">🔗</a></h2><h3 id="rsa背景">RSA背景 <a href="#rsa%e8%83%8c%e6%99%af" class="anchor">🔗</a></h3><p>1977年由MIT三位学者发明。</p>
 <h3 id="相关数论概念">相关数论概念 <a href="#%e7%9b%b8%e5%85%b3%e6%95%b0%e8%ae%ba%e6%a6%82%e5%bf%b5" class="anchor">🔗</a></h3><ul>
 <li>
-<p>互质 两个数的最大公约数是1。
-$$gcd(a,b)=1$$ 两数互质与两数是不是质数没有关系。</p>
+<p>互质 两个数的最大公约数是1。 $$gcd(a,b)=1$$ 两数互质与两数是不是质数没有关系。</p>
 </li>
 <li>
-<p>p与q互质，剩余定理得出</p>
+<p>p与q互质，剩余定理得出 $$\Phi \left( pq\right) =\Phi(p)*\Phi(q)$$</p>
 </li>
-</ul>
-<p>$$\Phi \left( pq\right) =\Phi(p)*\Phi(q)$$</p>
-<ul>
-<li>欧拉函数 $$\Phi(n)$$</li>
+<li>
+<p>欧拉函数 $$\Phi(n)$$</p>
+</li>
 </ul>
 <p>在小于等于n的正整数之中，与n构成互质关系的数的个数</p>
 <p>n是质数时， $$\Phi(n) = n - 1$$</p>
@@ -163,11 +161,28 @@ $$</p>
 <li>server返回ack，握手完成</li>
 </ul>
 <p>后续的传输阶段时使用对称加密进行通信</p>
-<h3 id="tls12-and-tls13">TLS1.2 and TLS1.3 <a href="#tls12-and-tls13" class="anchor">🔗</a></h3><p>TLS1.2  -- performance and security --&gt; TLS 1.3</p>
-<p>TLS 1.3 shorter handshake</p>
-<p>O-RTT for repeat clients
-1-RTT for native clients</p>
-<h3 id="dh---ecdh">DH &amp;&amp;  ECDH <a href="#dh---ecdh" class="anchor">🔗</a></h3><p>DH (Diffie-Hellman() : 能在非安全的信道中安全的交换密钥，用于加密后续的通信消息。</p>
+<h3 id="tls12-and-tls13">TLS1.2 and TLS1.3 <a href="#tls12-and-tls13" class="anchor">🔗</a></h3><p>Transport Layer Security 1.3 参考链接 <a href="https://www.rfc-editor.org/rfc/pdfrfc/rfc8446.txt.pdf">https://www.rfc-editor.org/rfc/pdfrfc/rfc8446.txt.pdf</a></p>
+<h4 id="tls-背景">TLS 背景 <a href="#tls-%e8%83%8c%e6%99%af" class="anchor">🔗</a></h4><p>提供端到端之间提供安全通信通道。</p>
+<p>依赖： 依赖下层协议的可靠性和顺序数据流。</p>
+<h4 id="tls-特性">TLS 特性 <a href="#tls-%e7%89%b9%e6%80%a7" class="anchor">🔗</a></h4><p>认证Authentication方式： RSA, the Elliptic Curve Digital Signature Algorithm (ECDSA), symmetric pre-shared key (PSK)。</p>
+<p>机密</p>
+<p>完整性</p>
+<h3 id="tls-two-primary-components">TLS two primary components <a href="#tls-two-primary-components" class="anchor">🔗</a></h3><ul>
+<li>握手协议</li>
+</ul>
+<p>协商密码模式和参数，并建立共享密钥材料</p>
+<ul>
+<li>记录协议</li>
+</ul>
+<h3 id="tls12-与-tls13-的区别">TLS1.2 与 TLS1.3 的区别 <a href="#tls12-%e4%b8%8e-tls13-%e7%9a%84%e5%8c%ba%e5%88%ab" class="anchor">🔗</a></h3><p>TLS1.2  -- performance and security --&gt; TLS 1.3</p>
+<ul>
+<li>增加O-RTT</li>
+</ul>
+<p>O-RTT for repeat clients，1-RTT for native clients，TLS 1.3 shorter handshake。</p>
+<ul>
+<li>static rsa, dh被移除， 增加的密钥交互机制均保证前向数据安全。</li>
+</ul>
+<h3 id="dh---ecdh">DH &amp;&amp;  ECDH <a href="#dh---ecdh" class="anchor">🔗</a></h3><p>DH (Diffie-Hellman) : 能在非安全的信道中安全的交换密钥，用于加密后续的通信消息。</p>
 <h3 id="dh-交互流程">DH 交互流程 <a href="#dh-%e4%ba%a4%e4%ba%92%e6%b5%81%e7%a8%8b" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -221,7 +236,7 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
 则： b * A = a * B , 双方密钥相同。
 </code></pre></td></tr></table>
 </div>
-</div><p>tls 1.3 中使用 x25519椭圆曲线 $$ B<em>y^2 = x^3 + A</em>x^2 + x $$</p>
+</div><p>tls 1.3 中使用 x25519椭圆曲线 $$ B * y^2 = x^3 + A * x^2 + x $$</p>
 <h2 id="密钥的管理">密钥的管理 <a href="#%e5%af%86%e9%92%a5%e7%9a%84%e7%ae%a1%e7%90%86" class="anchor">🔗</a></h2><p>kms系统： 信封加密， 密钥轮替</p>
 <ul>
 <li>加解密运算 与 存储分离</li>
@@ -270,6 +285,8 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
     <li><a href="#tls">TLS</a>
       <ul>
         <li><a href="#tls12-and-tls13">TLS1.2 and TLS1.3</a></li>
+        <li><a href="#tls-two-primary-components">TLS two primary components</a></li>
+        <li><a href="#tls12-与-tls13-的区别">TLS1.2 与 TLS1.3 的区别</a></li>
         <li><a href="#dh---ecdh">DH &amp;&amp;  ECDH</a></li>
         <li><a href="#dh-交互流程">DH 交互流程</a></li>
       </ul>
