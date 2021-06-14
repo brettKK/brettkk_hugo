@@ -49,7 +49,8 @@ categories: ["技术"]
 + wrk 压力测试 github.com/juju/ratelimit 
 
 + 优化go程序 运行速度的方向 只对关键的路径进行优化 (优化运行速度，开会速度会慢 hah)
-    + 避免堆分配可以成为优化的主要方向。 若频繁使用堆，可以sync.Pool 复用对象
-    + cpu cache line(64字节)，结构体填充，避免False Sharing。
-    + 为了保证cache的一致性，对内存的一个小小的写入都会让cache line被淘汰。
-    + 对相邻地址的读操作就无法命中对应的cache line。 
+
+1. 避免堆分配可以成为优化的主要方向。 若频繁使用堆，可以sync.Pool 复用对象
+2. cpu cache line(64字节)，结构体填充，避免False Sharing。
+3. 为了保证cache的一致性，对内存的一个小小的写入都会让cache line被淘汰。
+4. 对相邻地址的读操作就无法命中对应的cache line。 
