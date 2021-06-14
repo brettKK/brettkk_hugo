@@ -96,14 +96,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">var a string
-func f() {
-  print(a)
-}
-func hello() {
-  a = &#34;hello, world&#34;
-  go f() // 等到f执行时打印hello world
-}
+<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">var</span> <span class="nx">a</span> <span class="kt">string</span>
+<span class="kd">func</span> <span class="nf">f</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">print</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nf">hello</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">a</span> <span class="p">=</span> <span class="s">&#34;hello, world&#34;</span>
+  <span class="k">go</span> <span class="nf">f</span><span class="p">()</span> <span class="c1">// 等到f执行时打印hello world
+</span><span class="c1"></span><span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -118,11 +118,11 @@ func hello() {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">var a string
-func hello() {
-  go func() {a = &#34;mike&#34;}
-  print(a) // 不确定的值
-}
+<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">var</span> <span class="nx">a</span> <span class="kt">string</span>
+<span class="kd">func</span> <span class="nf">hello</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span><span class="nx">a</span> <span class="p">=</span> <span class="s">&#34;mike&#34;</span><span class="p">}</span>
+  <span class="nb">print</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="c1">// 不确定的值
+</span><span class="c1"></span><span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
 </div><ul>
