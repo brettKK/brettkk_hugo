@@ -29,9 +29,11 @@ type Ticker struct {
 }
 ```
 
+### 原理
 
 系统协程把runtimeTimer存放在数组中，并按照when字段对所有的runtimeTimer进行堆排序，定时器触发时执行runtimeTimer中的预定义函数f
 即完成了一次定时任务
+
 
 ```golang
 //src/time/sleep.go:runtimeTimer定义了其数据结构
@@ -63,6 +65,7 @@ func NewTimer(d Duration) *Timer {
 }
 ```
 
+### 一次性timer
 
 ```golang
 // 设定超时时间
@@ -104,7 +107,8 @@ func AfterFuncDemo() {
 ```
 
 
-周期性ticker
+### 周期性ticker
+
 ```golang
 // TickerDemo 用于演示ticker基础用法
 func TickerDemo() {

@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            2118 words
+            2111 words
           
         </span>
         <span class="split">
@@ -71,42 +71,40 @@
     <div class="content" >
       <article class="content">
         <p>golang提供了比较便捷的并发编程方式。golang的并发单元是goroutine。目前实现多个goroutine同步的主要方式有： sync包， runtime包下的channel，context包。</p>
-<h3 id="syncwaitgroup">sync.WaitGroup <a href="#syncwaitgroup" class="anchor">🔗</a></h3><p>标准库sync里的Waitgroup，用来阻塞主协程去等待所有协程执行完。WaitGroup主要三个方法：Add方法添加等待的协程数量，Done方法等于Add(-1)减少等待的协程数量，Wait方法阻塞主协程。原理示意图如下：</p>
+<h2 id="syncwaitgroup">sync.WaitGroup <a href="#syncwaitgroup" class="anchor">🔗</a></h2><p>标准库sync里的Waitgroup，用来阻塞主协程去等待所有协程执行完。WaitGroup主要三个方法：Add方法添加等待的协程数量，Done方法等于Add(-1)减少等待的协程数量，Wait方法阻塞主协程。原理示意图如下：</p>
 <p><p class="markdown-image">
   <img src="/golang/golang_sync.png" alt="image"  />
-</p>)</p>
-<h4 id="waitgroup使用说明">WaitGroup使用说明 <a href="#waitgroup%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" class="anchor">🔗</a></h4><p>WaitGroup在工作中经常会使用到。例如：需要并行处理一些子任务，需要起多个协程对一些复杂结构体的各个字段进行初始化等。简单的使用说明如下：</p>
+</p></p>
+<h3 id="waitgroup使用">WaitGroup使用 <a href="#waitgroup%e4%bd%bf%e7%94%a8" class="anchor">🔗</a></h3><p>WaitGroup在工作中经常会使用到。例如：需要并行处理一些子任务，需要起多个协程对一些复杂结构体的各个字段进行初始化等。简单的使用说明如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">fun</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
     <span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span> 
         <span class="c1">//process
-</span><span class="c1"></span>       <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span> 
-    <span class="p">}()</span>
+</span><span class="c1"></span>    <span class="p">}()</span>
     <span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
 <span class="p">}</span>
-
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="channel">channel <a href="#channel" class="anchor">🔗</a></h3><p>通道是golang中协程通信的一种方式，可以灵活、高效支持协程之间的通信。通道与协程之间的交互流程图因是否存在缓冲区、缓冲区是否填满、是否存在发送等待队列等，会在过程上会存在不同。下面给出的示意图是针对利用无缓冲通道进行通信的其中一种情况，主要是为了简化流程和突出主要功能点。图中hchan是通道的底层数据结构，其中主要包含： buf为数据存储区， recvq和sendq为在此通道上等待接受和发送的协程队列，lock为保护通道数据的锁等。P为运行时的协程调度器。原理示意图如下：</p>
+</div><h2 id="channel">channel <a href="#channel" class="anchor">🔗</a></h2><p>通道是golang中协程通信的一种方式，可以灵活、高效支持协程之间的通信。通道与协程之间的交互流程图因是否存在缓冲区、缓冲区是否填满、是否存在发送等待队列等，会在过程上会存在不同。下面给出的示意图是针对利用无缓冲通道进行通信的其中一种情况，主要是为了简化流程和突出主要功能点。图中hchan是通道的底层数据结构，其中主要包含： buf为数据存储区， recvq和sendq为在此通道上等待接受和发送的协程队列，lock为保护通道数据的锁等。P为运行时的协程调度器。原理示意图如下：</p>
 <p><p class="markdown-image">
   <img src="/golang/hchan.png" alt="image"  />
 </p></p>
-<h4 id="channel-使用说明">channel 使用说明 <a href="#channel-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" class="anchor">🔗</a></h4><p>通过无缓冲的通道，阻塞一个协程，等待另一个协程唤醒。例如：main协程在通道的接受队列中等待， 等worker协程写入数据后，main协程才会唤醒并继续执行。通信的数据是直接写一个协程的stack。这样可以省去去操作通道的buf，减少内存拷贝。简单的使用说明如下：</p>
+<h3 id="channel-使用说明">channel 使用说明 <a href="#channel-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" class="anchor">🔗</a></h3><p>通过无缓冲的通道，阻塞一个协程，等待另一个协程唤醒。例如：main协程在通道的接受队列中等待， 等worker协程写入数据后，main协程才会唤醒并继续执行。通信的数据是直接写一个协程的stack。这样可以省去去操作通道的buf，减少内存拷贝。简单的使用说明如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -164,7 +162,7 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="channel-错误使用示例">channel 错误使用示例 <a href="#channel-%e9%94%99%e8%af%af%e4%bd%bf%e7%94%a8%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h4><div class="highlight"><div class="chroma">
+</div><h3 id="channel-错误示例">channel 错误示例 <a href="#channel-%e9%94%99%e8%af%af%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -197,40 +195,38 @@
 </span><span class="lnt">29
 </span><span class="lnt">30
 </span><span class="lnt">31
-</span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">
-// 死锁
-func main() {
-    ch := make(chan int)
-    &lt;- ch //block
-    go func() {
-        ch &lt;- 1
-    }
-}
+<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// 死锁
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+    <span class="o">&lt;-</span> <span class="nx">ch</span> <span class="c1">//block
+</span><span class="c1"></span>    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-// 死锁
-func main() {
-    ch := make(chan int)
-    ch &lt;- 1 // block
-    go func() {
-        &lt;-ch
-    }
-}
+<span class="c1">// 死锁
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+    <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span> <span class="c1">// block
+</span><span class="c1"></span>    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="o">&lt;-</span><span class="nx">ch</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-// 死锁
-func main() {
-        var ch chan int  //nil channel
+<span class="c1">// 死锁
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span>  <span class="c1">//nil channel
+</span><span class="c1"></span>
+        <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">c</span> <span class="p">{</span> <span class="c1">// &lt;-ch  channel read
+</span><span class="c1"></span>                        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+                <span class="p">}</span>
+        <span class="p">}(</span><span class="nx">ch</span><span class="p">)</span>
 
-        go func(c chan int) {
-                for v := range c { // &lt;-ch  channel read
-                        fmt.Println(v)
-                }
-        }(ch)
-
-        ch &lt;- 1  // channel write
-}
+        <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>  <span class="c1">// channel write
+</span><span class="c1"></span><span class="p">}</span>
 
 </code></pre></td></tr></table>
 </div>
@@ -255,27 +251,26 @@ func main() {
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">// goroutine泄漏
-func main() {
-    ch := make(chan int)
-    go func() {
-        // process more than 100ms
-        ch &lt;- 1
-    }
-    select {
-    case &lt;-ch:
-        // process done
-        return    
-    case &lt;- time.After(100*time.Millisecond) 
-        // process timeout
-        return
-    }
-}
+<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// goroutine泄漏
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// process more than 100ms
+</span><span class="c1"></span>        <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
+    <span class="p">}</span>
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">:</span>
+        <span class="c1">// process done
+</span><span class="c1"></span>        <span class="k">return</span>    
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nf">After</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span> 
+        <span class="c1">// process timeout
+</span><span class="c1"></span>        <span class="k">return</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
 </code></pre></td></tr></table>
 </div>
-</div><p>错误操作引起Panic</p>
-<div class="highlight"><div class="chroma">
+</div><h3 id="错误操作panic">错误操作Panic <a href="#%e9%94%99%e8%af%af%e6%93%8d%e4%bd%9cpanic" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -295,7 +290,7 @@ func main() {
 3. 多个写入端时，不要在写入端关闭 channel 
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="context">context <a href="#context" class="anchor">🔗</a></h3><p>context是在context包里定义的一种接口。在context包中可以通过WithCancel、WithDeadline、WithTimeout、WithValue这四个方法生成新 Context。WithValue方法生成的context可以做到了跨API的传值功能。WithTimeout方法是对WithDeadline的封装。WithDeadline方法生成的context实现了定时cancel的功能。</p>
+</div><h2 id="context">context <a href="#context" class="anchor">🔗</a></h2><p>context是在context包里定义的一种接口。在context包中可以通过WithCancel、WithDeadline、WithTimeout、WithValue这四个方法生成新 Context。WithValue方法生成的context可以做到了跨API的传值功能。WithTimeout方法是对WithDeadline的封装。WithDeadline方法生成的context实现了定时cancel的功能。</p>
 <p>下面以WithCancel为入口，以源码（go1.12.7）为内容作介绍。当 parent 的 Done() 关闭的时候，孩子 ctx 的 Done() 也会关闭， 这种情况是如何实现的？具体过程分两种情况： 1 当传入的context是库里支持的cancelCtx、timeCtx时，child加入parent的衍生map中； 2 当传入的context为自定义实现类时，标准库是新起goroutine监听信号并执行cancel子context的过程。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -414,7 +409,7 @@ func main() {
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="context使用说明">context使用说明 <a href="#context%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" class="anchor">🔗</a></h4><p>etcd中有一些select , context, channel 的例子</p>
+</div><h3 id="context使用说明">context使用说明 <a href="#context%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" class="anchor">🔗</a></h3><p>etcd中有一些select , context, channel 的例子</p>
 <p>参考： <a href="https://blog.golang.org/context">https://blog.golang.org/context</a></p>
 
       </article>
@@ -425,11 +420,21 @@ func main() {
           <h3 class="ml-1">Table of contents</h3>
             <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#syncwaitgroup">sync.WaitGroup</a>
       <ul>
-        <li><a href="#syncwaitgroup">sync.WaitGroup</a></li>
-        <li><a href="#channel">channel</a></li>
-        <li><a href="#context">context</a></li>
+        <li><a href="#waitgroup使用">WaitGroup使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#channel">channel</a>
+      <ul>
+        <li><a href="#channel-使用说明">channel 使用说明</a></li>
+        <li><a href="#channel-错误示例">channel 错误示例</a></li>
+        <li><a href="#错误操作panic">错误操作Panic</a></li>
+      </ul>
+    </li>
+    <li><a href="#context">context</a>
+      <ul>
+        <li><a href="#context使用说明">context使用说明</a></li>
       </ul>
     </li>
   </ul>
