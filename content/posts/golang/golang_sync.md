@@ -9,35 +9,34 @@ categories: ["技术"]
 ---
 golang提供了比较便捷的并发编程方式。golang的并发单元是goroutine。目前实现多个goroutine同步的主要方式有： sync包， runtime包下的channel，context包。
 
-### sync.WaitGroup
+## sync.WaitGroup
 
 标准库sync里的Waitgroup，用来阻塞主协程去等待所有协程执行完。WaitGroup主要三个方法：Add方法添加等待的协程数量，Done方法等于Add(-1)减少等待的协程数量，Wait方法阻塞主协程。原理示意图如下：
 
-![image](/golang/golang_sync.png))
+![image](/golang/golang_sync.png)
 
 
-#### WaitGroup使用说明
+### WaitGroup使用
 WaitGroup在工作中经常会使用到。例如：需要并行处理一些子任务，需要起多个协程对一些复杂结构体的各个字段进行初始化等。简单的使用说明如下：
 ```golang
 func fun() {
     var wg sync.WaitGroup
     wg.Add(1)
     go func() {
+        defer wg.Done() 
         //process
-       wg.Done() 
     }()
     wg.Wait()
 }
-
 ```
 
-### channel
+## channel
 
 通道是golang中协程通信的一种方式，可以灵活、高效支持协程之间的通信。通道与协程之间的交互流程图因是否存在缓冲区、缓冲区是否填满、是否存在发送等待队列等，会在过程上会存在不同。下面给出的示意图是针对利用无缓冲通道进行通信的其中一种情况，主要是为了简化流程和突出主要功能点。图中hchan是通道的底层数据结构，其中主要包含： buf为数据存储区， recvq和sendq为在此通道上等待接受和发送的协程队列，lock为保护通道数据的锁等。P为运行时的协程调度器。原理示意图如下：
 
 ![image](/golang/hchan.png)
 
-#### channel 使用说明
+### channel 使用说明
 
 通过无缓冲的通道，阻塞一个协程，等待另一个协程唤醒。例如：main协程在通道的接受队列中等待， 等worker协程写入数据后，main协程才会唤醒并继续执行。通信的数据是直接写一个协程的stack。这样可以省去去操作通道的buf，减少内存拷贝。简单的使用说明如下：
 
@@ -72,10 +71,9 @@ func main() {
 ```
 
 
-#### channel 错误使用示例
+### channel 错误示例
 
-```
-
+```golang
 // 死锁
 func main() {
     ch := make(chan int)
@@ -109,7 +107,7 @@ func main() {
 
 ```
 
-```
+```golang
 // goroutine泄漏
 func main() {
     ch := make(chan int)
@@ -129,7 +127,7 @@ func main() {
 
 ```
 
-错误操作引起Panic 
+### 错误操作Panic 
 
 ```
 // send on close channel 往已关闭的 channel 写数据会 panic
@@ -141,7 +139,7 @@ func main() {
 3. 多个写入端时，不要在写入端关闭 channel 
 ```
 
-### context
+## context
 
 context是在context包里定义的一种接口。在context包中可以通过WithCancel、WithDeadline、WithTimeout、WithValue这四个方法生成新 Context。WithValue方法生成的context可以做到了跨API的传值功能。WithTimeout方法是对WithDeadline的封装。WithDeadline方法生成的context实现了定时cancel的功能。
 
@@ -207,7 +205,7 @@ func (c *cancelCtx) cancel(removeFromParent bool, err error) {
 }
 ```
 
-#### context使用说明
+### context使用说明
 
 etcd中有一些select , context, channel 的例子
 
