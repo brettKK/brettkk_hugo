@@ -50,14 +50,14 @@
 
     <div class="tip">
         <span>
-          May 3, 2021 18:34
+          May 5, 2021 18:34
         </span>
         <span class="split">
           ·
         </span>
         <span>
           
-            496 words
+            481 words
           
         </span>
         <span class="split">
@@ -70,30 +70,7 @@
 
     <div class="content" >
       <article class="content">
-        <h3 id="单测">单测 <a href="#%e5%8d%95%e6%b5%8b" class="anchor">🔗</a></h3><ul>
-<li>golang 测试框架 stub/mock
-<ul>
-<li>GoConvey  <a href="https://github.com/smartystreets/goconvey">https://github.com/smartystreets/goconvey</a>
-<ul>
-<li>Convey, so, 不是很习惯</li>
-</ul>
-</li>
-<li>testify  <a href="https://github.com/stretchr/testify">https://github.com/stretchr/testify</a></li>
-<li>GoStub</li>
-<li>GoMock</li>
-<li>github.com/bouk/monkey</li>
-<li><a href="https://bou.ke/">https://bou.ke/</a>
-<ul>
-<li>copy 覆盖函数的前12个字节的汇编代码，植入mock函数的地址， 可以在运行时实现函数的mock和unmock</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="调试">调试 <a href="#%e8%b0%83%e8%af%95" class="anchor">🔗</a></h3><ul>
-<li>delve 调试工具</li>
-<li>gdb单步调试go程序的执行过程    Delve 更好</li>
+        <h2 id="工具">工具 <a href="#%e5%b7%a5%e5%85%b7" class="anchor">🔗</a></h2><ul>
 <li>Guru 导航go 代码的编辑器集成工具
 <ul>
 <li>变量，函数的声明地点</li>
@@ -107,32 +84,47 @@
 </ul>
 </li>
 </ul>
+<h2 id="单测">单测 <a href="#%e5%8d%95%e6%b5%8b" class="anchor">🔗</a></h2><p>单测mock框架，测试框架 stub/mock</p>
+<ul>
+<li>GoConvey  <a href="https://github.com/smartystreets/goconvey">https://github.com/smartystreets/goconvey</a>
+<ul>
+<li>Convey, so, 不是很习惯</li>
+</ul>
+</li>
+<li>testify  <a href="https://github.com/stretchr/testify">https://github.com/stretchr/testify</a>
+<ul>
+<li>GoStub</li>
+<li>GoMock</li>
+</ul>
+</li>
+<li><a href="https://bou.ke/">https://bou.ke/</a>
+<ul>
+<li>copy 覆盖函数的前12个字节的汇编代码，植入mock函数的地址， 在运行时实现函数的mock和unmock</li>
+<li>github.com/bouk/monkey</li>
+</ul>
+</li>
+</ul>
 <hr>
-<h3 id="性能分析">性能分析 <a href="#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90" class="anchor">🔗</a></h3><ul>
+<h2 id="调试">调试 <a href="#%e8%b0%83%e8%af%95" class="anchor">🔗</a></h2><ul>
+<li>delve 调试工具</li>
+<li>gdb单步调试go程序的执行过程    Delve 更好</li>
+</ul>
+<hr>
+<h2 id="性能分析">性能分析 <a href="#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90" class="anchor">🔗</a></h2><p>利用runtime/pprof， net/http/pprof采集运行时数据</p>
+<ul>
 <li>
 <p>pprof (CPU profiles, Heap profiles, block profile, traces)</p>
 <ul>
-<li>kite, ginex 框架开启了prof功能， 定时任务，消费者等worker需要 import _ net/http/pprof手动开启</li>
-<li>pprof 性能 ( CPU profile, Mem profile, Block Profiling, Goroutine Profiling )
-<ul>
-<li>go tool pprof
+<li>kite, ginex 框架开启了prof功能</li>
+<li>定时任务，消费者等worker需要 import _ net/http/pprof手动开启</li>
+<li>性能pprof
 <ul>
 <li>go tool pprof http://localhost:8080/debug/pprof/profile</li>
-</ul>
-</li>
 <li>http://127.0.0.1:8080/debug/pprof/heap?debug=1</li>
-<li>终端连接到 go tool pprof -inuse_space http://127.0.0.1:8080/debug/pprof/heap
-<ul>
-<li>进去pprof终端， top 10 或者web生成调用关系图svg</li>
-<li>list</li>
-<li>disasm</li>
-</ul>
-</li>
+<li>终端连接到 go tool pprof -inuse_space http://127.0.0.1:8080/debug/pprof/heap</li>
 <li>svg go tool pprof -alloc_space -cum -svg http://127.0.0.1:8080/debug/pprof/heap &gt; heap.svg</li>
 </ul>
 </li>
-<li>runtime/pprof</li>
-<li>net/http/pprof</li>
 </ul>
 </li>
 <li>
@@ -140,15 +132,14 @@
 </li>
 <li>
 <p>优化go程序 运行速度的方向 只对关键的路径进行优化 (优化运行速度，开会速度会慢 hah)</p>
-<ul>
-<li>channel（mutex锁保证并发安全） ==》 ringbuffer (CAS 保证并发安全)</li>
-<li>避免堆分配可以成为优化的主要方向. 若频繁使用堆，可以sync.Pool 复用对象</li>
-<li>cpu cache line(64字节) False Sharing。</li>
-<li>为了保证cache的一致性，对内存的一个小小的写入都会让cache line被淘汰。</li>
-<li>对相邻地址的读操作就无法命中对应的cache line。</li>
-</ul>
 </li>
 </ul>
+<ol>
+<li>避免堆分配可以成为优化的主要方向。 若频繁使用堆，可以sync.Pool 复用对象</li>
+<li>cpu cache line(64字节)，结构体填充，避免False Sharing。</li>
+<li>为了保证cache的一致性，对内存的一个小小的写入都会让cache line被淘汰。</li>
+<li>对相邻地址的读操作就无法命中对应的cache line。</li>
+</ol>
 
       </article>
     </div>
@@ -158,13 +149,10 @@
           <h3 class="ml-1">Table of contents</h3>
             <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#单测">单测</a></li>
-        <li><a href="#调试">调试</a></li>
-        <li><a href="#性能分析">性能分析</a></li>
-      </ul>
-    </li>
+    <li><a href="#工具">工具</a></li>
+    <li><a href="#单测">单测</a></li>
+    <li><a href="#调试">调试</a></li>
+    <li><a href="#性能分析">性能分析</a></li>
   </ul>
 </nav>
         </nav>

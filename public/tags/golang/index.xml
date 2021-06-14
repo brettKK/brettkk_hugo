@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>go test</title>
+      <link>http://brettkk.github.io/posts/golang/go_test/</link>
+      <pubDate>Wed, 05 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/golang/go_test/</guid>
+      <description>工具 🔗 Guru 导航go 代码的编辑器集成工具 变量，函数的声明地点 变量</description>
+    </item>
+    
+    <item>
       <title>go timer</title>
       <link>http://brettkk.github.io/posts/golang/go_timer/</link>
       <pubDate>Wed, 05 May 2021 18:34:48 +0800</pubDate>
@@ -54,15 +63,6 @@
       
       <guid>http://brettkk.github.io/posts/golang/go_lock/</guid>
       <description>locks 锁 源码包的结构 🔗 sync包 sync.Mutex sync.RWMutex sync.Cond sync.WaitGroup sync.Once sync.Pool 涉及的内容很多 cache line padding</description>
-    </item>
-    
-    <item>
-      <title>go test</title>
-      <link>http://brettkk.github.io/posts/golang/go_test/</link>
-      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/posts/golang/go_test/</guid>
-      <description>单测 🔗 golang 测试框架 stub/mock GoConvey https://github.com/smartystreets/goconvey Convey, so, 不是很习惯 testify https://github.com/stretchr/testify GoStub GoMock github.com/bouk/monkey https://bou.ke/ copy 覆盖函数的</description>
     </item>
     
     <item>

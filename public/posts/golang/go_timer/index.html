@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            798 words
+            811 words
           
         </span>
         <span class="split">
@@ -106,7 +106,7 @@ src/runtime/time.go:addtimerLocked()函数负责添加timer</p>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>系统协程把runtimeTimer存放在数组中，并按照when字段对所有的runtimeTimer进行堆排序，定时器触发时执行runtimeTimer中的预定义函数f
+</div><h3 id="原理">原理 <a href="#%e5%8e%9f%e7%90%86" class="anchor">🔗</a></h3><p>系统协程把runtimeTimer存放在数组中，并按照when字段对所有的runtimeTimer进行堆排序，定时器触发时执行runtimeTimer中的预定义函数f
 即完成了一次定时任务</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -168,7 +168,7 @@ src/runtime/time.go:addtimerLocked()函数负责添加timer</p>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div><h3 id="一次性timer">一次性timer <a href="#%e4%b8%80%e6%ac%a1%e6%80%a7timer" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -244,8 +244,7 @@ src/runtime/time.go:addtimerLocked()函数负责添加timer</p>
 
 </code></pre></td></tr></table>
 </div>
-</div><p>周期性ticker</p>
-<div class="highlight"><div class="chroma">
+</div><h3 id="周期性ticker">周期性ticker <a href="#%e5%91%a8%e6%9c%9f%e6%80%a7ticker" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -278,7 +277,17 @@ src/runtime/time.go:addtimerLocked()函数负责添加timer</p>
     <div class="article-nav" id="article-nav-id">
         <nav class="hide-on-mobile section-nav">
           <h3 class="ml-1">Table of contents</h3>
-            <nav id="TableOfContents"></nav>
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#原理">原理</a></li>
+        <li><a href="#一次性timer">一次性timer</a></li>
+        <li><a href="#周期性ticker">周期性ticker</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
         </nav>
     </div>
 

@@ -53,6 +53,11 @@
   </url>
   
   <url>
+    <loc>http://brettkk.github.io/posts/golang/go_test/</loc>
+    <lastmod>2021-05-05T18:34:48+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://brettkk.github.io/posts/golang/go_timer/</loc>
     <lastmod>2021-05-05T18:34:48+08:00</lastmod>
   </url>
@@ -169,11 +174,6 @@
   
   <url>
     <loc>http://brettkk.github.io/posts/golang/go_lock/</loc>
-    <lastmod>2021-05-03T18:34:48+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://brettkk.github.io/posts/golang/go_test/</loc>
     <lastmod>2021-05-03T18:34:48+08:00</lastmod>
   </url>
   
