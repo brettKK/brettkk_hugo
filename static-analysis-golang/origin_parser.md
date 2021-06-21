@@ -140,3 +140,16 @@ https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-858-co
 + https://github.com/golang/tools
 
 源伞科技
+
+三板斧：DELF, DALF, TCF, TEF
+
+你必须只有内心丰富，才能摆脱这些生活表面的相似。 王朔 
+
+【sticksology欧乐集】皇家玫瑰红茶棒
+
+Golang并发缺陷分析
+
+生活中其实没有那么多皆大欢喜的故事，更没有那么多浮想联翩的奇迹，你只能拼命努力，去换一个还不错的结局。
+
+	你要解决什么问题
+

@@ -9,6 +9,30 @@ tags: ["cloud native"]
 ---
 
 
+学习一些设计模式，有助于理解k8s的源码。 Go Design Pattern
+
++ k8s 组件
+  + kubectl
+  + client-go
+  + kube-apiserver
+  + kube-controller
+  + kube-scheduler
+  + kubelet
+  + kube-proxy
+  
+
+### 其他项目
+
+k8s.io/gengo
+
+
+
+### 项目结构图
+
+### 项目组织结构
+
+
+
 ### cobra命令行的使用
 
 cmd下的main函数为各个k8s组建的入口。    
@@ -49,6 +73,98 @@ func (l VisitorList) Visit(fn VisitorFunc) error {
 }
 
 ```
+
+《kubernets 源码分析》 郑东旭 
+```golang
+type Visitor interface {
+	Visit(VisitorFunc) error
+}
+type VisitorFunc func() error
+
+type VisitorList []Vistor
+
+func (l VisitorLList)Visit(fn VisitorFunc) error {
+	for i := range l {
+		if err := l[i].Visit(func() error {
+			fmt.Println("in visitorlist before fn")
+			fn()
+			fmt.Println("in visitorlist after fn")
+		}); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+type Visitor1 struct {
+}
+
+type (v Visitor1) Visit(fn VisitorFunc) error {
+	fmt.Println("in visitor1 before fn")
+	fn()
+	fmt.Println("in visitor1 after fn")
+}
+
+type Visitor2 struct {
+	visitor Visitor
+}
+func (v Visitor2) Visit(fn VisitorFunc) error {
+	v.visitor.Visit(func() error{
+		fmt.Println("in visitor2 before fn")
+		fn()
+		fmt.Println("in visitor2 after fn")
+		return nil
+	})
+	return nil
+}
+
+type Visitor3 struct {
+	visitor Visitor
+}
+
+func (v Visitor3) Visit(fn VisitorFunc) error {
+	v.visitor.Visit(func() error{
+		fmt.Println("in visitor3 before fn")
+		fn()
+		fmt.Println("in visitor3 after fn")
+		return nil
+	})
+	return nil
+}
+
+func maiin() {
+	var visitor Visitor
+	var visitors []Visitor
+
+	visitor = Visitor1{}
+	visitors = append(visitors, visitor)
+	visitor = Visitor2{VisitorList(visitors)}
+	visitor = Visitor3{visitor}
+
+	visitor.Visit(func() error{
+		fmt.Println("In visitfunc")
+		return nil
+	})
+}
+
+/*
+in visitor1 before fn
+in visitorlist before fn
+in visitor2 before fn
+in visitor3 before fn
+in visistfunc
+in  visitor3 after fn
+in visitor2 after fn
+in visitorlist after fn
+in visitor1 after fn
+*/
+
+```
+
+### client-go 编程式交互
+
+
+### 观察者模式
 
 ### channel的使用方式
 

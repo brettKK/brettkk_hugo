@@ -174,12 +174,47 @@ go严格上只有复制拷贝传递
 
 <br/>
 
+
+### 闭包
+
+闭包=函数+引用环境。
+
+闭包里引用局部变量时，在堆上创建该变量的一个拷贝，并把该变量地址和函数闭包组成一个结构体，并把该结构体传出来作为返回值
+
+
+<br/>
+
 ### unsafe包
 
 uintptr与unsafe.Pointer（类似void*）
 
 1. T1指针与 T2指针类型之间的转换
 2. 修改内存数据， uintptr 常用于与 unsafe.Pointer配合，用于做指针运算
+
+```golang
+//结构体的成员变量在内存存储上是一段连续的内存
+type Num struct{
+	i string
+	j int64
+}
+
+func main(){
+	n := Num{i: "EDDYCJY", j: 1}
+	nPointer := unsafe.Pointer(&n)
+	// 结构体的初始地址就是第一个成员变量的内存地址
+	niPointer := (*string)(unsafe.Pointer(nPointer))
+	*niPointer = "wuhan"
+	// 基于结构体的成员地址去计算偏移量。就能够得出其他成员变量的内存地址
+	//uintptr 是 Go 的内置类型。返回无符号整数，可存储一个完整的地址。后续常用于指针运算
+	//unsafe.Offsetof：返回成员变量 x 在结构体当中的偏移量。更具体的讲，就是返回结构体初始位置到 x 之间的字节数
+	//uintptr 类型是不能存储在临时变量中的 临时变量是可能被垃圾回收掉的 之后的内存操作有迷茫了
+	njPointer := (*int64)(unsafe.Pointer(uintptr(nPointer) + unsafe.Offsetof(n.j)))
+	*njPointer = 91
+
+	fmt.Printf("n.i: %s, n.j: %d", n.i, n.j)
+}
+```
+
 
 指针是对内存区域的地址， 与指针相配合的类型
 说明区域有哪些属性，如何去解析。

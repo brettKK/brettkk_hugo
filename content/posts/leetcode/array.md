@@ -32,3 +32,26 @@ func Remove(arr []int) int {
 
 ### 最大子序和
 
+https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-858-computer-systems-security-fall-2014/lecture-notes/
+
+https://blog.gopheracademy.com/advent-2018/llvm-ir-and-go/
+
+https://xargin.com/
+
+http://www.nondot.org/sabre/
+
+http://www.aosabook.org/en/index.html
+
+https://gohalo.me/about.html
+
+https://github.com/cloudnativeapp/meetup/tree/master/Kubernetes%20Course
+
+https://www.zhihu.com/column/c_1195294063723929600
+
+https://lihaoquan.me/posts/k8s-crd-develop/
+
+https://jimmysong.io/kubernetes-handbook/concepts/
+
+https://github.com/Junedayday/code_reading
+
+https://www.cnblogs.com/yahuian

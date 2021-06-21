@@ -45,6 +45,8 @@ cgroup： 程序运行时对资源的调度触发相应的钩子以达到资源�
 
 Open Container Initiative（OCI）成立后， libcontainer 封装在runC包里。
 
+unionFS可以把文件系统上的多个目录内容联合挂载到同一个目录下，而目录的物理位置是分开的
+
 ---
 
 + api server
