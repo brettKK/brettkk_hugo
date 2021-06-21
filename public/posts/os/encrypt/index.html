@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et">
+<meta name="description" content="service mesh 🔗微服务内部有分布式环境下的通用功能：熔断策略、负载均衡">
 <meta name="generator" content="Hugo 0.72.0" />
 
 
@@ -57,7 +57,7 @@
         </span>
         <span>
           
-            2068 words
+            2071 words
           
         </span>
         <span class="split">
@@ -207,7 +207,8 @@ B : 使用private key2 和 public key1构建本地密钥；
 <p>进而 alice 计算出通信密钥为： $$ S_a = G_b^a mod q $$</p>
 <p>bob 也计算出通信密钥为：   $$ S_b =G_a^b mod q $$</p>
 <p>需证明 $$S_a == S_b$$</p>
-<h4 id="ecdh">ECDH <a href="#ecdh" class="anchor">🔗</a></h4><p>给定椭圆曲线上的一个点P，一个整数k，求解Q=kP很容易；给定一个点P、Q，知道Q=kP，求整数k确是一个难题。ECDH即建立在此数学难题之上。</p>
+<h4 id="ecdh">ECDH <a href="#ecdh" class="anchor">🔗</a></h4><p>ECC</p>
+<p>给定椭圆曲线上的一个点P，一个整数k，求解Q=kP很容易；给定一个点P、Q，知道Q=kP，求整数k确是一个难题。ECDH即建立在此数学难题之上。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
