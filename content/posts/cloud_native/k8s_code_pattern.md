@@ -9,7 +9,8 @@ tags: ["cloud native"]
 ---
 
 
-学习一些设计模式，有助于理解k8s的源码。 Go Design Pattern
+学习一些设计模式，有助于理解k8s的源码。 
+Go Design Pattern
 
 + k8s 组件
   + kubectl
