@@ -6,18 +6,14 @@
     <description>Recent content in Posts on brettkk</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 20 May 2021 11:33:56 +0800</lastBuildDate>
-    
-	<atom:link href="http://brettkk.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 20 May 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>加密相关</title>
       <link>http://brettkk.github.io/posts/os/encrypt/</link>
       <pubDate>Thu, 20 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/os/encrypt/</guid>
-      <description>对称加密 🔗有des, aes 方式， 计算性能好，但密钥的安全依赖于双</description>
+      <description>对称加密 有des, aes 方式， 计算性能好，但密钥的安全依赖于双方</description>
     </item>
     
     <item>
@@ -26,7 +22,7 @@
       <pubDate>Fri, 07 May 2021 18:54:41 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/golang/golang/</guid>
-      <description>资料 🔗 目前golang的主要maintainer: Russ Cox 个人主</description>
+      <description>资料 目前golang的主要maintainer: Russ Cox 个人主页</description>
     </item>
     
     <item>
@@ -44,7 +40,7 @@
       <pubDate>Wed, 05 May 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/golang/go_test/</guid>
-      <description>工具 🔗 Guru 导航go 代码的编辑器集成工具 变量，函数的声明地点 变量</description>
+      <description>工具 Guru 导航go 代码的编辑器集成工具 变量，函数的声明地点 变量，</description>
     </item>
     
     <item>
@@ -116,7 +112,7 @@
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/store_db/mysql/</guid>
-      <description>存储 🔗存储引擎-是创建表时设置，存储引擎是表级别的使用 innodb: 只有</description>
+      <description>存储 存储引擎-是创建表时设置，存储引擎是表级别的使用 innodb: 只有数</description>
     </item>
     
     <item>
@@ -179,7 +175,7 @@
       <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/francais/fran%C3%A7ais/</guid>
-      <description>mac下输入快捷键 🔗法语特殊符输入方法（Mac下） œ = option + q</description>
+      <description>mac下输入快捷键 法语特殊符输入方法（Mac下） œ = option + q ç</description>
     </item>
     
     <item>
@@ -188,7 +184,7 @@
       <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/golang/go_lock/</guid>
-      <description>locks 锁 源码包的结构 🔗 sync包 sync.Mutex sync.RWMutex sync.Cond sync.WaitGroup sync.Once sync.Pool 涉及的内容很多 cache line padding</description>
+      <description>locks 锁 源码包的结构 sync包 sync.Mutex sync.RWMutex sync.Cond sync.WaitGroup sync.Once sync.Pool 涉及的内容很多 cache line padding no</description>
     </item>
     
     <item>
@@ -206,7 +202,7 @@
       <pubDate>Sat, 01 May 2021 18:54:41 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/golang/go_toolchain/</guid>
-      <description>an overview of go&#39;s tooling 🔗 table of content installing tooling $ GO111MODULE=on go get golang.org/x/tools/cmd/stresss go get -u, 强制使用网络去更新包和</description>
+      <description>an overview of go&#39;s tooling table of content installing tooling $ GO111MODULE=on go get golang.org/x/tools/cmd/stresss go get -u, 强制使用网络去更新包和它</description>
     </item>
     
     <item>
@@ -251,7 +247,7 @@
       <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/math/loan/</guid>
-      <description>涉及的变量 🔗 本金M 期数N 利率R 等额本息X 公式推导 🔗当N=1时</description>
+      <description>涉及的变量 本金M 期数N 利率R 等额本息X 公式推导 当N=1时， $$</description>
     </item>
     
     <item>
@@ -278,7 +274,7 @@
       <pubDate>Wed, 03 Mar 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/cloud_native/my-first-post/</guid>
-      <description>service mesh 🔗微服务内部有分布式环境下的通用功能：熔断策略、负载均衡</description>
+      <description>service mesh 微服务内部有分布式环境下的通用功能：熔断策略、负载均衡、</description>
     </item>
     
     <item>
@@ -287,7 +283,7 @@
       <pubDate>Wed, 03 Mar 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/store_db/log_structure_tree/</guid>
-      <description>lsm 基本想法 🔗使用场景， 写多读少，例如存调用链的服务。 应用：l</description>
+      <description>lsm 基本想法 使用场景， 写多读少，例如存调用链的服务。 应用：le</description>
     </item>
     
     <item>
@@ -323,7 +319,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://brettkk.github.io/posts/leetcode/string/</guid>
-      <description>字符串格式的数字相加 🔗最长回文子串 🔗</description>
+      <description>字符串格式的数字相加 最长回文子串 </description>
     </item>
     
     <item>
@@ -354,7 +350,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://brettkk.github.io/posts/store_db/store/</guid>
-      <description>块存储 🔗文件存储 🔗对象存储 🔗对象存储系统： 接入层， 索引层（mysql， redis，etcd），存储层，服务平台
+      <description>块存储 文件存储 对象存储 对象存储系统： 接入层， 索引层（mysql， redis，etcd），存储层，服务平台
 索引： 单对象，分片对象</description>
     </item>
     
