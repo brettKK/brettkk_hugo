@@ -21,6 +21,8 @@ leader 选举
 + 当选后 发心跳包维护leader身份 
 
 
++ raft 状态扭转
+
 一次写请求：node.Propose --> MsgProp --> 加入log里，向follower广播； follower --> 收到 -> msg app resp
 leader --> 收到多数resp --> commit log --> 向folower广播。
 
