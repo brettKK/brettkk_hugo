@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloud native on brettkk</title>
+    <link>http://brettkk.github.io/tags/cloud-native/</link>
+    <description>Recent content in cloud native on brettkk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 05 Apr 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/tags/cloud-native/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>k8s 编码模式学习</title>
+      <link>http://brettkk.github.io/posts/cloud_native/k8s_code_pattern/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/cloud_native/k8s_code_pattern/</guid>
+      <description>new k8s 组件 kubectl client-go kube-apiserver kube-controller kube-scheduler kubelet kube-proxy 周围项目 k8s.io/gengo k8s.io/client-go 项目组织结构 cobra命令</description>
+    </item>
+    
+    <item>
+      <title>etcd_raft</title>
+      <link>http://brettkk.github.io/posts/cloud_native/etcd_raft/</link>
+      <pubDate>Fri, 05 Mar 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/cloud_native/etcd_raft/</guid>
+      <description>raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo</description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>http://brettkk.github.io/posts/cloud_native/my-first-post/</link>
+      <pubDate>Wed, 03 Mar 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/cloud_native/my-first-post/</guid>
+      <description>service mesh 微服务内部有分布式环境下的通用功能：熔断策略、负载均衡、</description>
+    </item>
+    
+  </channel>
+</rss>

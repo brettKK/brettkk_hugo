@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on brettkk</title>
+    <link>http://brettkk.github.io/tags/linux/</link>
+    <description>Recent content in linux on brettkk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 05 May 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>http, curl, dns</title>
+      <link>http://brettkk.github.io/posts/os/http/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/os/http/</guid>
+      <description>http http header 常用字段 content-type (如何解析body) application/x-www-form-urlencoded multipart/from-data, 上传文件 application/json, text/plain text/xml, XML</description>
+    </item>
+    
+    <item>
+      <title>linux-base</title>
+      <link>http://brettkk.github.io/posts/os/base_os/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/os/base_os/</guid>
+      <description>Linux 版本 uname -a 查看系统的版本 debian/ubuntu redhat/fedora/centos 各种源码协议 必须开源： LGPL Mozilla GPL</description>
+    </item>
+    
+    <item>
+      <title>linux-free</title>
+      <link>http://brettkk.github.io/posts/os/free/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/os/free/</guid>
+      <description>free查看内存使用情况，包含已用内存，可用内存，交换内存的</description>
+    </item>
+    
+    <item>
+      <title>linux-shell</title>
+      <link>http://brettkk.github.io/posts/os/shell-basic/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/os/shell-basic/</guid>
+      <description>单引号，双引号，反引号区别 单引号之间的内容原封不动的输出 双引</description>
+    </item>
+    
+    <item>
+      <title>linux-tcp</title>
+      <link>http://brettkk.github.io/posts/os/tcp/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/os/tcp/</guid>
+      <description>tcp报文结构图 URG: 表示紧急指针（urgent pointer）</description>
+    </item>
+    
+    <item>
+      <title>linux-top</title>
+      <link>http://brettkk.github.io/posts/os/top/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/os/top/</guid>
+      <description>linux top命令（mac top结果显示有一些区别） Linux下常</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on brettkk</title>
+    <link>http://brettkk.github.io/tags/golang/</link>
+    <description>Recent content in golang on brettkk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 07 May 2021 18:54:41 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>golang</title>
+      <link>http://brettkk.github.io/posts/golang/golang/</link>
+      <pubDate>Fri, 07 May 2021 18:54:41 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/golang/golang/</guid>
+      <description>资料 目前golang的主要maintainer: Russ Cox 个人主页</description>
+    </item>
+    
+    <item>
+      <title>go同步编码方式</title>
+      <link>http://brettkk.github.io/posts/golang/golang_sync/</link>
+      <pubDate>Thu, 06 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/golang/golang_sync/</guid>
+      <description>golang提供了比较便捷的并发编程方式。golang的并发</description>
+    </item>
+    
+    <item>
+      <title>go test</title>
+      <link>http://brettkk.github.io/posts/golang/go_test/</link>
+      <pubDate>Wed, 05 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/golang/go_test/</guid>
+      <description>工具 Guru 导航go 代码的编辑器集成工具 变量，函数的声明地点 变量，</description>
+    </item>
+    
+    <item>
+      <title>go timer</title>
+      <link>http://brettkk.github.io/posts/golang/go_timer/</link>
+      <pubDate>Wed, 05 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/golang/go_timer/</guid>
+      <description>Go提供了两种定时器，分为一次性定时器、周期性定时器。 两种定</description>
+    </item>
+    
+    <item>
+      <title>bug_fix</title>
+      <link>http://brettkk.github.io/posts/golang/bug_fix/</link>
+      <pubDate>Tue, 04 May 2021 19:10:43 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/golang/bug_fix/</guid>
+      <description>一些bug init() 函数滥用 函数功能是查询类的，能不用指针传参数就不</description>
+    </item>
+    
+    <item>
+      <title>go lock</title>
+      <link>http://brettkk.github.io/posts/golang/go_lock/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/golang/go_lock/</guid>
+      <description>locks 锁 源码包的结构 sync包 sync.Mutex sync.RWMutex sync.Cond sync.WaitGroup sync.Once sync.Pool 涉及的内容很多 cache line padding no</description>
+    </item>
+    
+    <item>
+      <title>go内存模型</title>
+      <link>http://brettkk.github.io/posts/golang/gomemorymodel/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/golang/gomemorymodel/</guid>
+      <description>go的内存模型规定： 在哪些情况下，一个golang中读取的变</description>
+    </item>
+    
+    <item>
+      <title>go_toolchain</title>
+      <link>http://brettkk.github.io/posts/golang/go_toolchain/</link>
+      <pubDate>Sat, 01 May 2021 18:54:41 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/golang/go_toolchain/</guid>
+      <description>an overview of go&#39;s tooling table of content installing tooling $ GO111MODULE=on go get golang.org/x/tools/cmd/stresss go get -u, 强制使用网络去更新包和它</description>
+    </item>
+    
+  </channel>
+</rss>

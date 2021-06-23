@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>life on brettkk</title>
+    <link>http://brettkk.github.io/categories/life/</link>
+    <description>Recent content in life on brettkk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 05 May 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/categories/life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>电影对白</title>
+      <link>http://brettkk.github.io/posts/francais/common_sense/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/francais/common_sense/</guid>
+      <description>《scent of a woman》 Slade this is such a crock of shit Slade you are in the Barrett school not</description>
+    </item>
+    
+    <item>
+      <title>Alphabet Français</title>
+      <link>http://brettkk.github.io/posts/francais/fran%C3%A7ais/</link>
+      <pubDate>Mon, 03 May 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/francais/fran%C3%A7ais/</guid>
+      <description>mac下输入快捷键 法语特殊符输入方法（Mac下） œ = option + q ç</description>
+    </item>
+    
+    <item>
+      <title>europe</title>
+      <link>http://brettkk.github.io/posts/francais/euro/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/francais/euro/</guid>
+      <description>欧洲历史 欧洲历史 古希腊，罗马文明 古希腊文明 苏格拉底 柏拉图 亚里</description>
+    </item>
+    
+    <item>
+      <title>matrix</title>
+      <link>http://brettkk.github.io/posts/math/matrix/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/math/matrix/</guid>
+      <description>线性代数 矩阵的几何意义 矩阵是对空间的一次变化 行列式的意义： 经</description>
+    </item>
+    
+    <item>
+      <title>等额本息</title>
+      <link>http://brettkk.github.io/posts/math/loan/</link>
+      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/math/loan/</guid>
+      <description>涉及的变量 本金M 期数N 利率R 等额本息X 公式推导 当N=1时， $$</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>encrypt on brettkk</title>
+    <link>http://brettkk.github.io/tags/encrypt/</link>
+    <description>Recent content in encrypt on brettkk</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 20 May 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/tags/encrypt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>加密相关</title>
+      <link>http://brettkk.github.io/posts/os/encrypt/</link>
+      <pubDate>Thu, 20 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/os/encrypt/</guid>
+      <description>对称加密 有des, aes 方式， 计算性能好，但密钥的安全依赖于双方</description>
+    </item>
+    
+    <item>
+      <title>安全与风控</title>
+      <link>http://brettkk.github.io/posts/os/secure_risk/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/os/secure_risk/</guid>
+      <description>漏洞 起因是信任了用户的任意输入。 sql注入 危害： 执行任意sq</description>
+    </item>
+    
+  </channel>
+</rss>
