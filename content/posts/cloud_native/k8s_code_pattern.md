@@ -8,6 +8,8 @@ tags: ["cloud native"]
 
 ---
 
+new 
+
 + k8s 组件
   + kubectl
   + client-go

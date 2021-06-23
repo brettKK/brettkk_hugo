@@ -6,14 +6,26 @@
     <description>Recent content in 存储 on brettkk</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
+<<<<<<< HEAD
     <lastBuildDate>Wed, 05 May 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/tags/%E5%AD%98%E5%82%A8/index.xml" rel="self" type="application/rss+xml" />
+=======
+    <lastBuildDate>Wed, 05 May 2021 11:33:56 +0800</lastBuildDate>
+    
+	<atom:link href="http://brettkk.github.io/tags/%E5%AD%98%E5%82%A8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+>>>>>>> aeebfcb4061c11947a7400a533ab3ad216cf2444
     <item>
       <title>mysql 小结</title>
       <link>http://brettkk.github.io/posts/store_db/mysql/</link>
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/store_db/mysql/</guid>
+<<<<<<< HEAD
       <description>存储 存储引擎-是创建表时设置，存储引擎是表级别的使用 innodb: 只有数</description>
+=======
+      <description>存储 🔗存储引擎-是创建表时设置，存储引擎是表级别的使用 innodb: 只有</description>
+>>>>>>> aeebfcb4061c11947a7400a533ab3ad216cf2444
     </item>
     
     <item>
@@ -31,8 +43,16 @@
       <pubDate>Wed, 03 Mar 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/store_db/log_structure_tree/</guid>
+<<<<<<< HEAD
       <description>lsm 基本想法 使用场景， 写多读少，例如存调用链的服务。 应用：le</description>
     </item>
     
   </channel>
 </rss>
+=======
+      <description>lsm 基本想法 🔗使用场景， 写多读少，例如存调用链的服务。 应用：l</description>
+    </item>
+    
+  </channel>
+</rss>
+>>>>>>> aeebfcb4061c11947a7400a533ab3ad216cf2444
