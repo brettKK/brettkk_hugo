@@ -6,15 +6,7 @@
     <description>Recent content in linux on brettkk</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-<<<<<<< HEAD
     <lastBuildDate>Wed, 05 May 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-=======
-    <lastBuildDate>Wed, 05 May 2021 11:33:56 +0800</lastBuildDate>
-    
-	<atom:link href="http://brettkk.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-    
-    
->>>>>>> aeebfcb4061c11947a7400a533ab3ad216cf2444
     <item>
       <title>http, curl, dns</title>
       <link>http://brettkk.github.io/posts/os/http/</link>
@@ -70,8 +62,4 @@
     </item>
     
   </channel>
-<<<<<<< HEAD
 </rss>
-=======
-</rss>
->>>>>>> aeebfcb4061c11947a7400a533ab3ad216cf2444

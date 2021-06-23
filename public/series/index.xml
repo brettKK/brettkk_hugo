@@ -5,16 +5,6 @@
     <link>http://brettkk.github.io/series/</link>
     <description>Recent content in Series on brettkk</description>
     <generator>Hugo -- gohugo.io</generator>
-<<<<<<< HEAD
     <language>zh-cn</language><atom:link href="http://brettkk.github.io/series/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
-=======
-    <language>zh-cn</language>
-    
-	<atom:link href="http://brettkk.github.io/series/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-  </channel>
-</rss>
->>>>>>> aeebfcb4061c11947a7400a533ab3ad216cf2444

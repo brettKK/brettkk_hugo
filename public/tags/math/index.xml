@@ -6,15 +6,7 @@
     <description>Recent content in math on brettkk</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-<<<<<<< HEAD
     <lastBuildDate>Mon, 05 Apr 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/tags/math/index.xml" rel="self" type="application/rss+xml" />
-=======
-    <lastBuildDate>Mon, 05 Apr 2021 11:33:56 +0800</lastBuildDate>
-    
-	<atom:link href="http://brettkk.github.io/tags/math/index.xml" rel="self" type="application/rss+xml" />
-    
-    
->>>>>>> aeebfcb4061c11947a7400a533ab3ad216cf2444
     <item>
       <title>matrix</title>
       <link>http://brettkk.github.io/posts/math/matrix/</link>
@@ -30,16 +22,8 @@
       <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/math/loan/</guid>
-<<<<<<< HEAD
       <description>涉及的变量 本金M 期数N 利率R 等额本息X 公式推导 当N=1时， $$</description>
     </item>
     
   </channel>
 </rss>
-=======
-      <description>涉及的变量 🔗 本金M 期数N 利率R 等额本息X 公式推导 🔗当N=1时</description>
-    </item>
-    
-  </channel>
-</rss>
->>>>>>> aeebfcb4061c11947a7400a533ab3ad216cf2444
