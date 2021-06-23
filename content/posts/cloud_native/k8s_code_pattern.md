@@ -23,8 +23,6 @@ k8s.io/gengo
 k8s.io/client-go
 
 
-### 项目结构图
-
 ### 项目组织结构
 
 
