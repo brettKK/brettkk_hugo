@@ -1,4 +1,4 @@
----
+qq@d---
 title: "etcd"
 date: 2021-04-05T11:33:56+08:00
 draft: false
@@ -13,6 +13,7 @@ tags: ["cloud native"]
   + store
   + raft
   + wal
+
 
 <!-- ![image](/cloud_native/etcd_arch.jpg) -->
 <img src="/cloud_native/etcd_arch.jpg" width = "400" /><br>
