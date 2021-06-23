@@ -27,6 +27,7 @@ k8s.io/client-go
 
 
 
+
 ### cobra命令行的使用
 
 cmd下的main函数为各个k8s组建的入口。    

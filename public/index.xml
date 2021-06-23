@@ -206,15 +206,6 @@
     </item>
     
     <item>
-      <title>etcd</title>
-      <link>http://brettkk.github.io/posts/cloud_native/etcd/</link>
-      <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/posts/cloud_native/etcd/</guid>
-      <description>etcd架构分为4部分 http server store raft wal etcd使用场景 API：Et</description>
-    </item>
-    
-    <item>
       <title>europe</title>
       <link>http://brettkk.github.io/posts/francais/euro/</link>
       <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
@@ -284,6 +275,18 @@
       
       <guid>http://brettkk.github.io/posts/store_db/log_structure_tree/</guid>
       <description>lsm 基本想法 使用场景， 写多读少，例如存调用链的服务。 应用：le</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/cloud_native/etcd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/cloud_native/etcd/</guid>
+      <description>qq@d--- title: &amp;quot;etcd&amp;quot; date: 2021-04-05T11:33:56+08:00 draft: false isCJKLanguage: true
+tags: [&amp;quot;cloud native&amp;quot;]
+  etcd架构分为4部分  http server store raft wal      etcd使用场景
+ API：Etcd提供HTTP+JSON, gRPC接口，跨平台跨语言; 支持https 共享配置 服务发现 选主 分布式队列 分布式锁    play.</description>
     </item>
     
     <item>
