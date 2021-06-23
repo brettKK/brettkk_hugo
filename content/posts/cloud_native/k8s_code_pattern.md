@@ -8,7 +8,6 @@ tags: ["cloud native"]
 
 ---
 
-
 + k8s 组件
   + kubectl
   + client-go
@@ -19,7 +18,7 @@ tags: ["cloud native"]
   + kube-proxy
   
 
-### 其他项目
+### 周围项目
 
 k8s.io/gengo
 k8s.io/client-go
