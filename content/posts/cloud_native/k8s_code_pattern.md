@@ -8,7 +8,7 @@ tags: ["cloud native"]
 
 ---
 
-new 
+draft todo 
 
 + k8s 组件
   + kubectl
