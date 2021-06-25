@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title>lsm 小结 | brettkk</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="欧洲历史 欧洲历史 古希腊，罗马文明 古希腊文明 苏格拉底 柏拉图 亚里">
+<meta name="generator" content="Hugo 0.84.0" />
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/tags">Tags</a>
+	<a href="/about">About</a>
+
+	
+
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title">lsm 小结</h1>
+
+    <div class="tip">
+        <span>
+          Mar 3, 2021 18:34
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          
+            275 words
+          
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          1 minute read
+        </span>
+    </div>
+
+    <div class="content">
+      <h2 id="lsm-基本想法">lsm 基本想法 <a href="#lsm-%e5%9f%ba%e6%9c%ac%e6%83%b3%e6%b3%95" class="anchor">🔗</a></h2><p>使用场景， 写多读少，例如存调用链的服务。</p>
+<p>应用：levelDB, HBase, Cassandra, RocksDB</p>
+<ul>
+<li>为什么lsm
+<ul>
+<li>分层，有序，面向磁盘的数据结构</li>
+<li>批量写，顺序写对硬件驱动友好</li>
+<li>顺序操作高吞吐</li>
+</ul>
+</li>
+</ul>
+<h2 id="写入">写入 <a href="#%e5%86%99%e5%85%a5" class="anchor">🔗</a></h2><p>写数据时， 写入内存有序树结构memtable, 并更新布隆过滤器。</p>
+<p>当memtable累积到阈值，一次性写入segment内部有序文件到磁盘。</p>
+<p>后台有专门的定期执行compact操作的线程合并segment文件。</p>
+<h2 id="读取">读取 <a href="#%e8%af%bb%e5%8f%96" class="anchor">🔗</a></h2><p>查询布隆过滤器，若不存在则一定是不存在； 若存在，按照从新到老的顺序依次查询每个segment。</p>
+<h2 id="更新">更新 <a href="#%e6%9b%b4%e6%96%b0" class="anchor">🔗</a></h2><h2 id="删除">删除 <a href="#%e5%88%a0%e9%99%a4" class="anchor">🔗</a></h2><p>删除时是覆盖写value为特殊标识位，而不是真执行查找并删除。</p>
+
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="http://brettkk.github.io/tags/%E5%AD%98%E5%82%A8">存储</a>
+            
+        </div>
+    
+    
+    
+
+</section>
+
+
+    </main>
+    
+    <footer id="footer">
+    
+
+    <p class="copyright">
+    
+       © Copyright 
+       2021 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       
+    
+    </p>
+    <p class="powerby">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+  </body>
+</html>

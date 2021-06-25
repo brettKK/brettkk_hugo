@@ -13,7 +13,7 @@
       <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/cloud_native/k8s_code_pattern/</guid>
-      <description>new k8s 组件 kubectl client-go kube-apiserver kube-controller kube-scheduler kubelet kube-proxy 周围项目 k8s.io/gengo k8s.io/client-go 项目组织结构 cobra命令</description>
+      <description>draft todo k8s 组件 kubectl client-go kube-apiserver kube-controller kube-scheduler kubelet kube-proxy 周围项目 🔗k8s.io/gengo k8s.io/client-go</description>
     </item>
     
     <item>
@@ -31,7 +31,7 @@
       <pubDate>Wed, 03 Mar 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/cloud_native/my-first-post/</guid>
-      <description>service mesh 微服务内部有分布式环境下的通用功能：熔断策略、负载均衡、</description>
+      <description>service mesh 🔗微服务内部有分布式环境下的通用功能：熔断策略、负载均衡</description>
     </item>
     
   </channel>

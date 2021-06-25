@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title>brettkk</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="欧洲历史 欧洲历史 古希腊，罗马文明 古希腊文明 苏格拉底 柏拉图 亚里">
+<meta name="generator" content="Hugo 0.84.0" />
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/tags">Tags</a>
+	<a href="/about">About</a>
+
+	
+
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title"></h1>
+
+    <div class="tip">
+        <span>
+          Jan 1, 0001 00:00
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          
+            60 words
+          
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          1 minute read
+        </span>
+    </div>
+
+    <div class="content">
+      <p>qq@d---
+title: &quot;etcd&quot;
+date: 2021-04-05T11:33:56+08:00
+draft: false
+isCJKLanguage: true</p>
+<p>tags: [&quot;cloud native&quot;]</p>
+<hr>
+<ul>
+<li>etcd架构分为4部分
+<ul>
+<li>http server</li>
+<li>store</li>
+<li>raft</li>
+<li>wal</li>
+</ul>
+</li>
+</ul>
+<!-- ![image](/cloud_native/etcd_arch.jpg) -->
+<p><img src="/cloud_native/etcd_arch.jpg" width = "400" /><br></p>
+<ul>
+<li>
+<p>etcd使用场景</p>
+<ul>
+<li>API：Etcd提供HTTP+JSON, gRPC接口，跨平台跨语言; 支持https</li>
+<li>共享配置</li>
+<li>服务发现</li>
+<li>选主</li>
+<li>分布式队列</li>
+<li>分布式锁</li>
+</ul>
+</li>
+<li>
+<p>play.etcd.io, dash.etcd.io</p>
+</li>
+<li>
+<p>数据存储</p>
+<ul>
+<li>内存存储，顺序记录数据的变更记录，也会有索引和建堆等方便查询</li>
+<li>持久化到硬盘， wal进行记录的存储(wal目录和snapshot)</li>
+</ul>
+</li>
+<li>
+<p>etcd wal日志格式，日志命令规则 (tools/etcd-dump-logs)</p>
+<ul>
+<li>WAL文件名以$seq-$index.wal的格式存储, 日志切分seq加1，新操作index加1</li>
+<li>entry
+<ul>
+<li>type 0-normal, 1-confchange</li>
+<li>term 主节点的任期 （从一次竞选开始到下一次竞选开始）</li>
+<li>index 序号，严格有序递增 snapshot的存储命名以$term-$index.wal格式进行命名存储</li>
+<li>data</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>etcd (gopher redis + zookeeper) 一致性的kv存储系统</p>
+<ul>
+<li>raft，复制日志的一致性算法 (选举，日志复制，安全性)
+<ul>
+<li>选举，理解raft的时钟周期和超时机制</li>
+<li>日志复制，理解日志的同步机制</li>
+<li>主节点处理所有的写操作，通过raft协议可靠的同步到其他节点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+</section>
+
+
+    </main>
+    
+    <footer id="footer">
+    
+
+    <p class="copyright">
+    
+       © Copyright 
+       2021 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       
+    
+    </p>
+    <p class="powerby">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+  </body>
+</html>
