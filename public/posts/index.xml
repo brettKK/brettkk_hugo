@@ -6,7 +6,16 @@
     <description>Recent content in Posts on brettkk</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 20 May 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Jun 2021 18:34:48 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>prometheus</title>
+      <link>http://brettkk.github.io/posts/cloud_native/prometheus/</link>
+      <pubDate>Thu, 24 Jun 2021 18:34:48 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/cloud_native/prometheus/</guid>
+      <description>时序数据库 TSDB influxDB 入口main方法 🔗管理协程的生命周期 🔗使用gi</description>
+    </item>
+    
     <item>
       <title>加密相关</title>
       <link>http://brettkk.github.io/posts/os/encrypt/</link>
