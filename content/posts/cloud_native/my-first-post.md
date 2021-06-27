@@ -20,6 +20,7 @@ categories: ["技术"]
 
 sidecar 单边模式代理模式。 同一个微服务的代理进程service mesh互通，与其他微服务的service mesh也通信，所以单看代理进程像网一样，所以叫service mesh。
 
+istio, prometheus, k8s, runc, docker, libcontainer, 
 
 ### serviceless
 

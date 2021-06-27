@@ -1,22 +1,22 @@
 <mxfile>
     <diagram id="BNxWSGJAurHfVwpVZjDO" name="第 1 页">
-        <mxGraphModel dx="874" dy="680" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="728" dy="595" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="TSDB" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="2" value="TSDB" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="60" y="180" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;" vertex="1" parent="1">
+                <mxCell id="3" value="" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;" parent="1" vertex="1">
                     <mxGeometry x="180" y="160" width="50" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="block" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="4" value="block" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="230" y="130" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="WAL" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="5" value="WAL" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="230" y="230" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="&lt;ul&gt;&lt;li&gt;chunk&lt;/li&gt;&lt;li&gt;index&lt;/li&gt;&lt;li&gt;meta.json&lt;/li&gt;&lt;li&gt;tombstones&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
+                <mxCell id="6" value="&lt;ul&gt;&lt;li&gt;chunk&lt;/li&gt;&lt;li&gt;index&lt;/li&gt;&lt;li&gt;meta.json&lt;/li&gt;&lt;li&gt;tombstones&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" parent="1" vertex="1">
                     <mxGeometry x="350" y="105" width="120" height="110" as="geometry"/>
                 </mxCell>
             </root>
