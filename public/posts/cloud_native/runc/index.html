@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title>runc | brettkk</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="">
+<meta name="generator" content="Hugo 0.84.0" />
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/tags">Tags</a>
+	<a href="/about">About</a>
+
+	
+
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title">runc</h1>
+
+    <div class="tip">
+        <span>
+          Jun 26, 2021 18:34
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          
+            832 words
+          
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          2 minute read
+        </span>
+    </div>
+
+    <div class="content">
+      <p>runc 是根据OCI（Open Container Initiative）开放容器标准开发的容器运行工具。</p>
+<p>runc 在libcontainer上进行各种命令的封装。</p>
+<h2 id="1-项目结构">1. 项目结构 <a href="#1-%e9%a1%b9%e7%9b%ae%e7%bb%93%e6%9e%84" class="anchor">🔗</a></h2><ul>
+<li>runc/main.go 文件是命令的入口文件，其余子命令模块也存在于该层目录。</li>
+</ul>
+<p>如 create.go，start.go, run.go exec.go 等；整个命令模块的组装使用了 github.com/urfave/cli 这个库</p>
+<ul>
+<li>runc/libcontainer 目录是主要存放每个子命令模块的工作主体逻辑；</li>
+</ul>
+<h2 id="2-命令">2. 命令 <a href="#2-%e5%91%bd%e4%bb%a4" class="anchor">🔗</a></h2><h3 id="21-create-init-start">2.1 create, init, start <a href="#21-create-init-start" class="anchor">🔗</a></h3><ul>
+<li>create：解析配置和创建子进程的消息通道</li>
+<li>init：根据容器配置启动容器运行环境，阻塞写在execfifo队列，等待start的读，随后execve执行用户程序</li>
+<li>start：为了通知init 进程启动容器</li>
+</ul>
+<p><img src="/cloud_native/runc_run.svg" width = "300" /><br></p>
+<p>create命令主要2个步骤：</p>
+<ol>
+<li>spec, err := setupSpec(context)</li>
+</ol>
+<p>解析配置</p>
+<ol start="2">
+<li>status, err := startContainer(context, spec, CT_ACT_CREATE, nil)</li>
+</ol>
+<p>startContainer方法在create, run restore命令中共用，只是入参action不同。</p>
+<p>根据配置生成runc init容器进程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="o">*</span><span class="nx">linuxStandardInit</span><span class="p">)</span> <span class="nf">Init</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="o">......</span>
+    <span class="nx">name</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nf">LookPath</span><span class="p">(</span><span class="nx">l</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1">// fd是execfifo, 写阻塞，等start执行读fifo后接着执行
+</span><span class="c1"></span>    <span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">unix</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">fd</span><span class="p">,</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;0&#34;</span><span class="p">));</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nf">newSystemErrorWithCause</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;write 0 exec fifo&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+    <span class="c1">// init进程执行exec后，替换成用户程序
+</span><span class="c1"></span>    <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">unix</span><span class="p">.</span><span class="nf">Exec</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">l</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">:],</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Environ</span><span class="p">());</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nf">newSystemErrorWithCause</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;exec user process&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="22-run">2.2 run <a href="#22-run" class="anchor">🔗</a></h3><p>runc run containerID, 少了execfifo的阻塞，过程类似create, start。</p>
+<p>pause/resume利用了 cgroup 的 子系统 freezer 来实现进程的挂起</p>
+<hr>
+<h2 id="3-namespace">3. namespace <a href="#3-namespace" class="anchor">🔗</a></h2><p>nsexec.c中从”_LIBCONTAINER_INITPIPE”环境变量中拿到pipe，从pipe中并读取bootstrapData。
+先执行clone()，参数有CLONE_PARENT及命名空间参数，使用子进程和父进程是兄弟关系，并拥有自己的命名空间。
+然后调用setns()加入存在的namespace</p>
+<h2 id="4-cgroup">4. cgroup <a href="#4-cgroup" class="anchor">🔗</a></h2><p>cgroup对进程资源的限制，在libcontainer中是往子系统下的资源控制文件里写入配置值。</p>
+<h2 id="5-ebpf">5. ebpf <a href="#5-ebpf" class="anchor">🔗</a></h2><p>限制在容器中访问设备以及访问权限，不是往devices子系统里写配置值，而是采用ebpf限制访问。</p>
+<p>一段字节码加载到内核中执行。</p>
+<p>github.com/cilium/ebpf</p>
+
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="http://brettkk.github.io/tags/cloud-native">cloud native</a>
+            
+        </div>
+    
+    
+    
+
+</section>
+
+
+    </main>
+    
+    <footer id="footer">
+    
+
+    <p class="copyright">
+    
+       © Copyright 
+       2021 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       
+    
+    </p>
+    <p class="powerby">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+  </body>
+</html>

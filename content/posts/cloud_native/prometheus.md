@@ -28,8 +28,6 @@ categories: ["技术"]
 
 ## 2. tsdb
 
-+ scraping
-+ time series
 + chunks
     + sample, raw label set, timestamp & value tuple
     + sequential series of encoded samples

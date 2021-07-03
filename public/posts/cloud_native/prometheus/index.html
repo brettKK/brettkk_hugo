@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="《scent of a woman》 Slade this is such a crock of shit Slade you are in the Barrett school not">
+<meta name="description" content="">
 <meta name="generator" content="Hugo 0.84.0" />
 
 
@@ -55,7 +55,7 @@
         </span>
         <span>
           
-            117 words
+            410 words
           
         </span>
         <span class="split">
@@ -67,17 +67,38 @@
     </div>
 
     <div class="content">
-      <ul>
-<li>时序数据库
+      <p>在解决内存与磁盘的读写模式、性能的不匹配问题。有以下两点：</p>
+<p>在内存中的head block进行写，使用wal保证内存数据的持久性。</p>
+<p>后台协程定期compact到磁盘的block文件夹，使用index文件来提高查询效率。</p>
+<h2 id="1-入口main方法">1. 入口main方法 <a href="#1-%e5%85%a5%e5%8f%a3main%e6%96%b9%e6%b3%95" class="anchor">🔗</a></h2><h3 id="多协程的共进退">多协程的共进退 <a href="#%e5%a4%9a%e5%8d%8f%e7%a8%8b%e7%9a%84%e5%85%b1%e8%bf%9b%e9%80%80" class="anchor">🔗</a></h3><p>使用github.com/oklog/run。</p>
+<p><img src="/cloud_native/prom_rungroup.svg" width = "600" /><br></p>
+<p>场景：管理多个子协程，通过main goroutine的errors channel返回子协程的execute error， 中断所有的子协程。</p>
+<h2 id="2-tsdb">2. tsdb <a href="#2-tsdb" class="anchor">🔗</a></h2><ul>
+<li>scraping</li>
+<li>time series</li>
+<li>chunks
 <ul>
-<li>TSDB</li>
-<li>influxDB</li>
+<li>sample, raw label set, timestamp &amp; value tuple</li>
+<li>sequential series of encoded samples</li>
+</ul>
+</li>
+<li>chunk head 内存存储</li>
+<li>wal</li>
+<li>block
+<ul>
+<li>mini database: index, meta, tombstone, chunks</li>
+<li>two key processes: compaction, truncation</li>
+</ul>
+</li>
+<li>index
+<ul>
+<li>TOC段， 存放symbol段，series段，posting倒排索引段在index文件的offset</li>
+<li>倒排索引，label1, value1 -&gt; serie id list</li>
+<li>series段,  label sets -&gt; chunks</li>
+<li>查询过程； 根据多个label， value查询posting倒排索引，取serie id的交集，再根据serie id查找series段查找到chunk信息。</li>
 </ul>
 </li>
 </ul>
-<h2 id="入口main方法">入口main方法 <a href="#%e5%85%a5%e5%8f%a3main%e6%96%b9%e6%b3%95" class="anchor">🔗</a></h2><h3 id="管理协程的生命周期">管理协程的生命周期 <a href="#%e7%ae%a1%e7%90%86%e5%8d%8f%e7%a8%8b%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" class="anchor">🔗</a></h3><p>使用github.com/oklog/run。</p>
-<p><img src="/cloud_native/prom_rungroup.svg" width = "600" /><br></p>
-<p>场景：管理多个子协程，通过main goroutine的errors channel返回子协程的execute error， 中断所有的子协程。</p>
 
     </div>
 
