@@ -59,12 +59,64 @@
         
         <section class="item">
           <div>
+            <h1 class="title"><a href='/posts/leetcode/tree/'></a></h1>   
+            <div class="date">Jan 1, 0001</div>
+          </div>
+
+          <div class="summary">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70  type TreeNode struct { value int left *TreeNode right *TreeNode } // bin search tree type BinTree struct { root *TreeNode } func (t *BinTree) Insert(value int) { node := &amp;TreeNode{value, nil, nil} if t.</div>
+
+        </section>
+    
+        
+        
+        
+        <section class="item">
+          <div>
+            <h1 class="title"><a href='/posts/os/file_system/'></a></h1>   
+            <div class="date">Jan 1, 0001</div>
+          </div>
+
+          <div class="summary">块存储、文件存储、对象存储
+ 存储的两种方式  用电子存储数据 U盘，固态硬盘SSD 用磁性记录数据 机械硬盘HDD 垂直式 叠瓦式    linux: 一切皆文件。
+分布式存储
+同步IO 异步IO： 指的是I/O 的执行者，是同步处理后返回，还是先返回给应用程序后异步通知。
+阻塞IO 非阻塞IO： 指的是IO的调用者，是阻塞等待结果，还是异步等通知。</div>
+
+        </section>
+    
+        
+        
+        
+        <section class="item">
+          <div>
             <h1 class="title"><a href='/posts/store_db/store/'></a></h1>   
             <div class="date">Jan 1, 0001</div>
           </div>
 
           <div class="summary">块存储 🔗文件存储 🔗对象存储 🔗对象存储系统： 接入层， 索引层（mysql， redis，etcd），存储层，服务平台
 索引： 单对象，分片对象</div>
+
+        </section>
+    
+        
+        
+        
+        <section class="item">
+          <div>
+            <h1 class="title"><a href='/posts/tools/compiler/'></a></h1>   
+            <div class="date">Jan 1, 0001</div>
+          </div>
+
+          <div class="summary">词法分析： code -&gt; token
+lex, flex
+递归下降
+LALR(1)
+词法分析&#43;语法分析： promql
+ 语法分析： token -&gt; ASR
+yacc
+--
+goyacc 🔗安装： go get -u github.com/golang/tools/tree/master/cmd/goyacc
+1 2 3 4 5 6 7 8 9  type yyLexer interface { Lex(lval *yySymType) int Error(e string) } type yyParser interface { Parse(yyLex) int Lookahead() int }   </div>
 
         </section>
     
@@ -79,6 +131,12 @@
             </span>
           
           
+          
+              <span class="next">
+                  <a href="/page/12/">
+                      Older Posts <span class="arrow">→</span>
+                  </a>
+              </span>
           
         </div>
     

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title>mac安装开发环境 | brettkk</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="">
+<meta name="generator" content="Hugo 0.84.0" />
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/tags">Tags</a>
+	<a href="/about">About</a>
+
+	
+
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title">mac安装开发环境</h1>
+
+    <div class="tip">
+        <span>
+          May 5, 2021 11:33
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          
+            219 words
+          
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          1 minute read
+        </span>
+    </div>
+
+    <div class="content">
+      <p>新电脑构建开发环境</p>
+
+<hr>
+
+<ul>
+<li>安装终端窗口工具</li>
+</ul>
+
+<p>下载地址：<a href="https://iterm2.com/">https://iterm2.com/</a></p>
+
+<ul>
+<li>安装 brew</li>
+</ul>
+
+<p>/bin/bash -c &quot;$(curl -fsSL <a href="https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install.sh)&quot;">https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install.sh)&quot;</a></p>
+
+<ul>
+<li>安装，切换为zsh，并安装oh my zsh -- shell辅助工具</li>
+</ul>
+
+<p>可能遇到的问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">sh -c &#34;$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&#34;
+
+curl: (7) Failed to connect to raw.githubusercontent.com port 443: Connection refused</code></pre></td></tr></table>
+</div>
+</div>
+<p>解决方式： <a href="https://github.com/ohmyzsh/ohmyzsh/issues/9465">https://github.com/ohmyzsh/ohmyzsh/issues/9465</a></p>
+
+<ul>
+<li>安装 golang</li>
+</ul>
+
+<p><a href="https://golang.org/doc/install">https://golang.org/doc/install</a></p>
+
+<p><a href="https://sourabhbajaj.com/mac-setup/Go/README.html">https://sourabhbajaj.com/mac-setup/Go/README.html</a></p>
+
+<p>vim .bashrc</p>
+
+<p>export GOPATH=$HOME/go-workspace # don't forget to change your path correctly!
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin</p>
+
+<ul>
+<li>安装 vscode</li>
+</ul>
+
+<p><a href="https://code.visualstudio.com/docs/setup/mac">https://code.visualstudio.com/docs/setup/mac</a></p>
+
+<p>插件</p>
+
+<ul>
+<li>安装blog</li>
+</ul>
+
+<p>Brew install Hugo</p>
+
+<p>git pull origin master --allow-unrelated-histories</p>
+
+<p>git submodule update --init --recursive</p>
+
+<ul>
+<li>本地配置GitHub访问权限</li>
+</ul>
+
+<p>在～下创建.ssh文件夹 ssh-keygen -t rsa -C “xxx@xx.com&quot;
+将公钥添加到github</p>
+
+<p>go env -w GOPROXY=<a href="https://goproxy.cn">https://goproxy.cn</a></p>
+
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="http://brettkk.github.io/tags/soft_tools">soft_tools</a>
+            
+        </div>
+    
+    
+    
+
+</section>
+
+
+    </main>
+    
+    <footer id="footer">
+    
+
+    <p class="copyright">
+    
+       © Copyright 
+       2021 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       
+    
+    </p>
+    <p class="powerby">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+  </body>
+</html>

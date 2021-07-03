@@ -10,7 +10,15 @@ categories: ["技术"]
 ---
 
 
-新电脑构建开发环境
+新电脑构建开发环境，安装指南
+
++ iterm2
++ brew
++ zsh, ohmyzsh
++ golang
++ vscode
++ hugo
++ github
 
 ---
 
@@ -27,6 +35,7 @@ categories: ["技术"]
 + 安装，切换为zsh，并安装oh my zsh -- shell辅助工具
 
 可能遇到的问题
+
 ```
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
