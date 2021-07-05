@@ -147,8 +147,4 @@ func search(arr []int, k int) int{
 
 ```
 
-{{< highlight go "linenos=inline" >}}
-func search(arr []int, k int) int{
-
-}
-{{< / highlight >}}
+{{< youtube yTXCPGAD3SQ >}}
