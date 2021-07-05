@@ -12,7 +12,7 @@ pygmentsStyle = "pygments"
 pygmentsUseClasses = true                      # Use CSS classes to format highlighted code
 pygmentsCodefencesGuessSyntax = true           #
 
-useHLJS = false
+useHLJS = true
 
 
 [taxonomies]
