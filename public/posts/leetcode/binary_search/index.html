@@ -6,11 +6,15 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo">
 <meta name="generator" content="Hugo 0.84.0" />
 
 
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+
+<link rel="stylesheet" href="http://brettkk.github.io/css/syntax.css" />
 
 
 <link rel="stylesheet" href="/css/style.css">
@@ -55,14 +59,14 @@
         </span>
         <span>
           
-            569 words
+            476 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          2 minute read
+          1 minute read
         </span>
     </div>
 
@@ -71,16 +75,8 @@
 <p>Donald Ervin Knuth（高德纳）
 Although the basic idea of binary search is comparatively straightforward, the details can be surprisingly tricky</p>
 </blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">index  0 1 2 3 4 5 6 7
-data   1 2 3 5 5 5 8 9</code></pre></td></tr></table>
-</div>
-</div>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">index  0 1 2 3 4 5 6 7
+data   1 2 3 5 5 5 8 9</code></pre></div>
 <ul>
 <li>找第一个大于等于5的元素index （3）</li>
 <li>找第一个大于5的元素index （6）</li>
@@ -89,31 +85,8 @@ data   1 2 3 5 5 5 8 9</code></pre></td></tr></table>
 </ul>
 
 <hr>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">0 1 2 3 .. k-1 ]   [ k, k+1, ...N
-    white                 black</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="nx">left</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">0 1 2 3 .. k-1 ]   [ k, k+1, ...N
+    white                 black</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="nx">left</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span>
 <span class="nx">right</span> <span class="p">=</span> <span class="nx">N</span>
 <span class="k">for</span> <span class="p">(</span><span class="nx">left</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="nx">right</span> <span class="p">{</span>
     <span class="nx">m</span> <span class="p">=</span> <span class="p">(</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">right</span> <span class="p">)</span><span class="o">/</span><span class="mi">2</span>
@@ -123,31 +96,11 @@ data   1 2 3 5 5 5 8 9</code></pre></td></tr></table>
         <span class="nx">right</span> <span class="p">=</span> <span class="nx">m</span>
     <span class="p">}</span>
 <span class="p">}</span>
-<span class="k">return</span> <span class="nx">left</span> <span class="nx">or</span> <span class="nx">right</span></code></pre></td></tr></table>
-</div>
-</div>
+<span class="k">return</span> <span class="nx">left</span> <span class="nx">or</span> <span class="nx">right</span></code></pre></div>
 <hr>
 
 <p>基本写法</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">binSearch</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">k</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">binSearch</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">k</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
     <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="nx">left</span> <span class="o">&lt;=</span> <span class="nx">right</span> <span class="p">{</span>
         <span class="nx">mid</span> <span class="o">:=</span> <span class="p">(</span><span class="nx">left</span><span class="o">+</span><span class="nx">right</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
@@ -160,29 +113,7 @@ data   1 2 3 5 5 5 8 9</code></pre></td></tr></table>
         <span class="p">}</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-<span class="p">}</span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">binSearchRecursive</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">target</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+<span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">binSearchRecursive</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">target</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
     <span class="k">if</span> <span class="nx">left</span> <span class="p">&gt;</span> <span class="nx">right</span> <span class="p">{</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
     <span class="p">}</span>
@@ -198,32 +129,7 @@ data   1 2 3 5 5 5 8 9</code></pre></td></tr></table>
     <span class="p">}</span>
     <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 <span class="p">}</span>  
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">Search</span><span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">f</span> <span class="kd">func</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">Search</span><span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">f</span> <span class="kd">func</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
     <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">n</span>
     <span class="k">for</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">j</span> <span class="p">{</span>
         <span class="nx">h</span> <span class="o">:=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">uint</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="nx">j</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">)</span>
@@ -241,39 +147,9 @@ data   1 2 3 5 5 5 8 9</code></pre></td></tr></table>
     <span class="nx">sort</span><span class="p">.</span><span class="nf">Search</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">),</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
     <span class="p">})</span>
-<span class="p">}</span></code></pre></td></tr></table>
-</div>
-</div>
+<span class="p">}</span></code></pre></div>
 <h3 id="找一个元素第一次出现的位置和最后一次出现的位置">找一个元素第一次出现的位置和最后一次出现的位置</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">bsFirst</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">k</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">bsFirst</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">k</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="nx">left</span> <span class="p">&lt;</span> <span class="nx">right</span> <span class="p">{</span>
         <span class="nx">mid</span> <span class="o">:=</span> <span class="p">(</span><span class="nx">left</span><span class="o">+</span><span class="nx">right</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
@@ -296,22 +172,11 @@ data   1 2 3 5 5 5 8 9</code></pre></td></tr></table>
         <span class="p">}</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="nx">left</span>
-<span class="p">}</span></code></pre></td></tr></table>
-</div>
-</div>
+<span class="p">}</span></code></pre></div>
 <h3 id="旋转数组中找一个元素的位置">旋转数组中找一个元素的位置</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">search</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">k</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span><span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">search</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">k</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span><span class="p">{</span>
 
-<span class="p">}</span></code></pre></td></tr></table>
-</div>
-</div>
+<span class="p">}</span></code></pre></div>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="ln">1</span><span class="kd">func</span> <span class="nf">search</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">k</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span><span class="p">{</span>
 <span class="ln">2</span>
 <span class="ln">3</span><span class="p">}</span></code></pre></div>

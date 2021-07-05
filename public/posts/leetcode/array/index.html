@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title>数组 | brettkk</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo">
+<meta name="generator" content="Hugo 0.84.0" />
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+
+<link rel="stylesheet" href="http://brettkk.github.io/css/syntax.css" />
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/tags">Tags</a>
+	<a href="/about">About</a>
+
+	
+
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title">数组</h1>
+
+    <div class="tip">
+        <span>
+          Apr 5, 2021 11:33
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          
+            146 words
+          
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          1 minute read
+        </span>
+    </div>
+
+    <div class="content">
+      <div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">199
+</span><span class="lnt">200
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// ... code
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="p">=</span><span class="mi">100</span></code></pre></td></tr></table>
+</div>
+</div>
+
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="ln">1</span><span class="kd">func</span> <span class="nf">search</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">k</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span><span class="p">{</span>
+<span class="ln">2</span>
+<span class="ln">3</span><span class="p">}</span></code></pre></div>
+
+<h3 id="双指针解法">双指针解法</h3>
+
+<p>remove duplicates from sorted array</p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">Remove</span><span class="p">(</span><span class="nx">arr</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">!=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+            <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="o">++</span><span class="p">]</span> <span class="p">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">j</span><span class="o">++</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">i</span>
+<span class="p">}</span></code></pre></div>
+<p>同 11， 42， 283， 80， 1047</p>
+
+<h3 id="最大子序和">最大子序和</h3>
+
+<p><a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-858-computer-systems-security-fall-2014/lecture-notes/">https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-858-computer-systems-security-fall-2014/lecture-notes/</a></p>
+
+<p><a href="https://blog.gopheracademy.com/advent-2018/llvm-ir-and-go/">https://blog.gopheracademy.com/advent-2018/llvm-ir-and-go/</a></p>
+
+<p><a href="https://xargin.com/">https://xargin.com/</a></p>
+
+<p><a href="http://www.nondot.org/sabre/">http://www.nondot.org/sabre/</a></p>
+
+<p><a href="http://www.aosabook.org/en/index.html">http://www.aosabook.org/en/index.html</a></p>
+
+<p><a href="https://gohalo.me/about.html">https://gohalo.me/about.html</a></p>
+
+<p><a href="https://github.com/cloudnativeapp/meetup/tree/master/Kubernetes%20Course">https://github.com/cloudnativeapp/meetup/tree/master/Kubernetes%20Course</a></p>
+
+<p><a href="https://www.zhihu.com/column/c_1195294063723929600">https://www.zhihu.com/column/c_1195294063723929600</a></p>
+
+<p><a href="https://lihaoquan.me/posts/k8s-crd-develop/">https://lihaoquan.me/posts/k8s-crd-develop/</a></p>
+
+<p><a href="https://jimmysong.io/kubernetes-handbook/concepts/">https://jimmysong.io/kubernetes-handbook/concepts/</a></p>
+
+<p><a href="https://github.com/Junedayday/code_reading">https://github.com/Junedayday/code_reading</a></p>
+
+<p><a href="https://www.cnblogs.com/yahuian">https://www.cnblogs.com/yahuian</a></p>
+
+<p>tls, quic</p>
+
+<p>架构 功能 演进</p>
+
+<p>数据存储 ，访问方式</p>
+
+<p>搭建业务通路</p>
+
+<p>稳定性 ---&gt;减少组建依赖</p>
+
+<p>表设计</p>
+
+<ul>
+<li>元数据表</li>
+<li>关系表</li>
+<li>数据表</li>
+</ul>
+
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="http://brettkk.github.io/tags/leetcode">leetcode</a>
+            
+        </div>
+    
+    
+    
+
+</section>
+
+
+    </main>
+    
+    <footer id="footer">
+    
+
+    <p class="copyright">
+    
+       © Copyright 
+       2021 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       
+    
+    </p>
+    <p class="powerby">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+  </body>
+</html>

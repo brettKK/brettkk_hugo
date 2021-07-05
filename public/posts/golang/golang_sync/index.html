@@ -6,11 +6,15 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo">
 <meta name="generator" content="Hugo 0.84.0" />
 
 
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+
+<link rel="stylesheet" href="http://brettkk.github.io/css/syntax.css" />
 
 
 <link rel="stylesheet" href="/css/style.css">
@@ -55,14 +59,14 @@
         </span>
         <span>
           
-            2111 words
+            1975 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          5 minute read
+          4 minute read
         </span>
     </div>
 
@@ -73,20 +77,7 @@
   <img src="/golang/golang_sync.png" alt="image"  />
 </p></p>
 <h3 id="waitgroup使用">WaitGroup使用 <a href="#waitgroup%e4%bd%bf%e7%94%a8" class="anchor">🔗</a></h3><p>WaitGroup在工作中经常会使用到。例如：需要并行处理一些子任务，需要起多个协程对一些复杂结构体的各个字段进行初始化等。简单的使用说明如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">fun</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">fun</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
     <span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
@@ -95,27 +86,12 @@
 </span><span class="c1"></span>    <span class="p">}()</span>
     <span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="channel">channel <a href="#channel" class="anchor">🔗</a></h2><p>通道是golang中协程通信的一种方式，可以灵活、高效支持协程之间的通信。通道与协程之间的交互流程图因是否存在缓冲区、缓冲区是否填满、是否存在发送等待队列等，会在过程上会存在不同。下面给出的示意图是针对利用无缓冲通道进行通信的其中一种情况，主要是为了简化流程和突出主要功能点。图中hchan是通道的底层数据结构，其中主要包含： buf为数据存储区， recvq和sendq为在此通道上等待接受和发送的协程队列，lock为保护通道数据的锁等。P为运行时的协程调度器。原理示意图如下：</p>
+</code></pre></div><h2 id="channel">channel <a href="#channel" class="anchor">🔗</a></h2><p>通道是golang中协程通信的一种方式，可以灵活、高效支持协程之间的通信。通道与协程之间的交互流程图因是否存在缓冲区、缓冲区是否填满、是否存在发送等待队列等，会在过程上会存在不同。下面给出的示意图是针对利用无缓冲通道进行通信的其中一种情况，主要是为了简化流程和突出主要功能点。图中hchan是通道的底层数据结构，其中主要包含： buf为数据存储区， recvq和sendq为在此通道上等待接受和发送的协程队列，lock为保护通道数据的锁等。P为运行时的协程调度器。原理示意图如下：</p>
 <p><p class="markdown-image">
   <img src="/golang/hchan.png" alt="image"  />
 </p></p>
 <h3 id="channel-使用说明">channel 使用说明 <a href="#channel-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" class="anchor">🔗</a></h3><p>通过无缓冲的通道，阻塞一个协程，等待另一个协程唤醒。例如：main协程在通道的接受队列中等待， 等worker协程写入数据后，main协程才会唤醒并继续执行。通信的数据是直接写一个协程的stack。这样可以省去去操作通道的buf，减少内存拷贝。简单的使用说明如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">worker</span><span class="p">(</span><span class="nx">done</span> <span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">worker</span><span class="p">(</span><span class="nx">done</span> <span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">//process
 </span><span class="c1"></span>    <span class="nx">done</span> <span class="o">&lt;-</span> <span class="kc">true</span>
 <span class="p">}</span>
@@ -124,27 +100,8 @@
     <span class="k">go</span> <span class="nf">worker</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span>
     <span class="o">&lt;-</span> <span class="nx">done</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>channel读写超时的处理。Go 语言的 channel 本身是不支持 timeout 的，一般实现 channel 的读写超时采用 select + time的方式。实例说明如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</code></pre></div><p>channel读写超时的处理。Go 语言的 channel 本身是不支持 timeout 的，一般实现 channel 的读写超时采用 select + time的方式。实例说明如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span>
     <span class="k">go</span> <span class="kd">func</span><span class="p">(){</span>
         <span class="c1">//process   
@@ -157,44 +114,7 @@
         <span class="c1">//process
 </span><span class="c1"></span>    <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="channel-错误示例">channel 错误示例 <a href="#channel-%e9%94%99%e8%af%af%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// 死锁
+</code></pre></div><h3 id="channel-错误示例">channel 错误示例 <a href="#channel-%e9%94%99%e8%af%af%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// 死锁
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
     <span class="o">&lt;-</span> <span class="nx">ch</span> <span class="c1">//block
@@ -225,30 +145,7 @@
         <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>  <span class="c1">// channel write
 </span><span class="c1"></span><span class="p">}</span>
 
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// goroutine泄漏
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// goroutine泄漏
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
     <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
@@ -265,62 +162,16 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="错误操作panic">错误操作Panic <a href="#%e9%94%99%e8%af%af%e6%93%8d%e4%bd%9cpanic" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">// send on close channel 往已关闭的 channel 写数据会 panic
+</code></pre></div><h3 id="错误操作panic">错误操作Panic <a href="#%e9%94%99%e8%af%af%e6%93%8d%e4%bd%9cpanic" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">// send on close channel 往已关闭的 channel 写数据会 panic
 // closing on close channel  写入端无法知道 channel 是否已经关闭
 // send or read on nil channel channel初始化使用错误
 
 1. 不要尝试在读取端关闭 channel 
 2. 一个写入端，在这个写入端可以放心关闭 channel
 3. 多个写入端时，不要在写入端关闭 channel 
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="context">context <a href="#context" class="anchor">🔗</a></h2><p>context是在context包里定义的一种接口。在context包中可以通过WithCancel、WithDeadline、WithTimeout、WithValue这四个方法生成新 Context。WithValue方法生成的context可以做到了跨API的传值功能。WithTimeout方法是对WithDeadline的封装。WithDeadline方法生成的context实现了定时cancel的功能。</p>
+</code></pre></div><h2 id="context">context <a href="#context" class="anchor">🔗</a></h2><p>context是在context包里定义的一种接口。在context包中可以通过WithCancel、WithDeadline、WithTimeout、WithValue这四个方法生成新 Context。WithValue方法生成的context可以做到了跨API的传值功能。WithTimeout方法是对WithDeadline的封装。WithDeadline方法生成的context实现了定时cancel的功能。</p>
 <p>下面以WithCancel为入口，以源码（go1.12.7）为内容作介绍。当 parent 的 Done() 关闭的时候，孩子 ctx 的 Done() 也会关闭， 这种情况是如何实现的？具体过程分两种情况： 1 当传入的context是库里支持的cancelCtx、timeCtx时，child加入parent的衍生map中； 2 当传入的context为自定义实现类时，标准库是新起goroutine监听信号并执行cancel子context的过程。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// 在 parent 和 child 之间同步取消的信号，保证在 parent 被取消时，child 也会收到对应的信号，不会发生状态不一致的问题。
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// 在 parent 和 child 之间同步取消的信号，保证在 parent 被取消时，child 也会收到对应的信号，不会发生状态不一致的问题。
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">propagateCancel</span><span class="p">(</span><span class="nx">parent</span> <span class="nx">Context</span><span class="p">,</span> <span class="nx">child</span> <span class="nx">canceler</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="nx">parent</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span> <span class="c1">//parent不会触发cancel信号，则返回
 </span><span class="c1"></span>        <span class="k">return</span> <span class="c1">// parent is never canceled
@@ -347,39 +198,8 @@
         <span class="p">}()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>cancel方法的逻辑是关闭cancelCtx的Done通道，并递归地关闭context的所有子context。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cancelCtx</span><span class="p">)</span> <span class="nf">cancel</span><span class="p">(</span><span class="nx">removeFromParent</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div><p>cancel方法的逻辑是关闭cancelCtx的Done通道，并递归地关闭context的所有子context。</p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cancelCtx</span><span class="p">)</span> <span class="nf">cancel</span><span class="p">(</span><span class="nx">removeFromParent</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span> <span class="c1">// 外层传errors.New(&#34;context canceled&#34;) 这里不会进入
 </span><span class="c1"></span>        <span class="nb">panic</span><span class="p">(</span><span class="s">&#34;context: internal error: missing cancel error&#34;</span><span class="p">)</span>
     <span class="p">}</span>
@@ -404,9 +224,7 @@
         <span class="nf">removeChild</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="context使用说明">context使用说明 <a href="#context%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" class="anchor">🔗</a></h3><p>etcd中有一些select , context, channel 的例子</p>
+</code></pre></div><h3 id="context使用说明">context使用说明 <a href="#context%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" class="anchor">🔗</a></h3><p>etcd中有一些select , context, channel 的例子</p>
 <p>参考： <a href="https://blog.golang.org/context">https://blog.golang.org/context</a></p>
 
     </div>

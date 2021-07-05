@@ -6,11 +6,15 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo">
 <meta name="generator" content="Hugo 0.84.0" />
 
 
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+
+<link rel="stylesheet" href="http://brettkk.github.io/css/syntax.css" />
 
 
 <link rel="stylesheet" href="/css/style.css">
@@ -55,7 +59,7 @@
         </span>
         <span>
           
-            833 words
+            821 words
           
         </span>
         <span class="split">
@@ -92,23 +96,7 @@
 </ol>
 <p>startContainer方法在create, run restore命令中共用，只是入参action不同。</p>
 <p>根据配置生成runc init容器进程</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="o">*</span><span class="nx">linuxStandardInit</span><span class="p">)</span> <span class="nf">Init</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="o">*</span><span class="nx">linuxStandardInit</span><span class="p">)</span> <span class="nf">Init</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
     <span class="o">......</span>
     <span class="nx">name</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nf">LookPath</span><span class="p">(</span><span class="nx">l</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="c1">// fd是execfifo, 写阻塞，等start执行读fifo后接着执行
@@ -120,9 +108,7 @@
 		<span class="k">return</span> <span class="nf">newSystemErrorWithCause</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="s">&#34;exec user process&#34;</span><span class="p">)</span>
 	<span class="p">}</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="22-run">2.2 run <a href="#22-run" class="anchor">🔗</a></h3><p>runc run containerID, 少了execfifo的阻塞，过程类似create, start。</p>
+</code></pre></div><h3 id="22-run">2.2 run <a href="#22-run" class="anchor">🔗</a></h3><p>runc run containerID, 少了execfifo的阻塞，过程类似create, start。</p>
 <p>pause/resume利用了 cgroup 的 子系统 freezer 来实现进程的挂起</p>
 <hr>
 <h2 id="3-namespace">3. namespace <a href="#3-namespace" class="anchor">🔗</a></h2><p>nsexec.c中从”_LIBCONTAINER_INITPIPE”环境变量中拿到pipe，从pipe中并读取bootstrapData。

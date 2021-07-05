@@ -6,11 +6,15 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo">
 <meta name="generator" content="Hugo 0.84.0" />
 
 
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+
+<link rel="stylesheet" href="http://brettkk.github.io/css/syntax.css" />
 
 
 <link rel="stylesheet" href="/css/style.css">
@@ -55,14 +59,14 @@
         </span>
         <span>
           
-            572 words
+            466 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          2 minute read
+          1 minute read
         </span>
     </div>
 
@@ -84,47 +88,10 @@
 <h3 id="周围项目">周围项目 <a href="#%e5%91%a8%e5%9b%b4%e9%a1%b9%e7%9b%ae" class="anchor">🔗</a></h3><p>k8s.io/gengo
 k8s.io/client-go</p>
 <h3 id="项目组织结构">项目组织结构 <a href="#%e9%a1%b9%e7%9b%ae%e7%bb%84%e7%bb%87%e7%bb%93%e6%9e%84" class="anchor">🔗</a></h3><h3 id="cobra命令行的使用">cobra命令行的使用 <a href="#cobra%e5%91%bd%e4%bb%a4%e8%a1%8c%e7%9a%84%e4%bd%bf%e7%94%a8" class="anchor">🔗</a></h3><p>cmd下的main函数为各个k8s组建的入口。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang">
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="函数选项模式">函数选项模式 <a href="#%e5%87%bd%e6%95%b0%e9%80%89%e9%a1%b9%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang">
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="访问者模式">访问者模式 <a href="#%e8%ae%bf%e9%97%ae%e8%80%85%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><p>kubectl里有使用。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang">
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
+</code></pre></div><h3 id="函数选项模式">函数选项模式 <a href="#%e5%87%bd%e6%95%b0%e9%80%89%e9%a1%b9%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
+</code></pre></div><h3 id="访问者模式">访问者模式 <a href="#%e8%ae%bf%e9%97%ae%e8%80%85%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><p>kubectl里有使用。</p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
 <span class="kd">type</span> <span class="nx">Visitor</span> <span class="kd">interface</span> <span class="p">{</span>
 	<span class="nf">Visit</span><span class="p">(</span><span class="nx">VisitorFunc</span><span class="p">)</span> <span class="kt">error</span>
 <span class="p">}</span>
@@ -143,97 +110,8 @@ k8s.io/client-go</p>
 	<span class="k">return</span> <span class="kc">nil</span>
 <span class="p">}</span>
 
-</code></pre></td></tr></table>
-</div>
-</div><p>《kubernets 源码分析》 郑东旭</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span><span class="lnt">74
-</span><span class="lnt">75
-</span><span class="lnt">76
-</span><span class="lnt">77
-</span><span class="lnt">78
-</span><span class="lnt">79
-</span><span class="lnt">80
-</span><span class="lnt">81
-</span><span class="lnt">82
-</span><span class="lnt">83
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">type</span> <span class="nx">Visitor</span> <span class="kd">interface</span> <span class="p">{</span>
+</code></pre></div><p>《kubernets 源码分析》 郑东旭</p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">type</span> <span class="nx">Visitor</span> <span class="kd">interface</span> <span class="p">{</span>
 	<span class="nf">Visit</span><span class="p">(</span><span class="nx">VisitorFunc</span><span class="p">)</span> <span class="kt">error</span>
 <span class="p">}</span>
 <span class="kd">type</span> <span class="nx">VisitorFunc</span> <span class="kd">func</span><span class="p">()</span> <span class="kt">error</span>
@@ -316,26 +194,10 @@ k8s.io/client-go</p>
 </span><span class="cm">in visitor1 after fn
 </span><span class="cm">*/</span>
 
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="client-go-编程式交互">client-go 编程式交互 <a href="#client-go-%e7%bc%96%e7%a8%8b%e5%bc%8f%e4%ba%a4%e4%ba%92" class="anchor">🔗</a></h3><h3 id="观察者模式">观察者模式 <a href="#%e8%a7%82%e5%af%9f%e8%80%85%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><h3 id="channel的使用方式">channel的使用方式 <a href="#channel%e7%9a%84%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f" class="anchor">🔗</a></h3><h4 id="内部具体channel的使用示例">内部具体channel的使用示例 <a href="#%e5%86%85%e9%83%a8%e5%85%b7%e4%bd%93channel%e7%9a%84%e4%bd%bf%e7%94%a8%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h4><p>stopCh &lt;-chan struct{}，  channel的使用方式</p>
-<h4 id="抽象channel的使用模式">抽象channel的使用模式 <a href="#%e6%8a%bd%e8%b1%a1channel%e7%9a%84%e4%bd%bf%e7%94%a8%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h4><h3 id="工厂模式">工厂模式 <a href="#%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><h4 id="调度器算法的插件">调度器算法的插件 <a href="#%e8%b0%83%e5%ba%a6%e5%99%a8%e7%ae%97%e6%b3%95%e7%9a%84%e6%8f%92%e4%bb%b6" class="anchor">🔗</a></h4><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang">
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="heading"> <a href="#heading" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang">
-</code></pre></td></tr></table>
-</div>
-</div>
+</code></pre></div><h3 id="client-go-编程式交互">client-go 编程式交互 <a href="#client-go-%e7%bc%96%e7%a8%8b%e5%bc%8f%e4%ba%a4%e4%ba%92" class="anchor">🔗</a></h3><h3 id="观察者模式">观察者模式 <a href="#%e8%a7%82%e5%af%9f%e8%80%85%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><h3 id="channel的使用方式">channel的使用方式 <a href="#channel%e7%9a%84%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f" class="anchor">🔗</a></h3><h4 id="内部具体channel的使用示例">内部具体channel的使用示例 <a href="#%e5%86%85%e9%83%a8%e5%85%b7%e4%bd%93channel%e7%9a%84%e4%bd%bf%e7%94%a8%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h4><p>stopCh &lt;-chan struct{}，  channel的使用方式</p>
+<h4 id="抽象channel的使用模式">抽象channel的使用模式 <a href="#%e6%8a%bd%e8%b1%a1channel%e7%9a%84%e4%bd%bf%e7%94%a8%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h4><h3 id="工厂模式">工厂模式 <a href="#%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><h4 id="调度器算法的插件">调度器算法的插件 <a href="#%e8%b0%83%e5%ba%a6%e5%99%a8%e7%ae%97%e6%b3%95%e7%9a%84%e6%8f%92%e4%bb%b6" class="anchor">🔗</a></h4><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
+</code></pre></div><h3 id="heading"> <a href="#heading" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
+</code></pre></div>
     </div>
 
     

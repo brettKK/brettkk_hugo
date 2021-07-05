@@ -6,11 +6,15 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo">
 <meta name="generator" content="Hugo 0.84.0" />
 
 
   <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+
+<link rel="stylesheet" href="http://brettkk.github.io/css/syntax.css" />
 
 
 <link rel="stylesheet" href="/css/style.css">
@@ -55,7 +59,7 @@
         </span>
         <span>
           
-            390 words
+            284 words
           
         </span>
         <span class="split">
@@ -67,81 +71,7 @@
     </div>
 
     <div class="content">
-      <div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang">
+      <div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
 <span class="kd">type</span> <span class="nx">TreeNode</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">value</span> <span class="kt">int</span>
     <span class="nx">left</span> <span class="o">*</span><span class="nx">TreeNode</span>
@@ -211,25 +141,7 @@
     <span class="k">return</span> <span class="nx">t</span><span class="p">.</span><span class="nx">value</span>
 <span class="p">}</span>
 
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="获取树的高度">获取树的高度 <a href="#%e8%8e%b7%e5%8f%96%e6%a0%91%e7%9a%84%e9%ab%98%e5%ba%a6" class="anchor">🔗</a></h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">getHeight</span><span class="p">(</span><span class="nx">p</span> <span class="o">*</span><span class="nx">TreeNode</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</code></pre></div><h3 id="获取树的高度">获取树的高度 <a href="#%e8%8e%b7%e5%8f%96%e6%a0%91%e7%9a%84%e9%ab%98%e5%ba%a6" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">getHeight</span><span class="p">(</span><span class="nx">p</span> <span class="o">*</span><span class="nx">TreeNode</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
     <span class="k">if</span> <span class="nx">p</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="k">return</span> <span class="mi">0</span>
     <span class="p">}</span>
@@ -241,38 +153,8 @@
     <span class="k">return</span> <span class="nx">left</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="p">}</span>
 
-</code></pre></td></tr></table>
-</div>
-</div><p>层次遍历bfs求树的高度</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">getHeight</span><span class="p">(</span><span class="nx">root</span> <span class="o">*</span><span class="nx">TreeNode</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</code></pre></div><p>层次遍历bfs求树的高度</p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">getHeight</span><span class="p">(</span><span class="nx">root</span> <span class="o">*</span><span class="nx">TreeNode</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
     <span class="k">if</span> <span class="nx">root</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="k">return</span> <span class="mi">0</span>
     <span class="p">}</span>
@@ -296,9 +178,7 @@
     <span class="k">return</span> <span class="nx">res</span>
 <span class="p">}</span>
 
-</code></pre></td></tr></table>
-</div>
-</div><p>###</p>
+</code></pre></div><p>###</p>
 
     </div>
 
