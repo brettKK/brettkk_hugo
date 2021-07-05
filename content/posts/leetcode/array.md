@@ -55,3 +55,19 @@ https://jimmysong.io/kubernetes-handbook/concepts/
 https://github.com/Junedayday/code_reading
 
 https://www.cnblogs.com/yahuian
+
+tls, quic
+
+架构 功能 演进
+
+数据存储 ，访问方式
+
+搭建业务通路
+
+稳定性 --->减少组建依赖
+
+
+表设计
++ 元数据表
++ 关系表
++ 数据表

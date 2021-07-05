@@ -1,7 +1,7 @@
 ---
 title: "二分查找"
 date: 2021-04-05T11:33:56+08:00
-draft: true
+draft: false
 isCJKLanguage: true
 markup: mmark
 tags: ["leetcode"]
@@ -64,6 +64,48 @@ func binSearch(arr []int, k int) int {
 
 ```
 
+```golang
+func binSearchRecursive(arr []int, target int, left, right int) int {
+    if left > right {
+        return -1
+    }
+    mid := (left+right)/2
+    if target == arr[mid] {
+        return mid
+    }
+    if target > arr[mid] {
+        return binSearchRecursive(arr, target, mid+1, right)
+    }
+    if target < arr[mid] {
+        return binSearchRecursive(arr, target, left, mid-1)
+    }
+    return -1
+}  
+```
+
+```golang
+func Search(n int, f func(int) bool) int {
+    i, j := 0, n
+    for i < j {
+        h := int(uint(i+j)>>1)
+        if !f(h) {
+            i = h + 1
+        } else {
+            j = h
+        }
+    }
+    return i
+}
+
+func main() {
+    nums := []int64{2, 3,5,6,7,1,2,3}
+    sort.Search(len(nums), func(i int) bool {
+        return nums[i] == 1
+    })
+}
+
+```
+
 
 ### 找一个元素第一次出现的位置和最后一次出现的位置
 
@@ -104,3 +146,10 @@ func search(arr []int, k int) int{
 
 
 ```
+
+{{< highlight go "linenos=inline" >}}
+func search(arr []int, k int) int{
+
+}
+
+{{< /highlight >}}

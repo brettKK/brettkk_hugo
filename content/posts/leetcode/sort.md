@@ -87,3 +87,62 @@ func KthLargest(arr []int, k int) {
 ```
 
 同 347， 253， 295， 767， 703
+
+
+### 归并
+
+稳定排序的算法。
+
+```golang
+package main
+
+import "fmt"
+
+func main () {
+	inputArr := []int{80, 38, 97, 65, 76, 13, 27}
+	fmt.Println("before sort", inputArr)
+	outputArr := MergeSort(inputArr, 0, len(inputArr) -1)
+	fmt.Println("end sort", outputArr)
+}
+
+func MergeSort(arr []int, left, right int) []int {
+	if left > right {
+		return nil
+	}
+	if left == right {
+		return []int{arr[left]}
+	}
+	mid := (left + right) / 2
+	arr1 := MergeSort(arr, left, mid)
+	arr2 := MergeSort(arr, mid+1, right)
+	return mergeSortArray(arr1, arr2)
+}
+
+func mergeSortArray(arr1, arr2 []int) []int {
+	resArr := make([]int, len(arr1) + len(arr2))
+	i, j, k := 0, 0, 0
+	for i < len(arr1) && j < len(arr2) {
+		if arr1[i] < arr2[j] {
+			resArr[k] = arr1[i]
+			k++
+			i++
+		} else {
+			resArr[k] = arr2[j]
+			k++
+			j++
+		}
+	}
+	for i < len(arr1) {
+		resArr[k] = arr1[i]
+		k++
+		i++
+	}
+	for j < len(arr2) {
+		resArr[k] = arr2[j]
+		k++
+		j++
+	}
+	return resArr
+}
+
+```
