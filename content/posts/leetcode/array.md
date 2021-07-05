@@ -1,13 +1,24 @@
 ---
 title: "数组"
 date: 2021-04-05T11:33:56+08:00
-draft: true
+draft: false
 isCJKLanguage: true
 markup: mmark
 tags: ["leetcode"]
 series: [""]
 categories: ["life"]
 ---
+
+{{< highlight go "linenos=table,hl_lines=8 15-17,linenostart=199" >}}
+// ... code
+var a =100
+{{< / highlight >}}
+
+{{< highlight go "linenos=inline" >}}
+func search(arr []int, k int) int{
+
+}
+{{< / highlight >}}
 
 ### 双指针解法
 

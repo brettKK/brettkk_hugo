@@ -151,5 +151,4 @@ func search(arr []int, k int) int{
 func search(arr []int, k int) int{
 
 }
-
-{{< /highlight >}}
+{{< / highlight >}}

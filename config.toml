@@ -7,10 +7,12 @@ theme = "mini"
 paginate = 4 # Set the number of posts to show before overflowing to the next page.
 summaryLength = 30  # 限制摘要字数
 
-PygmentsCodeFences = true                      # Enable syntax highlighting with GitHub flavoured code fences
-PygmentsUseClasses = true                      # Use CSS classes to format highlighted code
-PygmentsCodefencesGuessSyntax = true           #
-PygmentsOptions = "linenos=table"              # 开启显示行号
+pygmentsCodeFences = true                      # Enable syntax highlighting with GitHub flavoured code fences
+pygmentsStyle = "pygments"
+pygmentsUseClasses = true                      # Use CSS classes to format highlighted code
+pygmentsCodefencesGuessSyntax = true           #
+
+useHLJS = false
 
 
 [taxonomies]
