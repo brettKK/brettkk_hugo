@@ -9,11 +9,6 @@ series: [""]
 categories: ["life"]
 ---
 
-{{< highlight go "linenos=table,hl_lines=8 15-17,linenostart=199" >}}
-// ... code
-var a =100
-{{< / highlight >}}
-
 {{< highlight go "linenos=inline" >}}
 func search(arr []int, k int) int{
 
