@@ -1,5 +1,14 @@
 
-
+---
+title: "compiler"
+date: 2021-05-05T11:33:56+08:00
+draft: true
+isCJKLanguage: true
+markup: mmark
+tags: ["soft_tools"]
+series: [""]
+categories: ["技术"]
+---
 
 词法分析： code -> token
 
@@ -21,7 +30,6 @@ yacc
 EBNF grammar
 
 
-
 --
 
 ## goyacc
@@ -39,3 +47,18 @@ type yyParser interface {
 	Lookahead() int
 }
 ```
+
+csc 135,  finite automate, regular expressions, grammer
+
+csc 151, compiler construction, Ghassan Shobaki
+
+《engineering a compiler》 cooper and torczon
+
+scanning(lexing), parsing
+
++ 
++ structure and major components
+
+register allocation
+
+when register is not enough for allocation, variable will spill into l1 cache or main memory.
