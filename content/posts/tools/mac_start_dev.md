@@ -19,7 +19,7 @@ categories: ["技术"]
 + vscode
 + hugo
 + github
-
++ direnv
 ---
 
 
@@ -84,3 +84,6 @@ go env -w GOPROXY=https://goproxy.cn
 
 
 
++ direnv
+
+根据文件夹下的.envrc 临时改env变量。

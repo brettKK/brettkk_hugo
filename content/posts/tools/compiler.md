@@ -56,9 +56,14 @@ csc 151, compiler construction, Ghassan Shobaki
 
 scanning(lexing), parsing
 
+finite automata, regular expressions.
+
 + 
 + structure and major components
 
 register allocation
 
 when register is not enough for allocation, variable will spill into l1 cache or main memory.
+
+instruction scheduling 
+
