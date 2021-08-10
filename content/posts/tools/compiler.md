@@ -54,9 +54,14 @@ csc 151, compiler construction, Ghassan Shobaki
 
 《engineering a compiler》 cooper and torczon
 
+---
+
 scanning(lexing), parsing
 
 finite automata, regular expressions.
+
+
+---
 
 + 
 + structure and major components
@@ -67,3 +72,18 @@ when register is not enough for allocation, variable will spill into l1 cache or
 
 instruction scheduling 
 
+## 语言
+
+c/c++, rust， llvm
+
+java, c#, golang
+
+python, matlab
+
+lamada 演算。
+
+
+
+## 想法
+
+变量初始化都没有读去过。 rust warning， golang can 

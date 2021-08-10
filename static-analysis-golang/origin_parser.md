@@ -1,4 +1,8 @@
 + go compiler的实现入口在src/cmd/compile
+    + cmd/compile/internal/gc.Main
+    + 初始化ssa配置，cmd/compile/internal/gc.initssaconfig
+    + cmd/compile/internal/gc.funccompile
+    + 优化中间代码的过程在cmd/compile/internal/ssa.Compile
 + cmd/internal/obj
 + golang compiler
     + go gccgo
