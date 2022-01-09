@@ -89,6 +89,8 @@ uname -a 查看系统的版本
 	+ wc -c
 	+ wc -l 	
 + awk， sed功能有些复杂，可以google search...
+	+ sed 删除文件总的行。  sed -i '1,72000d' a.csv
+	+ 分割文件为小文件。 split -l 5000 -d a.csv index_
 
 ---
 

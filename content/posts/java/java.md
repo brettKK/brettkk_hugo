@@ -111,6 +111,10 @@ Class文件格式图
 + 在堆上生成Class对象，作为这个类在方法区上的访问入口
 
 
++ java基础类库提供2种动态加载类的方法
+   + Class的静态方法forName, 会执行该类的clinit初始化。
+   + ClassLoader的loadClass方法，不会执行泪的初始化
+
 + 生成字节码的框架
   + javassit，cglib，asm
 + 读和写字节码

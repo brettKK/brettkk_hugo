@@ -92,6 +92,7 @@ sed '2d' file
 	+ 用户登陆时仅执行一次，执行用户的bashrc
 
 + 重定向
+	+ stdin(0), stdout(1), stderr(2)
 	+ runApp < data.in > results.out
 	+ > /dev/null 丢弃输出信息
 	+ 2>&1 错误输出重定向到标准输出中

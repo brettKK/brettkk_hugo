@@ -27,6 +27,24 @@ categories: ["技术"]
   + copy 覆盖函数的前12个字节的汇编代码，植入mock函数的地址， 在运行时实现函数的mock和unmock
   + github.com/bouk/monkey
 
+### go monkey
+
+
+```
+package main
+func from() int {return 1}
+func to() int (return 2)
+func main() {
+  // 在执行from之前把from函数内的机器码 替换为一条跳转指令，让cpu跳转到to函数的机器码上执行。
+  patch(from, to)
+  fmt.Println(from()) // should print 2
+}
+
+```
+taoshu.in/go/monkey
++ 找到from, to的内存地址
++ 修改from函数的机器码，构造跳转指令，跳到to的内存地址上
+
 ---
 ## 调试
 

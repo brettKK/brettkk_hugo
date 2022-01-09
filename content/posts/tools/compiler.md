@@ -20,6 +20,9 @@ LALR(1)
 
 词法分析+语法分析： promql
 
+compiler explorer, tensor RT
+
+
 ---
 
 语法分析： token -> ASR
