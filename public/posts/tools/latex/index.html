@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
   <head>
-    <title>linux-free | brettkk</title>
+    <title>brettkk</title>
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
@@ -52,18 +52,18 @@
       
 
 <section id="single">
-    <h1 class="title">linux-free</h1>
+    <h1 class="title"></h1>
 
     <div class="tip">
         <span>
-          May 5, 2021 11:33
+          Jan 1, 0001 00:00
         </span>
         <span class="split">
           ·
         </span>
         <span>
           
-            483 words
+            22 words
           
         </span>
         <span class="split">
@@ -75,95 +75,13 @@
     </div>
 
     <div class="content">
-      <p>free查看内存使用情况，包含已用内存，可用内存，交换内存的情况，默认以字节为单位( 简单版的top命令 )
-<img src="/os/free.png" width = "600" /><br></p>
-
-<hr>
-
-<p>free -t (total, 有汇总行)</p>
-
-<ul>
-<li>total = used + free</li>
-<li>used 包含cached， buffers， shared部分</li>
-<li>-buffers/cache: used-buffers-cached (可以看出程序吃掉的内存)</li>
-<li>+buffers/cache: free+buffers+cached （可以挪用的内存）</li>
-</ul>
-
-<hr>
-
-<p>free命令后的buffer与cached的区别</p>
-
-<ul>
-<li>buffer缓冲,内存写硬盘时的写缓冲内存</li>
-<li>cached缓存,数据缓存，读缓存</li>
-<li>cpu--&gt;cache --&gt;mem --&gt; buffer --&gt; disk</li>
-<li>交换区swap与内存mem的区别：当mem不够用时，使用swap存放不常用的数据, 把磁盘当做虚拟内存使用
-
-<ul>
-<li>清理swap， swapoff -a &amp;&amp; swapon -a</li>
-</ul></li>
-</ul>
-
-<hr>
-
-<p>iostat: 显示磁盘读写速度状态
-vmstat: 显示整体的虚拟内存状态（调页paging，交换swapping）
-netstat：显示网络状态</p>
-
-<p>Procs 进程</p>
-
-<ul>
-<li>r：运行的进程数</li>
-<li>b：等待的进程数</li>
-</ul>
-
-<p>Memory</p>
-
-<ul>
-<li>swpd： 使用的虚拟内存大小</li>
-<li>free： 空闲内存</li>
-<li>buf： 缓冲内存大小</li>
-<li>cache： 缓存内存大小</li>
-</ul>
-
-<p>Swap</p>
-
-<ul>
-<li>si 每秒从交换区到内存的大小， 磁盘-》内存</li>
-<li>so 每秒从内存到交换区的大小， 内存-》磁盘</li>
-</ul>
-
-<p>io</p>
-
-<ul>
-<li>bi 每秒读的块数</li>
-<li>bo 每秒写的块数</li>
-</ul>
-
-<p>system</p>
-
-<ul>
-<li>in: 每秒中断数</li>
-<li>cs: 每秒上下文切换数</li>
-</ul>
-
-<p>CPU</p>
-
-<ul>
-<li>us 用户进程执行时间占比</li>
-<li>sy 内核进程执行时间占比</li>
-<li>wa 等待IO时间占比</li>
-<li>id 空闲时间占比</li>
-</ul>
+      <h3 id="使用中文字体">使用中文字体 <a href="#%e4%bd%bf%e7%94%a8%e4%b8%ad%e6%96%87%e5%ad%97%e4%bd%93" class="anchor">🔗</a></h3><p>使用xeCJK包，同时需要使用xeLaTex进行编译</p>
+<h3 id="gif-image-in-latex-beamer">gif image in laTex Beamer <a href="#gif-image-in-latex-beamer" class="anchor">🔗</a></h3><p>brew install imagemagick</p>
+<p>convert kiss.gif -coalesce foo.png</p>
+<p>mac原生的mac previewer无法浏览gif, 下载Adobe Reader, then All is well.</p>
 
     </div>
 
-    
-        <div class="tags">
-            
-                <a href="http://brettkk.github.io/tags/linux">linux</a>
-            
-        </div>
     
     
     

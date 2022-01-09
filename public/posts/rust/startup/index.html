@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo">
 <meta name="generator" content="Hugo 0.84.0" />
 
 
@@ -63,7 +63,7 @@
         </span>
         <span>
           
-            35 words
+            80 words
           
         </span>
         <span class="split">
@@ -75,7 +75,19 @@
     </div>
 
     <div class="content">
-      <p>Rust程序设计</p>
+      <h3 id="rust-安装">rust 安装 <a href="#rust-%e5%ae%89%e8%a3%85" class="anchor">🔗</a></h3><p><a href="https://rustup.rs">https://rustup.rs</a></p>
+<p>rustup update
+rustc --version
+rustup doc</p>
+<p>docs.rs/std 可以定向到doc.rust-lang.org/stable/std/</p>
+<h3 id="rust-开发环境">rust 开发环境 <a href="#rust-%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83" class="anchor">🔗</a></h3><p>IDE： vscode
+插件： rust-analyzer（用）, Rust(别用, 与rust-analyzer有冲突)。
+crates。
+TOML Language Support .
+REST Client
+Cargo.</p>
+<hr>
+<p>Rust程序设计</p>
 <ul>
 <li>安装</li>
 </ul>
@@ -92,6 +104,16 @@ cargo doc --open</p>
 Vec, VecDeque, HashMap, String</p>
 <h2 id="编写测试">编写测试 <a href="#%e7%bc%96%e5%86%99%e6%b5%8b%e8%af%95" class="anchor">🔗</a></h2><p>rust中的测试是带有标注test属性的函数。 #[test]</p>
 <p>cargo test.</p>
+<h2 id="变量的生命周期所有权借用moveref">变量的生命周期，所有权，借用，move，ref <a href="#%e5%8f%98%e9%87%8f%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e6%89%80%e6%9c%89%e6%9d%83%e5%80%9f%e7%94%a8moveref" class="anchor">🔗</a></h2><p>哪些操作会导ownership move</p>
+<ul>
+<li>let binding</li>
+<li>传参数到function</li>
+<li>match 表达式</li>
+<li>methods。 impl block里任何method第一个参数是self</li>
+<li>closure中</li>
+</ul>
+<h3 id="借用引用-同意">借用（引用 同意） <a href="#%e5%80%9f%e7%94%a8%e5%bc%95%e7%94%a8-%e5%90%8c%e6%84%8f" class="anchor">🔗</a></h3><p>rust中所用的参数传递都是传值。
+引用实现了copy trait。 按照copy语义，引用会复制一份交给调用的函数。</p>
 <h2 id="智能指针">智能指针 <a href="#%e6%99%ba%e8%83%bd%e6%8c%87%e9%92%88" class="anchor">🔗</a></h2><p>Box<T></p>
 <p>Rc<T></p>
 <p>RefCell<T></p>
@@ -115,7 +137,7 @@ Vec, VecDeque, HashMap, String</p>
     <p class="copyright">
     
        © Copyright 
-       2021 
+       2022 
        <span class="split">
         <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
   <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>

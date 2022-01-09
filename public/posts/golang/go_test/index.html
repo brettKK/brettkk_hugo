@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="">
+<meta name="description" content="raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo">
 <meta name="generator" content="Hugo 0.84.0" />
 
 
@@ -63,14 +63,14 @@
         </span>
         <span>
           
-            481 words
+            609 words
           
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          1 minute read
+          2 minute read
         </span>
     </div>
 
@@ -108,6 +108,20 @@
 <li>github.com/bouk/monkey</li>
 </ul>
 </li>
+</ul>
+<h3 id="go-monkey">go monkey <a href="#go-monkey" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<span class="kd">func</span> <span class="nf">from</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span><span class="k">return</span> <span class="mi">1</span><span class="p">}</span>
+<span class="kd">func</span> <span class="nf">to</span><span class="p">()</span> <span class="kt">int</span> <span class="p">(</span><span class="k">return</span> <span class="mi">2</span><span class="p">)</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 在执行from之前把from函数内的机器码 替换为一条跳转指令，让cpu跳转到to函数的机器码上执行。
+</span><span class="c1"></span>  <span class="nf">patch</span><span class="p">(</span><span class="nx">from</span><span class="p">,</span> <span class="nx">to</span><span class="p">)</span>
+  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">from</span><span class="p">())</span> <span class="c1">// should print 2
+</span><span class="c1"></span><span class="p">}</span>
+
+</code></pre></div><p>taoshu.in/go/monkey</p>
+<ul>
+<li>找到from, to的内存地址</li>
+<li>修改from函数的机器码，构造跳转指令，跳到to的内存地址上</li>
 </ul>
 <hr>
 <h2 id="调试">调试 <a href="#%e8%b0%83%e8%af%95" class="anchor">🔗</a></h2><ul>
@@ -169,7 +183,7 @@
     <p class="copyright">
     
        © Copyright 
-       2021 
+       2022 
        <span class="split">
         <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
   <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>

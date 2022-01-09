@@ -30,4 +30,6 @@ categories: ["技术"]
 + Unix domain socket 同一台操作系统上的两个或多个进程进行数据通信 跨进程通信  
 
 
+---
+unsolved:
 阅读go源码时，执行单测出现： use of internal package internal/byteal not allowed
