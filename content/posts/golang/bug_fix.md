@@ -31,5 +31,4 @@ categories: ["技术"]
 
 
 ---
-unsolved:
-阅读go源码时，执行单测出现： use of internal package internal/byteal not allowed
+unsolved: 阅读go源码时，执行单测出现： use of internal package internal/byteal not allowed
