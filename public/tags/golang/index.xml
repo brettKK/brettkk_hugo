@@ -40,7 +40,7 @@
       <pubDate>Wed, 05 May 2021 18:34:48 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/golang/go_timer/</guid>
-      <description>Go提供了两种定时器，分为一次性定时器、周期性定时器。 两种定</description>
+      <description>Go提供了两种定时器，分为：一次性定时器、周期性定时器。 两种</description>
     </item>
     
     <item>
