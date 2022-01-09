@@ -8,6 +8,15 @@
     <language>zh-cn</language>
     <lastBuildDate>Wed, 05 May 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/tags/soft_tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>mac安装开发环境</title>
+      <link>http://brettkk.github.io/posts/tools/mac_start_dev/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/tools/mac_start_dev/</guid>
+      <description>新电脑构建开发环境，安装指南 iterm2 brew zsh, ohmyzsh golang vscode hugo github direnv 安装终端窗口工</description>
+    </item>
+    
+    <item>
       <title>vs code 小结</title>
       <link>http://brettkk.github.io/posts/tools/vs_code/</link>
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>

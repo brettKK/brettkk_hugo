@@ -6,7 +6,16 @@
     <description>Recent content in Posts on brettkk</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 26 Jun 2021 18:34:48 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Jun 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>k8s 学习</title>
+      <link>http://brettkk.github.io/posts/cloud_native/k8s/</link>
+      <pubDate>Sun, 27 Jun 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/cloud_native/k8s/</guid>
+      <description>k8s架构 🔗请求访问pod的流程 🔗hostNetwork： 占</description>
+    </item>
+    
     <item>
       <title>runc</title>
       <link>http://brettkk.github.io/posts/cloud_native/runc/</link>
@@ -31,7 +40,7 @@
       <pubDate>Thu, 20 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/os/encrypt/</guid>
-      <description>对称加密 🔗有des, aes 方式， 计算性能好，但密钥的安全依赖于双</description>
+      <description>对称加密与散列 🔗有des, aes 方式， 计算性能好，但密钥的安全依</description>
     </item>
     
     <item>
@@ -122,6 +131,15 @@
       
       <guid>http://brettkk.github.io/posts/os/top/</guid>
       <description>linux top命令（mac top结果显示有一些区别） Linux下常</description>
+    </item>
+    
+    <item>
+      <title>mac安装开发环境</title>
+      <link>http://brettkk.github.io/posts/tools/mac_start_dev/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/tools/mac_start_dev/</guid>
+      <description>新电脑构建开发环境，安装指南 iterm2 brew zsh, ohmyzsh golang vscode hugo github direnv 安装终端窗口工</description>
     </item>
     
     <item>
@@ -247,7 +265,7 @@
       <pubDate>Mon, 05 Apr 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/math/matrix/</guid>
-      <description>线性代数 矩阵的几何意义 矩阵是对空间的一次变化 行列式的意义： 经</description>
+      <description>3b1b 视频系列 线性代数 矩阵的几何意义 矩阵是对空间的一次变化 行列式</description>
     </item>
     
     <item>
@@ -309,15 +327,6 @@ tags: [&amp;quot;cloud native&amp;quot;]
     
     <item>
       <title></title>
-      <link>http://brettkk.github.io/posts/cloud_native/lstio/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://brettkk.github.io/posts/cloud_native/lstio/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>http://brettkk.github.io/posts/leetcode/backtracking/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -331,7 +340,7 @@ tags: [&amp;quot;cloud native&amp;quot;]
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://brettkk.github.io/posts/leetcode/queue/</guid>
-      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25  type Queue struct { items []int } func New() *Queue { return &amp;amp;Queue{ items: []int{} } } func (q *Queue) Enqueue(item int) { q.</description>
+      <description>type Queue struct { items []int } func New() *Queue { return &amp;amp;Queue{ items: []int{} } } func (q *Queue) Enqueue(item int) { q.items = append(q.items, item) } func (q *Queue) Dequeue() int { if len(q.</description>
     </item>
     
     <item>
@@ -340,7 +349,7 @@ tags: [&amp;quot;cloud native&amp;quot;]
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://brettkk.github.io/posts/leetcode/stack/</guid>
-      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24  type Stack struct { items []int } func NewStack() *Stack{ return &amp;amp;Stack{ items: []int{} } } func (s *Stack) Push(value int) { s.</description>
+      <description>type Stack struct { items []int } func NewStack() *Stack{ return &amp;amp;Stack{ items: []int{} } } func (s *Stack) Push(value int) { s.items = append(s.items, value) } func (s *Stack)Pop() int { if len(s.</description>
     </item>
     
     <item>
@@ -349,7 +358,7 @@ tags: [&amp;quot;cloud native&amp;quot;]
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://brettkk.github.io/posts/leetcode/string/</guid>
-      <description>字符串格式的数字相加 🔗最长回文子串 🔗</description>
+      <description>字符串格式的数字相加 🔗最长回文子串 🔗字符串匹配算法 🔗BM KMP</description>
     </item>
     
     <item>
@@ -358,7 +367,43 @@ tags: [&amp;quot;cloud native&amp;quot;]
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://brettkk.github.io/posts/leetcode/tree/</guid>
-      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70  type TreeNode struct { value int left *TreeNode right *TreeNode } // bin search tree type BinTree struct { root *TreeNode } func (t *BinTree) Insert(value int) { node := &amp;amp;TreeNode{value, nil, nil} if t.</description>
+      <description>type TreeNode struct { value int left *TreeNode right *TreeNode } // bin search tree type BinTree struct { root *TreeNode } func (t *BinTree) Insert(value int) { node := &amp;amp;TreeNode{value, nil, nil} if t.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/math/algeb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/math/algeb/</guid>
+      <description>高等代数
+ 研究对象  初中， 方程，一元一次方程。ax+b = c。 一元二次方程，求根公式。
+一元高次方程的求根
+n元线性方程组， 矩阵消元法，增广矩阵经过初等行变换，变为阶梯形矩阵。
+二元一次方程。
+行列式，矩阵，初等变换，线性方程组求解。
+高斯消元法 --初等变换--》 阶梯形方程组 --》 非零行的行数为矩阵的秩
+解的情况判定和解的结构 矩阵的秩与解的关系
+矩阵的特征值和特征向量，几何意义 相似矩阵，相似对角化，二次型的标准型与规范型 合同变换，合同矩阵。 正交矩阵，正交变换
+ 偏序关系  集合之间的包含关系 实数之间的小于等于关系 实数之间的大于等于关系 整数之间的整除关系    自反： 反对称： R是集合A上的关系，如果R是自反的，反对称的，传递的，R是A上的一个偏序或者半序。  偏序集合  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/math/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/math/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/</guid>
+      <description>1 极限，连续 🔗连续的定义 🔗初等函数在定义域内都是连续的。 一般讨论高等函数，如分段函数。
+极限的定义 🔗极限的求法 🔗无穷小 $$ lim $$
+，无穷大
+洛必达法则求极限
+ 2 导数（微商），微分 🔗导数叫微商，是极限。
+导数的定义。 🔗导数的几何意义。 🔗斜率
+求导的方法 🔗复合函数的求导
+隐函数的求导。
+导数的应用 🔗单调性，求极值，凹凸性（二阶导数）
+ 3 不定积分，定积分 🔗不定积分 🔗不定积分： 求函数f的全部原函数。</description>
     </item>
     
     <item>
@@ -382,6 +427,74 @@ tags: [&amp;quot;cloud native&amp;quot;]
       <guid>http://brettkk.github.io/posts/store_db/store/</guid>
       <description>块存储 🔗文件存储 🔗对象存储 🔗对象存储系统： 接入层， 索引层（mysql， redis，etcd），存储层，服务平台
 索引： 单对象，分片对象</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/tools/git/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/tools/git/</guid>
+      <description>git入门 🔗 搭建git环境 文件添加， 与git库的交互 解决合并冲突 创建分支列表 创建标签  git reflog 显示所有提交过的版本信息，包含提交，回退，删除的记录。 git log 不包含删除的commit记录和reset的操作。
+项目历史管理
+DAG，
+使用git进行程序开发
+工作区管理
+协作开发
+信任链，
+分支应用
+集成变更
+历史记录管理
+子项目管理
+git的定制和扩展
+git日常管理
+git最佳实践</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/tools/latex/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/tools/latex/</guid>
+      <description>使用中文字体 🔗使用xeCJK包，同时需要使用xeLaTex进行编译
+gif image in laTex Beamer 🔗brew install imagemagick
+convert kiss.gif -coalesce foo.png
+mac原生的mac previewer无法浏览gif, 下载Adobe Reader, then All is well.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/tools/pkg_tools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/tools/pkg_tools/</guid>
+      <description>安装goyacc
+go get modernc.org/goyacc
+https://pkg.go.dev/golang.org/x/tools/cmd/goyacc</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://brettkk.github.io/posts/tools/pku_%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/tools/pku_%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF/</guid>
+      <description>软件分析技术（Software Analysis）
+哥德尔不完备定理
+莱斯定理
+数据流分析
+过程间分析，指针分析，控制流分析，抽象解释
+约束求解，符号执行
+数据流分析 🔗活跃变量分析
+可达性分析
+可用表达式分析
+https://xiongyingfei.github.io/SA/2020/main.htm
+《编译原理》Aho
+《Lecture notes on static analysis》Moller and Schwartzbach
+https://cs.au.dk/~amoeller/spa/
+南京大学《软件分析》课（B站视频）
+《Decision Procedures -- An Algorithmic Point of View》 Daniel Kroening and Ofer Strichman</description>
     </item>
     
   </channel>

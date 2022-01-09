@@ -31,7 +31,7 @@
       <pubDate>Thu, 20 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/os/encrypt/</guid>
-      <description>对称加密 🔗有des, aes 方式， 计算性能好，但密钥的安全依赖于双</description>
+      <description>对称加密与散列 🔗有des, aes 方式， 计算性能好，但密钥的安全依</description>
     </item>
     
     <item>
@@ -122,6 +122,15 @@
       
       <guid>http://brettkk.github.io/posts/os/top/</guid>
       <description>linux top命令（mac top结果显示有一些区别） Linux下常</description>
+    </item>
+    
+    <item>
+      <title>mac安装开发环境</title>
+      <link>http://brettkk.github.io/posts/tools/mac_start_dev/</link>
+      <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/tools/mac_start_dev/</guid>
+      <description>新电脑构建开发环境，安装指南 iterm2 brew zsh, ohmyzsh golang vscode hugo github direnv 安装终端窗口工</description>
     </item>
     
     <item>

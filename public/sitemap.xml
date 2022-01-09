@@ -3,21 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://brettkk.github.io/</loc>
-    <lastmod>2021-06-26T18:34:48+08:00</lastmod>
+    <lastmod>2021-06-27T11:33:56+08:00</lastmod>
+  </url><url>
+    <loc>http://brettkk.github.io/tags/cloud-native/</loc>
+    <lastmod>2021-06-27T11:33:56+08:00</lastmod>
+  </url><url>
+    <loc>http://brettkk.github.io/posts/cloud_native/k8s/</loc>
+    <lastmod>2021-06-27T11:33:56+08:00</lastmod>
+  </url><url>
+    <loc>http://brettkk.github.io/posts/</loc>
+    <lastmod>2021-06-27T11:33:56+08:00</lastmod>
+  </url><url>
+    <loc>http://brettkk.github.io/tags/</loc>
+    <lastmod>2021-06-27T11:33:56+08:00</lastmod>
   </url><url>
     <loc>http://brettkk.github.io/categories/</loc>
     <lastmod>2021-06-26T18:34:48+08:00</lastmod>
   </url><url>
-    <loc>http://brettkk.github.io/tags/cloud-native/</loc>
-    <lastmod>2021-06-26T18:34:48+08:00</lastmod>
-  </url><url>
-    <loc>http://brettkk.github.io/posts/</loc>
-    <lastmod>2021-06-26T18:34:48+08:00</lastmod>
-  </url><url>
     <loc>http://brettkk.github.io/posts/cloud_native/runc/</loc>
-    <lastmod>2021-06-26T18:34:48+08:00</lastmod>
-  </url><url>
-    <loc>http://brettkk.github.io/tags/</loc>
     <lastmod>2021-06-26T18:34:48+08:00</lastmod>
   </url><url>
     <loc>http://brettkk.github.io/categories/%E6%8A%80%E6%9C%AF/</loc>
@@ -75,6 +78,9 @@
     <lastmod>2021-05-05T11:33:56+08:00</lastmod>
   </url><url>
     <loc>http://brettkk.github.io/posts/os/top/</loc>
+    <lastmod>2021-05-05T11:33:56+08:00</lastmod>
+  </url><url>
+    <loc>http://brettkk.github.io/posts/tools/mac_start_dev/</loc>
     <lastmod>2021-05-05T11:33:56+08:00</lastmod>
   </url><url>
     <loc>http://brettkk.github.io/posts/store_db/mysql/</loc>
@@ -151,8 +157,6 @@
   </url><url>
     <loc>http://brettkk.github.io/posts/cloud_native/etcd/</loc>
   </url><url>
-    <loc>http://brettkk.github.io/posts/cloud_native/lstio/</loc>
-  </url><url>
     <loc>http://brettkk.github.io/posts/leetcode/backtracking/</loc>
   </url><url>
     <loc>http://brettkk.github.io/posts/leetcode/queue/</loc>
@@ -163,9 +167,21 @@
   </url><url>
     <loc>http://brettkk.github.io/posts/leetcode/tree/</loc>
   </url><url>
+    <loc>http://brettkk.github.io/posts/math/algeb/</loc>
+  </url><url>
+    <loc>http://brettkk.github.io/posts/math/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/</loc>
+  </url><url>
     <loc>http://brettkk.github.io/posts/os/file_system/</loc>
   </url><url>
     <loc>http://brettkk.github.io/posts/store_db/store/</loc>
+  </url><url>
+    <loc>http://brettkk.github.io/posts/tools/git/</loc>
+  </url><url>
+    <loc>http://brettkk.github.io/posts/tools/latex/</loc>
+  </url><url>
+    <loc>http://brettkk.github.io/posts/tools/pkg_tools/</loc>
+  </url><url>
+    <loc>http://brettkk.github.io/posts/tools/pku_%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF/</loc>
   </url><url>
     <loc>http://brettkk.github.io/series/</loc>
   </url>

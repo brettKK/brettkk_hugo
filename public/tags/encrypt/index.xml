@@ -13,7 +13,7 @@
       <pubDate>Thu, 20 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/os/encrypt/</guid>
-      <description>对称加密 🔗有des, aes 方式， 计算性能好，但密钥的安全依赖于双</description>
+      <description>对称加密与散列 🔗有des, aes 方式， 计算性能好，但密钥的安全依</description>
     </item>
     
     <item>

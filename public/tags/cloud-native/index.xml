@@ -6,7 +6,16 @@
     <description>Recent content in cloud native on brettkk</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 26 Jun 2021 18:34:48 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/tags/cloud-native/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Jun 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/tags/cloud-native/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>k8s 学习</title>
+      <link>http://brettkk.github.io/posts/cloud_native/k8s/</link>
+      <pubDate>Sun, 27 Jun 2021 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/cloud_native/k8s/</guid>
+      <description>k8s架构 🔗请求访问pod的流程 🔗hostNetwork： 占</description>
+    </item>
+    
     <item>
       <title>runc</title>
       <link>http://brettkk.github.io/posts/cloud_native/runc/</link>
