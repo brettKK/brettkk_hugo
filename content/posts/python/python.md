@@ -1,4 +1,13 @@
-
+---
+title: "linux-base"
+date: 2021-05-05T11:33:56+08:00
+draft: true
+isCJKLanguage: true
+markup: mmark
+tags: ["linux"]
+series: [""]
+categories: ["技术"]
+---
 python 解释器
 
 
@@ -7,7 +16,7 @@ cpython， pypy
 
 https://github.com/makeyourownneuralnetwork
 
-colab.research.google.com
+Colab服务： colab.research.google.com
 
 数据分析包： matplotlib, numpy, pandas, scikit-learn, scipy
 
