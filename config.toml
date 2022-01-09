@@ -62,7 +62,7 @@ useHLJS = true
         lineNos = false
         lineNumbersInTable = true
         noClasses = true
-        style = "emacs"
+        style = "monokai"
         tabWidth = 4
 
 [params.math]
