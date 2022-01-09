@@ -23,7 +23,7 @@ useHLJS = true
 [params]
     archive-paginate = 30                         # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
     showReadMore = true 
-    toc = true
+    # toc = true
     showTOC = true
     mathjax = true
 

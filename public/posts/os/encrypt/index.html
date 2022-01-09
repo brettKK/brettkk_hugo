@@ -22,11 +22,19 @@
 
 
 <link rel="stylesheet" href="/css/style.css">
+
+
+
 <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 
 
 
 
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
 
 
 
@@ -55,16 +63,12 @@
     <h1 class="title">加密相关</h1>
 
     <div class="tip">
-        <span>
-          May 20, 2021 11:33
-        </span>
+        <time datetime="2021-05-20 11:33:56 &#43;0800 CST">May 20, 2021</time>
         <span class="split">
           ·
         </span>
         <span>
-          
-            2055 words
-          
+          2055 words
         </span>
         <span class="split">
           ·
@@ -73,6 +77,50 @@
           5 minute read
         </span>
     </div>
+
+    
+    
+        
+  
+    <aside class="toc">
+      <details>
+          <summary>Table of Contents
+          </summary>
+          <div>
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#对称加密">对称加密</a></li>
+    <li><a href="#rsa">RSA</a>
+      <ul>
+        <li><a href="#rsa背景">RSA背景</a></li>
+        <li><a href="#相关数论概念">相关数论概念</a></li>
+        <li><a href="#rsa-生成过程">rsa 生成过程</a></li>
+        <li><a href="#rsa-证明">rsa 证明</a></li>
+        <li><a href="#工程实现">工程实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#tls">TLS</a>
+      <ul>
+        <li><a href="#tls12-and-tls13">TLS1.2 and TLS1.3</a></li>
+        <li><a href="#tls-two-primary-components">TLS two primary components</a></li>
+        <li><a href="#tls12-与-tls13-的区别">TLS1.2 与 TLS1.3 的区别</a></li>
+        <li><a href="#dh---ecdh">DH &amp;&amp;  ECDH</a></li>
+        <li><a href="#dh-交互流程">DH 交互流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#密钥的管理">密钥的管理</a></li>
+    <li><a href="#同态加密homomorphic-encryption">同态加密（Homomorphic Encryption）</a></li>
+    <li><a href="#abe">ABE</a></li>
+  </ul>
+</nav>
+          </div>
+      </details>
+    </aside>
+  
+
+
+    
+
 
     <div class="content">
       <h2 id="对称加密">对称加密 <a href="#%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="anchor">🔗</a></h2><p>有des, aes 方式， 计算性能好，但密钥的安全依赖于双方，密钥有配送安全问题。</p>
@@ -261,7 +309,7 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
     <footer id="footer">
     
 
-    <p class="copyright">
+    <div class="copyright">
     
        © Copyright 
        2022 
@@ -272,11 +320,16 @@ Alice计算  Q = a * B  , Bob就算 Q = b * A
        </span>
        
     
-    </p>
-    <p class="powerby">
-        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
-    </p>
+    </div>
+
+    
+      <div class="powerby">
+        Powered by <a href='http://www.gohugo.io/'>Hugo</a> Theme By <a href='https://github.com/nodejh/hugo-theme-cactus-plus'>nodejh</a>
+      </div>
+    
 </footer>
+
+
 
   </body>
 </html>

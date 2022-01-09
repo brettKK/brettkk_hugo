@@ -22,9 +22,19 @@
 
 
 <link rel="stylesheet" href="/css/style.css">
+
+
+
 <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 
 
+
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
 
 
 
@@ -32,8 +42,6 @@
     <link href="/index.xml" rel="alternate" type="application/rss+xml" title="brettkk" />
     <link href="/index.xml" rel="feed" type="application/rss+xml" title="brettkk" />
   
-
-
 
 
   </head>
@@ -69,53 +77,65 @@
     
         
         
-        
         <section class="item">
           <div>
-            <h1 class="title"><a href='/posts/os/http/'>http, curl, dns</a></h1>   
-            <div class="date">May 5, 2021</div>
+            <h1 class="title"><a href='/posts/os/http/'>http, curl, dns</a></h1>
+            <div class ="date">
+                <time datetime="2021-05-05 11:33:56 &#43;0800 CST">May 5, 2021</time>  
+            </div>
           </div>
 
-          <div class="summary">http http header 常用字段 content-type (如何解析body) application/x-www-form-urlencoded multipart/from-data, 上传文件 application/json, text/plain text/xml, XML</div>
+          
+              <div class="summary">http http header 常用字段 content-type (如何解析body) application/x-www-form-urlencoded multipart/from-data, 上传文件 application/json, text/plain text/xml, XML</div>
+          
 
         </section>
     
         
         
-        
         <section class="item">
           <div>
-            <h1 class="title"><a href='/posts/os/base_os/'>linux-base</a></h1>   
-            <div class="date">May 5, 2021</div>
+            <h1 class="title"><a href='/posts/os/base_os/'>linux-base</a></h1>
+            <div class ="date">
+                <time datetime="2021-05-05 11:33:56 &#43;0800 CST">May 5, 2021</time>  
+            </div>
           </div>
 
-          <div class="summary">Linux 版本 uname -a 查看系统的版本 debian/ubuntu redhat/fedora/centos 各种源码协议 必须开源： LGPL Mozilla GPL</div>
+          
+              <div class="summary">Linux 版本 uname -a 查看系统的版本 debian/ubuntu redhat/fedora/centos 各种源码协议 必须开源： LGPL Mozilla GPL</div>
+          
 
         </section>
     
         
         
-        
         <section class="item">
           <div>
-            <h1 class="title"><a href='/posts/os/free/'>linux-free</a></h1>   
-            <div class="date">May 5, 2021</div>
+            <h1 class="title"><a href='/posts/os/free/'>linux-free</a></h1>
+            <div class ="date">
+                <time datetime="2021-05-05 11:33:56 &#43;0800 CST">May 5, 2021</time>  
+            </div>
           </div>
 
-          <div class="summary">free查看内存使用情况，包含已用内存，可用内存，交换内存的</div>
+          
+              <div class="summary">free查看内存使用情况，包含已用内存，可用内存，交换内存的</div>
+          
 
         </section>
     
         
         
-        
         <section class="item">
           <div>
-            <h1 class="title"><a href='/posts/os/shell-basic/'>linux-shell</a></h1>   
-            <div class="date">May 5, 2021</div>
+            <h1 class="title"><a href='/posts/os/shell-basic/'>linux-shell</a></h1>
+            <div class ="date">
+                <time datetime="2021-05-05 11:33:56 &#43;0800 CST">May 5, 2021</time>  
+            </div>
           </div>
 
-          <div class="summary">单引号，双引号，反引号区别 单引号之间的内容原封不动的输出 双引</div>
+          
+              <div class="summary">单引号，双引号，反引号区别 单引号之间的内容原封不动的输出 双引</div>
+          
 
         </section>
     
@@ -125,7 +145,7 @@
           
               <span class="prev">
                   <a href="/page/2/">
-                      <span class="arrow">←</span> Newer Posts
+                      <span class="arrow">←</span> Newer posts
                   </a>
             </span>
           
@@ -133,7 +153,7 @@
           
               <span class="next">
                   <a href="/page/4/">
-                      Older Posts <span class="arrow">→</span>
+                      Older posts <span class="arrow">→</span>
                   </a>
               </span>
           
@@ -148,7 +168,7 @@
     <footer id="footer">
     
 
-    <p class="copyright">
+    <div class="copyright">
     
        © Copyright 
        2022 
@@ -159,11 +179,16 @@
        </span>
        
     
-    </p>
-    <p class="powerby">
-        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
-    </p>
+    </div>
+
+    
+      <div class="powerby">
+        Powered by <a href='http://www.gohugo.io/'>Hugo</a> Theme By <a href='https://github.com/nodejh/hugo-theme-cactus-plus'>nodejh</a>
+      </div>
+    
 </footer>
+
+
 
   </body>
 </html>
