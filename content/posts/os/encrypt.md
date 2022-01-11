@@ -64,48 +64,42 @@ $$a^{\Phi \left(n\right)}\equiv 1\left( mod\ n\right)$$
 
 ### rsa 证明
 
-$$
-y=x^e - kn \tag{1}\\
-$$
+$$ y=x^e - kn \tag{1}$$
 
-$$
-y^d \equiv x (mod\ n) \tag{2}\\
-$$
+$$ y^d \equiv x (mod\ n) \tag{2}$$
 
-$$
-(x^e - kn)^d \equiv x (mod\ n) \tag{3}\\
-$$
+$$ (x^e - kn)^d \equiv x (mod\ n) \tag{3} $$
 
 左边多项式展开：
 $$
-x^ed-m_{1}x^{e(d-1)}kn+m_{2}x^{e(d-2)}(kn)^2...m_{n}(kn)^{d} \tag{4}\\
+x^ed-m_{1}x^{e(d-1)}kn+m_{2}x^{e(d-2)}(kn)^2...m_{n}(kn)^{d} \tag{4}
 $$
 
 $$x^{ed}$$ 不含n， 所以只需要证明：
 $$
-x^{ed} \equiv x (mod\ n) \tag{5}\\
+x^{ed} \equiv x (mod\ n) \tag{5}
 $$
 
 而ed 等于：
 $$
-ed \equiv 1 (mod\ {\Phi (n)}) \tag{6}\\
+ed \equiv 1 (mod\ {\Phi (n)}) \tag{6}
 $$
 
 $$
-ed=h{\Phi(n)})+1 \tag{7}\\
+ed=h{\Phi(n)})+1 \tag{7}
 $$
 
 $$
-x^{h{\Phi \left(n\right)}}*x\equiv x (mod\ n) \tag{8}\\
+x^{h{\Phi \left(n\right)}}*x\equiv x (mod\ n) \tag{8}
 $$
 
 若x与n互质，根据欧拉定理 得证
 $$
-x^{h{\Phi \left(n\right)}}\equiv 1 (mod\ n)  \tag{9}\\
+x^{h{\Phi \left(n\right)}}\equiv 1 (mod\ n)  \tag{9}
 $$
 
 $$
-x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}\\
+x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}
 $$
 
 若x与n不互质时， 稍微复杂 todo
