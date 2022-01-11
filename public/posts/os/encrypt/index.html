@@ -70,7 +70,7 @@
           ·
         </span>
         <span>
-          2058 words
+          2056 words
         </span>
         <span class="split">
           ·
@@ -162,39 +162,33 @@
 <li>加密公式 $$x^e mod n = y $$</li>
 <li>解密公式 $$y^d mod n = x $$</li>
 </ul>
-<h3 id="rsa-证明">rsa 证明 <a href="#rsa-%e8%af%81%e6%98%8e" class="anchor">🔗</a></h3><p>$$
-y=x^e - kn \tag{1}\<br>
-$$</p>
-<p>$$
-y^d \equiv x (mod\ n) \tag{2}\<br>
-$$</p>
-<p>$$
-(x^e - kn)^d \equiv x (mod\ n) \tag{3}\<br>
-$$</p>
+<h3 id="rsa-证明">rsa 证明 <a href="#rsa-%e8%af%81%e6%98%8e" class="anchor">🔗</a></h3><p>$$ y=x^e - kn \tag{1}$$</p>
+<p>$$ y^d \equiv x (mod\ n) \tag{2}$$</p>
+<p>$$ (x^e - kn)^d \equiv x (mod\ n) \tag{3} $$</p>
 <p>左边多项式展开：
 $$
-x^ed-m_{1}x^{e(d-1)}kn+m_{2}x^{e(d-2)}(kn)^2...m_{n}(kn)^{d} \tag{4}\<br>
+x^ed-m_{1}x^{e(d-1)}kn+m_{2}x^{e(d-2)}(kn)^2...m_{n}(kn)^{d} \tag{4}
 $$</p>
 <p>$$x^{ed}$$ 不含n， 所以只需要证明：
 $$
-x^{ed} \equiv x (mod\ n) \tag{5}\<br>
+x^{ed} \equiv x (mod\ n) \tag{5}
 $$</p>
 <p>而ed 等于：
 $$
-ed \equiv 1 (mod\ {\Phi (n)}) \tag{6}\<br>
+ed \equiv 1 (mod\ {\Phi (n)}) \tag{6}
 $$</p>
 <p>$$
-ed=h{\Phi(n)})+1 \tag{7}\<br>
+ed=h{\Phi(n)})+1 \tag{7}
 $$</p>
 <p>$$
-x^{h{\Phi \left(n\right)}}*x\equiv x (mod\ n) \tag{8}\<br>
+x^{h{\Phi \left(n\right)}}*x\equiv x (mod\ n) \tag{8}
 $$</p>
 <p>若x与n互质，根据欧拉定理 得证
 $$
-x^{h{\Phi \left(n\right)}}\equiv 1 (mod\ n)  \tag{9}\<br>
+x^{h{\Phi \left(n\right)}}\equiv 1 (mod\ n)  \tag{9}
 $$</p>
 <p>$$
-x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}\<br>
+x^{h{\Phi \left(n\right)}}x\equiv x (mod\ n) \tag{10}
 $$</p>
 <p>若x与n不互质时， 稍微复杂 todo</p>
 <h3 id="工程实现">工程实现 <a href="#%e5%b7%a5%e7%a8%8b%e5%ae%9e%e7%8e%b0" class="anchor">🔗</a></h3><ul>

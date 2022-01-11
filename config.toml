@@ -55,16 +55,16 @@ useHLJS = true
             unsafe = true
             xHTML = false
 
-[markup.highlight]
-    style = 'manni' # 样式参考 https://swapoff.org/chroma/playground
-    codeFences = true
-    guessSyntax = false
-    hl_Lines = ""
-    lineNoStart = 1
-    lineNos = false
-    lineNumbersInTable = true
-    noClasses = true
-    # style = "monokai"
-    tabWidth = 4
+# [markup.highlight]
+#     # style = 'manni' # 样式参考 https://swapoff.org/chroma/playground
+#     codeFences = true
+#     guessSyntax = false
+#     hl_Lines = ""
+#     lineNoStart = 1
+#     lineNos = false
+#     lineNumbersInTable = true
+#     noClasses = true
+#     # style = "monokai"
+#     tabWidth = 4
 [params.math]
     enable = true

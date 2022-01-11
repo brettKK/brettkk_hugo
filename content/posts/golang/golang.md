@@ -23,7 +23,7 @@ golang中面向对象的实现方式
 
 组合结构体，一个结构体嵌入另一个结构体，能够实现对嵌入结构体的字段以及其实现的方法的继承。
 
-```golang
+{{< highlight go "linenos=table,hl_lines=8 15-17,linenostart=1" >}}
 type person struct {
     name string
     age  int
@@ -47,6 +47,10 @@ func main() {
     fmt.Println(s.name) // 继承person的name字段
     s.talk() // 继承person实现的方法
 }
+{{< / highlight >}}
+
+```golang
+
 
 ```
 
