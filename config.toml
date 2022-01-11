@@ -7,12 +7,12 @@ theme = "mini"
 paginate = 4 # Set the number of posts to show before overflowing to the next page.
 summaryLength = 30  # 限制摘要字数
 
-pygmentsCodeFences = true                      # Enable syntax highlighting with GitHub flavoured code fences
-pygmentsStyle = "pygments"
-pygmentsUseClasses = true                      # Use CSS classes to format highlighted code
-pygmentsCodefencesGuessSyntax = true           #
+# pygmentsCodeFences = true                      # Enable syntax highlighting with GitHub flavoured code fences
+# pygmentsStyle = "pygments"
+# pygmentsUseClasses = true                      # Use CSS classes to format highlighted code
+# pygmentsCodefencesGuessSyntax = true           #
 
-useHLJS = true
+# useHLJS = true
 
 
 [taxonomies]
@@ -31,7 +31,7 @@ useHLJS = true
     owner = "brettkk"
     repo = "brettkk.github.io"    # 仓库地址The repo to store comments
     issueTerm = "pathname"    #gitmentClientId = "694cecb7641cd102150b" 
-	theme = "github-light"     #gitmentClientSecret = "f06f28880ee792966d06bed3d40291c77a89015c"
+	# theme = "github-light"     #gitmentClientSecret = "f06f28880ee792966d06bed3d40291c77a89015c"
 
 
 # Markdown 渲染器

@@ -70,7 +70,7 @@
           ·
         </span>
         <span>
-          2135 words
+          2158 words
         </span>
         <span class="split">
           ·
@@ -139,29 +139,59 @@
 <hr>
 <h2 id="多态继承-范型">多态，继承， 范型 <a href="#%e5%a4%9a%e6%80%81%e7%bb%a7%e6%89%bf-%e8%8c%83%e5%9e%8b" class="anchor">🔗</a></h2><p>golang中面向对象的实现方式</p>
 <h3 id="继承">继承 <a href="#%e7%bb%a7%e6%89%bf" class="anchor">🔗</a></h3><p>组合结构体，一个结构体嵌入另一个结构体，能够实现对嵌入结构体的字段以及其实现的方法的继承。</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">type</span> <span class="nx">person</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="hl"><span class="lnt"> 8
+</span></span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="hl"><span class="lnt">15
+</span></span><span class="hl"><span class="lnt">16
+</span></span><span class="hl"><span class="lnt">17
+</span></span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">person</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">name</span> <span class="kt">string</span>
     <span class="nx">age</span>  <span class="kt">int</span>
 <span class="p">}</span>
 
 <span class="kd">type</span> <span class="nx">student</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">person</span> <span class="c1">//   匿名字段，通过组合的方式
-</span><span class="c1"></span>    <span class="nx">school</span> <span class="kt">string</span> 
-<span class="p">}</span>
+</span><span class="hl"><span class="c1"></span>    <span class="nx">school</span> <span class="kt">string</span> 
+</span><span class="p">}</span>
 
 <span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span> <span class="nx">person</span><span class="p">)</span> <span class="nf">talk</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">age</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">student</span><span class="p">)</span> <span class="nf">getSchool</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">school</span>
-<span class="p">}</span>
-
+<span class="hl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">student</span><span class="p">)</span> <span class="nf">getSchool</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="hl">    <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">school</span>
+</span><span class="hl"><span class="p">}</span>
+</span>
 <span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">s</span> <span class="o">:=</span> <span class="nx">student</span><span class="p">{</span><span class="nx">person</span><span class="p">{</span><span class="s">&#34;brettkk&#34;</span><span class="p">,</span> <span class="mi">18</span><span class="p">},</span> <span class="s">&#34;yidu&#34;</span><span class="p">}</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="c1">// 继承person的name字段
 </span><span class="c1"></span>    <span class="nx">s</span><span class="p">.</span><span class="nf">talk</span><span class="p">()</span> <span class="c1">// 继承person实现的方法
-</span><span class="c1"></span><span class="p">}</span>
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
 
 </code></pre></div><h3 id="多态">多态 <a href="#%e5%a4%9a%e6%80%81" class="anchor">🔗</a></h3><p>go没有 implements, extends 关键字， golang是去鸭子类型：看起来像鸭子， 那么它就是鸭子。</p>
 <p>多态： 父类指针或引用去调用方法，在执行的时候，能够根据子类的类型去执行子类当中的方法。</p>
