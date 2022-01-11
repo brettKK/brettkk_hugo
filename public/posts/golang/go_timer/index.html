@@ -117,79 +117,79 @@ src/runtime/time.go:addtimerLocked()函数负责添加timer</p>
 <li>一次性定时器：定时器只计时一次，结束便停止  Timer只执行一次就结束</li>
 <li>周期性定时器：定时器周期性进行计时  周期性定时器Ticker</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">type</span> <span class="nx">Timer</span> <span class="kd">struct</span> <span class="p">{</span> <span class="c1">// Timer代表一次定时，时间到来后仅发生一个事件。
-</span><span class="c1"></span>    <span class="nx">C</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="nx">Time</span>
-    <span class="nx">r</span> <span class="nx">runtimeTimer</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">//src/time/tick.go:Ticker
-</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Ticker</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">C</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="nx">Time</span> <span class="c1">// The channel on which the ticks are delivered.
-</span><span class="c1"></span>    <span class="nx">r</span> <span class="nx">runtimeTimer</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Timer</span> <span style="color:#66d9ef">struct</span> { <span style="color:#75715e">// Timer代表一次定时，时间到来后仅发生一个事件。
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">C</span> <span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">Time</span>
+    <span style="color:#a6e22e">r</span> <span style="color:#a6e22e">runtimeTimer</span>
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">//src/time/tick.go:Ticker
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Ticker</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">C</span> <span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">Time</span> <span style="color:#75715e">// The channel on which the ticks are delivered.
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">r</span> <span style="color:#a6e22e">runtimeTimer</span>
+}
 </code></pre></div><h3 id="原理">原理 <a href="#%e5%8e%9f%e7%90%86" class="anchor">🔗</a></h3><p>系统协程把runtimeTimer存放在数组中，并按照when字段对所有的runtimeTimer进行堆排序，定时器触发时执行runtimeTimer中的预定义函数f
 即完成了一次定时任务</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">//src/time/sleep.go:runtimeTimer定义了其数据结构
-</span><span class="c1"></span><span class="kd">type</span> <span class="nx">runtimeTimer</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">tb</span> <span class="kt">uintptr</span>                          <span class="c1">// 存储当前定时器的数组地址
-</span><span class="c1"></span>    <span class="nx">i</span>  <span class="kt">int</span>                              <span class="c1">// 存储当前定时器的数组下标
-</span><span class="c1"></span>
-    <span class="nx">when</span>   <span class="kt">int64</span>                        <span class="c1">// 当前定时器触发时间
-</span><span class="c1"></span>    <span class="nx">period</span> <span class="kt">int64</span>                        <span class="c1">// 当前定时器周期触发间隔
-</span><span class="c1"></span>    <span class="nx">f</span>      <span class="kd">func</span><span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="kt">uintptr</span><span class="p">)</span>   <span class="c1">// 定时器触发时执行的函数
-</span><span class="c1"></span>    <span class="nx">arg</span>    <span class="kd">interface</span><span class="p">{}</span>                  <span class="c1">// 定时器触发时执行函数传递的参数一
-</span><span class="c1"></span>    <span class="nx">seq</span>    <span class="kt">uintptr</span>                      <span class="c1">// 定时器触发时执行函数传递的参数二(该参数只在网络收发场景下使用)
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">NewTimer</span><span class="p">(</span><span class="nx">d</span> <span class="nx">Duration</span><span class="p">)</span> <span class="o">*</span><span class="nx">Timer</span> <span class="p">{</span>
-    <span class="nx">c</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">Time</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1">// 创建一个管道
-</span><span class="c1"></span>    <span class="nx">t</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Timer</span><span class="p">{</span> <span class="c1">// 构造Timer数据结构
-</span><span class="c1"></span>        <span class="nx">C</span><span class="p">:</span> <span class="nx">c</span><span class="p">,</span>               <span class="c1">// 新创建的管道
-</span><span class="c1"></span>        <span class="nx">r</span><span class="p">:</span> <span class="nx">runtimeTimer</span><span class="p">{</span>
-            <span class="nx">when</span><span class="p">:</span> <span class="nf">when</span><span class="p">(</span><span class="nx">d</span><span class="p">),</span>  <span class="c1">// 触发时间
-</span><span class="c1"></span>            <span class="nx">f</span><span class="p">:</span>    <span class="nx">sendTime</span><span class="p">,</span> <span class="c1">// 触发后执行函数sendTime
-</span><span class="c1"></span>            <span class="nx">arg</span><span class="p">:</span>  <span class="nx">c</span><span class="p">,</span>        <span class="c1">// 触发后执行函数sendTime时附带的参数
-</span><span class="c1"></span>        <span class="p">},</span>
-    <span class="p">}</span>
-    <span class="nf">startTimer</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">t</span><span class="p">.</span><span class="nx">r</span><span class="p">)</span> <span class="c1">// 此处启动定时器，只是把runtimeTimer放到系统协程的堆中，由系统协程维护
-</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">t</span>
-<span class="p">}</span>
-</code></pre></div><h3 id="一次性timer">一次性timer <a href="#%e4%b8%80%e6%ac%a1%e6%80%a7timer" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// 设定超时时间
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">WaitChannel</span><span class="p">(</span><span class="nx">conn</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-	<span class="nx">timer</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">NewTimer</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-	<span class="k">select</span> <span class="p">{</span>
-	<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">conn</span><span class="p">:</span>
-		<span class="nx">timer</span><span class="p">.</span><span class="nf">Stop</span><span class="p">()</span>
-		<span class="k">return</span> <span class="kc">true</span>
-	<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">timer</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span> <span class="c1">// 超时
-</span><span class="c1"></span>		<span class="nb">println</span><span class="p">(</span><span class="s">&#34;WaitChannel timeout!&#34;</span><span class="p">)</span>
-		<span class="k">return</span> <span class="kc">false</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">//After()
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">AfterDemo</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
-	<span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nf">After</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-	<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">//src/time/sleep.go:runtimeTimer定义了其数据结构
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">runtimeTimer</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">tb</span> <span style="color:#66d9ef">uintptr</span>                          <span style="color:#75715e">// 存储当前定时器的数组地址
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">i</span>  <span style="color:#66d9ef">int</span>                              <span style="color:#75715e">// 存储当前定时器的数组下标
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">when</span>   <span style="color:#66d9ef">int64</span>                        <span style="color:#75715e">// 当前定时器触发时间
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">period</span> <span style="color:#66d9ef">int64</span>                        <span style="color:#75715e">// 当前定时器周期触发间隔
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">f</span>      <span style="color:#66d9ef">func</span>(<span style="color:#66d9ef">interface</span>{}, <span style="color:#66d9ef">uintptr</span>)   <span style="color:#75715e">// 定时器触发时执行的函数
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">arg</span>    <span style="color:#66d9ef">interface</span>{}                  <span style="color:#75715e">// 定时器触发时执行函数传递的参数一
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">seq</span>    <span style="color:#66d9ef">uintptr</span>                      <span style="color:#75715e">// 定时器触发时执行函数传递的参数二(该参数只在网络收发场景下使用)
+</span><span style="color:#75715e"></span>}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewTimer</span>(<span style="color:#a6e22e">d</span> <span style="color:#a6e22e">Duration</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Timer</span> {
+    <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">Time</span>, <span style="color:#ae81ff">1</span>)  <span style="color:#75715e">// 创建一个管道
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">t</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Timer</span>{ <span style="color:#75715e">// 构造Timer数据结构
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">C</span>: <span style="color:#a6e22e">c</span>,               <span style="color:#75715e">// 新创建的管道
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">r</span>: <span style="color:#a6e22e">runtimeTimer</span>{
+            <span style="color:#a6e22e">when</span>: <span style="color:#a6e22e">when</span>(<span style="color:#a6e22e">d</span>),  <span style="color:#75715e">// 触发时间
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">f</span>:    <span style="color:#a6e22e">sendTime</span>, <span style="color:#75715e">// 触发后执行函数sendTime
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">arg</span>:  <span style="color:#a6e22e">c</span>,        <span style="color:#75715e">// 触发后执行函数sendTime时附带的参数
+</span><span style="color:#75715e"></span>        },
+    }
+    <span style="color:#a6e22e">startTimer</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">r</span>) <span style="color:#75715e">// 此处启动定时器，只是把runtimeTimer放到系统协程的堆中，由系统协程维护
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">t</span>
+}
+</code></pre></div><h3 id="一次性timer">一次性timer <a href="#%e4%b8%80%e6%ac%a1%e6%80%a7timer" class="anchor">🔗</a></h3><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">// 设定超时时间
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">WaitChannel</span>(<span style="color:#a6e22e">conn</span> <span style="color:#f92672">&lt;-</span><span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">bool</span> {
+	<span style="color:#a6e22e">timer</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">NewTimer</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+	<span style="color:#66d9ef">select</span> {
+	<span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">conn</span>:
+		<span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">Stop</span>()
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+	<span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">timer</span>.<span style="color:#a6e22e">C</span>: <span style="color:#75715e">// 超时
+</span><span style="color:#75715e"></span>		println(<span style="color:#e6db74">&#34;WaitChannel timeout!&#34;</span>)
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>
+	}
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">//After()
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">AfterDemo</span>() {
+	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>())
+	<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">After</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>())
+}
 
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">//AfterFunc()
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">AfterFuncDemo</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;AfterFuncDemo start: &#34;</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
-	<span class="nx">time</span><span class="p">.</span><span class="nf">AfterFunc</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">,</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;AfterFuncDemo end: &#34;</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">())</span>
-	<span class="p">})</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">//AfterFunc()
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">AfterFuncDemo</span>() {
+	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;AfterFuncDemo start: &#34;</span>, <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>())
+	<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">AfterFunc</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">*</span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>, <span style="color:#66d9ef">func</span>() {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;AfterFuncDemo end: &#34;</span>, <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>())
+	})
 
-	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span> <span class="c1">// 等待协程退出
-</span><span class="c1"></span><span class="p">}</span>
+	<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>) <span style="color:#75715e">// 等待协程退出
+</span><span style="color:#75715e"></span>}
 
-</code></pre></div><h3 id="周期性ticker">周期性ticker <a href="#%e5%91%a8%e6%9c%9f%e6%80%a7ticker" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// TickerDemo 用于演示ticker基础用法
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">TickerDemo</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">ticker</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">NewTicker</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-	<span class="k">defer</span> <span class="nx">ticker</span><span class="p">.</span><span class="nf">Stop</span><span class="p">()</span>
+</code></pre></div><h3 id="周期性ticker">周期性ticker <a href="#%e5%91%a8%e6%9c%9f%e6%80%a7ticker" class="anchor">🔗</a></h3><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">// TickerDemo 用于演示ticker基础用法
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TickerDemo</span>() {
+	<span style="color:#a6e22e">ticker</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">NewTicker</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">ticker</span>.<span style="color:#a6e22e">Stop</span>()
 
-	<span class="k">for</span> <span class="k">range</span> <span class="nx">ticker</span><span class="p">.</span><span class="nx">C</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Ticker tick.&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">ticker</span>.<span style="color:#a6e22e">C</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Ticker tick.&#34;</span>)
+	}
+}
 
 </code></pre></div>
     </div>

@@ -126,153 +126,153 @@
   <img src="/golang/golang_sync.png" alt="image"  />
 </p></p>
 <h3 id="waitgroup使用">WaitGroup使用 <a href="#waitgroup%e4%bd%bf%e7%94%a8" class="anchor">🔗</a></h3><p>WaitGroup在工作中经常会使用到。例如：需要并行处理一些子任务，需要起多个协程对一些复杂结构体的各个字段进行初始化等。简单的使用说明如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">fun</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
-    <span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span> 
-        <span class="c1">//process
-</span><span class="c1"></span>    <span class="p">}()</span>
-    <span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">fun</span>() {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wg</span> <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>
+    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+        <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>() 
+        <span style="color:#75715e">//process
+</span><span style="color:#75715e"></span>    }()
+    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>()
+}
 </code></pre></div><h2 id="channel">channel <a href="#channel" class="anchor">🔗</a></h2><p>通道是golang中协程通信的一种方式，可以灵活、高效支持协程之间的通信。通道与协程之间的交互流程图因是否存在缓冲区、缓冲区是否填满、是否存在发送等待队列等，会在过程上会存在不同。下面给出的示意图是针对利用无缓冲通道进行通信的其中一种情况，主要是为了简化流程和突出主要功能点。图中hchan是通道的底层数据结构，其中主要包含： buf为数据存储区， recvq和sendq为在此通道上等待接受和发送的协程队列，lock为保护通道数据的锁等。P为运行时的协程调度器。原理示意图如下：</p>
 <p><p class="markdown-image">
   <img src="/golang/hchan.png" alt="image"  />
 </p></p>
 <h3 id="channel-使用说明">channel 使用说明 <a href="#channel-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" class="anchor">🔗</a></h3><p>通过无缓冲的通道，阻塞一个协程，等待另一个协程唤醒。例如：main协程在通道的接受队列中等待， 等worker协程写入数据后，main协程才会唤醒并继续执行。通信的数据是直接写一个协程的stack。这样可以省去去操作通道的buf，减少内存拷贝。简单的使用说明如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">worker</span><span class="p">(</span><span class="nx">done</span> <span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">//process
-</span><span class="c1"></span>    <span class="nx">done</span> <span class="o">&lt;-</span> <span class="kc">true</span>
-<span class="p">}</span>
-<span class="kd">func</span> <span class="nf">main</span><span class="p">(){</span>
-    <span class="nx">done</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">bool</span><span class="p">)</span>
-    <span class="k">go</span> <span class="nf">worker</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span>
-    <span class="o">&lt;-</span> <span class="nx">done</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">worker</span>(<span style="color:#a6e22e">done</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">bool</span>) {
+    <span style="color:#75715e">//process
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">done</span> <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">true</span>
+}
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+    <span style="color:#a6e22e">done</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">bool</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">worker</span>(<span style="color:#a6e22e">done</span>)
+    <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">done</span>
+}
 </code></pre></div><p>channel读写超时的处理。Go 语言的 channel 本身是不支持 timeout 的，一般实现 channel 的读写超时采用 select + time的方式。实例说明如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span>
-    <span class="k">go</span> <span class="kd">func</span><span class="p">(){</span>
-        <span class="c1">//process   
-</span><span class="c1"></span>        <span class="nx">ch</span><span class="o">&lt;-</span><span class="mi">1</span>
-    <span class="p">}()</span>
-    <span class="k">select</span><span class="p">{</span>
-    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nf">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">):</span>
-        <span class="k">return</span>
-    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch</span> 
-        <span class="c1">//process
-</span><span class="c1"></span>    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><h3 id="channel-错误示例">channel 错误示例 <a href="#channel-%e9%94%99%e8%af%af%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// 死锁
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
-    <span class="o">&lt;-</span> <span class="nx">ch</span> <span class="c1">//block
-</span><span class="c1"></span>    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>
+    <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(){
+        <span style="color:#75715e">//process   
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">ch</span><span style="color:#f92672">&lt;-</span><span style="color:#ae81ff">1</span>
+    }()
+    <span style="color:#66d9ef">select</span>{
+    <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">After</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>):
+        <span style="color:#66d9ef">return</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ch</span> 
+        <span style="color:#75715e">//process
+</span><span style="color:#75715e"></span>    }
+}
+</code></pre></div><h3 id="channel-错误示例">channel 错误示例 <a href="#channel-%e9%94%99%e8%af%af%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h3><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">// 死锁
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">ch</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+    <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ch</span> <span style="color:#75715e">//block
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+        <span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+    }
+}
 
-<span class="c1">// 死锁
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
-    <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span> <span class="c1">// block
-</span><span class="c1"></span>    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-        <span class="o">&lt;-</span><span class="nx">ch</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span style="color:#75715e">// 死锁
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">ch</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+    <span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">// block
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+        <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ch</span>
+    }
+}
 
-<span class="c1">// 死锁
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">int</span>  <span class="c1">//nil channel
-</span><span class="c1"></span>
-        <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">for</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">c</span> <span class="p">{</span> <span class="c1">// &lt;-ch  channel read
-</span><span class="c1"></span>                        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
-                <span class="p">}</span>
-        <span class="p">}(</span><span class="nx">ch</span><span class="p">)</span>
+<span style="color:#75715e">// 死锁
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>  <span style="color:#75715e">//nil channel
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">c</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>) {
+                <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">c</span> { <span style="color:#75715e">// &lt;-ch  channel read
+</span><span style="color:#75715e"></span>                        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">v</span>)
+                }
+        }(<span style="color:#a6e22e">ch</span>)
 
-        <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>  <span class="c1">// channel write
-</span><span class="c1"></span><span class="p">}</span>
+        <span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>  <span style="color:#75715e">// channel write
+</span><span style="color:#75715e"></span>}
 
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// goroutine泄漏
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
-    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// process more than 100ms
-</span><span class="c1"></span>        <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="mi">1</span>
-    <span class="p">}</span>
-    <span class="k">select</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">:</span>
-        <span class="c1">// process done
-</span><span class="c1"></span>        <span class="k">return</span>    
-    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nf">After</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span> 
-        <span class="c1">// process timeout
-</span><span class="c1"></span>        <span class="k">return</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">// goroutine泄漏
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">ch</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+        <span style="color:#75715e">// process more than 100ms
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">ch</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+    }
+    <span style="color:#66d9ef">select</span> {
+    <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ch</span>:
+        <span style="color:#75715e">// process done
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span>    
+    <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">After</span>(<span style="color:#ae81ff">100</span><span style="color:#f92672">*</span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>) 
+        <span style="color:#75715e">// process timeout
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span>
+    }
+}
 
-</code></pre></div><h3 id="错误操作panic">错误操作Panic <a href="#%e9%94%99%e8%af%af%e6%93%8d%e4%bd%9cpanic" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">// send on close channel 往已关闭的 channel 写数据会 panic
+</code></pre></div><h3 id="错误操作panic">错误操作Panic <a href="#%e9%94%99%e8%af%af%e6%93%8d%e4%bd%9cpanic" class="anchor">🔗</a></h3><pre><code>// send on close channel 往已关闭的 channel 写数据会 panic
 // closing on close channel  写入端无法知道 channel 是否已经关闭
 // send or read on nil channel channel初始化使用错误
 
 1. 不要尝试在读取端关闭 channel 
 2. 一个写入端，在这个写入端可以放心关闭 channel
 3. 多个写入端时，不要在写入端关闭 channel 
-</code></pre></div><h2 id="context">context <a href="#context" class="anchor">🔗</a></h2><p>context是在context包里定义的一种接口。在context包中可以通过WithCancel、WithDeadline、WithTimeout、WithValue这四个方法生成新 Context。WithValue方法生成的context可以做到了跨API的传值功能。WithTimeout方法是对WithDeadline的封装。WithDeadline方法生成的context实现了定时cancel的功能。</p>
+</code></pre><h2 id="context">context <a href="#context" class="anchor">🔗</a></h2><p>context是在context包里定义的一种接口。在context包中可以通过WithCancel、WithDeadline、WithTimeout、WithValue这四个方法生成新 Context。WithValue方法生成的context可以做到了跨API的传值功能。WithTimeout方法是对WithDeadline的封装。WithDeadline方法生成的context实现了定时cancel的功能。</p>
 <p>下面以WithCancel为入口，以源码（go1.12.7）为内容作介绍。当 parent 的 Done() 关闭的时候，孩子 ctx 的 Done() 也会关闭， 这种情况是如何实现的？具体过程分两种情况： 1 当传入的context是库里支持的cancelCtx、timeCtx时，child加入parent的衍生map中； 2 当传入的context为自定义实现类时，标准库是新起goroutine监听信号并执行cancel子context的过程。</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">// 在 parent 和 child 之间同步取消的信号，保证在 parent 被取消时，child 也会收到对应的信号，不会发生状态不一致的问题。
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">propagateCancel</span><span class="p">(</span><span class="nx">parent</span> <span class="nx">Context</span><span class="p">,</span> <span class="nx">child</span> <span class="nx">canceler</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="nx">parent</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span> <span class="c1">//parent不会触发cancel信号，则返回
-</span><span class="c1"></span>        <span class="k">return</span> <span class="c1">// parent is never canceled
-</span><span class="c1"></span>    <span class="p">}</span>
-    <span class="k">if</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nf">parentCancelCtx</span><span class="p">(</span><span class="nx">parent</span><span class="p">);</span> <span class="nx">ok</span> <span class="p">{</span> <span class="c1">//当前context为库中ctx时
-</span><span class="c1"></span>        <span class="nx">p</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
-        <span class="k">if</span> <span class="nx">p</span><span class="p">.</span><span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-            <span class="c1">// parent has already been canceled
-</span><span class="c1"></span>            <span class="nx">child</span><span class="p">.</span><span class="nf">cancel</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">err</span><span class="p">)</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="nx">p</span><span class="p">.</span><span class="nx">children</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
-                <span class="nx">p</span><span class="p">.</span><span class="nx">children</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="nx">canceler</span><span class="p">]</span><span class="kd">struct</span><span class="p">{})</span>
-            <span class="p">}</span>
-            <span class="nx">p</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">child</span><span class="p">]</span> <span class="p">=</span> <span class="kd">struct</span><span class="p">{}{}</span> <span class="c1">//加入p的children map，等待p释放信号
-</span><span class="c1"></span>        <span class="p">}</span>
-        <span class="nx">p</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">//非库中cancelCtx,timeCtx时，新起协程监听父ctx的信号
-</span><span class="c1"></span>        <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">select</span> <span class="p">{</span>
-            <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">parent</span><span class="p">.</span><span class="nf">Done</span><span class="p">():</span> <span class="c1">// parent关闭时，关闭child
-</span><span class="c1"></span>                <span class="nx">child</span><span class="p">.</span><span class="nf">cancel</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">parent</span><span class="p">.</span><span class="nf">Err</span><span class="p">())</span>
-            <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">child</span><span class="p">.</span><span class="nf">Done</span><span class="p">():</span>
-            <span class="p">}</span>
-        <span class="p">}()</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">// 在 parent 和 child 之间同步取消的信号，保证在 parent 被取消时，child 也会收到对应的信号，不会发生状态不一致的问题。
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">propagateCancel</span>(<span style="color:#a6e22e">parent</span> <span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">child</span> <span style="color:#a6e22e">canceler</span>) {
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">parent</span>.<span style="color:#a6e22e">Done</span>() <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> { <span style="color:#75715e">//parent不会触发cancel信号，则返回
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// parent is never canceled
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">p</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">parentCancelCtx</span>(<span style="color:#a6e22e">parent</span>); <span style="color:#a6e22e">ok</span> { <span style="color:#75715e">//当前context为库中ctx时
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Lock</span>()
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+            <span style="color:#75715e">// parent has already been canceled
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">child</span>.<span style="color:#a6e22e">cancel</span>(<span style="color:#66d9ef">false</span>, <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">err</span>)
+        } <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">children</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+                <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">children</span> = make(<span style="color:#66d9ef">map</span>[<span style="color:#a6e22e">canceler</span>]<span style="color:#66d9ef">struct</span>{})
+            }
+            <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">children</span>[<span style="color:#a6e22e">child</span>] = <span style="color:#66d9ef">struct</span>{}{} <span style="color:#75715e">//加入p的children map，等待p释放信号
+</span><span style="color:#75715e"></span>        }
+        <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Unlock</span>()
+    } <span style="color:#66d9ef">else</span> { <span style="color:#75715e">//非库中cancelCtx,timeCtx时，新起协程监听父ctx的信号
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+            <span style="color:#66d9ef">select</span> {
+            <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">parent</span>.<span style="color:#a6e22e">Done</span>(): <span style="color:#75715e">// parent关闭时，关闭child
+</span><span style="color:#75715e"></span>                <span style="color:#a6e22e">child</span>.<span style="color:#a6e22e">cancel</span>(<span style="color:#66d9ef">false</span>, <span style="color:#a6e22e">parent</span>.<span style="color:#a6e22e">Err</span>())
+            <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">child</span>.<span style="color:#a6e22e">Done</span>():
+            }
+        }()
+    }
+}
 </code></pre></div><p>cancel方法的逻辑是关闭cancelCtx的Done通道，并递归地关闭context的所有子context。</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cancelCtx</span><span class="p">)</span> <span class="nf">cancel</span><span class="p">(</span><span class="nx">removeFromParent</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span> <span class="c1">// 外层传errors.New(&#34;context canceled&#34;) 这里不会进入
-</span><span class="c1"></span>        <span class="nb">panic</span><span class="p">(</span><span class="s">&#34;context: internal error: missing cancel error&#34;</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span> <span class="c1">//保护
-</span><span class="c1"></span>    <span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span> <span class="c1">// 对已经cancel的context进行cancel 则返回
-</span><span class="c1"></span>        <span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
-        <span class="k">return</span> <span class="c1">// already canceled
-</span><span class="c1"></span>    <span class="p">}</span>
-    <span class="nx">c</span><span class="p">.</span><span class="nx">err</span> <span class="p">=</span> <span class="nx">err</span>  <span class="c1">//context的err为 context cancel error
-</span><span class="c1"></span>    <span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nx">done</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span> 
-        <span class="nx">c</span><span class="p">.</span><span class="nx">done</span> <span class="p">=</span> <span class="nx">closedchan</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nb">close</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">done</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="k">for</span> <span class="nx">child</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">c</span><span class="p">.</span><span class="nx">children</span> <span class="p">{</span> <span class="c1">//遍历子context对其执行cancel操作
-</span><span class="c1"></span>        <span class="c1">// NOTE: acquiring the child&#39;s lock while holding parent&#39;s lock.
-</span><span class="c1"></span>        <span class="nx">child</span><span class="p">.</span><span class="nf">cancel</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span> 
-    <span class="p">}</span>
-    <span class="nx">c</span><span class="p">.</span><span class="nx">children</span> <span class="p">=</span> <span class="kc">nil</span> 
-    <span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
-    <span class="k">if</span> <span class="nx">removeFromParent</span> <span class="p">{</span>
-        <span class="nf">removeChild</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">cancelCtx</span>) <span style="color:#a6e22e">cancel</span>(<span style="color:#a6e22e">removeFromParent</span> <span style="color:#66d9ef">bool</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> { <span style="color:#75715e">// 外层传errors.New(&#34;context canceled&#34;) 这里不会进入
+</span><span style="color:#75715e"></span>        panic(<span style="color:#e6db74">&#34;context: internal error: missing cancel error&#34;</span>)
+    }
+    <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Lock</span>() <span style="color:#75715e">//保护
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> { <span style="color:#75715e">// 对已经cancel的context进行cancel 则返回
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Unlock</span>()
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// already canceled
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">err</span>  <span style="color:#75715e">//context的err为 context cancel error
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">done</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> { 
+        <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">done</span> = <span style="color:#a6e22e">closedchan</span>
+    } <span style="color:#66d9ef">else</span> {
+        close(<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">done</span>)
+    }
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">child</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">children</span> { <span style="color:#75715e">//遍历子context对其执行cancel操作
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// NOTE: acquiring the child&#39;s lock while holding parent&#39;s lock.
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">child</span>.<span style="color:#a6e22e">cancel</span>(<span style="color:#66d9ef">false</span>, <span style="color:#a6e22e">err</span>) 
+    }
+    <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">children</span> = <span style="color:#66d9ef">nil</span> 
+    <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Unlock</span>()
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">removeFromParent</span> {
+        <span style="color:#a6e22e">removeChild</span>(<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">c</span>)
+    }
+}
 </code></pre></div><h3 id="context使用说明">context使用说明 <a href="#context%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" class="anchor">🔗</a></h3><p>etcd中有一些select , context, channel 的例子</p>
 <p>参考： <a href="https://blog.golang.org/context">https://blog.golang.org/context</a></p>
 

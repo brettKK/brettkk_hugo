@@ -134,115 +134,115 @@
 <h3 id="周围项目">周围项目 <a href="#%e5%91%a8%e5%9b%b4%e9%a1%b9%e7%9b%ae" class="anchor">🔗</a></h3><p>k8s.io/gengo
 k8s.io/client-go</p>
 <h3 id="项目组织结构">项目组织结构 <a href="#%e9%a1%b9%e7%9b%ae%e7%bb%84%e7%bb%87%e7%bb%93%e6%9e%84" class="anchor">🔗</a></h3><h3 id="cobra命令行的使用">cobra命令行的使用 <a href="#cobra%e5%91%bd%e4%bb%a4%e8%a1%8c%e7%9a%84%e4%bd%bf%e7%94%a8" class="anchor">🔗</a></h3><p>cmd下的main函数为各个k8s组建的入口。</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
-</code></pre></div><h3 id="函数选项模式">函数选项模式 <a href="#%e5%87%bd%e6%95%b0%e9%80%89%e9%a1%b9%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
+</code></pre></div><h3 id="函数选项模式">函数选项模式 <a href="#%e5%87%bd%e6%95%b0%e9%80%89%e9%a1%b9%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
 </code></pre></div><h3 id="访问者模式">访问者模式 <a href="#%e8%ae%bf%e9%97%ae%e8%80%85%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><p>kubectl里有使用。</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
-<span class="kd">type</span> <span class="nx">Visitor</span> <span class="kd">interface</span> <span class="p">{</span>
-	<span class="nf">Visit</span><span class="p">(</span><span class="nx">VisitorFunc</span><span class="p">)</span> <span class="kt">error</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Visitor</span> <span style="color:#66d9ef">interface</span> {
+	<span style="color:#a6e22e">Visit</span>(<span style="color:#a6e22e">VisitorFunc</span>) <span style="color:#66d9ef">error</span>
+}
 
-<span class="kd">type</span> <span class="nx">VisitorFunc</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Info</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="kt">error</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">VisitorFunc</span> <span style="color:#66d9ef">func</span>(<span style="color:#f92672">*</span><span style="color:#a6e22e">Info</span>, <span style="color:#66d9ef">error</span>) <span style="color:#66d9ef">error</span>
 
-<span class="kd">type</span> <span class="nx">VisitorList</span> <span class="p">[]</span><span class="nx">Visitor</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">VisitorList</span> []<span style="color:#a6e22e">Visitor</span>
 
-<span class="c1">// Visit implements Visitor
-</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="nx">VisitorList</span><span class="p">)</span> <span class="nf">Visit</span><span class="p">(</span><span class="nx">fn</span> <span class="nx">VisitorFunc</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">l</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nf">Visit</span><span class="p">(</span><span class="nx">fn</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="nx">err</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="kc">nil</span>
-<span class="p">}</span>
+<span style="color:#75715e">// Visit implements Visitor
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#a6e22e">VisitorList</span>) <span style="color:#a6e22e">Visit</span>(<span style="color:#a6e22e">fn</span> <span style="color:#a6e22e">VisitorFunc</span>) <span style="color:#66d9ef">error</span> {
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">l</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">l</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">Visit</span>(<span style="color:#a6e22e">fn</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+		}
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+}
 
 </code></pre></div><p>《kubernets 源码分析》 郑东旭</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">type</span> <span class="nx">Visitor</span> <span class="kd">interface</span> <span class="p">{</span>
-	<span class="nf">Visit</span><span class="p">(</span><span class="nx">VisitorFunc</span><span class="p">)</span> <span class="kt">error</span>
-<span class="p">}</span>
-<span class="kd">type</span> <span class="nx">VisitorFunc</span> <span class="kd">func</span><span class="p">()</span> <span class="kt">error</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Visitor</span> <span style="color:#66d9ef">interface</span> {
+	<span style="color:#a6e22e">Visit</span>(<span style="color:#a6e22e">VisitorFunc</span>) <span style="color:#66d9ef">error</span>
+}
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">VisitorFunc</span> <span style="color:#66d9ef">func</span>() <span style="color:#66d9ef">error</span>
 
-<span class="kd">type</span> <span class="nx">VisitorList</span> <span class="p">[]</span><span class="nx">Vistor</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">VisitorList</span> []<span style="color:#a6e22e">Vistor</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">l</span> <span class="nx">VisitorLList</span><span class="p">)</span><span class="nf">Visit</span><span class="p">(</span><span class="nx">fn</span> <span class="nx">VisitorFunc</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">l</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nf">Visit</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
-			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;in visitorlist before fn&#34;</span><span class="p">)</span>
-			<span class="nf">fn</span><span class="p">()</span>
-			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;in visitorlist after fn&#34;</span><span class="p">)</span>
-		<span class="p">});</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="nx">err</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="kc">nil</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">l</span> <span style="color:#a6e22e">VisitorLList</span>)<span style="color:#a6e22e">Visit</span>(<span style="color:#a6e22e">fn</span> <span style="color:#a6e22e">VisitorFunc</span>) <span style="color:#66d9ef">error</span> {
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">l</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">l</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">Visit</span>(<span style="color:#66d9ef">func</span>() <span style="color:#66d9ef">error</span> {
+			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;in visitorlist before fn&#34;</span>)
+			<span style="color:#a6e22e">fn</span>()
+			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;in visitorlist after fn&#34;</span>)
+		}); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+		}
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+}
 
-<span class="kd">type</span> <span class="nx">Visitor1</span> <span class="kd">struct</span> <span class="p">{</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Visitor1</span> <span style="color:#66d9ef">struct</span> {
+}
 
-<span class="kd">type</span> <span class="p">(</span><span class="nx">v</span> <span class="nx">Visitor1</span><span class="p">)</span> <span class="nf">Visit</span><span class="p">(</span><span class="nx">fn</span> <span class="nx">VisitorFunc</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;in visitor1 before fn&#34;</span><span class="p">)</span>
-	<span class="nf">fn</span><span class="p">()</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;in visitor1 after fn&#34;</span><span class="p">)</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">type</span> (<span style="color:#a6e22e">v</span> <span style="color:#a6e22e">Visitor1</span>) <span style="color:#a6e22e">Visit</span>(<span style="color:#a6e22e">fn</span> <span style="color:#a6e22e">VisitorFunc</span>) <span style="color:#66d9ef">error</span> {
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;in visitor1 before fn&#34;</span>)
+	<span style="color:#a6e22e">fn</span>()
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;in visitor1 after fn&#34;</span>)
+}
 
-<span class="kd">type</span> <span class="nx">Visitor2</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">visitor</span> <span class="nx">Visitor</span>
-<span class="p">}</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">v</span> <span class="nx">Visitor2</span><span class="p">)</span> <span class="nf">Visit</span><span class="p">(</span><span class="nx">fn</span> <span class="nx">VisitorFunc</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-	<span class="nx">v</span><span class="p">.</span><span class="nx">visitor</span><span class="p">.</span><span class="nf">Visit</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="kt">error</span><span class="p">{</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;in visitor2 before fn&#34;</span><span class="p">)</span>
-		<span class="nf">fn</span><span class="p">()</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;in visitor2 after fn&#34;</span><span class="p">)</span>
-		<span class="k">return</span> <span class="kc">nil</span>
-	<span class="p">})</span>
-	<span class="k">return</span> <span class="kc">nil</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Visitor2</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">visitor</span> <span style="color:#a6e22e">Visitor</span>
+}
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">v</span> <span style="color:#a6e22e">Visitor2</span>) <span style="color:#a6e22e">Visit</span>(<span style="color:#a6e22e">fn</span> <span style="color:#a6e22e">VisitorFunc</span>) <span style="color:#66d9ef">error</span> {
+	<span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">visitor</span>.<span style="color:#a6e22e">Visit</span>(<span style="color:#66d9ef">func</span>() <span style="color:#66d9ef">error</span>{
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;in visitor2 before fn&#34;</span>)
+		<span style="color:#a6e22e">fn</span>()
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;in visitor2 after fn&#34;</span>)
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+	})
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+}
 
-<span class="kd">type</span> <span class="nx">Visitor3</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">visitor</span> <span class="nx">Visitor</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Visitor3</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">visitor</span> <span style="color:#a6e22e">Visitor</span>
+}
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">v</span> <span class="nx">Visitor3</span><span class="p">)</span> <span class="nf">Visit</span><span class="p">(</span><span class="nx">fn</span> <span class="nx">VisitorFunc</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-	<span class="nx">v</span><span class="p">.</span><span class="nx">visitor</span><span class="p">.</span><span class="nf">Visit</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="kt">error</span><span class="p">{</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;in visitor3 before fn&#34;</span><span class="p">)</span>
-		<span class="nf">fn</span><span class="p">()</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;in visitor3 after fn&#34;</span><span class="p">)</span>
-		<span class="k">return</span> <span class="kc">nil</span>
-	<span class="p">})</span>
-	<span class="k">return</span> <span class="kc">nil</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">v</span> <span style="color:#a6e22e">Visitor3</span>) <span style="color:#a6e22e">Visit</span>(<span style="color:#a6e22e">fn</span> <span style="color:#a6e22e">VisitorFunc</span>) <span style="color:#66d9ef">error</span> {
+	<span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">visitor</span>.<span style="color:#a6e22e">Visit</span>(<span style="color:#66d9ef">func</span>() <span style="color:#66d9ef">error</span>{
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;in visitor3 before fn&#34;</span>)
+		<span style="color:#a6e22e">fn</span>()
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;in visitor3 after fn&#34;</span>)
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+	})
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+}
 
-<span class="kd">func</span> <span class="nf">maiin</span><span class="p">()</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">visitor</span> <span class="nx">Visitor</span>
-	<span class="kd">var</span> <span class="nx">visitors</span> <span class="p">[]</span><span class="nx">Visitor</span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">maiin</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">visitor</span> <span style="color:#a6e22e">Visitor</span>
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">visitors</span> []<span style="color:#a6e22e">Visitor</span>
 
-	<span class="nx">visitor</span> <span class="p">=</span> <span class="nx">Visitor1</span><span class="p">{}</span>
-	<span class="nx">visitors</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">visitors</span><span class="p">,</span> <span class="nx">visitor</span><span class="p">)</span>
-	<span class="nx">visitor</span> <span class="p">=</span> <span class="nx">Visitor2</span><span class="p">{</span><span class="nf">VisitorList</span><span class="p">(</span><span class="nx">visitors</span><span class="p">)}</span>
-	<span class="nx">visitor</span> <span class="p">=</span> <span class="nx">Visitor3</span><span class="p">{</span><span class="nx">visitor</span><span class="p">}</span>
+	<span style="color:#a6e22e">visitor</span> = <span style="color:#a6e22e">Visitor1</span>{}
+	<span style="color:#a6e22e">visitors</span> = append(<span style="color:#a6e22e">visitors</span>, <span style="color:#a6e22e">visitor</span>)
+	<span style="color:#a6e22e">visitor</span> = <span style="color:#a6e22e">Visitor2</span>{<span style="color:#a6e22e">VisitorList</span>(<span style="color:#a6e22e">visitors</span>)}
+	<span style="color:#a6e22e">visitor</span> = <span style="color:#a6e22e">Visitor3</span>{<span style="color:#a6e22e">visitor</span>}
 
-	<span class="nx">visitor</span><span class="p">.</span><span class="nf">Visit</span><span class="p">(</span><span class="kd">func</span><span class="p">()</span> <span class="kt">error</span><span class="p">{</span>
-		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;In visitfunc&#34;</span><span class="p">)</span>
-		<span class="k">return</span> <span class="kc">nil</span>
-	<span class="p">})</span>
-<span class="p">}</span>
+	<span style="color:#a6e22e">visitor</span>.<span style="color:#a6e22e">Visit</span>(<span style="color:#66d9ef">func</span>() <span style="color:#66d9ef">error</span>{
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;In visitfunc&#34;</span>)
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+	})
+}
 
-<span class="cm">/*
-</span><span class="cm">in visitor1 before fn
-</span><span class="cm">in visitorlist before fn
-</span><span class="cm">in visitor2 before fn
-</span><span class="cm">in visitor3 before fn
-</span><span class="cm">in visistfunc
-</span><span class="cm">in  visitor3 after fn
-</span><span class="cm">in visitor2 after fn
-</span><span class="cm">in visitorlist after fn
-</span><span class="cm">in visitor1 after fn
-</span><span class="cm">*/</span>
+<span style="color:#75715e">/*
+</span><span style="color:#75715e">in visitor1 before fn
+</span><span style="color:#75715e">in visitorlist before fn
+</span><span style="color:#75715e">in visitor2 before fn
+</span><span style="color:#75715e">in visitor3 before fn
+</span><span style="color:#75715e">in visistfunc
+</span><span style="color:#75715e">in  visitor3 after fn
+</span><span style="color:#75715e">in visitor2 after fn
+</span><span style="color:#75715e">in visitorlist after fn
+</span><span style="color:#75715e">in visitor1 after fn
+</span><span style="color:#75715e">*/</span>
 
 </code></pre></div><h3 id="client-go-编程式交互">client-go 编程式交互 <a href="#client-go-%e7%bc%96%e7%a8%8b%e5%bc%8f%e4%ba%a4%e4%ba%92" class="anchor">🔗</a></h3><h3 id="观察者模式">观察者模式 <a href="#%e8%a7%82%e5%af%9f%e8%80%85%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><h3 id="channel的使用方式">channel的使用方式 <a href="#channel%e7%9a%84%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f" class="anchor">🔗</a></h3><h4 id="内部具体channel的使用示例">内部具体channel的使用示例 <a href="#%e5%86%85%e9%83%a8%e5%85%b7%e4%bd%93channel%e7%9a%84%e4%bd%bf%e7%94%a8%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h4><p>stopCh &lt;-chan struct{}，  channel的使用方式</p>
-<h4 id="抽象channel的使用模式">抽象channel的使用模式 <a href="#%e6%8a%bd%e8%b1%a1channel%e7%9a%84%e4%bd%bf%e7%94%a8%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h4><h3 id="工厂模式">工厂模式 <a href="#%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><h4 id="调度器算法的插件">调度器算法的插件 <a href="#%e8%b0%83%e5%ba%a6%e5%99%a8%e7%ae%97%e6%b3%95%e7%9a%84%e6%8f%92%e4%bb%b6" class="anchor">🔗</a></h4><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
-</code></pre></div><h3 id="heading"> <a href="#heading" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
+<h4 id="抽象channel的使用模式">抽象channel的使用模式 <a href="#%e6%8a%bd%e8%b1%a1channel%e7%9a%84%e4%bd%bf%e7%94%a8%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h4><h3 id="工厂模式">工厂模式 <a href="#%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f" class="anchor">🔗</a></h3><h4 id="调度器算法的插件">调度器算法的插件 <a href="#%e8%b0%83%e5%ba%a6%e5%99%a8%e7%ae%97%e6%b3%95%e7%9a%84%e6%8f%92%e4%bb%b6" class="anchor">🔗</a></h4><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
+</code></pre></div><h3 id="heading"> <a href="#heading" class="anchor">🔗</a></h3><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
 </code></pre></div>
     </div>
 

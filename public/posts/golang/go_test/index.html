@@ -145,16 +145,16 @@
 </ul>
 </li>
 </ul>
-<h3 id="go-monkey">go monkey <a href="#go-monkey" class="anchor">🔗</a></h3><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-<span class="kd">func</span> <span class="nf">from</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span><span class="k">return</span> <span class="mi">1</span><span class="p">}</span>
-<span class="kd">func</span> <span class="nf">to</span><span class="p">()</span> <span class="kt">int</span> <span class="p">(</span><span class="k">return</span> <span class="mi">2</span><span class="p">)</span>
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// 在执行from之前把from函数内的机器码 替换为一条跳转指令，让cpu跳转到to函数的机器码上执行。
-</span><span class="c1"></span>  <span class="nf">patch</span><span class="p">(</span><span class="nx">from</span><span class="p">,</span> <span class="nx">to</span><span class="p">)</span>
-  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nf">from</span><span class="p">())</span> <span class="c1">// should print 2
-</span><span class="c1"></span><span class="p">}</span>
+<h3 id="go-monkey">go monkey <a href="#go-monkey" class="anchor">🔗</a></h3><pre><code>package main
+func from() int {return 1}
+func to() int (return 2)
+func main() {
+  // 在执行from之前把from函数内的机器码 替换为一条跳转指令，让cpu跳转到to函数的机器码上执行。
+  patch(from, to)
+  fmt.Println(from()) // should print 2
+}
 
-</code></pre></div><p>taoshu.in/go/monkey</p>
+</code></pre><p>taoshu.in/go/monkey</p>
 <ul>
 <li>找到from, to的内存地址</li>
 <li>修改from函数的机器码，构造跳转指令，跳到to的内存地址上</li>

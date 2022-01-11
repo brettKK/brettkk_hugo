@@ -70,7 +70,7 @@
           ·
         </span>
         <span>
-          2158 words
+          2135 words
         </span>
         <span class="split">
           ·
@@ -139,131 +139,100 @@
 <hr>
 <h2 id="多态继承-范型">多态，继承， 范型 <a href="#%e5%a4%9a%e6%80%81%e7%bb%a7%e6%89%bf-%e8%8c%83%e5%9e%8b" class="anchor">🔗</a></h2><p>golang中面向对象的实现方式</p>
 <h3 id="继承">继承 <a href="#%e7%bb%a7%e6%89%bf" class="anchor">🔗</a></h3><p>组合结构体，一个结构体嵌入另一个结构体，能够实现对嵌入结构体的字段以及其实现的方法的继承。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="hl"><span class="lnt"> 8
-</span></span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="hl"><span class="lnt">15
-</span></span><span class="hl"><span class="lnt">16
-</span></span><span class="hl"><span class="lnt">17
-</span></span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">person</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">name</span> <span class="kt">string</span>
-    <span class="nx">age</span>  <span class="kt">int</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">person</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">age</span>  <span style="color:#66d9ef">int</span>
+}
 
-<span class="kd">type</span> <span class="nx">student</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">person</span> <span class="c1">//   匿名字段，通过组合的方式
-</span><span class="hl"><span class="c1"></span>    <span class="nx">school</span> <span class="kt">string</span> 
-</span><span class="p">}</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">student</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">person</span> <span style="color:#75715e">//   匿名字段，通过组合的方式
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">school</span> <span style="color:#66d9ef">string</span> 
+}
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">p</span> <span class="o">*</span> <span class="nx">person</span><span class="p">)</span> <span class="nf">talk</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">age</span><span class="p">)</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">person</span>) <span style="color:#a6e22e">talk</span>() {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">age</span>)
+}
 
-<span class="hl"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">student</span><span class="p">)</span> <span class="nf">getSchool</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="hl">    <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nx">school</span>
-</span><span class="hl"><span class="p">}</span>
-</span>
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">s</span> <span class="o">:=</span> <span class="nx">student</span><span class="p">{</span><span class="nx">person</span><span class="p">{</span><span class="s">&#34;brettkk&#34;</span><span class="p">,</span> <span class="mi">18</span><span class="p">},</span> <span class="s">&#34;yidu&#34;</span><span class="p">}</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="c1">// 继承person的name字段
-</span><span class="c1"></span>    <span class="nx">s</span><span class="p">.</span><span class="nf">talk</span><span class="p">()</span> <span class="c1">// 继承person实现的方法
-</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
-</div>
-</div>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">student</span>) <span style="color:#a6e22e">getSchool</span>() {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">school</span>
+}
 
-</code></pre></div><h3 id="多态">多态 <a href="#%e5%a4%9a%e6%80%81" class="anchor">🔗</a></h3><p>go没有 implements, extends 关键字， golang是去鸭子类型：看起来像鸭子， 那么它就是鸭子。</p>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">student</span>{<span style="color:#a6e22e">person</span>{<span style="color:#e6db74">&#34;brettkk&#34;</span>, <span style="color:#ae81ff">18</span>}, <span style="color:#e6db74">&#34;yidu&#34;</span>}
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">name</span>) <span style="color:#75715e">// 继承person的name字段
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">talk</span>() <span style="color:#75715e">// 继承person实现的方法
+</span><span style="color:#75715e"></span>}</code></pre></div>
+<h3 id="多态">多态 <a href="#%e5%a4%9a%e6%80%81" class="anchor">🔗</a></h3><p>go没有 implements, extends 关键字， golang是去鸭子类型：看起来像鸭子， 那么它就是鸭子。</p>
 <p>多态： 父类指针或引用去调用方法，在执行的时候，能够根据子类的类型去执行子类当中的方法。</p>
 <p>为什么是在执行的时候才能根据子类的类型执行子类的方法？</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang">
-<span class="kd">type</span> <span class="nx">Person</span> <span class="kd">interface</span> <span class="p">{</span>
-    <span class="kd">func</span> <span class="nf">gender</span><span class="p">()</span> <span class="kt">string</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">interface</span> {
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">gender</span>() <span style="color:#66d9ef">string</span>
+}
 
-<span class="kd">type</span> <span class="nx">Men</span> <span class="kd">struct</span><span class="p">{</span>
-    <span class="nx">Gender</span> <span class="kt">string</span>
-    <span class="nx">Age</span> <span class="kt">int</span>
-    <span class="nx">Name</span> <span class="kt">string</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Men</span> <span style="color:#66d9ef">struct</span>{
+    <span style="color:#a6e22e">Gender</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">Age</span> <span style="color:#66d9ef">int</span>
+    <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>
+}
 
-<span class="kd">type</span> <span class="nx">Woman</span> <span class="kd">struct</span> <span class="p">{</span>
-    <span class="nx">Gender</span> <span class="kt">string</span>
-    <span class="nx">Age</span> <span class="kt">int</span>
-    <span class="nx">Name</span> <span class="nx">strings</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Woman</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">Gender</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">Age</span> <span style="color:#66d9ef">int</span>
+    <span style="color:#a6e22e">Name</span> <span style="color:#a6e22e">strings</span>
+}
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">m</span> <span class="nx">Men</span><span class="p">)</span> <span class="nf">gender</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Gender</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">m</span> <span style="color:#a6e22e">Men</span>) <span style="color:#a6e22e">gender</span>() {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Gender</span>
+}
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">w</span> <span class="nx">Woman</span><span class="p">)</span> <span class="nf">gender</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">w</span><span class="p">.</span><span class="nx">Gender</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">Woman</span>) <span style="color:#a6e22e">gender</span>() {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Gender</span>
+}
 
-<span class="kd">func</span> <span class="nf">JudgeFunc</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span>
-    <span class="c1">// may has many code
-</span><span class="c1"></span>    <span class="c1">// can&#39;t not get boolean result until running this JudgeFunc
-</span><span class="c1"></span><span class="p">}</span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">JudgeFunc</span>() <span style="color:#66d9ef">bool</span> {
+    <span style="color:#75715e">// may has many code
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// can&#39;t not get boolean result until running this JudgeFunc
+</span><span style="color:#75715e"></span>}
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">a</span> <span class="nx">Person</span>
-    <span class="c1">// so compiler can&#39;t not known clearly about the type info of a
-</span><span class="c1"></span>    <span class="nx">a</span> <span class="p">=</span> <span class="nf">JudgeFunc</span><span class="p">()</span> <span class="err">?</span> <span class="nx">Men</span><span class="p">{}</span> <span class="p">:</span> <span class="nx">Woman</span><span class="p">{}</span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">Person</span>
+    <span style="color:#75715e">// so compiler can&#39;t not known clearly about the type info of a
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">a</span> = <span style="color:#a6e22e">JudgeFunc</span>() <span style="color:#960050;background-color:#1e0010">?</span> <span style="color:#a6e22e">Men</span>{} : <span style="color:#a6e22e">Woman</span>{}
 
-    <span class="kd">var</span> <span class="nx">b</span> <span class="nx">Person</span>
-    <span class="c1">// compiler can judge the type info of a 
-</span><span class="c1"></span>    <span class="nx">b</span> <span class="p">=</span> <span class="nx">Men</span><span class="p">{}</span> <span class="c1">// or b = Woman{}
-</span><span class="c1"></span><span class="p">}</span>
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#a6e22e">Person</span>
+    <span style="color:#75715e">// compiler can judge the type info of a 
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">b</span> = <span style="color:#a6e22e">Men</span>{} <span style="color:#75715e">// or b = Woman{}
+</span><span style="color:#75715e"></span>}
 
 </code></pre></div><h3 id="范型">范型 <a href="#%e8%8c%83%e5%9e%8b" class="anchor">🔗</a></h3><p>空interface{} 类型，没有方法集的接口，只需要存类型和类型对应的值即可。</p>
 <p>空interface{} = (type, value) ==&gt; (nil, nil) == nil</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">type</span> <span class="nx">eface</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">_type</span> <span class="o">*</span><span class="nx">_type</span>
-	<span class="nx">data</span>  <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">eface</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">_type</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">_type</span>
+	<span style="color:#a6e22e">data</span>  <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>
+}
 
 </code></pre></div><h3 id="接口的使用实践">接口的使用实践 <a href="#%e6%8e%a5%e5%8f%a3%e7%9a%84%e4%bd%bf%e7%94%a8%e5%ae%9e%e8%b7%b5" class="anchor">🔗</a></h3><p>golang源码里的较好实现方式是： 使用小的接口，尤其是只包含一个方法的接口；通过小接口的组合来定义大接口。</p>
 <p>好处是：使用者可以只依赖于必要功能的最小接口。</p>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">type</span> <span class="nx">Reader</span> <span class="kd">interface</span> <span class="p">{</span>
-    <span class="nf">Read</span><span class="p">(</span><span class="nx">p</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Reader</span> <span style="color:#66d9ef">interface</span> {
+    <span style="color:#a6e22e">Read</span>(<span style="color:#a6e22e">p</span> []<span style="color:#66d9ef">byte</span>) (<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>)
+}
 
-<span class="kd">type</span> <span class="nx">Writer</span> <span class="kd">interface</span> <span class="p">{</span>
-    <span class="nf">Write</span><span class="p">(</span><span class="nx">p</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Writer</span> <span style="color:#66d9ef">interface</span> {
+    <span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">p</span> []<span style="color:#66d9ef">byte</span>) (<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>)
+}
 
-<span class="kd">type</span> <span class="nx">ReadWriter</span> <span class="kd">interface</span> <span class="p">{</span>
-    <span class="nx">Reader</span>
-    <span class="nx">Writer</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ReadWriter</span> <span style="color:#66d9ef">interface</span> {
+    <span style="color:#a6e22e">Reader</span>
+    <span style="color:#a6e22e">Writer</span>
+}
 
-<span class="kd">func</span> <span class="nf">store</span><span class="p">(</span><span class="nx">reader</span> <span class="nx">Reader</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-    <span class="c1">// 入参可以只依赖于必要功能的最小接口， 让函数的返回更广
-</span><span class="c1"></span><span class="p">}</span>
-<span class="kd">func</span> <span class="nf">store</span><span class="p">(</span><span class="nx">readWriter</span> <span class="nx">ReadWriter</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-    <span class="c1">// 入参依赖了不必要功能的接口，让限制了函数的使用范围为更小
-</span><span class="c1"></span><span class="p">}</span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">store</span>(<span style="color:#a6e22e">reader</span> <span style="color:#a6e22e">Reader</span>) <span style="color:#66d9ef">error</span> {
+    <span style="color:#75715e">// 入参可以只依赖于必要功能的最小接口， 让函数的返回更广
+</span><span style="color:#75715e"></span>}
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">store</span>(<span style="color:#a6e22e">readWriter</span> <span style="color:#a6e22e">ReadWriter</span>) <span style="color:#66d9ef">error</span> {
+    <span style="color:#75715e">// 入参依赖了不必要功能的接口，让限制了函数的使用范围为更小
+</span><span style="color:#75715e"></span>}
 
 </code></pre></div><h2 id="模糊点">模糊点 <a href="#%e6%a8%a1%e7%b3%8a%e7%82%b9" class="anchor">🔗</a></h2><h3 id="数组与切片">数组与切片 <a href="#%e6%95%b0%e7%bb%84%e4%b8%8e%e5%88%87%e7%89%87" class="anchor">🔗</a></h3><p>数组的初始化 （元素类型， 数组大小）</p>
 <p>2种初始化方式，显式的指定数组的大小</p>
@@ -289,27 +258,27 @@
 <li>T1指针与 T2指针类型之间的转换</li>
 <li>修改内存数据， uintptr 常用于与 unsafe.Pointer配合，用于做指针运算</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="c1">//结构体的成员变量在内存存储上是一段连续的内存
-</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Num</span> <span class="kd">struct</span><span class="p">{</span>
-	<span class="nx">i</span> <span class="kt">string</span>
-	<span class="nx">j</span> <span class="kt">int64</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">//结构体的成员变量在内存存储上是一段连续的内存
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Num</span> <span style="color:#66d9ef">struct</span>{
+	<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int64</span>
+}
 
-<span class="kd">func</span> <span class="nf">main</span><span class="p">(){</span>
-	<span class="nx">n</span> <span class="o">:=</span> <span class="nx">Num</span><span class="p">{</span><span class="nx">i</span><span class="p">:</span> <span class="s">&#34;EDDYCJY&#34;</span><span class="p">,</span> <span class="nx">j</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-	<span class="nx">nPointer</span> <span class="o">:=</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nf">Pointer</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">n</span><span class="p">)</span>
-	<span class="c1">// 结构体的初始地址就是第一个成员变量的内存地址
-</span><span class="c1"></span>	<span class="nx">niPointer</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="kt">string</span><span class="p">)(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Pointer</span><span class="p">(</span><span class="nx">nPointer</span><span class="p">))</span>
-	<span class="o">*</span><span class="nx">niPointer</span> <span class="p">=</span> <span class="s">&#34;wuhan&#34;</span>
-	<span class="c1">// 基于结构体的成员地址去计算偏移量。就能够得出其他成员变量的内存地址
-</span><span class="c1"></span>	<span class="c1">//uintptr 是 Go 的内置类型。返回无符号整数，可存储一个完整的地址。后续常用于指针运算
-</span><span class="c1"></span>	<span class="c1">//unsafe.Offsetof：返回成员变量 x 在结构体当中的偏移量。更具体的讲，就是返回结构体初始位置到 x 之间的字节数
-</span><span class="c1"></span>	<span class="c1">//uintptr 类型是不能存储在临时变量中的 临时变量是可能被垃圾回收掉的 之后的内存操作有迷茫了
-</span><span class="c1"></span>	<span class="nx">njPointer</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="kt">int64</span><span class="p">)(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Pointer</span><span class="p">(</span><span class="nb">uintptr</span><span class="p">(</span><span class="nx">nPointer</span><span class="p">)</span> <span class="o">+</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nf">Offsetof</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">j</span><span class="p">)))</span>
-	<span class="o">*</span><span class="nx">njPointer</span> <span class="p">=</span> <span class="mi">91</span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+	<span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Num</span>{<span style="color:#a6e22e">i</span>: <span style="color:#e6db74">&#34;EDDYCJY&#34;</span>, <span style="color:#a6e22e">j</span>: <span style="color:#ae81ff">1</span>}
+	<span style="color:#a6e22e">nPointer</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">n</span>)
+	<span style="color:#75715e">// 结构体的初始地址就是第一个成员变量的内存地址
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">niPointer</span> <span style="color:#f92672">:=</span> (<span style="color:#f92672">*</span><span style="color:#66d9ef">string</span>)(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(<span style="color:#a6e22e">nPointer</span>))
+	<span style="color:#f92672">*</span><span style="color:#a6e22e">niPointer</span> = <span style="color:#e6db74">&#34;wuhan&#34;</span>
+	<span style="color:#75715e">// 基于结构体的成员地址去计算偏移量。就能够得出其他成员变量的内存地址
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//uintptr 是 Go 的内置类型。返回无符号整数，可存储一个完整的地址。后续常用于指针运算
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//unsafe.Offsetof：返回成员变量 x 在结构体当中的偏移量。更具体的讲，就是返回结构体初始位置到 x 之间的字节数
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//uintptr 类型是不能存储在临时变量中的 临时变量是可能被垃圾回收掉的 之后的内存操作有迷茫了
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">njPointer</span> <span style="color:#f92672">:=</span> (<span style="color:#f92672">*</span><span style="color:#66d9ef">int64</span>)(<span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Pointer</span>(uintptr(<span style="color:#a6e22e">nPointer</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">unsafe</span>.<span style="color:#a6e22e">Offsetof</span>(<span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">j</span>)))
+	<span style="color:#f92672">*</span><span style="color:#a6e22e">njPointer</span> = <span style="color:#ae81ff">91</span>
 
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;n.i: %s, n.j: %d&#34;</span><span class="p">,</span> <span class="nx">n</span><span class="p">.</span><span class="nx">i</span><span class="p">,</span> <span class="nx">n</span><span class="p">.</span><span class="nx">j</span><span class="p">)</span>
-<span class="p">}</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;n.i: %s, n.j: %d&#34;</span>, <span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">j</span>)
+}
 </code></pre></div><p>指针是对内存区域的地址， 与指针相配合的类型
 说明区域有哪些属性，如何去解析。</p>
 <br/>
@@ -348,9 +317,9 @@
 <li>反射可以将反射对象 还原为interface对象</li>
 <li>反射对象可以修改，提前是value值是变量的指针</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">var</span> <span class="nx">x</span> <span class="kt">float</span><span class="p">=</span> <span class="mf">3.1</span> 
-<span class="nx">v</span><span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">ValueOf</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">x</span><span class="p">)</span> <span class="c1">//需要传入x的指针
-</span><span class="c1"></span><span class="nx">v</span><span class="p">.</span><span class="nf">Elem</span><span class="p">().</span><span class="nf">SetFloat</span><span class="p">(</span><span class="mf">3.4</span><span class="p">);</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">float</span>= <span style="color:#ae81ff">3.1</span> 
+<span style="color:#a6e22e">v</span><span style="color:#f92672">:=</span> <span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">ValueOf</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">x</span>) <span style="color:#75715e">//需要传入x的指针
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">Elem</span>().<span style="color:#a6e22e">SetFloat</span>(<span style="color:#ae81ff">3.4</span>);
 </code></pre></div><p>作用：</p>
 <ol>
 <li>运行时动态调用方法</li>
