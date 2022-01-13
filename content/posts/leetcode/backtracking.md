@@ -3,7 +3,6 @@ title: "dfs & backtracking"
 date: 2022-01-13T11:33:56+08:00
 draft: false
 isCJKLanguage: true
-markup: mmark
 tags: ["leetcode"]
 series: [""]
 categories: ["life"]

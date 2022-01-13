@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/languages/yaml.min.js"></script>
 <html lang="zh-cn">
   <head>
     <title>leetcode | brettkk</title>
@@ -6,10 +8,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="qq@d--- title: &quot;etcd&quot; date: 2021-04-05T11:33:56&#43;08:00 draft: false isCJKLanguage: true
-tags: [&quot;cloud native&quot;]
-  etcd架构分为4部分  http server store raft wal      etcd使用场景
- API：Etcd提供HTTP&#43;JSON, gRPC接口，跨平台跨语言; 支持https 共享配置 服务发现 选主 分布式队列 分布式锁    play.">
+<meta name="description" content="">
 <meta name="generator" content="Hugo 0.84.0" />
 
 
@@ -25,13 +24,26 @@ tags: [&quot;cloud native&quot;]
 
 
 <link rel="stylesheet" href="/css/style.css">
+
+
+
 <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 
 
 
 
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
 
 
+
+  
+    <link href="/tags/leetcode/index.xml" rel="alternate" type="application/rss+xml" title="brettkk" />
+    <link href="/tags/leetcode/index.xml" rel="feed" type="application/rss+xml" title="brettkk" />
+  
 
 
   </head>
@@ -68,36 +80,17 @@ tags: [&quot;cloud native&quot;]
     
         <div class="group">
             <h3 class="key">
-                2021
+                2022
             </h3>
 
             
                 <div class="value">
                   <div class="date">
-                      Apr 5
+                      <time datetime="2022-01-13 11:33:56 &#43;0800 CST">Jan 13</time>
                   </div>
                   <div class="title">
-                      <a href="http://brettkk.github.io/posts/leetcode/array/">
-                          数组
-                      </a>
-
-                      
-                          <div class="tags">
-                              
-                                  <a href="http://brettkk.github.io/tags/leetcode">leetcode</a>
-                              
-                          </div>
-                      
-                  </div>
-                </div>
-            
-                <div class="value">
-                  <div class="date">
-                      Apr 5
-                  </div>
-                  <div class="title">
-                      <a href="http://brettkk.github.io/posts/leetcode/binary_search/">
-                          二分查找
+                      <a href="http://brettkk.github.io/posts/leetcode/backtracking/">
+                          dfs &amp; backtracking
                       </a>
 
                       
@@ -125,10 +118,18 @@ tags: [&quot;cloud native&quot;]
     <footer id="footer">
     
 
-    <p class="copyright">
+    <script src="https://utteranc.es/client.js"
+repo="brettKK/brettkk.github.io"
+issue-term="title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>  
+
+    <div class="copyright">
     
        © Copyright 
-       2021 
+       2022 
        <span class="split">
         <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
   <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
@@ -136,11 +137,17 @@ tags: [&quot;cloud native&quot;]
        </span>
        
     
-    </p>
-    <p class="powerby">
-        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
-    </p>
+    </div>
+
+    
+      <div class="powerby">
+        Powered by <a href='http://www.gohugo.io/'>Hugo</a> Theme By <a href='https://github.com/nodejh/hugo-theme-cactus-plus'>nodejh</a>
+      </div>
+    
 </footer>
+
+
+
 
   </body>
 </html>

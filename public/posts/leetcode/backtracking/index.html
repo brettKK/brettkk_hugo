@@ -3,12 +3,12 @@
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/languages/yaml.min.js"></script>
 <html lang="zh-cn">
   <head>
-    <title>brettkk</title>
+    <title>dfs &amp; backtracking | brettkk</title>
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="">
+<meta name="description" content="全排列，组合，子集 求数组的全部子集 数组没有重复元素的情况下，">
 <meta name="generator" content="Hugo 0.84.0" />
 
 
@@ -62,37 +62,86 @@
       
 
 <section id="single">
-    <h1 class="title"></h1>
+    <h1 class="title">dfs &amp; backtracking</h1>
 
     <div class="tip">
-        <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">Jan 1, 0001</time>
+        <time datetime="2022-01-13 11:33:56 &#43;0800 CST">Jan 13, 2022</time>
         <span class="split">
           ·
         </span>
         <span>
-          0 words
+          191 words
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          0 minute read
+          1 minute read
         </span>
     </div>
 
     
     
         
-  
-
 
     
 
 
     <div class="content">
-      
+      <h2 id="全排列组合子集">全排列，组合，子集</h2>
+
+<h3 id="求数组的全部子集">求数组的全部子集</h3>
+
+<h4 id="数组没有重复元素的情况下输出所有子集合">数组没有重复元素的情况下，输出所有子集合</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">res</span> []<span style="color:#66d9ef">string</span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">getAllSet</span>(<span style="color:#a6e22e">arr</span> []<span style="color:#66d9ef">byte</span>) []<span style="color:#66d9ef">string</span> {
+    <span style="color:#a6e22e">dfsYesNo</span>(<span style="color:#a6e22e">arr</span>, <span style="color:#ae81ff">0</span>, []<span style="color:#66d9ef">byte</span>{})
+    <span style="color:#75715e">// print res
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">dfs</span>(<span style="color:#a6e22e">arr</span>, <span style="color:#ae81ff">0</span>, []<span style="color:#66d9ef">byte</span>{})
+    <span style="color:#75715e">// print res
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">dfsYesNo</span>(<span style="color:#a6e22e">arr</span> []<span style="color:#66d9ef">byte</span>, <span style="color:#a6e22e">position</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">tempArr</span> []<span style="color:#66d9ef">byte</span>) {
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">start</span> <span style="color:#f92672">==</span> len(<span style="color:#a6e22e">arr</span>) <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> {
+        <span style="color:#a6e22e">res</span> = append(<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">tempArr</span>)
+        <span style="color:#66d9ef">return</span>
+    }
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">position</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">arr</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        <span style="color:#75715e">//选 i位置的元素
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">tempArr</span> = append(<span style="color:#a6e22e">tempArr</span>, <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>])
+        <span style="color:#a6e22e">dfsYesNo</span>(<span style="color:#a6e22e">arr</span>, <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">tempArr</span>)
+        <span style="color:#75715e">// 不选i位置的元素
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">tempArr</span> = <span style="color:#a6e22e">tempArr</span>[:len(<span style="color:#a6e22e">tempArr</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)]
+        <span style="color:#a6e22e">dfsYesNo</span>(<span style="color:#a6e22e">arr</span>, <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">tempArr</span>)
+    }
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">dfs</span>(<span style="color:#a6e22e">arr</span> []<span style="color:#66d9ef">byte</span>, <span style="color:#a6e22e">start</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">tempArr</span> []<span style="color:#66d9ef">byte</span>) {
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">start</span> &lt; len(<span style="color:#a6e22e">arr</span>) {
+        <span style="color:#a6e22e">res</span> = append(<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">temp</span>)
+    }
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">start</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">arr</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        <span style="color:#a6e22e">temp</span> = append(<span style="color:#a6e22e">temp</span>, <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>])
+        <span style="color:#a6e22e">dfs</span>(<span style="color:#a6e22e">arr</span>, <span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">temp</span>)
+        <span style="color:#a6e22e">temp</span> = <span style="color:#a6e22e">temp</span>[:len(<span style="color:#a6e22e">temp</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+    }
+}</code></pre></div>
+<h4 id="数组里有重复元素时输出所有子集合">数组里有重复元素时，输出所有子集合</h4>
+
+<p>res 换成map去重</p>
+
+<p>TODO</p>
+
     </div>
 
+    
+        <div class="tags">
+            
+                <a href="http://brettkk.github.io/tags/leetcode">leetcode</a>
+            
+        </div>
     
     
     

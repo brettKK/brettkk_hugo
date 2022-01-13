@@ -6,7 +6,16 @@
     <description>Recent content on brettkk</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 27 Jun 2021 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Jan 2022 11:33:56 +0800</lastBuildDate><atom:link href="http://brettkk.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>dfs &amp; backtracking</title>
+      <link>http://brettkk.github.io/posts/leetcode/backtracking/</link>
+      <pubDate>Thu, 13 Jan 2022 11:33:56 +0800</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/backtracking/</guid>
+      <description>全排列，组合，子集 求数组的全部子集 数组没有重复元素的情况下，</description>
+    </item>
+    
     <item>
       <title>k8s 学习</title>
       <link>http://brettkk.github.io/posts/cloud_native/k8s/</link>
@@ -323,15 +332,6 @@
 tags: [&amp;quot;cloud native&amp;quot;]
   etcd架构分为4部分  http server store raft wal      etcd使用场景
  API：Etcd提供HTTP+JSON, gRPC接口，跨平台跨语言; 支持https 共享配置 服务发现 选主 分布式队列 分布式锁    play.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://brettkk.github.io/posts/leetcode/backtracking/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://brettkk.github.io/posts/leetcode/backtracking/</guid>
-      <description></description>
     </item>
     
     <item>

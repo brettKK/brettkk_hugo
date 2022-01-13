@@ -70,7 +70,7 @@
           ·
         </span>
         <span>
-          2135 words
+          2158 words
         </span>
         <span class="split">
           ·
@@ -139,29 +139,58 @@
 <hr>
 <h2 id="多态继承-范型">多态，继承， 范型 <a href="#%e5%a4%9a%e6%80%81%e7%bb%a7%e6%89%bf-%e8%8c%83%e5%9e%8b" class="anchor">🔗</a></h2><p>golang中面向对象的实现方式</p>
 <h3 id="继承">继承 <a href="#%e7%bb%a7%e6%89%bf" class="anchor">🔗</a></h3><p>组合结构体，一个结构体嵌入另一个结构体，能够实现对嵌入结构体的字段以及其实现的方法的继承。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">person</span> <span style="color:#66d9ef">struct</span> {
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">person</span> <span style="color:#66d9ef">struct</span> {
     <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
     <span style="color:#a6e22e">age</span>  <span style="color:#66d9ef">int</span>
 }
 
 <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">student</span> <span style="color:#66d9ef">struct</span> {
     <span style="color:#a6e22e">person</span> <span style="color:#75715e">//   匿名字段，通过组合的方式
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">school</span> <span style="color:#66d9ef">string</span> 
-}
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#75715e"></span>    <span style="color:#a6e22e">school</span> <span style="color:#66d9ef">string</span> 
+</span>}
 
 <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">person</span>) <span style="color:#a6e22e">talk</span>() {
     <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">age</span>)
 }
 
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">student</span>) <span style="color:#a6e22e">getSchool</span>() {
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">school</span>
-}
-
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">student</span>) <span style="color:#a6e22e">getSchool</span>() {
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">school</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">}
+</span>
 <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
     <span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">student</span>{<span style="color:#a6e22e">person</span>{<span style="color:#e6db74">&#34;brettkk&#34;</span>, <span style="color:#ae81ff">18</span>}, <span style="color:#e6db74">&#34;yidu&#34;</span>}
     <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">name</span>) <span style="color:#75715e">// 继承person的name字段
 </span><span style="color:#75715e"></span>    <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">talk</span>() <span style="color:#75715e">// 继承person实现的方法
-</span><span style="color:#75715e"></span>}</code></pre></div>
+</span><span style="color:#75715e"></span>}</code></pre></td></tr></table>
+</div>
+</div>
 <h3 id="多态">多态 <a href="#%e5%a4%9a%e6%80%81" class="anchor">🔗</a></h3><p>go没有 implements, extends 关键字， golang是去鸭子类型：看起来像鸭子， 那么它就是鸭子。</p>
 <p>多态： 父类指针或引用去调用方法，在执行的时候，能够根据子类的类型去执行子类当中的方法。</p>
 <p>为什么是在执行的时候才能根据子类的类型执行子类的方法？</p>
