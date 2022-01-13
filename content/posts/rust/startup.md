@@ -28,6 +28,17 @@ IDE： vscode
        REST Client
       Cargo.
 
+playground
+
+### 软件
+
+serde json
+
+tokio, Ethereum, Redox, Tikv, clippy
+
+strato virt, tch-rs, https://gamedev.rs
+
+ThinLTO, PGO
 
 ---
 
@@ -55,6 +66,10 @@ cargo doc --open
 std::collections
 Vec, VecDeque, HashMap, String
 
+
+## array
+
+[Type; N] , [1, 2, 3], [val; n]
 
 ## 编写测试
 
