@@ -8,7 +8,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="全排列，组合，子集 求数组的全部子集 数组没有重复元素的情况下，">
+<meta name="description" content="全排列，组合，子集 🔗求数组的全部子集 🔗数组没有重复元素的情况">
 <meta name="generator" content="Hugo 0.84.0" />
 
 
@@ -70,7 +70,7 @@
           ·
         </span>
         <span>
-          191 words
+          199 words
         </span>
         <span class="split">
           ·
@@ -83,17 +83,32 @@
     
     
         
+  
+    <aside class="toc">
+      <details>
+          <summary>Table of Contents
+          </summary>
+          <div>
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#全排列组合子集">全排列，组合，子集</a>
+      <ul>
+        <li><a href="#求数组的全部子集">求数组的全部子集</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+          </div>
+      </details>
+    </aside>
+  
+
 
     
 
 
     <div class="content">
-      <h2 id="全排列组合子集">全排列，组合，子集</h2>
-
-<h3 id="求数组的全部子集">求数组的全部子集</h3>
-
-<h4 id="数组没有重复元素的情况下输出所有子集合">数组没有重复元素的情况下，输出所有子集合</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">res</span> []<span style="color:#66d9ef">string</span>
+      <h2 id="全排列组合子集">全排列，组合，子集 <a href="#%e5%85%a8%e6%8e%92%e5%88%97%e7%bb%84%e5%90%88%e5%ad%90%e9%9b%86" class="anchor">🔗</a></h2><h3 id="求数组的全部子集">求数组的全部子集 <a href="#%e6%b1%82%e6%95%b0%e7%bb%84%e7%9a%84%e5%85%a8%e9%83%a8%e5%ad%90%e9%9b%86" class="anchor">🔗</a></h3><h4 id="数组没有重复元素的情况下输出所有子集合">数组没有重复元素的情况下，输出所有子集合 <a href="#%e6%95%b0%e7%bb%84%e6%b2%a1%e6%9c%89%e9%87%8d%e5%a4%8d%e5%85%83%e7%b4%a0%e7%9a%84%e6%83%85%e5%86%b5%e4%b8%8b%e8%be%93%e5%87%ba%e6%89%80%e6%9c%89%e5%ad%90%e9%9b%86%e5%90%88" class="anchor">🔗</a></h4><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">res</span> []<span style="color:#66d9ef">string</span>
 <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">getAllSet</span>(<span style="color:#a6e22e">arr</span> []<span style="color:#66d9ef">byte</span>) []<span style="color:#66d9ef">string</span> {
     <span style="color:#a6e22e">dfsYesNo</span>(<span style="color:#a6e22e">arr</span>, <span style="color:#ae81ff">0</span>, []<span style="color:#66d9ef">byte</span>{})
     <span style="color:#75715e">// print res
@@ -127,11 +142,8 @@
         <span style="color:#a6e22e">dfs</span>(<span style="color:#a6e22e">arr</span>, <span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">temp</span>)
         <span style="color:#a6e22e">temp</span> = <span style="color:#a6e22e">temp</span>[:len(<span style="color:#a6e22e">temp</span>)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
     }
-}</code></pre></div>
-<h4 id="数组里有重复元素时输出所有子集合">数组里有重复元素时，输出所有子集合</h4>
-
-<p>res 换成map去重</p>
-
+}
+</code></pre></div><h4 id="数组里有重复元素时输出所有子集合">数组里有重复元素时，输出所有子集合 <a href="#%e6%95%b0%e7%bb%84%e9%87%8c%e6%9c%89%e9%87%8d%e5%a4%8d%e5%85%83%e7%b4%a0%e6%97%b6%e8%be%93%e5%87%ba%e6%89%80%e6%9c%89%e5%ad%90%e9%9b%86%e5%90%88" class="anchor">🔗</a></h4><p>res 换成map去重</p>
 <p>TODO</p>
 
     </div>

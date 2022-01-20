@@ -278,6 +278,8 @@ v.Elem().SetFloat(3.4);
 
 ## go 汇编
 
+ssa里的优化pass：https://github.com/golang/go/blob/acbe242f8a2cae8ef4749806291a37d23089b572/src/cmd/compile/internal/ssa/compile.go#L418
+
 Generate x86 Assembly with Go
 
 https://github.com/mmcloughlin/avo

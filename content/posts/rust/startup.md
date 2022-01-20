@@ -17,7 +17,12 @@ rustup update
 rustc --version
 rustup doc
 
+cheats.rs
+rust-gdb
+rust-lldb
+
 docs.rs/std 可以定向到doc.rust-lang.org/stable/std/
+
 
 ### rust 开发环境
 
@@ -42,7 +47,7 @@ ThinLTO, PGO
 
 ---
 
-
+text -> tokens -> ast -> hir ->mir -> llvm ir -> llvm -> 1110
 
 
 Rust程序设计
@@ -67,6 +72,8 @@ std::collections
 Vec, VecDeque, HashMap, String
 
 
+geektime-rust , codes , source_code , cargo doc --open
+
 ## array
 
 [Type; N] , [1, 2, 3], [val; n]
@@ -87,9 +94,13 @@ cargo test.
 + methods。 impl block里任何method第一个参数是self
 + closure中
 
+
+
 ### 借用（引用 同意）
 rust中所用的参数传递都是传值。 
 引用实现了copy trait。 按照copy语义，引用会复制一份交给调用的函数。
+
+late bound, early bound. Quiz
 
 
 ## 智能指针
@@ -103,3 +114,15 @@ RefCell<T>
 Deref, Drop trait
 
 Weak<T>
+
+## 元编程
+
+反射， 宏
+
+## unsafe
+
+## 异步编程
+
+Future, Tokio
+
+## web 框架

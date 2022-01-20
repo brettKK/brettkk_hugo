@@ -13,6 +13,9 @@ categories: ["life"]
 > Although the basic idea of binary search is comparatively straightforward, the details can be surprisingly tricky
 
 
+
+
+
 ```
 index  0 1 2 3 4 5 6 7
 data   1 2 3 5 5 5 8 9
@@ -108,6 +111,41 @@ func main() {
 
 
 ### 找一个元素第一次出现的位置和最后一次出现的位置
+
+```golang
+// [1,3,3,3,5,7] target=3
+func leftFirst(arr []int, int target) int {
+    left, right := 0, len(arr) - 1
+    for left < right {
+        mid := (right+left) / 2
+        if nums[mid] == target {
+            // 当找到时，收缩右边界
+            right = mid
+        } else if nums[mid] > target {
+            right = mid 
+        } else {
+            left = mid + 1
+        }
+    }
+    return left
+}
+func rightFirst(arr []int, int target) int {
+    left, right := 0, len(arr) - 1
+    for left < right {
+        mid := (right + left) / 2
+        if numsp[mid] = target {
+            left = mid
+        } else if nums[mid] < left {
+            
+        } else {
+
+        }
+    }
+    return left
+}
+
+```
+
 
 ```golang
 func bsFirst(arr []int, k int) {

@@ -1,7 +1,7 @@
 ---
 title: "dfs & backtracking"
 date: 2022-01-13T11:33:56+08:00
-draft: false
+draft: true
 isCJKLanguage: true
 tags: ["leetcode"]
 series: [""]
@@ -35,7 +35,7 @@ func dfsYesNo(arr []byte, position int, tempArr []byte) {
         tempArr = append(tempArr, arr[i])
         dfsYesNo(arr, i + 1, tempArr)
         // 不选i位置的元素
-        tempArr = tempArr[:len(tempArr-1)]
+        tempArr = tempArr[:len(tempArr)-1]
         dfsYesNo(arr, i + 1, tempArr)
     }
 }
