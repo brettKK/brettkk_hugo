@@ -45,6 +45,7 @@ categories: ["技术"]
     + AOF 重写（减少AOF文件的大小）， bgrewriteaof创建子进程去执行
     + 重写： 创建新AOF文件，通过读当前db的键的value， 然后用一条命令去记录key value 信息
     + 子进程在AOF重写过程中， 发生的write操作，主服务进程会写到AOF重写缓冲区，等子进程结束后，父进程收到信号，将AOF重写缓冲区的内容append到AOF文件中，完成AOF文件的后台重写。
+    + AOF 压缩原理：..
 
 + 事件
     + 文件事件 ae_select.c , ae_epoll.c, ae_kqueue.c reactor模式

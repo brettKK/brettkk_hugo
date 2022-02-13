@@ -1,4 +1,13 @@
-
+---
+title: "栈"
+date: 2021-04-05T11:33:56+08:00
+draft: true
+isCJKLanguage: true
+markup: mmark
+tags: ["leetcode"]
+series: [""]
+categories: ["life"]
+---
 
 ```golang
 
@@ -12,7 +21,7 @@ func NewStack() *Stack{
     }
 }
 
-func (s *Stack) Push(value int) {
+func (s *Stack)Push(value int) {
     s.items = append(s.items, value)
 }
 
@@ -25,4 +34,31 @@ func (s *Stack)Pop() int {
     return item
 }
 
+func (s *Stack)Len() int {
+    return len(s.items)
+}
+
+```
+
+### 双栈排序
+
+```golang
+func sort(sk Stack, tmp Stack) Stack {
+    for s.Len() != 0 {
+        val := sk.Pop()
+        if val >= tmp.Peek() {
+            // sk.Pop()
+            tmp.Push(val)
+        } else {
+            for tmp.Len() != 0 {
+                sk.Push(tmp.Pop())
+                if val <= tmp.Peek() {
+                    break
+                }
+            }
+            tmp.Push(val)
+        }
+    }
+    return tmp
+}
 ```

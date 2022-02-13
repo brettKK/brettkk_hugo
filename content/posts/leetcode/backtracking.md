@@ -59,3 +59,26 @@ res 换成map去重
 
 
 TODO 
+
+
+### 二叉树
+
+```golang
+// stack 实现的前序 非递归遍历
+func dfs(root *TreeNode) {
+    if root == nil return 
+    stack.Push(root)
+    for len(stack) != 0 {
+        node = stack.Pop()
+        println(node)
+        if node.right != nil {
+            stack.Push(node.right)
+        }
+        if node.left != nil {
+            stack.Push(node.left)
+        }
+    }
+}
+
+
+```

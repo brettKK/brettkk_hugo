@@ -146,3 +146,63 @@ func mergeSortArray(arr1, arr2 []int) []int {
 }
 
 ```
+
+### 堆排序
+
+思路：
+> 将待排序的数组构造为大顶堆
+
+> 堆顶元素与数组的末尾数交换，剩余带排序的数据为n-1
+
+> 将n-1的数组构造为大顶堆，循环执行
+
+
+```golang
+func heapUp(heap []int, int k) {
+	var son, parent, x int
+	x = heap[k]
+	son = k
+	parent = (son - 1) / 2
+	for son > 0 {
+		if heap[parent] >= x {
+			break
+		}
+		heap[son] = heap[parent]
+		son = parent
+		parent = (son - 1) / 2
+	}
+	heap[son] = x
+}
+
+func heapDown(heap []int, k int, n int) {
+	x := heap[k]
+	parent := k
+	son := 2 * k + 1
+	for son >=0 {
+		if son + 1 <= n && heap[son + 1] > heap[son] {
+			son++
+		}
+		if x >= heap[son] { 
+			break
+		} 	
+		heap[parent] = heap[son]
+		parent = son
+		son = parent * 2 + 1
+	}
+	heap[parent] = x
+}
+
+func buildHeap(heap []int, int n) {
+	for i := (n - 1) / 2; i>= 0 ;i-- {
+		heapDown(heap, i, n)
+	}
+}
+
+func heapsort(heap []int, n int) {
+	for i := n; i > 0; i-- {
+		swap(heap, 0, i)
+		heapDown(heap, 0, i - 1)
+	}
+}
+
+```

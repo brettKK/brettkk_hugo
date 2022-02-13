@@ -133,15 +133,16 @@ func rightFirst(arr []int, int target) int {
     left, right := 0, len(arr) - 1
     for left < right {
         mid := (right + left) / 2
-        if numsp[mid] = target {
-            left = mid
-        } else if nums[mid] < left {
-            
+        if nums[mid] = target {
+            // 当找到时，收紧左边界
+            left = mid + 1
+        } else if nums[mid] < target {
+            left = mid + 1
         } else {
-
+            right = mid
         }
     }
-    return left
+    return left - 1
 }
 
 ```

@@ -14,3 +14,8 @@ convert kiss.gif -coalesce foo.png
 
 
 mac原生的mac previewer无法浏览gif, 下载Adobe Reader, then All is well.
+
+### js 写ppt
+
+reveal.js 
+

@@ -38,3 +38,9 @@ command+P 搜索文件
 + Configure Visual Studio Code for Go
     + extensions: go
     + view -> command palette... -> goinstall
+
+
+---
+
+neovim... 
+markmap = markdown + mindmap

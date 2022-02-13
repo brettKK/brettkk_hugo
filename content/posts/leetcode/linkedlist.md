@@ -94,8 +94,6 @@ func (l *LinkedList) IndexOf(value int) int {
 
 ```
 
-
-
 ### 反转链表
 
 递归
@@ -127,3 +125,66 @@ func reverse(head *ListNode) *ListNode {
 ```
 
 同lc 237， 141， 92， 25
+
+### 判断链表是否有环
+
+```golang
+
+func has_circle(head *ListNode) bool {
+    if head == nil || head.next == nil {
+        return false
+    }
+    fast, slow := head, head
+    for fast != nil && fast.next != nil {
+        fast = fast.next.next
+        slow = slow.next
+        if fast == slow {
+            return true
+        }
+    }
+    return false
+}
+```
+
+### 找链表中环的入口
+
++ 思路1: map 存下遍历过的节点，第一次重复的节点为环的入口。
++ 思路2: 快慢指针，
+
+
+```golang 
+
+```
+
+### 合并2个有序链表
+
+```golang
+func merge2SortList(l1, l2 *ListNode) *ListNode {
+    // dummy 停留在链表头，用于函数的返回
+    dummy := &ListNode{}
+    // cur 用于合并时的移动
+    cur := dummy
+    for l1 != nil && l2 != nil {
+        if l1.val < l2.val {
+            cur.next = l1
+            l1 = l1.next
+        } else {
+            cur.next = l2
+            l2 = l2.next
+        }
+        cur = cur.next
+    }
+    if l1 != nil {
+        cur.next = l1
+    }
+    if l2 != nil {
+        cur.next = l2
+    }
+    return dummy.next
+}
+```
+
+### 合并K个升序链表
+
+### 链表的快速排序
+
