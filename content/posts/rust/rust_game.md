@@ -1,7 +1,19 @@
+---
+title: "rust-game"
+date: 2021-05-05T11:33:56+08:00
+draft: true
+isCJKLanguage: true
+markup: mmark
+tags: ["rust", "game"]
+series: [""]
+categories: ["技术"]
+---
+
 
 https://gamedev.rs/
 
 https://gamedev.rs/news/027/
+
 
 + rust gamedev meetup
 
