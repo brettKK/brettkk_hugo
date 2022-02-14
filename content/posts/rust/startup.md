@@ -56,6 +56,8 @@ rust by example
 
 https://tourofrust.com/
 
+youtube channels: jon gjengset
+
 ### blog and news
 
 https://www.rust-lang.org/community
@@ -116,6 +118,21 @@ geektime-rust , codes , source_code , cargo doc --open
 rust中的测试是带有标注test属性的函数。 #[test]
 
 cargo test.
+
+## 基本语法概念
+
+12个。
+
+rust, open source. MIT and Apache License 2.0. 
+v1.0 -> 2015. play.rust-lang.org
+
+println!("{:?}", ..), mut, shadow vaviable, constants
+
+types. String  UTF-8.
+
+tuple(different type and fix length), Array( same type and fix length)
+
+Expressions and statements.  Functions, loop, while, for。
 
 
 ## 变量的生命周期，所有权，借用，move，ref

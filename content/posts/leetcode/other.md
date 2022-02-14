@@ -45,7 +45,7 @@ func findNum(n, m int) int {
 }
 ```
 
-### 找到子问题与原问题的规律，递归
+#### 找到子问题与原问题的规律，递归
 ```golang
 
 func findNum(n, m int) int {
@@ -57,8 +57,56 @@ func findNum(n, m int) int {
 
 ```
 
+---
 
 ### 数据流中的中位数
 
 大顶堆维护一半小的数，小顶堆维护一半大的数。中位数为2个堆顶的平均数或者小顶堆的根。
+
+---
+
+### 接雨水
+
+leetcode: trapping rain water.
+
+思路： 位置x的盛水量等于 min(left_max, right_max) - h(x)。
+
+```golang
+
+func getWater(arr []int) int {
+    leftMaxArr := make([]int, len(arr))
+    leftMaxArr[0] = 0
+    rightMaxArr := make([]int, len(arr))
+    rightMaxArr[len(arr) - 1] = 0
+    for i := 1; i < len(arr); i++ {
+        leftMaxArr[i] = max(leftMaxArr[i - 1], arr[i])
+    }
+    for i := len(arr) - 2; i >=0; i-- {
+        rightMaxArr[i] = max(rightMaxArr[i - 1], arr[i])
+    }
+    sum := 0 
+    for i := 0; i < len(arr); i++ {
+        if i == 0 || i == len(arr) - 1 {
+            continue
+        }
+        cur := min(leftMaxArr[i], rightMaxArr[i]) - arr[i]
+        if cur <= 0 {
+            continue
+        }
+        sum += cur
+    }
+    return sum
+}
+
+```
+
+```golang
+
+// 单调栈的思路
+
+维护 递减栈
+
+```
+
+---
 
