@@ -327,20 +327,23 @@ tags: [&amp;quot;cloud native&amp;quot;]
     
     <item>
       <title></title>
+      <link>http://brettkk.github.io/posts/leetcode/other/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/other/</guid>
+      <description>约瑟夫环 🔗 1-N个人，形成一个圈，从编号为1开始报数1，数到M的人x出列，x之后的人再次从1开始喊 直到最后一个人，求这个人的编号
+ 数组 🔗遍历数组，数到m的位置标记为-1， 直到数组中仅剩一个非-1的元素，返回元素的位置
+环形链表 🔗不做标记，直接从环形链表中删除。
+type Node struct{ int num, next Node, } func createCircleLink(int n) Node{ head := Node{num: 1} cur = head for i := 2; i &amp;lt; n; i++ { tmp := Node{num: i} cur.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>http://brettkk.github.io/posts/leetcode/queue/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://brettkk.github.io/posts/leetcode/queue/</guid>
       <description>type Queue struct { items []int } func New() *Queue { return &amp;amp;Queue{ items: []int{} } } func (q *Queue) Enqueue(item int) { q.items = append(q.items, item) } func (q *Queue) Dequeue() int { if len(q.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://brettkk.github.io/posts/leetcode/stack/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://brettkk.github.io/posts/leetcode/stack/</guid>
-      <description>type Stack struct { items []int } func NewStack() *Stack{ return &amp;amp;Stack{ items: []int{} } } func (s *Stack) Push(value int) { s.items = append(s.items, value) } func (s *Stack)Pop() int { if len(s.</description>
     </item>
     
     <item>
@@ -451,7 +454,8 @@ git最佳实践</description>
       <description>使用中文字体 🔗使用xeCJK包，同时需要使用xeLaTex进行编译
 gif image in laTex Beamer 🔗brew install imagemagick
 convert kiss.gif -coalesce foo.png
-mac原生的mac previewer无法浏览gif, 下载Adobe Reader, then All is well.</description>
+mac原生的mac previewer无法浏览gif, 下载Adobe Reader, then All is well.
+js 写ppt 🔗reveal.js</description>
     </item>
     
     <item>
