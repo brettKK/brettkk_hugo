@@ -73,13 +73,13 @@ type Node struct{ int num, next Node, } func createCircleLink(int n) Node{ head 
           ·
         </span>
         <span>
-          141 words
+          255 words
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          1 minute read
+          2 minute read
         </span>
     </div>
 
@@ -97,8 +97,8 @@ type Node struct{ int num, next Node, } func createCircleLink(int n) Node{ head 
     <li>
       <ul>
         <li><a href="#约瑟夫环">约瑟夫环</a></li>
-        <li><a href="#找到子问题与原问题的规律递归">找到子问题与原问题的规律，递归</a></li>
         <li><a href="#数据流中的中位数">数据流中的中位数</a></li>
+        <li><a href="#接雨水">接雨水</a></li>
       </ul>
     </li>
   </ul>
@@ -152,7 +152,7 @@ type Node struct{ int num, next Node, } func createCircleLink(int n) Node{ head 
     }
     <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">num</span>
 }
-</code></pre></div><h3 id="找到子问题与原问题的规律递归">找到子问题与原问题的规律，递归 <a href="#%e6%89%be%e5%88%b0%e5%ad%90%e9%97%ae%e9%a2%98%e4%b8%8e%e5%8e%9f%e9%97%ae%e9%a2%98%e7%9a%84%e8%a7%84%e5%be%8b%e9%80%92%e5%bd%92" class="anchor">🔗</a></h3><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
+</code></pre></div><h4 id="找到子问题与原问题的规律递归">找到子问题与原问题的规律，递归 <a href="#%e6%89%be%e5%88%b0%e5%ad%90%e9%97%ae%e9%a2%98%e4%b8%8e%e5%8e%9f%e9%97%ae%e9%a2%98%e7%9a%84%e8%a7%84%e5%be%8b%e9%80%92%e5%bd%92" class="anchor">🔗</a></h4><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
 <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">findNum</span>(<span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">m</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
     <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> {
         <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
@@ -160,7 +160,43 @@ type Node struct{ int num, next Node, } func createCircleLink(int n) Node{ head 
     <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">findNum</span>(<span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">m</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">m</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> )<span style="color:#f92672">%</span><span style="color:#a6e22e">n</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> 
 }
 
-</code></pre></div><h3 id="数据流中的中位数">数据流中的中位数 <a href="#%e6%95%b0%e6%8d%ae%e6%b5%81%e4%b8%ad%e7%9a%84%e4%b8%ad%e4%bd%8d%e6%95%b0" class="anchor">🔗</a></h3><p>大顶堆维护一半小的数，小顶堆维护一半大的数。中位数为2个堆顶的平均数或者小顶堆的根。</p>
+</code></pre></div><hr>
+<h3 id="数据流中的中位数">数据流中的中位数 <a href="#%e6%95%b0%e6%8d%ae%e6%b5%81%e4%b8%ad%e7%9a%84%e4%b8%ad%e4%bd%8d%e6%95%b0" class="anchor">🔗</a></h3><p>大顶堆维护一半小的数，小顶堆维护一半大的数。中位数为2个堆顶的平均数或者小顶堆的根。</p>
+<hr>
+<h3 id="接雨水">接雨水 <a href="#%e6%8e%a5%e9%9b%a8%e6%b0%b4" class="anchor">🔗</a></h3><p>leetcode: trapping rain water.</p>
+<p>思路： 位置x的盛水量等于 min(left_max, right_max) - h(x)。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">getWater</span>(<span style="color:#a6e22e">arr</span> []<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+    <span style="color:#a6e22e">leftMaxArr</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, len(<span style="color:#a6e22e">arr</span>))
+    <span style="color:#a6e22e">leftMaxArr</span>[<span style="color:#ae81ff">0</span>] = <span style="color:#ae81ff">0</span>
+    <span style="color:#a6e22e">rightMaxArr</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, len(<span style="color:#a6e22e">arr</span>))
+    <span style="color:#a6e22e">rightMaxArr</span>[len(<span style="color:#a6e22e">arr</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] = <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">arr</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        <span style="color:#a6e22e">leftMaxArr</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">leftMaxArr</span>[<span style="color:#a6e22e">i</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>])
+    }
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> len(<span style="color:#a6e22e">arr</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">--</span> {
+        <span style="color:#a6e22e">rightMaxArr</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">rightMaxArr</span>[<span style="color:#a6e22e">i</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>], <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>])
+    }
+    <span style="color:#a6e22e">sum</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span> 
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">arr</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">==</span> len(<span style="color:#a6e22e">arr</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> {
+            <span style="color:#66d9ef">continue</span>
+        }
+        <span style="color:#a6e22e">cur</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">min</span>(<span style="color:#a6e22e">leftMaxArr</span>[<span style="color:#a6e22e">i</span>], <span style="color:#a6e22e">rightMaxArr</span>[<span style="color:#a6e22e">i</span>]) <span style="color:#f92672">-</span> <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">i</span>]
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">cur</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span> {
+            <span style="color:#66d9ef">continue</span>
+        }
+        <span style="color:#a6e22e">sum</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">cur</span>
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">sum</span>
+}
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
+<span style="color:#75715e">// 单调栈的思路
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">维护</span> <span style="color:#a6e22e">递减栈</span>
+
+</code></pre></div><hr>
 
     </div>
 

@@ -39,6 +39,10 @@ playground
 
 rustc -V, cargo -V 查看环境版本。
 
+rustup 管理rust编程环境。 
+rustup which rustc 查看rustc的位置
+rustup component add rust-src 下载rust源码。
+
 cargo check快速检查语法问题。
 
 
@@ -109,9 +113,44 @@ Vec, VecDeque, HashMap, String
 geektime-rust , codes , source_code , cargo doc --open
 阅读顺序： 类型自身，实现的方法，实现的trait
 
-## array
+## 工程，包crate，模块mod
+
+```
+project
+│   README.md
+│   file001.txt
+└───src
+│   │   lib.rs
+│   └───package1
+│       │   mod.rs
+│       │   a.rs
+│       │   b.rs
+│   
+└───folder2
+    │   file021.txt
+    │   file022.txt
+```
+
+工程目录结构参考 pingcap/tikv
+
+## 引入依赖
+工程的toml文件引入第三方库
++ 引入rust官方仓库 
+  + 中央仓库crates.io，docs.rs
++ 引入git依赖
++ 引入本地依赖
+
+工程的代码中加载依赖 extern crate xxx as yyy;
+
+## 数组array
+
+数据的类型： 元素类型+数组长度（长度也是类型的一部分）
 
 [Type; N] , [1, 2, 3], [val; n]
+
+## enum
+
+包含各种子类型的集合。
 
 ## 编写测试
 
@@ -133,6 +172,14 @@ types. String  UTF-8.
 tuple(different type and fix length), Array( same type and fix length)
 
 Expressions and statements.  Functions, loop, while, for。
+
++ 介绍思路
+      + data type. Option, Result, Interator
+      + control flow. match, for, if let, while let
+      + error handler
+      + ownership
+      + trait. Iterator, Deref, Index, Send/Sync
+      + project. Chalk, tokio, Servo.
 
 
 ## 变量的生命周期，所有权，借用，move，ref
@@ -174,13 +221,44 @@ rust中所用的参数传递都是传值。
 late bound, early bound. Quiz
 
 
+### 操作符号重载
+rust中的操作符几乎都与一个trait相对应。
+解引用*x, 重载std::ops::Deref
+
+不可重载的运算符： &, &mut, 
+
+### 标准库-- 集合
+
+标准库的集合在std::collections模块中。
+sequence: Vec, VecDeque, LinkedList
+Map: HashMap, BTreeMap
+Set: HashSet, BTreeSet
+Misc: BinaryHeap
+
+std::vec::Vec 不在collections模块中。
+
+标准库--Prelude模块。 会被自动引入到项目中。具体有哪些？
+
+
 ## 智能指针
 
 Box<T>
 
-Rc<T>
+Rc<T> ,Arc<T> 
 
-RefCell<T>
+---
+
+Cell<T>, RefCell<T> 扩展所有权机制的灵活性。
+
+通常修改一个值，2个方式
++ 成为值的所有者，并声明mut
++ &mut 获取可变借用
+
+Cell， RefCell则不受编译静态规则的限制。
+Cell<T> 只能用于T实现了Copy trait的情况。
+RefCell<T> 
+
+---
 
 Deref, Drop trait
 

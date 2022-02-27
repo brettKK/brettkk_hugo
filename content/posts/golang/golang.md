@@ -15,6 +15,8 @@ categories: ["技术"]
 
  3. awesome-go系列，https://github.com/gocn/knowledge
 
+练习操场playground: go.dev/play。  后有rust playground。
+
 ---
 ## 多态，继承， 范型
 
