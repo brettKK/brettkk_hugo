@@ -44,15 +44,6 @@
     </item>
     
     <item>
-      <title>etcd_raft</title>
-      <link>http://brettkk.github.io/posts/cloud_native/etcd_raft/</link>
-      <pubDate>Fri, 05 Mar 2021 11:33:56 +0800</pubDate>
-      
-      <guid>http://brettkk.github.io/posts/cloud_native/etcd_raft/</guid>
-      <description>raft基本思想：少数服从多数。 leader 选举 发起投票 每个节点为fo</description>
-    </item>
-    
-    <item>
       <title>kubernetes</title>
       <link>http://brettkk.github.io/posts/cloud_native/my-first-post/</link>
       <pubDate>Wed, 03 Mar 2021 18:34:48 +0800</pubDate>

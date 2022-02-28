@@ -124,6 +124,61 @@ func reverse(head *ListNode) *ListNode {
 }
 ```
 
+### 反转指定区间内的链表
+
+```golang
+// lc 92
+func reverseLR(left, right int, head *ListNode) *ListNode {
+    if head == nil {
+        return head
+    }
+    dummy := &ListNode{}
+    dummy.next = head
+    pre, cur := dummy, head
+    for i := 0; i < left; i++ {
+        cur = cur.next
+        pre = pre.next
+    }
+    if cur == nil || cur.next == nil {
+        return head
+    }
+    rangeLeft := pre
+    // reverse
+    for i := left; i < right; i++ {
+        tmp := cur.next
+        cur.next.next =  cur
+        cur.next = nil
+        cur = tmp
+    }
+    rangeLeft.next.next = cur.next
+    rangeLeft.next = cur
+    return dummy.next
+} 
+```
+
+```golang
+// simple 
+func reverseRange(left, right int, head *ListNode) *ListNode{
+    dummy := &ListNode{}
+    dummy.next = head
+    p = dummy
+    // p 指向left的前一个节点
+    for i := 0; i < left - 1; i++ {
+        p = p.next
+    }
+    m, n := p.next, p.next.next
+    for i := 0; i < right - left; i++ {
+        tmp := cur.next
+        cur.next = pre
+        pre = cur
+        cur = tmp
+    }
+    // 连接
+    p.next.next = cur
+    p.next = pre
+}
+```
+
 同lc 237， 141， 92， 25
 
 ### 判断链表是否有环
