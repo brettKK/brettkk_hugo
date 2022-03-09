@@ -245,6 +245,39 @@ func build(preOrder, inOrder []int, preLeft, preRight, inLeft, inRight int, inMa
 
 ```
 
+### 中序和后序的数组重建二叉树
+前序和后序不能唯一确定树。
+```golang
+func build(inOrder, postOrder []int) *TreeNode{
+    // 边界条件
+    if len(postOrder) == 0 {
+        return nil
+    }
+    // 后序数组的最后一个item，为root
+    rootValue := postOrder[len(postOrder) - 1]
+    root := &TreeNode{val: rootValue}
+    //叶子结点
+    if len(postOrder) == 1 {
+        return root
+    }
+    // 找到中序数组中的切割点
+    var delimiterIndex int
+    for delimiterIndex = 0; delimiterIndex < len(inOrder); delimiterIndex++ {
+        if inOrder[delimiterIndex] == rootValue {
+            break
+        }
+    }
+    // 切割中序数组
+    // 切割后序数组
+
+    root.left = build(中序left, 后序left)
+    root.right = build(中序right, 后序right)
+    return root
+}
+
+```
+
+
 ### 字典树
 
 ```golang
