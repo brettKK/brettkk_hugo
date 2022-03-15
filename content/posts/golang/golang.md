@@ -148,6 +148,21 @@ func store(readWriter ReadWriter) error {
 ```
 
 ## 模糊点
+
+### rune类型
+
+字符串有字符组成， 字符分2种， 一种是占1byte的字符，如英文字符；一种是占1-4 byte的字符用rune表示，如中文。
+
+
+在builtin/builtin.go中定义
+```golang
+
+type rune = int32
+fmt.Println(len("hallo中文"))// 5 + 3 + 3
+fmt.Println(len([]rune("hallo中文"))) //5 + 1 + 1
+
+```
+
 ### 数组与切片
 
 数组的初始化 （元素类型， 数组大小）
