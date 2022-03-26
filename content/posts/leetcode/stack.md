@@ -62,3 +62,77 @@ func sort(sk Stack, tmp Stack) Stack {
     return tmp
 }
 ```
+
+### 单调栈
+
+#### 输出数组每个元素与右边比自己大的元素的距离
+
+```golang
+
+func nextGreater(arr []int) []int{
+    var stack []int
+    result := make([]int, len(arr))
+    for i := range len(arr) {
+        result[i] = -1
+    }
+    for i := range len(arr) {
+        for len(stack) != 0 && arr[stack[len(stack)-1]] < arr[i] {
+            // 维持递减栈， 遇到比栈顶元素时出栈，计算栈顶元素遇到比自己大的元素时的距离
+            index := stack[len(stack) -1]
+            stack = stack[:len(stack)]
+            result[index] = i - index 
+        }
+        stack = append(stack, i)
+    }
+    return result
+}
+
+```
+
+#### 输出最大矩形面积
+
+input = [2,1,5,6,2,3]; output = 5*2 = 10
+
+```golang
+func largestRectangle(arr []int) int {
+    result := 0
+    var stack []int
+    // 保证栈为空， 所有元素参与了计算
+    arr = append(arr, 0) 
+    for i := range len(arr) {
+        for len(stack) != 0 && arr[stack[len(stack)-1]] > arr[i] {
+            // 维护递增栈，遇到比栈顶元素小时出栈计算
+            index := stack[len(stack) -1] 
+            stack = stack[:len(stack)-1]
+            result = max(result, arr[index] * (i - index))
+        }
+        stack = append(stack, i)
+    }
+    return result
+}
+
+```
+#### 输出二维数组中包含1的最大矩形面积
+
+```golang
+
+func maxRectange(matrix [][]int) int {
+    rows := len(matrix)
+    cols := len(matrix[0])
+    arr := make([]int, cols)
+    result := 0
+    for i := range rows {
+        for j := range cols {
+            if matrix[i][j] = 0 {
+                arr[j] = 0
+            } else {
+                arr[j] = arr[j] + 1
+            }
+        }
+        tmp := largestRectangle(arr)
+        result = max(result, tmp)
+    }
+    return result
+}
+
+```

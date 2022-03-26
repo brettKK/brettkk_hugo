@@ -70,13 +70,13 @@
           ·
         </span>
         <span>
-          2326 words
+          2509 words
         </span>
         <span class="split">
           ·
         </span>
         <span>
-          5 minute read
+          6 minute read
         </span>
     </div>
 
@@ -102,6 +102,7 @@
     </li>
     <li><a href="#模糊点">模糊点</a>
       <ul>
+        <li><a href="#rune类型">rune类型</a></li>
         <li><a href="#数组与切片">数组与切片</a></li>
         <li><a href="#函数的接受者">函数的接受者</a></li>
         <li><a href="#golang值拷贝">golang值拷贝</a></li>
@@ -264,7 +265,14 @@
     <span style="color:#75715e">// 入参依赖了不必要功能的接口，让限制了函数的使用范围为更小
 </span><span style="color:#75715e"></span>}
 
-</code></pre></div><h2 id="模糊点">模糊点 <a href="#%e6%a8%a1%e7%b3%8a%e7%82%b9" class="anchor">🔗</a></h2><h3 id="数组与切片">数组与切片 <a href="#%e6%95%b0%e7%bb%84%e4%b8%8e%e5%88%87%e7%89%87" class="anchor">🔗</a></h3><p>数组的初始化 （元素类型， 数组大小）</p>
+</code></pre></div><h2 id="模糊点">模糊点 <a href="#%e6%a8%a1%e7%b3%8a%e7%82%b9" class="anchor">🔗</a></h2><h3 id="rune类型">rune类型 <a href="#rune%e7%b1%bb%e5%9e%8b" class="anchor">🔗</a></h3><p>字符串有字符组成， 字符分2种， 一种是占1byte的字符，如英文字符；一种是占1-4 byte的字符用rune表示，如中文。</p>
+<p>在builtin/builtin.go中定义</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
+<span style="color:#66d9ef">type</span> <span style="color:#66d9ef">rune</span> = <span style="color:#66d9ef">int32</span>
+<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(len(<span style="color:#e6db74">&#34;hallo中文&#34;</span>))<span style="color:#75715e">// 5 + 3 + 3
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(len([]rune(<span style="color:#e6db74">&#34;hallo中文&#34;</span>))) <span style="color:#75715e">//5 + 1 + 1
+</span><span style="color:#75715e"></span>
+</code></pre></div><h3 id="数组与切片">数组与切片 <a href="#%e6%95%b0%e7%bb%84%e4%b8%8e%e5%88%87%e7%89%87" class="anchor">🔗</a></h3><p>数组的初始化 （元素类型， 数组大小）</p>
 <p>2种初始化方式，显式的指定数组的大小</p>
 <ol>
 <li>arr := [3]int{1, 2, 3}</li>

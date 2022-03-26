@@ -6,3 +6,9 @@ go get modernc.org/goyacc
 
 https://pkg.go.dev/golang.org/x/tools/cmd/goyacc
 
+
+
++ slidev
+    + markdown, ppt
+    + https://sli.dev/ 
+    + github.com/slidevjs/slidev
