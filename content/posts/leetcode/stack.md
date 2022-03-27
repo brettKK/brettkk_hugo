@@ -68,7 +68,7 @@ func sort(sk Stack, tmp Stack) Stack {
 #### 输出数组每个元素与右边比自己大的元素的距离
 
 ```golang
-
+// result 每个位置存index of next greater item  <lc 739 每日温度>
 func nextGreater(arr []int) []int{
     var stack []int
     result := make([]int, len(arr))
@@ -87,9 +87,24 @@ func nextGreater(arr []int) []int{
     return result
 }
 
+// result 每个位置存next greater item  <lc496 下一个更大元素>
+func nextGreater(arr []int) []int{
+    var stack []int
+    result := make([]int, len(arr))
+    for i := len(arr) - 1; i >= 0; i-- {
+        for len(stack) != 0 && arr[i] >= stack[len(stack)-1] {
+            // 维护递减栈
+            stack = stack[:len(stack)-1]
+        }
+        //
+        result[i] = len(stack) == 0 ? -1 : stack[len(stack)-1]
+        stack = append(stack, arr[i])
+    }
+}
+
 ```
 
-#### 输出最大矩形面积
+#### 输出最大矩形面积 <lc 84>
 
 input = [2,1,5,6,2,3]; output = 5*2 = 10
 
@@ -136,3 +151,13 @@ func maxRectange(matrix [][]int) int {
 }
 
 ```
+
+#### lc 402 移掉K位数字
+
+#### lc 581 最短无序连续子数组
+
+#### lc 42 接雨水
+从左往右维护单调递减栈，栈里存index。
+当cur 大于栈顶元素，出现了凹地，可以接雨水。
+
+#### lc 316 去除重复字符
