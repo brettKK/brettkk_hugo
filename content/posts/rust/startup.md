@@ -23,6 +23,11 @@ rust-lldb
 
 docs.rs/std 可以定向到doc.rust-lang.org/stable/std/
 
+### cargo
+
+cargo install 安装二进制crate。 可执行的二进制文件默认存放在A=$HOME/.cargo/bin下面。
+如果A在$PATH下，那么cargo install后的二进制可直接在命令行中运行。
+
 
 ### rust 开发环境
 
