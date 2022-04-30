@@ -27,6 +27,12 @@ categories: ["技术"]
   + copy 覆盖函数的前12个字节的汇编代码，植入mock函数的地址， 在运行时实现函数的mock和unmock
   + github.com/bouk/monkey
 
+### gomock
+
+install: go get github.com/golang/mock/gomock, github.com/golang/mock/mockgen.
+
+
+
 ### go monkey
 
 

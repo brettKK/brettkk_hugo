@@ -91,6 +91,42 @@ fn main() {
 
 ```
 
+### closure
+
+闭包相当于一个捕获变量的结构体，实现了 FnOnce 或 FnMut 或 Fn。
+
+```rust
+fn f<F: FnOnce() -> String>(g: F) {
+    println!("{}", g());
+}
+
+let mut s = String::from("halo");
+let t = String::from("world");
+
+f(||{
+    s += &t;
+    s
+});
+
+```
+
+```rust
+struct Closure<'a>{
+    s: String,
+    t: &'a String,
+}
+
+impl <'a> FnOnce<()> for Closure<'a> {
+    type Output = String;
+    fn call_once(self) -> Output{
+        self.s += &*self.t;
+        self.s
+    }
+}
+f(Closure{s: s, t: &t});
+
+```
+
 + 模式匹配
 
 + 宏

@@ -28,7 +28,7 @@ categories: ["技术"]
 7 基于THIR
 
 +  Borrow checking （限制 local， scope是一个方法内部）
-+ Constant evaluation
++ Constant evaluation （after monomorphization）
 + Rust-level Optimizations
 + Monomorphization
 + Saving compilation cache
