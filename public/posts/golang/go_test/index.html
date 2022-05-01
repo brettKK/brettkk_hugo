@@ -70,7 +70,7 @@
           ·
         </span>
         <span>
-          623 words
+          635 words
         </span>
         <span class="split">
           ·
@@ -100,6 +100,7 @@
     </li>
     <li><a href="#调试">调试</a></li>
     <li><a href="#性能分析">性能分析</a></li>
+    <li><a href="#go-fuzzing">go fuzzing</a></li>
   </ul>
 </nav>
           </div>
@@ -197,7 +198,11 @@ func main() {
 <li>为了保证cache的一致性，对内存的一个小小的写入都会让cache line被淘汰。</li>
 <li>对相邻地址的读操作就无法命中对应的cache line。</li>
 </ol>
+<h2 id="go-fuzzing">go fuzzing <a href="#go-fuzzing" class="anchor">🔗</a></h2><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">FuzzXXX</span>(<span style="color:#a6e22e">f</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">F</span>) {
+    <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">Fuzz</span>()
+}
 
+</code></pre></div>
     </div>
 
     

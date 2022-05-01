@@ -77,6 +77,19 @@ func (l *LinkedList) RemoveAt(index int) (*ListNode, error) {
     return removeNode, nil
 }
 
+func deleteNode(head *ListNode, val int) *ListNode {
+    if head.val == val {
+        return head.next
+    }
+    pre, cur := head, head.next
+    for cur != nil && cur.val != val {
+        pre = cur
+        cur = cur.next
+    }
+    pre.next = cur.next
+    return head
+}
+
 func (l *LinkedList) IndexOf(value int) int {
     cur := l.head
     i := 0
