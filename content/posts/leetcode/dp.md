@@ -75,3 +75,47 @@ func robRange(nums []int, left int, right int) {
 
 ```
 
+### 熊出没
+
+给定一个装满苹果的山洞，只能从洞口和洞尾拿苹果。 每轮两只熊交替拿，最后谁拿到的重量大谁赢。
+
+```golang
+// input: 1kg, 3kg, 14kg, 7kg
+
+// 若每轮大熊贪心拿最大的： 7kg + 3kg = 10kg; 熊二 14kg + 1 kg = 15kg
+
+// 没想明白..
+
+// dfs 
+
+func CanFirstBearWin(nums []int) bool {
+    return picker(0, len(nums)-1, nums) >= 0
+}
+func picker(i, j int, nums []int) int {
+    if i == j {
+        return nums[i]
+    }
+    head := nums[i] - picker(i + 1, j, nums)
+    end := nums[j] - picker(i, j-1, nums)
+    return max(head, end)
+}
+
+// dp
+func CanFirstBearWin(nums []int) bool {
+    length := len(nums)
+    dp := make([][]int, length)
+    for i:=0; i<length; i++ {
+        dp[i] = make([]int, length)
+        dp[i][i] = nums[i]
+    }
+    for j := 1; j <length; j++ {
+        for i := j - 1; i >= 0; i-- {
+            head := nums[i] - dp[i+1][j]
+            end := nums[j] - dp[i][j-1]
+            dp[i][j] = max(head, end)
+        }
+    }
+    return dp[0][length-1] >= 0
+}
+
+```

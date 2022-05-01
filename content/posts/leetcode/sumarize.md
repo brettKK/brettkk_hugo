@@ -9,6 +9,7 @@ series: [""]
 categories: ["life"]
 ---
 
+github.com/soulmachine/leetcode
 
 + Array
 + String

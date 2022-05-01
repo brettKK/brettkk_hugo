@@ -1,6 +1,25 @@
+---
+title: "tree"
+date: 2021-04-05T11:33:56+08:00
+draft: true
+isCJKLanguage: true
+markup: mmark
+tags: ["leetcode"]
+series: [""]
+categories: ["life"]
+---
 
+### 种类
 
-
++ 树
+    + 多叉树
+        + B树
+        + 字典树
+    + 二叉树
+        + 二叉排序树
+        + 二叉平衡树 AVL
+        + 伸展树 
+        + 红黑树
 
 
 ```golang

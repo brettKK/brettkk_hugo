@@ -207,6 +207,8 @@ go严格上只有复制拷贝传递
 
 ### unsafe包
 
+*T <==> unsafe.Pointer <==> uintptr
+
 uintptr与unsafe.Pointer（类似void*）
 
 1. T1指针与 T2指针类型之间的转换
