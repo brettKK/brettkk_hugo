@@ -17,6 +17,11 @@ categories: ["技术"]
 
 练习操场playground: go.dev/play。  后有rust playground。
 
+## 官方地址改动
+
+golang.org => go.dev
+play.golang.org => go.dev/play
+
 ---
 ## 多态，继承， 范型
 

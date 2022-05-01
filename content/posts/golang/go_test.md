@@ -78,3 +78,13 @@ taoshu.in/go/monkey
 2. cpu cache line(64字节)，结构体填充，避免False Sharing。
 3. 为了保证cache的一致性，对内存的一个小小的写入都会让cache line被淘汰。
 4. 对相邻地址的读操作就无法命中对应的cache line。 
+
+
+## go fuzzing
+
+```golang
+func FuzzXXX(f *testing.F) {
+    f.Fuzz()
+}
+
+```

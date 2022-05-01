@@ -58,3 +58,4 @@ categories: ["技术"]
     + go tool pprof --nodefraction=0.1  -http=:9999 /tmp/cpuprofile.out
     + go tool trace
         + goroutine的时间阶段： Execution Time， Network Wait Time， Sync Block Time， Blocking Syscall Time， Scheduler Wait Time， GC Sweeping， GC Pause。
++ //go: linkname localname importpath.name

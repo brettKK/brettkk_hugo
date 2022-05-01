@@ -36,3 +36,42 @@ func bag01(weight, value []int, bagweight int) int {
 ```
 
 ### next 
+
+
+### 打家劫舍
+
+相邻的房间不能偷，能获取的最大金额
+
+```golang
+// input [2, 7, 9, 3, 1] 
+// output 2 + 9 + 1 = 12
+
+// dp[i] 前 i 间房屋能偷窃到的最高总金额
+
+dp[0] = nums[0]
+dp[1] = nums[1]
+dp[k] = max(dp[k-1], dp[k-2] + nums[i])
+// 也可以不申请dp数组， 因为dp[i] 只与前两项有关
+```
+#### 打家劫舍 （首尾相连）
+
+```golang
+// 不选择第一间， [1 ~ n]
+// 不选择最后一间，[0 ~ n-1]
+
+func getMax(nums []int) int {
+    return max(robRange(nums, 0, len(nums-2)), robRange(nums, 1, len(nums-1)))
+}
+
+func robRange(nums []int, left int, right int) {
+    first, second := nums[left], max(nums[left], nums[left+1])
+    for i := left + 2; i <= right; i++ {
+        temp := max(first + nums[i], second)
+        first = second
+        second = temp
+    }
+    return second
+}
+
+```
+
