@@ -41,6 +41,7 @@ command+P 搜索文件
 
 
 ---
-
+nano 
+vim
 neovim... 
 markmap = markdown + mindmap

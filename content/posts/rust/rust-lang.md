@@ -9,6 +9,19 @@ series: [""]
 categories: ["技术"]
 ---
 
+### core, std
+
+core：
+std：大多数与os相关
+
+### module
+
+package， crate， module。
+
+vim nano
+
+---
+
 
 + 所有权与借用， 生命周期
 
@@ -126,6 +139,8 @@ impl <'a> FnOnce<()> for Closure<'a> {
 f(Closure{s: s, t: &t});
 
 ```
+
+
 
 + 模式匹配
 
