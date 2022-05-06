@@ -399,3 +399,59 @@ lc 98。
 思路1: 中序遍历二叉树，看是否为有序集合。
 
 
+### 二叉树的深度
+
+#### 二叉树的最小深度
+
+```golang
+
+func getMinDepth(root *TreeNode) int {
+    if root == nil {
+        return 0
+    }
+    left := getMinDepth(root.left)
+    right := getMinDepth(root.right)
+    // 后序遍历的原因： 需要比较递归之后的结果
+    if root.left == nil && root.right != nil {
+        return 1 + right   
+    }
+    if root.right == nil && root.left != nil{
+        return 1 + left
+    }
+
+    return 1 + min(left, right)
+}
+
+```
+
+```golang
+// level traval
+
+func getMinDepth(root *TreeNode) int {
+    if root = nil {
+        return 0
+    }
+    depth := 1
+    var que []*TreeNode 
+    que.append(root)
+    for len(que) != 0 {
+        depth++
+        level_size := len(que)
+        for i := 0; i < level_size; i++ {
+            node := que[l0]
+            que = que[1:]
+            if node.left != nil {
+                que = append(que, node.left)
+            }
+            if node.right != nil {
+                que = append(que, node.right)
+            }
+            if node.left == nil && node.right == nil {
+                return depth
+            }
+        }
+    }
+    return depth
+}
+
+```

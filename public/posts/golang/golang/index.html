@@ -70,7 +70,7 @@
           ·
         </span>
         <span>
-          2531 words
+          2537 words
         </span>
         <span class="split">
           ·
@@ -294,7 +294,8 @@ play.golang.org =&gt; go.dev/play</p>
 <h3 id="闭包">闭包 <a href="#%e9%97%ad%e5%8c%85" class="anchor">🔗</a></h3><p>闭包=函数+引用环境。</p>
 <p>闭包里引用局部变量时，在堆上创建该变量的一个拷贝，并把该变量地址和函数闭包组成一个结构体，并把该结构体传出来作为返回值</p>
 <br/>
-<h3 id="unsafe包">unsafe包 <a href="#unsafe%e5%8c%85" class="anchor">🔗</a></h3><p>uintptr与unsafe.Pointer（类似void*）</p>
+<h3 id="unsafe包">unsafe包 <a href="#unsafe%e5%8c%85" class="anchor">🔗</a></h3><p>*T &lt;==&gt; unsafe.Pointer &lt;==&gt; uintptr</p>
+<p>uintptr与unsafe.Pointer（类似void*）</p>
 <ol>
 <li>T1指针与 T2指针类型之间的转换</li>
 <li>修改内存数据， uintptr 常用于与 unsafe.Pointer配合，用于做指针运算</li>
