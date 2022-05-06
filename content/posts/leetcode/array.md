@@ -38,6 +38,39 @@ func Remove(arr []int) int {
 
 ### 最大子序和
 
+
+### 对一维数组做max pooling
+
+pooling(池化)目的： 压缩张量的规模
+
+```golang
+func get_max_pooling(arr []int, k int) []int{
+    var deque []int
+    var res []int
+    for i := 0; i < k; {
+        for len(deque) != 0 && deque[len(deque) - 1] < arr[i]{
+            // 维护 双端队列，左大 右小 
+            // pop 右边小的item
+            deque = deque[:len(deque)-1]
+        }
+        deque = append(deque, i)
+    }
+    for i := k; i < len(arr); i++ {
+        for len(deque) != 0 &&  i - deque[0] >= k {
+            // pop 左边超过window区间的item
+            deque = deque[1:]
+        }
+        for len(deque) != 0 && deque[len(deque)-1] < arr[i] {
+            // pop 右边小的item
+            deque = deque[:len(deque)-1]
+        }
+        deque = append(deque, i)
+        res = append(deque[0])
+    }
+    return res
+}
+```
+
 https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-858-computer-systems-security-fall-2014/lecture-notes/
 
 https://blog.gopheracademy.com/advent-2018/llvm-ir-and-go/
