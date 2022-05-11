@@ -39,6 +39,57 @@ func Remove(arr []int) int {
 ### 最大子序和
 
 
+### 最大的连续子数组和 lc 53
+
+```golang
+func get_max_sum(arr []int) int{
+    result := min_int
+    count := 0
+    for i := 0; i < len(arr); i++ {
+        count += arr[i]
+        if count > result {
+            result = count
+        }
+        if count <= 0 {
+            count = 0
+        }
+    }
+    return result
+}
+
+func get_max_sum(arr []int) int {
+    var sum int
+    for i := 0; i< len(arr); i++ {
+        if sum + arr[i] < 0 {
+            continue
+        }
+        if arr[i] < 0 {
+            sum = max(sum + arr[i], 0)
+        }
+        sum = sum + arr[i]
+    }
+    return sum
+}
+
+
+```
+
+```golang
+func get_max_sum(arr []int) int {
+    dp := make([]int, len(arr)+1)
+    dp[0] = arr[0]
+    result := dp[0]
+    for i := 1; i < len(arr); i++ {
+        dp[i] = max(dp[i-1]+arr[i], arr[i])
+        if dp[i] > result {
+            result = dp[i]
+        }
+    }
+    return result
+}
+
+```
+
 ### 对一维数组做max pooling
 
 pooling(池化)目的： 压缩张量的规模
@@ -70,6 +121,7 @@ func get_max_pooling(arr []int, k int) []int{
     return res
 }
 ```
+
 
 https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-858-computer-systems-security-fall-2014/lecture-notes/
 
