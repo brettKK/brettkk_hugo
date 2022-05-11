@@ -134,6 +134,39 @@ func get_max_pooling(arr []int, k int) []int{
 }
 ```
 
+### 求数组中比左边都大，比右边都小的元素，返回这些元素的索引
+
+```golang
+// 要求O(n)
+func get_index(arr []int) []int {
+    var result []int
+    leftMax, rightMin := make([]bool, len(arr)), make([]bool, len(arr))
+    leftMax, rightMin := MIN_int, MAX_int
+    for i := 0; i < len(arr); i++ {
+        if i == 0 {
+            leftMax[i] = false
+            rightMin[len(arr)-i-1] = false
+        }
+        if arr[i] > leftMax {
+            leftMax[i] = true
+            leftMax = arr[i]
+        }
+        if arr[len(arr)-i-1] < rightMin{
+            rightMin[i] = true
+            rightMin = arr[len(arr)-i-1]
+        }
+    }
+    for i := 0; i < len(arr); i++ {
+        if leftMax[i] == rightMin[i] {
+            result = append(result, i)
+        }
+    }
+    return result
+}
+
+
+```
+
 
 https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-858-computer-systems-security-fall-2014/lecture-notes/
 
