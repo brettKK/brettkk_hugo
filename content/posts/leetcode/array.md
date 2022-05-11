@@ -87,6 +87,18 @@ func get_max_sum(arr []int) int {
     }
     return result
 }
+func maxSubArray(nums []int) int{
+    maxSum := nums[0]
+    for i := 1; i < len(nums); i++ {
+        if nums[i-1] + nums[i] > nums[i] {
+            nums[i] += nums[i-1]
+        } 
+        if nums[i] > maxSum {
+            maxSum = nums[i]
+        }
+    }
+    return maxSum 
+}
 
 ```
 
