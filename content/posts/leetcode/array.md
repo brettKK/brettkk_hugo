@@ -164,6 +164,60 @@ func get_index(arr []int) []int {
     return result
 }
 
+### 旋转矩阵
+
+```golang
+func rotation(row, col int) [][]int {
+    top, bottom, left, right := 0, row -1, 0, col -1
+    i, j := 0
+    temp := 1
+    result := make([][]int, row)
+    for index := range row{
+        result[index] = make([]int, col)
+    }
+    for i >= top && i <= bottom && j >= left && j <= right {
+        // left -> right 
+        for j <= right {
+            result[i][j] = temp
+            temp++
+            j++
+        }
+        j--
+        top++
+        i = top
+        // top -> bottom
+        for i <= bottom {
+            result[i][j] = temp
+            temp++
+            i++
+        }
+        i--
+        right--
+        j = right
+        // right -> left
+        for j >= left {
+            result[i][j] = temp
+            temp++
+            j--
+        }
+        j++
+        bottom--
+        i = bottom
+        // bottom -> top
+        for i >= top {
+            result[i][j] = temp
+            temp++
+            i--
+        }
+        i++
+        left++
+        j = left
+    }
+    return result
+}
+
+```
+
 
 ```
 
