@@ -40,6 +40,27 @@ func (s *Stack)Len() int {
 
 ```
 
+
+### 删除字符串中的所有相邻重复项
+
+```golang
+func delRepeat(arr []byte) []byte{
+    var stack []byte
+    for i := 0; i < len(arr); i++ {
+        if len(stack) == 0 {
+            stack.push(arr[i])
+        } else {
+            for len(stack) != 0 && stack[len(stack) - 1] == arr[i] {
+                stack = stack[:len(stack)-1] // pop
+            }
+            stack.push(arr[i])
+        }
+    }
+    return stack
+}
+
+```
+
 ### 双栈排序
 
 ```golang

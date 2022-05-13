@@ -94,6 +94,179 @@ func (t *BinTree) getMax() int {
 }
 
 ```
+### 利用栈对树进行前中后遍历
+
+#### 前
+```golang
+func pre_order(root *TreeNode) []*TreeNode {
+    var result []*TreeNode
+    var st Stack
+    if root != nil {
+        st.push(root)
+    }
+    for len(st) != 0 {
+        node := st.pop()
+        result = append(result, node)
+        if node.Right != nil {
+            st.push(node.Right)
+        }
+        if node.Left != nil {
+            st.push(node.Left)
+        }
+    } 
+    return result
+}
+```
+
+#### 中
+```golang
+func in_order(root *TreeNode) []*TreeNode{
+    var result []*TreeNode
+    var st Stack
+    if root != nil {
+        st.push(root)
+    }
+    cur := root
+    for cur != nil || len(st) != nil {
+        if cur != nil {
+            st.push(cur.left)
+            cur = cur.left //左
+        } else {
+            cur := st.pop()
+            result = append(result, cur) //中
+            cur = cur.right // 右
+        }
+    }
+    return result
+}
+```
+
+#### 后
+```golang
+// pre 中左右 --》 中右左-- 》 反转 左右中
+func post_order(root *TreeNode) []*TreeNode{
+    var st Stack
+    var result []*TreeNode
+    if root == nil {
+        return result
+    }
+    st.push(root)
+    for len(st) != 0 {
+        node := st.pop()
+        result = append(result, node)
+        if node.Left != nil {
+            st.push(node.Left)
+        }
+        if node.right != nil {
+            st.push(node.right)
+        }
+    }
+    reverse(result)
+    return result
+}
+```
+
+### 利用栈对树进行前中后遍历 （统一）
+
+要处理的节点放入栈之后，紧接着放入一个空指针作为标记。 统一三种遍历的写法
+
+#### 前
+```golang
+func pre_order(root *TreeNode) []*TreeNode{
+    var result []*TreeNode
+    var st Stack
+    if root != nil {
+        st.push(root)
+    }
+    for len(st) != 0 {
+        node := st.top()
+        if node != nil {
+            node := st.pop() // 将该节点弹出，避免重复操作，下面再将右中左节点添加到栈中
+            if node.Right != nil {
+                st.push(node.Right) //右
+            }
+            if node.Left != nil {
+                st.push(node.Left) // 左
+            }
+            st.push(node)  //中
+            st.push(nil)
+        } else {
+            st.pop() // pop nil
+            node := st.pop()
+            result = append(result, node)
+        }
+    }
+    return result
+}
+
+```
+
+
+#### 中
+
+```golang
+
+func in_order(root *TreeNode) []*TreeNode{
+    var result []*TreeNode
+    var st Stack
+    if root != nil {
+        st.push(root)
+    }
+    for len(st) != 0 {
+        node := st.top()
+        if node != nil {
+            node := st.pop() // 将该节点弹出，避免重复操作，下面再将右中左节点添加到栈中
+            if node.Right != nil {
+                st.push(node.Right)
+            }
+            st.push(node)
+            st.push(nil)
+            if node.Left != nil {
+                st.push(node.Left)
+            }
+        } else {
+            st.pop() // pop nil
+            node := st.pop()
+            result = append(result, node)
+        }
+    }
+    return result
+}
+
+```
+
+#### 后
+```golang
+func post_order(root *TreeNode) []*TreeNode{
+    var result []*TreeNode
+    var st Stack
+    if root != nil {
+        st.push(root)
+    }
+    for len(st) != 0 {
+        node := st.top()
+        if node != nil {
+            node := st.pop()
+            st.push(node)  //中
+            st.push(nil)
+            if node.Right != nil {
+                st.push(node.Right) 
+            }
+            if node.Left != nil {
+                st.push(node.Left)
+            }
+        } else {
+            st.pop() // pop nil
+            node := st.pop()
+            result = append(result, node)
+        }
+    }
+    return result
+}
+
+```
+
+
 
 ### 获取树的高度
 
@@ -452,6 +625,31 @@ func getMinDepth(root *TreeNode) int {
         }
     }
     return depth
+}
+
+```
+
+### 反转二叉树 invert-binary-tree
+
+遍历时把每个节点的左右孩子交换一下。 
+
+前序，后序，层次遍历都可行。
+
+中序不行。因为先左孩子交换孩子，再根交换孩子（做完后，右孩子已经变成了原来的左孩子），再右孩子交换孩子（此时其实是对原来的左孩子做交换）。
+
+
+```golang
+
+func inverse(root *TreeNode) *TreeNode{
+    if root == nil || (root.left == nil && root.right == nil) {
+        return root
+    }
+    temp := root.left
+    root.left = root.right
+    root.right = tem
+    inverse(root.left)
+    inverse(root.right)
+    return root
 }
 
 ```
