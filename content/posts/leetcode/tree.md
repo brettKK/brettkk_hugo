@@ -653,3 +653,100 @@ func inverse(root *TreeNode) *TreeNode{
 }
 
 ```
+
+### 二叉树的所有路径 lc 257
+
+路径时从根到叶子，所以前序比较合适。
+
+```golang
+
+// 前序遍历，stack
+func getAllPath(root *TreeNode) [][]*TreeNode {
+    var result [][]*TreeNode
+
+    var stack Stack
+    if root == nil {
+        return result
+    }
+    stack.push(root)
+
+    path := []*TreeNode{}
+    for len(stack) != 0 {
+        node = stack.pop()
+        path = append(path, node)
+        if node.left == nil && node.right == nil {
+            result = append(result, path)
+            continue
+        }
+        if node.right != nil {
+            stack.push(node.right)
+        }
+        if node.left != nil {
+            stack.push(node.left)
+        }
+    }
+    return result
+}
+
+
+```
+
+
+```golang
+func getAllPath(root *TreeNode) [][]*TreeNode{
+    var result [][]*TreeNode
+    if root == nil {
+        return result
+    }
+    dfs(root, []*TreeNode{})
+    return result
+}
+
+func dfs(root *TreeNode, temp []*TreeNode) {
+    temp = append(temp, root)
+    if root.left == nil && root.right == nil {
+        // 找叶子节点
+        result = append(result, temp)
+        return
+    }
+    if root.left != nil {
+        dfs(root.left, temp)
+        temp = temp[:len(temp)-1]
+    }
+    if root.right != nil {
+        dfs(root.right, temp)
+        temp = temp[:len(temp)-1]
+    }
+}
+
+```
+
+```golang
+func getAllPath_error(root *TreeNode) {
+    var result [][]*TreeNode
+    if root == nil {
+        return result
+    }
+    dfs(root, []*TreeNode{})
+    return result
+}
+
+/*
+            1
+        2        3
+    4                    
+        5
+*/
+// 走到4时 1， 2， 4 会被放到path里
+func dfs_error(root *TreeNode, temp []*TreeNode) {
+    if root == nil {
+        result <- temp
+        return
+    }
+    temp = append(temp, root)
+    dfs_error(root.left, temp)
+    dfs_error(root.right, temp)
+    temp = temp[:len(temp)-1]
+}
+
+```
