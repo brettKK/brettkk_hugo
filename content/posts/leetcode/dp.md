@@ -9,6 +9,134 @@ series: [""]
 categories: ["life"]
 ---
 
+
+斐波那契， 连续子数组最大和lc 53，连续子数组最大乘积lc 152， 最长递增子序列lc 300， 最长公共子序列lc 1143，最长公共子串，不同子序列lc 115
+
+### 斐波那契
+
+```golang
+
+func fib(int n) {
+    dp := make([]int, n+1)
+    dp[0] =0
+    dp[1] = 1
+    for i := 2; i < n; i++ {
+        dp[i] = dp[i-1] + dp[i-2]
+    }
+    return dp[n]
+}
+
+```
+
+### 连续子数组最大和 lc 53
+
+```golang
+// dp[i] 以第i个结尾的最大子数组和
+func max_sub_array_sum(nums []int) int{
+    dp := make([]int, len(nums))
+    dp[0] = nums[0]
+    var max int
+    for i := 1; i < len(nums); i++ {
+        // 实际上是在判断dp[i-1] 是否小于0，并没有直接使用dp之前的数据，所以也可以不用dp
+        dp[i] = max(dp[i-1]+nums[i], nums[i])
+        if dp[i] > max{
+            max = dp[i]
+        }
+    }
+    return max
+}
+```
+
+### 连续子数组最大乘积 lc 152
+
+数组中出现负数， 最大子数组 可能由负负得正。
+
+开两个dp数组，dp——max 记录乘积的最大值，dp-min记录乘积的最小值。
+
+```golang
+dpmax[i] = max(dpmax[i-1]*nums[i], dpmin[i-1]*nums[i], nums[i])
+dpmin[i] = min(dpmax[i-1]*nums[i], dpmin[i-1]*nums[i], nums[i])
+
+```
+
+### 最长递增子序列lc 300
+
+```golang
+// dp[i] 为以nums[i]结尾的最长递增子序列的长度。
+func max_lis(nums []int) int {
+    dp := make([]int, len(nums))
+    max_len := 1
+    dp[0] = nums[0]
+    for i := 1; i < len(nums); i++ {
+        temp_max := 0
+        for j := 0; j < i; j++ { // o(n2) 这里可以优化
+            // 统计i之前，结尾数字小于当前i数字，且长度为记录的最长
+            if nums[j] < nums[i] && dp[j] > temp_max {
+                temp_max = dp[j]
+            }
+        }
+        dp[i] = temp_max + 1
+        if dp[i] > max_len{
+            max_len = dp[i]
+        }
+    }
+    return max_len
+}
+
+```
+
+### 最长公共子序列lc 1143
+
+给定2个字符串，返回2个字符串的最长公共子序列的长度。
+
+```golang
+// dp[i][j] 表示 以text1以第i个结尾，text2以第j个结尾的最长公共子序列长度。
+// 状态转移方程：
+// text1[i] == text2[j]  dp[i][j] = dp[i-1][j-1] + 1
+// text1[i] != text2[j]  dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+
+func max_lcs(s1 []byte, s2 []byte) int {
+    dp := make([][]int, len(s1) + 1)
+    for i := 0; i < len(s1); i++ {
+        dp[i] = make([]int, len(s2)+1)
+    }
+    for i := 0; i < len(s1); i++ {
+        for j := 0; j < len(s2); j++ {
+            if s1[i] == s2[j] {
+                dp[i+1][j+1] =dp[i][j] + 1
+            } else {
+                dp[i+1][j+1] = max(dp[i][j+1], dp[i+1][j])
+            }
+        }
+    }
+    return dp[len(s1)][len(s2)]
+}
+
+```
+
+### 最长公共子串
+子串： 连续。
+给定2个字符串，返回2个字符串的最长公共子串的长度。
+
+// text1[i] == text2[j] dp[i][j] = dp[i-1][j-1] + 1
+// text1[i] != text2[j] dp[i][j] = 0
+
+### 不同子序列lc 115
+
+给定一个字符串s和一个字符串t，计算在s的子序列中t出现的次数。
+
+s的子序列是指通过删除一些字符得到的新字符串。
+
+```golang
+
+
+
+```
+
+### 最小编辑距离
+
+
+
 ### 0-1背包问题
 
 ```golang
@@ -119,3 +247,5 @@ func CanFirstBearWin(nums []int) bool {
 }
 
 ```
+
+### 
