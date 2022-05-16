@@ -750,3 +750,75 @@ func dfs_error(root *TreeNode, temp []*TreeNode) {
 }
 
 ```
+
+### 监控二叉树 lc 968
+
+给定一个二叉树，我们在树的节点上安装摄像头。
+节点上的每个摄影头都可以监视其父对象、自身及其直接子对象。
+计算监控树的所有节点所需的最小摄像头数量。
+
+分析： 摄像头可以覆盖上中下三层，如果把摄像头放在叶子节点上，就浪费的一层的覆盖。
+先给叶子节点父节点放个摄像头，然后隔两个节点放一个摄像头，直至到二叉树头结点。
+
+采用哪种方式遍历？ 
+
+从下往上推到，使用后序遍历的方式。
+
+```golang
+func traversal(root *TreeNode) {
+    if terminate return
+    
+    left := traversal(root.left)  //左
+    right := traversal(root.right) //右
+
+    // do  中
+
+    return 
+}
+
+```
+
+如何隔两个节点放摄像头？
+
+给节点增加状态： 0节点无覆盖，1节点摄像头，2节点有覆盖。
+
+```golang
+var result int
+func traversal(root *TreeNode) int {
+    if root == nil {  //空节点，该节点有覆盖
+        return 2
+    }
+    left := traversal(root.left)
+    right := traversal(root.right)
+
+     // 左右节点都有覆盖
+    if (left == 2 && right == 2) return 0
+    
+    // left == 0 && right == 0 左右节点无覆盖
+    // left == 1 && right == 0 左节点有摄像头，右节点无覆盖
+    // left == 0 && right == 1 左节点有无覆盖，右节点摄像头
+    // left == 0 && right == 2 左节点无覆盖，右节点覆盖
+    // left == 2 && right == 0 左节点覆盖，右节点无覆盖
+    if (left == 0 || right == 0) {
+        result++;
+        return 1;
+    }
+
+    // left == 1 && right == 2 左节点有摄像头，右节点有覆盖
+    // left == 2 && right == 1 左节点有覆盖，右节点有摄像头
+    // left == 1 && right == 1 左右节点都有摄像头
+    // 其他情况前段代码均已覆盖
+    if (left == 1 || right == 1) return 2;
+
+    //逻辑不会走到这里
+    return -1
+}
+
+func getMinCarmera(root *TreeNode) int {
+    if traversal(root) == 0 { // 根节点为无覆盖，+1
+        result++
+    }
+    return result
+}
+
+```
