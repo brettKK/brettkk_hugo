@@ -133,9 +133,40 @@ s的子序列是指通过删除一些字符得到的新字符串。
 
 ```
 
-### 最小编辑距离
+### 最小编辑距离 lc 72
 
+编辑： 插入，删除，替换
+// text1[i] == text2[j] dp[i][j] = dp[i-1][j-1]
+// text1[i] != text2[j] dp[i][j] = 1 + min(dp[i-1][j] + dp[i][j-1] + dp[i-1][j-1])
 
+```golang
+
+func get_min_change(s1 []byte, s2 []byte) int {
+    dp := make([][]int, len(s1) + 1)
+    for i := range len(s1) + 1{
+        dp[i] = make([]int, len(s2) + 1)
+        for j := range len(s2) + 1 {
+            if i == 0 {
+                dp[0][j] = j
+            }
+            if j == 0 {
+                dp[i][0] = i
+            }
+        }
+    }
+    for i := range (1,len(s1)) {
+        for j := range (1,len(s2)) {
+            if s1[i-1] == s2[j-1] {
+                dp[i][j] = dp[i-1][j-1]
+            }else {
+                dp[i][j] = 1 + min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1])
+            }
+        }
+    }
+    return dp[len(s1)][len(s2)]
+} 
+
+```
 
 ### 0-1背包问题
 
