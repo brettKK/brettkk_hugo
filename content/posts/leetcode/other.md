@@ -69,7 +69,9 @@ func findNum(n, m int) int {
 
 leetcode: trapping rain water.
 
-思路： 位置x的盛水量等于 min(left_max, right_max) - h(x)。
+思路： 
+位置x能承多少水？ x的左边最大高度left_max, x的右边最大高度right_max。
+位置x的盛水量等于 min(left_max, right_max) - h(x)。
 
 ```golang
 
