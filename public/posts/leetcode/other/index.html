@@ -73,7 +73,7 @@ type Node struct{ int num, next Node, } func createCircleLink(int n) Node{ head 
           ·
         </span>
         <span>
-          262 words
+          284 words
         </span>
         <span class="split">
           ·
@@ -100,6 +100,7 @@ type Node struct{ int num, next Node, } func createCircleLink(int n) Node{ head 
         <li><a href="#数据流中的中位数">数据流中的中位数</a></li>
         <li><a href="#接雨水">接雨水</a></li>
         <li><a href="#计算任意两个年月日之间相隔的天数">计算任意两个年月日之间相隔的天数</a></li>
+        <li><a href="#取石子的游戏">取石子的游戏</a></li>
       </ul>
     </li>
   </ul>
@@ -201,6 +202,12 @@ type Node struct{ int num, next Node, } func createCircleLink(int n) Node{ head 
 
 </code></pre></div><hr>
 <h3 id="计算任意两个年月日之间相隔的天数">计算任意两个年月日之间相隔的天数 <a href="#%e8%ae%a1%e7%ae%97%e4%bb%bb%e6%84%8f%e4%b8%a4%e4%b8%aa%e5%b9%b4%e6%9c%88%e6%97%a5%e4%b9%8b%e9%97%b4%e7%9b%b8%e9%9a%94%e7%9a%84%e5%a4%a9%e6%95%b0" class="anchor">🔗</a></h3><p>写程序判断 别人的实现是否正确？ Fuzz</p>
+<h3 id="取石子的游戏">取石子的游戏 <a href="#%e5%8f%96%e7%9f%b3%e5%ad%90%e7%9a%84%e6%b8%b8%e6%88%8f" class="anchor">🔗</a></h3><p>巴什博弈。</p>
+<p>N颗石头，一次可取1-M颗。</p>
+<p>小a，小b轮番取石头，谁最后取完石头则胜利。</p>
+<p>例如： N=8， M =3。</p>
+<p>N mod(M + 1) == 0, 首先取石头的小a必败。
+N mod(M + 1) != 0, 首先取石头的小a必胜。</p>
 
     </div>
 

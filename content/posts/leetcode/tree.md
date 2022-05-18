@@ -751,6 +751,39 @@ func dfs_error(root *TreeNode, temp []*TreeNode) {
 
 ```
 
+
+### 判断二叉树 是否为对称的
+/*
+                1
+            2       2
+          3   4   4   3 
+*/
+
+
+```golang
+func is_sys(root *TreeNode) bool {
+    if root == nil return true
+    return helper(root.left, root.right)
+}
+
+func helper(left, right *TreeNode) bool {
+    if left == nil && right == nil {
+        return true
+    }
+    if left == nil {
+        return false
+    }
+    if right == nil {
+        return false
+    }
+    if left.val != right.val {
+        return false
+    }
+    return helper(left.left, right.right) && helper(left.right, right.left)
+}
+
+```
+
 ### 监控二叉树 lc 968
 
 给定一个二叉树，我们在树的节点上安装摄像头。
