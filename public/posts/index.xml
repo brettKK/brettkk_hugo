@@ -447,7 +447,10 @@ js 写ppt 🔗reveal.js</description>
       <description>安装goyacc
 go get modernc.org/goyacc
 https://pkg.go.dev/golang.org/x/tools/cmd/goyacc
- slidev  markdown, ppt https://sli.dev/ github.com/slidevjs/slidev    </description>
+  nano
+  xournal
+  slidev
+ markdown, ppt https://sli.dev/ github.com/slidevjs/slidev    </description>
     </item>
     
     <item>

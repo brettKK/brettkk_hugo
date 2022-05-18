@@ -186,3 +186,5 @@ func get_island_nums(area [][]int) int {
 ### 放苹果
 
 M个苹果， N个盘子， M个苹果分到不超过N堆的盘子里，有多少种分法？
+
+### 均分纸牌
