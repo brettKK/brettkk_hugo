@@ -73,7 +73,7 @@ type Node struct{ int num, next Node, } func createCircleLink(int n) Node{ head 
           ·
         </span>
         <span>
-          259 words
+          262 words
         </span>
         <span class="split">
           ·
@@ -165,7 +165,9 @@ type Node struct{ int num, next Node, } func createCircleLink(int n) Node{ head 
 <h3 id="数据流中的中位数">数据流中的中位数 <a href="#%e6%95%b0%e6%8d%ae%e6%b5%81%e4%b8%ad%e7%9a%84%e4%b8%ad%e4%bd%8d%e6%95%b0" class="anchor">🔗</a></h3><p>大顶堆维护一半小的数，小顶堆维护一半大的数。中位数为2个堆顶的平均数或者小顶堆的根。</p>
 <hr>
 <h3 id="接雨水">接雨水 <a href="#%e6%8e%a5%e9%9b%a8%e6%b0%b4" class="anchor">🔗</a></h3><p>leetcode: trapping rain water.</p>
-<p>思路： 位置x的盛水量等于 min(left_max, right_max) - h(x)。</p>
+<p>思路：
+位置x能承多少水？ x的左边最大高度left_max, x的右边最大高度right_max。
+位置x的盛水量等于 min(left_max, right_max) - h(x)。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
 <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">getWater</span>(<span style="color:#a6e22e">arr</span> []<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
     <span style="color:#a6e22e">leftMaxArr</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, len(<span style="color:#a6e22e">arr</span>))

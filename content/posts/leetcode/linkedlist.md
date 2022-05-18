@@ -224,7 +224,7 @@ func has_circle(head *ListNode) bool {
 
 ```
 
-### 合并2个有序链表
+### 合并2个有序链表 lc 21
 
 ```golang
 func merge2SortList(l1, l2 *ListNode) *ListNode {
@@ -252,7 +252,89 @@ func merge2SortList(l1, l2 *ListNode) *ListNode {
 }
 ```
 
-### 合并K个升序链表
+### 合并K个升序链表 lc 23
+
+给定一个数组，数组里的元素为链表，每个链表已升序排序，将所有K个链表合并为一个升序链表。
+
+分析： 如何快速找到K个节点中的最小节点，接到结果链表上？ 维护长度为k的最小堆。 O(N * log K)
+
+```golang
+func mergeKLists(arr []*ListNode) {
+    dummy := &ListNode{value: -1, next: nil}
+    p := dummy
+    var pq PriorityQueue
+    for _, value := range arr {
+        if value != nil {
+            pq.Add(value)
+        }
+    }
+    for !pq.IsEmpty() {
+        node := pq.Pop()
+        p.next = node
+        if node.next != nil {
+            pq.Add(node.next)
+        }
+        p = p.next
+    }
+    return dummy.next
+}
+
+
+```
+
+### 单链表的倒数第K个节点
+
+```golang
+func get_last_k(head *ListNode) *ListNode{
+    if head == nil {
+        return nil
+    }
+    first, second = head, head
+    for i := 0; i < k; i++ {
+        first = first.next
+        if first == nil {
+            return nil
+        }
+    }
+    for first != nil {
+        first = first.next
+        second = second.next
+    }
+    return second
+}
+
+```
+
+### 删除链表的倒数第K个节点 lc 19
+
+```golang
+func del_last_k(head *ListNode) *ListNode {
+    if head == nil {
+        return nil
+    }
+    dummy := head
+    first, second = dummy, dummy
+    for i := 0; i < k; i++ {
+        first = first.next
+        if first == nil {
+            return head
+        }
+    }
+    for first.next != nil {
+        first = first.next
+        second =second.next
+    }
+    second.next = second.next.next
+    return head
+}
+
+```
+
+### 找链表中的中点
+
+### 判断链表中是否包含环
+
+### 两个链表是否相交
 
 ### 链表的快速排序
 
