@@ -719,6 +719,27 @@ func dfs(root *TreeNode, temp []*TreeNode) {
     }
 }
 
+func binaryTreePaths(root *TreeNode) []string {
+    res := make([]string, 0)
+    var travel func(node *TreeNode, s string)
+    travel = func(node *TreeNode, s string) {
+        if node.Left == nil && node.Right == nil {
+            v := s + strconv.Itoa(node.Val)
+            res = append(res, v)
+            return
+        }
+        s = s + strconv.Itoa(node.Val) + "->"
+        if node.Left != nil {
+            travel(node.Left, s)
+        }
+        if node.Right != nil {
+            travel(node.Right, s)
+        }
+    }
+    travel(root, "")
+    return res
+}
+
 ```
 
 ```golang
@@ -783,6 +804,28 @@ func helper(left, right *TreeNode) bool {
 }
 
 ```
+
+### 求二叉树中最大路径和 lc 124
+
+```golang
+var result int
+func get_max_path(root *TreeNode) int {
+    helper(root)
+    return result
+}
+
+func helper(root *TreeNode) int {
+    if root == nil {
+        return nil
+    }
+    left := helper(root.left)
+    right := helper(root.right)
+    result = max(result, root.val + left + right)
+    return root.val + max(left, right)
+}
+
+```
+
 
 ### 监控二叉树 lc 968
 
