@@ -18,6 +18,8 @@ categories: ["life"]
     + 优点：判断连通性迅速
     + 缺点：图比较稀疏的话很耗费空间
 
+概念字典：无向图，有向图， 加权图， prim， kruskal， 最小生成树，Dijkstra，网络流， 拓扑排序。
+
 ```golang
 
 
