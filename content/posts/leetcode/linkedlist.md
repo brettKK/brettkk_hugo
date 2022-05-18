@@ -331,10 +331,71 @@ func del_last_k(head *ListNode) *ListNode {
 ```
 
 ### 找链表中的中点
+```golang
+func get_middle_node(head *ListNode) *ListNode{
+    first, second := head, head
+    for first != nil && first.next != nil {
+        first = first.next.next
+        second = second.next
+    }
+    return second
+}
+```
 
 ### 判断链表中是否包含环
+```golang
+func has_cycle(head *ListNode) bool {
+    first, second := head, head
+    for first != nil && first.next != nil  {
+        first = first.next.next
+        second = second.next
+        if first == second {
+            return true
+        }
+    }
+    return false
+}
 
-### 两个链表是否相交
+// 如果链表中有环，返回环的起点
+
+func detectCycle(head *ListNode) *ListNode{
+    // 找到环中first second相遇的位置，second重新指向head，first 和 second同步前进，相交点就是环的起点
+}
+
+```
+
+### 两个链表是否相交 lc 160
+
+如何让p1 和 p2 同时到达相交点？
+让p1 遍历完链表A后遍历链表B， 让p2 遍历完链表B后遍历链表A。
+
+分析：
+
+A: a1 -> a2 -> c1 -> c2
+B: b1 -> b2 -> b3 -> c1 -> c2
+
+A -> B: a1 -> a2 -> c1 -> c2 -> b1 -> b2 -> b3 -> c1 -> c2
+B -> A: b1 -> b2 -> b3 -> c1 -> c2 -> a1 -> a2 -> c1 -> c2
+
+```golang
+func get_intersection_node(headA, headB *ListNode) *ListNode{
+    p1, p2 := headA, headB
+    for p1 != p2 {
+        if p1 == nil {
+            p1 = headB
+        }else {
+            p1 = p1.next
+        }
+        if p2 == nil {
+            p2 == headA
+        } else {
+            p2 = p2.next
+        }
+    }
+    return p1
+}
+
+```
 
 ### 链表的快速排序
 
