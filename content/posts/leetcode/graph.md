@@ -1,6 +1,6 @@
 ---
 title: "图"
-date: 2021-04-05T11:33:56+08:00
+date: 2022-05-18T11:33:56+08:00
 draft: true
 isCJKLanguage: true
 markup: mmark
@@ -17,3 +17,9 @@ categories: ["life"]
 + 二维数组
     + 优点：判断连通性迅速
     + 缺点：图比较稀疏的话很耗费空间
+
+```golang
+
+
+
+```
