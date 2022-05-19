@@ -956,8 +956,34 @@ func getMinCarmera(root *TreeNode) int {
 
 递归的方式， 怎么找在树的最后一行找到最左边的值？
 
-
+使用递归法，如何判断是最后一行? 用max_dep记录最大深度。
+如果找最左边的？可以使用前序遍历，先优先左边搜索。
 
 ```golang
+var value int
+var max_dep int
+func find_bottom_left_value(root *TreeNode) int{
+    find_left_value(root, 0)
+    return value
+}
+
+func find_left_value(root *TreeNode, dep int) {
+    if root == nil {
+        return
+    }
+    if root.left == nil && root.right == nil {
+        if dep > max_dep {
+            max_dep = dep
+            value = root.val
+        }
+        return
+    }
+    if root.left != nil {
+        find_left_value(root.left, dep+1)
+    }
+    if root.right != nil {
+        find_left_value(root.right, dep+1)
+    }
+}
 
 ```
