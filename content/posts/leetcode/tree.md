@@ -629,6 +629,55 @@ func getMinDepth(root *TreeNode) int {
 
 ```
 
+#### 判断是否为平衡二叉树  lc 110
+
+```golang
+var is_balance bool
+func judge_balance(root *TreeNode) bool {
+    if root == nil {
+        return true
+    }
+    is_balance = true
+}
+
+func helper(root *TreeNode) int {
+    if is_balance == false {
+        return 0
+    }
+    if root == nil {
+        retun 0
+    }
+    if is_balance == true {
+        left := helper(root.left)
+        right := helper(root.right)
+        if math.abs(left, right) > 1 {
+            is_balance = false
+        }
+    }
+    return 1 + max(left, right)
+}
+
+```
+
+#### 二叉树的最大深度 lc 104
+
+根节点的高度。
+
+```golang
+func get_depth(root *TreeNode) int {
+    if root == nil {
+        return 0
+    }
+    if root.left ==nil && root.right == nil {
+        return 1
+    }
+    left_depth := get_depth(root.left)
+    right_depth := get_depth(root.right)
+    return 1 + max(left_depth, right_depth) 
+}
+
+```
+
 ### 反转二叉树 invert-binary-tree
 
 遍历时把每个节点的左右孩子交换一下。 
@@ -896,5 +945,19 @@ func getMinCarmera(root *TreeNode) int {
     }
     return result
 }
+
+```
+
+### 层次遍历
+
+#### lc 513 找二叉树的左下角的值
+
+层次遍历：每次记录每层的第一个元素，最后一层的第一个元素即是左下角的值。
+
+递归的方式， 怎么找在树的最后一行找到最左边的值？
+
+
+
+```golang
 
 ```
