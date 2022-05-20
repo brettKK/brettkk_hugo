@@ -9,6 +9,99 @@ series: [""]
 categories: ["life"]
 ---
 
+## Dynamic programming
+
+题型：优化问题（min, max）, 计数问题（有多少种方式）。
+
+种类：矩阵坐标， 序列型（LIS， LCS）， Knapsack背包（coin， sub set sum）, 区间型。
+
+寻找递推公式（大问题依赖于之前的小问题）
+
+### knapsack without repetition (0-1背包)
+
+input:   v[i] i=1..n, ith item 的value；
+ w[i] i=1..n, ith item 的weight；
+ C 背包的最大承受的weight。
+ note: only one copy of each item at most。
+
+ output： max value
+
+分析： naive 把所有的组合都试一次。 时间复杂度为O（2^n）。
+
+两个维度：f(i,j), i item {1,2,..i}给你选，背包的重量为j。
+
+
+```golang
+
+func knapsack01(v []int, w []int, C int) int {
+    dp := make([][]int, len(v)+1)
+    for i := 0; i <= len(v); i++ {
+        dp[i] = make([]int, C+1)
+        dp[i][0] = 0
+    }
+    for i := 0; i <= C; i++ {
+        dp[0][i] = 0
+    }
+    for i := 1; i <= len(v); i++ {
+        for j := 1; j <= C; j++ {
+            dp[i][j] = dp[i-1][j]  
+            if w[i-1] <= j {
+                dp[i][j] = max(dp[i][j], dp[i][j-w[i-1]] + v[i-1])
+            }
+        }
+    }
+    return dp[len(v)][C]
+}
+
+```
+
+### knapsack with repetition
+
+note: infinite copies of each item. output: max value.
+
+
+item的重量是小数时怎么办？ 乘于factor变为整数。
+
+```golang
+func knapsack(v []int, w []int, C int) int {
+    dp := make([]int, C + 1)
+    for i := 1; i <= C; i++ {
+        for j := 0; j < n; j++ {
+            if i >= w[j] {
+                dp[i] = max(dp[i], dp[i-w[j]] + v[j])
+            }
+        }
+    }
+    return dp[C]
+}
+
+LC 322 换零钱。
+
+2, 5, 7 三种硬币，能否拼出X元。如果能拼出，最少用多少个枚硬币拼出X
+
+f(x) 最少用多少枚硬币拼出X。 f(x) = min(f(x-2) + 1, f(x-5) + 1, f(x-7) + 1)
+
+```golang
+
+func change_coins(coins []int, X int) int {
+    dp := make([]int, X + 1)
+    dp[0] = 0
+    for i := 1; i <= X; i++ {
+        dp[i] = MAX_INT
+        for _, j := range coins {
+            if i >= j && dp[i-j] != MAX_INT {
+                dp[i] = min(dp[i-j]+1, dp[i])
+            }
+        }
+    }
+    return dp[X]
+}
+
+```
+
+```
+
+
 
 斐波那契， 连续子数组最大和lc 53，连续子数组最大乘积lc 152， 最长递增子序列lc 300， 最长公共子序列lc 1143，最长公共子串，不同子序列lc 115
 
