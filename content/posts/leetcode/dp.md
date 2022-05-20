@@ -99,8 +99,51 @@ func change_coins(coins []int, X int) int {
 
 ```
 
-```
 
+
+### 机器人
+
+从左上角，每次可下或者可右一步，有多少种不同的方式走到右下角
+
+```golang
+func unique_paths(m, n int) int {
+    dp := make([][]int, m)
+    for i := 0; i < m; i++ {
+        dp[i] = make([]int, n)
+    }
+    for i := 1; i < m; i++ {     //row: top to bottom
+        for j := 1; j < n; j++ { //column: left to right
+            if i == 0 || j == 0 {
+                // 在边上，只有一条path
+                dp[i][j] = 1
+            }
+            dp[i][j] = dp[i-1][j] + dp[i][j-1]
+        }
+    }
+    return dp[m-1][n-1]
+}
+
+```
+### 青蛙跳
+
+```goalng
+//dp[x] = or (0-x 所有可能性)
+
+func can_jump(arr []int) bool {
+    dp := make([]bool, len(arr))
+    dp[0] = true
+    for i := 1; i < len(arr); i++ {
+        // 枚举i之前的所有可能的石头。
+        for j := 0; j < i; j++ {
+            if j + arr[j] >= i && dp[j] == true {
+                dp[i] = true
+                break
+            }
+        }
+    }
+    return dp[len(arr)-1]
+}
+```
 
 
 斐波那契， 连续子数组最大和lc 53，连续子数组最大乘积lc 152， 最长递增子序列lc 300， 最长公共子序列lc 1143，最长公共子串，不同子序列lc 115
