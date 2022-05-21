@@ -478,7 +478,20 @@ func get_ones_nums(arr []int) int {
 
 ```
 
-### 
+### maximum subarray sum with one deletion lc 1186
+
+给定一个数组，最多有一次删除一个数的权利。问sum最大的subarray？
+
+涉及到权利状态时放到dp的维度里去。
+
+dp[i][0]: 以当前元素为结尾且未使用权利的最大sum
+dp[i][1]: 以当前元素为结尾且使用权利的最大sum
+
+dp[i][0] = max(dp[i-1][0] + arr[i], arr[i])
+dp[i][1] = max(dp[i-1][0], dp[i-1][1] + arr[i])
+
+
+
 
 ### 熊出没
 
