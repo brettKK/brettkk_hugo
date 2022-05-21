@@ -103,7 +103,7 @@ func change_coins(coins []int, X int) int {
 
 ### 机器人
 
-从左上角，每次可下或者可右一步，有多少种不同的方式走到右下角
+机器人从左上角，每次可下或者可右一步，有多少种不同的方式走到右下角
 
 ```golang
 func unique_paths(m, n int) int {
@@ -333,7 +333,7 @@ func bag01(weight, value []int, bagweight int) int {
 ### next 
 
 
-### 打家劫舍
+### 打家劫舍 lc 198
 
 相邻的房间不能偷，能获取的最大金额
 
@@ -348,7 +348,7 @@ dp[1] = nums[1]
 dp[k] = max(dp[k-1], dp[k-2] + nums[i])
 // 也可以不申请dp数组， 因为dp[i] 只与前两项有关
 ```
-#### 打家劫舍 （首尾相连）
+#### 打家劫舍 （首尾相连）lc 213
 
 ```golang
 // 不选择第一间， [1 ~ n]
@@ -369,6 +369,69 @@ func robRange(nums []int, left int, right int) {
 }
 
 ```
+
+### lc 123 
+
+### wiggle subsequence lc 376
+
+fun longest_wiggle_subsequence(nums []int) int{
+    // dp rows = len(nums) + 1, cols = 2
+    // dp[i][0] 以当前元素结尾且上升
+    // dp[i][1] 以当前元素结尾且下降
+    dp := make([][]int, len(nums))
+    if i = 1; i < len(nums); i++ {
+        if nums[i] > nums[i-1] {
+            dp[i][0] = dp[i-1][1] + 1
+        }else {
+            dp[i][1] = dp[i-1][0] + 1
+        }
+    }
+    return max(dp[len(nums)-1][0], dp[len(nums)-1][1])
+}
+
+### paint fence lc 276
+
+给出cost[i][j]表示第i个房子喷第j种颜色的价格。限制相邻的房子不能涂相同的颜色。求喷涂完所有房子的最小价格？
+
+```golang
+
+// dp[i][j] 喷涂从0到i的房子，且第i个房子为颜色j的价格。
+// dp[i][j] = min(dp[i-1][!j] + cost[i][j])
+// result = min(dp[N][j] j=...)
+
+func min_cost(cost [][]int) int {
+    house_nums, color_nums:= len(cost), len(cost[0])
+    dp = make([][]int, len(house_nums))
+    for i := 0; i < house_nums; i++ {
+        dp[i] = make([]int, len(color_nums))
+        dp[i][0] = cost[i][0]
+    }
+    for i := 0; i < color_nums; i++ {
+        dp[0][i] = cost[0][i]
+    }
+    for i := 1; i < house_nums; i++ {
+        for j := 1; j < color_nums; j++ {
+            var temp_min int
+            for k := 1; k < color_nums && k != j; k++ {
+                if dp[i-1][k] + cost[i][j] < temp_min {
+                    temp_min = dp[i-1][k] +cost[i][j]
+                }
+            }
+            dp[i][j] = temp_min
+        }
+    }
+    var min int
+    // min dp[house_nums][...]
+    for j := 0; j < color_nums; j++ {
+        if dp[house_nums-1][i] < min {
+            min = dp[house_nums-1][i]
+        }
+    }
+    return min
+}
+
+```
+similar: mininum falling path sum II.
 
 ### 熊出没
 
