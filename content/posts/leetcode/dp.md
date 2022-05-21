@@ -471,10 +471,14 @@ func get_ones_nums(arr []int) int {
             dp[i][1] = dp[i-1][1] + 1
         }
     }
-    return min(dp[len(arr)-1][0], dp[len(arr)-1][1])
+    // for all dp[i][j] to get max value
+    // not min(dp[len(arr)-1][0], dp[len(arr)-1][1])
+    return get_min_value(dp)
 }
 
 ```
+
+### 
 
 ### 熊出没
 
