@@ -17,6 +17,31 @@ categories: ["life"]
 
 寻找递推公式（大问题依赖于之前的小问题）
 
++ 套路
+    + 第I类基本类型。单序列I (时间序列型，今天的状态只依赖昨天的状态 )
+        + lc_198, lc_213, lc_123, lc_309, lc_376, lc_276
+        + 权利， lc_487,  lc_1186, 
+    + 第II类基本类型。单序列II  （时间序列型，今天的状态依赖于之前的某一个状态）
+        + lc_300, lc_368, lc_1105
+    + 双序列型
+        + lc_1143, longest common subsequences
+        + lc_1092, shortest common suppersequences
+        + lc_72, edit distance
+        + lc_97, lc_115, lc_727, lc_583, lc_712, lc_1035, lc_1216, lc_1312
+    + 第I类区间型 （分K个连续区间，计算这些区间的最优性质）
+        + 状态定义： dp[i][k]表示为s[1:i]f分成K个区间得到的最优解
+        + 搜索最后一个区间的起始位置j, 将dp[i][k] 分小为dp[j-1][k-1] 和 s[j:i]两部分
+        + 最优的结果 dp[N][K]
+        + lc_1278, lc_813, lc_410, lc_1335, 
+    + 第II类区间型 
+        + lc 516, lc_312, lc_375, lc_1246, lc_1000
+    + 背包问题 (背包九讲)
+        + lc_494, lc 518, lc_1049, lc_474, lc_879, lc_956
+    + 状态压缩 
+        + lc_691, lc 1349, lc_943
+    + others
+        + lc_887, lc_920
+
 ### knapsack without repetition (0-1背包)
 
 input:   v[i] i=1..n, ith item 的value；
@@ -195,7 +220,11 @@ dpmin[i] = min(dpmax[i-1]*nums[i], dpmin[i-1]*nums[i], nums[i])
 
 ```
 
-### 最长递增子序列lc 300
+### 最长递增子序列 (lc 300 longest increasing subsequence)
+
+当前的dp[i]与dp[0 ～ i-1]的每一个状态均有关系。
+当前的dp[i]只与dp[i-1]的状态有关系。
+
 
 ```golang
 // dp[i] 为以nums[i]结尾的最长递增子序列的长度。
@@ -221,7 +250,65 @@ func max_lis(nums []int) int {
 
 ```
 
-### 最长公共子序列lc 1143
+similar: lc 673. number of longest increasing subsequence
+
+
+### largest divisible subset lc 368
+
+给定一个数组S。求最大的子集，使得里面的所有元素之间都可以相互整除。
+
+状态定义： dp[i]以S[i]结尾，满足限制的最大子集的元素数量。
+
+状态转移： 在0-i之间寻找最优的前驱状态j，将dp[i] 与dp[j] 产生联系。
+
+```golang
+
+func get_largest(nums []int) int {
+    sort(nums)
+    for i := 1; i < len(nums); i++ {
+        for j := 1; j < i; j++ {
+            if nums[i] % nums[j] == 0 {
+                dp[i] = max(dp[i], dp[j] + 1)
+            }
+        }
+    }
+    ans := max(dp[i]) // i = ...
+    return ans
+}
+
+```
+
+### filling bookcase shelves lc 1105
+
+给定N本书（宽度高度各异）的序列，要求按照所给出的顺序摆放。相邻的若干本书可以放一层，但同一层的宽度不能超过W。
+问书架的最矮可以有多高？
+
+将数组分成若干个sub array。 min（每个subarray的最大值之和）。
+
+第i本书所在的这一层有多高？取决于上一层的最后一本书在哪儿。
+
+
+```golang
+
+// width[i],height[i] 表示第i本书的宽度和高度。
+// dp[i] 表示0-i本书放到书架上的最矮高度
+func min_height(width []int, height []int, limit_width int) int {
+    dp := make([]int, len(width))
+    for i := 0; i < len(width); i++ {
+        // 寻找上一层最后一本书的位置。
+        for j := 0; j < i; j++ {
+            if get_width(width, j+1, i) <= limit_width {
+                dp[i] = min(dp[i], dp[j] + max_height(height, j+1 , i))
+            }
+        }
+    }
+    return dp[len(width) - 1]
+}
+
+```
+
+
+### 最长公共子序列lc 1143 longest common subsequences
 
 给定2个字符串，返回2个字符串的最长公共子序列的长度。
 
@@ -251,6 +338,9 @@ func max_lcs(s1 []byte, s2 []byte) int {
 ```
 
 ### 最长公共子串
+
+之前是给一个数组，可以给2个数组。
+
 子串： 连续。
 给定2个字符串，返回2个字符串的最长公共子串的长度。
 
@@ -269,7 +359,7 @@ s的子序列是指通过删除一些字符得到的新字符串。
 
 ```
 
-### 最小编辑距离 lc 72
+### 最小编辑距离 lc 72 edit distance
 
 编辑： 插入，删除，替换
 // text1[i] == text2[j] dp[i][j] = dp[i-1][j-1]
@@ -303,6 +393,49 @@ func get_min_change(s1 []byte, s2 []byte) int {
 } 
 
 ```
+
+
+### largest sum of averages lc 813
+
+
+## 第II类区间型
+
+### longest palindromic subsequence lc 516
+
+给定一个string， 求是回文串的最长subsequence的长度
+
+状态定义： dp[i][j]表示为字符串S[i:j]里是回文串的最长subsequence的长度。
+
+状态转移：第一层循环是区间大小；第二层循环是起始点；想办法把大区间的dp[i][j]往小区间上转移。
+
+```golang
+func longest_palin(s []byte) int {
+    for i := 0; i < len(s); i++ {
+        for j := 0; i + j < len(s); j++ {
+            k := j + i
+        }
+    }
+}
+```
+
+### burst balloons lc 312
+
+给一排气球及其价值S。每戳爆一个气球的得分： 气球本身的分值*（左边存留的气球分值）* （右边存留的气球分值）。
+如何戳破气球，得到max score。
+
+dp[i][j] = max(dp[i][j], dp[i][k-1] + s[i-1] * s[k] * s[j+1] + dp[k+1][j])
+
+
+### guess number higher or lower II (lc 375)
+
+### palindrome removal (lc 1246)
+
+### minimum cost to merge stones (lc 1000)
+
+结合第I类和第II区间型DP算法的hard题。
+
+
+---
 
 ### 0-1背包问题
 
