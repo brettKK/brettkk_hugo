@@ -310,7 +310,9 @@ func min_height(width []int, height []int, limit_width int) int {
 
 ### 最长公共子序列lc 1143 longest common subsequences
 
-给定2个字符串，返回2个字符串的最长公共子序列的长度。
+给定2个字符串，返回2个字符串的最长公共子序列的长度lcs。
+
+
 
 ```golang
 // dp[i][j] 表示 以text1以第i个结尾，text2以第j个结尾的最长公共子序列长度。
@@ -321,6 +323,7 @@ func min_height(width []int, height []int, limit_width int) int {
 func max_lcs(s1 []byte, s2 []byte) int {
     dp := make([][]int, len(s1) + 1)
     for i := 0; i < len(s1); i++ {
+        // 2行 也行
         dp[i] = make([]int, len(s2)+1)
     }
     for i := 0; i < len(s1); i++ {
