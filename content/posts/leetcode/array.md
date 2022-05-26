@@ -221,7 +221,37 @@ func rotation(row, col int) [][]int {
 
 ### 数组中出现次数超过一半的数
 
+数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
 
+分析1: 对数组进行快排，位于数组中间的数字一定是出现次数超过了长度一半的数字。
+分析2: 利用map<number, counter> ，遍历数组，发现counter>=len/2时 返回number。
+分析3: 最优算法。在遍历数组的时候保存两个值：一个candidate，用来保存数组中遍历到的某个数字；一个nTimes，表示当前数字的出现次数。
+有符合条件的数字，则它出现的次数比其他所有数字出现的次数和还要多
+
+```golang
+
+func find_more_half_num(nums []int) int {
+    candidate, times := nums[0], 1
+    for i := 1; i < len(nums); i++ {
+        if times == 0 {
+            candidate = nums[i]
+            times = 1
+        } else {
+            if candidate == nums[i] {
+                times += 1
+            } else {
+                times -= 1
+            }
+        }
+    }
+    return candidate
+}
+
+```
+
+
+
+---
 
 
 https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-858-computer-systems-security-fall-2014/lecture-notes/
