@@ -327,6 +327,15 @@ type Node struct{ int num, next Node, } func createCircleLink(int n) Node{ head 
     
     <item>
       <title></title>
+      <link>http://brettkk.github.io/posts/leetcode/skiplist/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://brettkk.github.io/posts/leetcode/skiplist/</guid>
+      <description>type Element struct { score float64 value interface{} forward []*Element } type SkipList struct { header *Element len int level int } </description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>http://brettkk.github.io/posts/leetcode/string/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

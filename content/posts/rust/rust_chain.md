@@ -7,3 +7,4 @@ tokio, axum
 
 github.com/skerkour/kerkour.com
 
+虚拟人， metaverse NFT
