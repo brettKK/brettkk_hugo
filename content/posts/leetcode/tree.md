@@ -266,6 +266,10 @@ func post_order(root *TreeNode) []*TreeNode{
 
 ```
 
+### 递归函数的return
+
++ no return  (need search total tree, 113)
++ have return  lc 112， lc 113 path_sum , lc 136.
 
 
 ### 获取树的高度

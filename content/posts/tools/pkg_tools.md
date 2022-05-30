@@ -9,7 +9,7 @@ https://pkg.go.dev/golang.org/x/tools/cmd/goyacc
 
 + nano
 + xournal
-
++ NDK, IDA
 + slidev
     + markdown, ppt
     + https://sli.dev/ 
