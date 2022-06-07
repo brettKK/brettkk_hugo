@@ -9,6 +9,10 @@ series: [""]
 categories: ["技术"]
 ---
 
+## 资料
+
+操作系统：南大 jyy。 http://jyywiki.cn/OS/2022/
+
 
 ### Linux 版本
 

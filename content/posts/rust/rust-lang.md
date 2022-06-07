@@ -9,15 +9,39 @@ series: [""]
 categories: ["技术"]
 ---
 
+### doc book
+
+rustup docs --book
+
 ### core, std
 
 core：
 std：大多数与os相关
 
+### 引入第三方依赖
+
+例如在toml文件中引入rand crate后，cargo build的输出，Cargo.lock的内容。
+
 ### module
 
 package， crate， module。
 
+模块机制: rust的mod即是命名空间。
+
+use 是optional，可以使用full path 替换，不是必须使用的。
+
+use作用：将其他module的item导入到current namespace，方便访问。
+不带{}的mod作用：将module的内容插入到当前file中。
+
+声明：mod 与 pub mod
+
+引入：use 与 pub use
+
+### rust workspace 
+
+
+
+<!-- ![image](go-project-structure.svg) -->
 
 ### 
 

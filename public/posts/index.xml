@@ -402,6 +402,7 @@ n元线性方程组， 矩阵消元法，增广矩阵经过初等行变换，变
 exa = rust ls
 tokio, axum
 github.com/skerkour/kerkour.com
+rCore OS.
 IDA, NDK。
 虚拟人， metaverse NFT</description>
     </item>
@@ -460,10 +461,7 @@ js 写ppt 🔗reveal.js</description>
       <description>安装goyacc
 go get modernc.org/goyacc
 https://pkg.go.dev/golang.org/x/tools/cmd/goyacc
-  nano
-  xournal
-  slidev
- markdown, ppt https://sli.dev/ github.com/slidevjs/slidev    </description>
+ nano xournal NDK, IDA slidev  markdown, ppt https://sli.dev/ github.com/slidevjs/slidev    </description>
     </item>
     
     <item>
