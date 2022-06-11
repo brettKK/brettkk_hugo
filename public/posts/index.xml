@@ -94,7 +94,7 @@
       <pubDate>Wed, 05 May 2021 11:33:56 +0800</pubDate>
       
       <guid>http://brettkk.github.io/posts/os/base_os/</guid>
-      <description>Linux 版本 uname -a 查看系统的版本 debian/ubuntu redhat/fedora/centos 各种源码协议 必须开源： LGPL Mozilla GPL</description>
+      <description>资料 操作系统：南大 jyy。 http://jyywiki.cn/OS/2022/ Linux 版本 uname -a 查看系统的版本 debian/ubuntu redhat/fedora/centos 各种</description>
     </item>
     
     <item>
@@ -461,7 +461,12 @@ js 写ppt 🔗reveal.js</description>
       <description>安装goyacc
 go get modernc.org/goyacc
 https://pkg.go.dev/golang.org/x/tools/cmd/goyacc
- nano xournal NDK, IDA slidev  markdown, ppt https://sli.dev/ github.com/slidevjs/slidev    </description>
+  tldr (too long didn&#39;t read) . brew install tldr
+  nano
+  xournal
+  NDK, IDA
+  slidev
+ markdown, ppt https://sli.</description>
     </item>
     
     <item>

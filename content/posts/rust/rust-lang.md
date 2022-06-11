@@ -13,10 +13,9 @@ categories: ["技术"]
 
 rustup docs --book
 
-### core, std
+### 源码结构
 
-core：
-std：大多数与os相关
+![image](rust.svg)
 
 ### 引入第三方依赖
 
@@ -130,6 +129,20 @@ fn main() {
 }
 
 ```
+
+### 智能指针
+
+Deref trait,
+```rust
+pub trait Deref {
+    type Target: ?Sized;
+    fn deref(&self) -> &Self::Target;
+}
+```
+
+ Drop trait
+
+ 
 
 ### closure
 
